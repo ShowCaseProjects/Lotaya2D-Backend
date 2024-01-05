@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEnum, IsNotEmpty, IsString, MaxLength } from "class-validator";
+import {  IsNotEmpty, IsString } from "class-validator";
 
 
 export class LoginUserPhoneNumberConfirmReqPathDto {
@@ -20,6 +20,7 @@ export class LoginUserPhoneNumberConfirmReqPathDto {
     })
     @ApiProperty()
     phoneNumber: string;
+
 }
 
 export class LoginUserPhoneNumberConfirmResBodyDto {

@@ -61,4 +61,7 @@ export class LoginUserOtpCodeConfirmResBodyDto {
 
     @ApiProperty({default:true})
     isSuccess: boolean;
+    
+    @ApiProperty()
+    token:string;
 }

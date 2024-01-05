@@ -1,8 +1,10 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Logger, Param, Post, Req, UseGuards } from '@nestjs/common';
+import {  Controller, Get, HttpCode,  Logger, Param, Post, Req} from '@nestjs/common';
 import { AuthService } from './auth.service';
-import { LoginUserOtpCodeConfirmReqBodyDto, LoginUserOtpCodeConfirmReqPathDto, LoginUserOtpCodeConfirmResBodyDto } from 'src/useraccount/dto/login-user-otpcodeconfitm.dto';
+import {  LoginUserOtpCodeConfirmResBodyDto } from 'src/useraccount/dto/login-user-otpcodeconfitm.dto';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LogoutResBodyDto } from 'src/useraccount/dto/logout-user.dto';
+import { LoginUserPhoneNumberConfirmReqPathDto } from 'src/useraccount/dto/login-user-phonenumberconfirm.dto';
+import { LoginUserPasswordConfirmReqPathDto } from 'src/useraccount/dto/login-user-passwordconfirm.dto';
 
 @ApiTags('api/v1/auth')
 @Controller('api/v1/auth')
@@ -12,7 +14,7 @@ export class AuthController {
         this.logger = new Logger(AuthController.name);
     }
 
-    @Post('login/:phoneNumber')
+    @Post('login/:phoneNumber/:password')
     @HttpCode(201)
     @ApiOperation({
         summary: 'Authentication API',
@@ -22,8 +24,8 @@ export class AuthController {
         description: 'Login Success',
         type: LoginUserOtpCodeConfirmResBodyDto
     })
-    signIn(@Param() signInPath: LoginUserOtpCodeConfirmReqPathDto, @Body() signInDto: LoginUserOtpCodeConfirmReqBodyDto): Promise<LoginUserOtpCodeConfirmResBodyDto> {
-        return this.authService.signInWithOtpCode(signInPath, signInDto);
+    signIn(@Param() phoneNumber:LoginUserPhoneNumberConfirmReqPathDto,@Param() password:LoginUserPasswordConfirmReqPathDto): Promise<LoginUserOtpCodeConfirmResBodyDto> {
+        return this.authService.signInWithPassword(phoneNumber,password);
     }
 
 

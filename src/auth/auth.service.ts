@@ -1,6 +1,8 @@
-import { Injectable, Logger, NotAcceptableException, UnauthorizedException } from '@nestjs/common';
+import { Injectable, Logger,  UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
-import { LoginUserOtpCodeConfirmReqBodyDto, LoginUserOtpCodeConfirmReqPathDto, LoginUserOtpCodeConfirmResBodyDto } from 'src/useraccount/dto/login-user-otpcodeconfitm.dto';
+import {  LoginUserOtpCodeConfirmResBodyDto } from 'src/useraccount/dto/login-user-otpcodeconfitm.dto';
+import {  LoginUserPasswordConfirmReqPathDto, } from 'src/useraccount/dto/login-user-passwordconfirm.dto';
+import { LoginUserPhoneNumberConfirmReqPathDto } from 'src/useraccount/dto/login-user-phonenumberconfirm.dto';
 import { UseraccountService } from 'src/useraccount/useraccount.service';
 
 @Injectable()
@@ -8,30 +10,36 @@ export class AuthService {
     constructor(private usersService: UseraccountService, private jwtService: JwtService) { }
     private readonly logger = new Logger(AuthService.name);
 
-    async signInWithOtpCode(signInPath: LoginUserOtpCodeConfirmReqPathDto, signInDto: LoginUserOtpCodeConfirmReqBodyDto): Promise<LoginUserOtpCodeConfirmResBodyDto> {
-        const user = await this.usersService.findUserByPhoneNumber(signInPath);
-        const twoMinuteAgo = new Date( Date.now() - 2000 * 60 );
-        if (user.smsSendTime ===twoMinuteAgo) {
+    async signInWithPassword(phoneNumber:LoginUserPhoneNumberConfirmReqPathDto, password:LoginUserPasswordConfirmReqPathDto): Promise<LoginUserOtpCodeConfirmResBodyDto> {
+        const user = await this.usersService.findUserByPhoneNumber(phoneNumber,password);
+
+            if (!user) {
             throw new UnauthorizedException({
                 errorCode: 'E1115',
-                errorMessage: 'Otp code is expired.'
+                errorMessage: 'Does not exist user account..'
             });
-        }
+          }
 
-        if (user.otpCode !== signInDto.otpCode) {
-            throw new UnauthorizedException({
-                errorCode: 'E1116',
-                errorMessage: 'Invalid otp code.'
-            });
-        }
+        // const twoMinuteAgo = new Date( Date.now() - 2000 * 60 );
+        // if (user.smsSendTime ===twoMinuteAgo) {
+        //     throw new UnauthorizedException({
+        //         errorCode: 'E1115',
+        //         errorMessage: 'Otp code is expired.'
+        //     });
+        // }
 
-        // const payload = { otpCode: signInDto.otpCode, sub: signInPath.phoneNumber };
-        // return {
-        //     access_token: await this.jwtService.signAsync(payload),
-        // };
+        // if (user.otpCode !== signInDto.otpCode) {
+        //     throw new UnauthorizedException({
+        //         errorCode: 'E1116',
+        //         errorMessage: 'Invalid otp code.'
+        //     });
+        // }
+
+        const payload = { phoneNumber: user.phoneNumber, sub: user.otpCode };
         return {
           phoneNumber:user.phoneNumber,
-          isSuccess:true
+          isSuccess:true,
+          token:await this.jwtService.signAsync(payload)
         };
     }
 

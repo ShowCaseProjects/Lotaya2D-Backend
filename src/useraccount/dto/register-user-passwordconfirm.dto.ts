@@ -60,5 +60,14 @@ export class RegisterUserPasswordConfirmReqBodyDto {
 
 export class RegisterUserPasswordConfirmResBodyDto {
     @ApiProperty()
+    phoneNumber: string;
+
+    @ApiProperty()
+    optCode: string;
+
+    @ApiProperty()
+    token: string;
+
+    @ApiProperty()
     isSuccess: boolean;
 }

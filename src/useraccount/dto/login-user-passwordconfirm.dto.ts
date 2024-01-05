@@ -18,7 +18,7 @@ export class LoginUserPasswordConfirmReqPathDto {
         }
     })
     @ApiProperty()
-    phoneNumber: string;
+    password: string;
 }
 
 export class LoginUserPasswordConfirmReqBodyDto {

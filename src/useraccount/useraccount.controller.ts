@@ -1,8 +1,9 @@
 import { Body, Controller, HttpCode, Logger, Param, Post } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UseraccountService } from './useraccount.service';
-import { RegisterUserPhoneNumberConfirmReqPathDto, RegisterUserPhoneNumberConfirmResBodyDto } from './dto/register-user-phonenumber-confirm.dto';
+import { RegisterUserOtpCodeConfirmReqPathDto, RegisterUserPhoneNumberConfirmReqPathDto, RegisterUserPhoneNumberConfirmResBodyDto } from './dto/register-user-phonenumber-confirm.dto';
 import { RegisterUserOtpCodeConfirmReqBodyDto, RegisterUserOtpCodeConfirmResBodyDto } from './dto/register-user-otpcodeconfirm.dto';
+import { RegisterUserPasswordConfirmReqBodyDto } from './dto/register-user-passwordconfirm.dto';
 
 @ApiTags('api/v1/useraccount')
 @Controller('api/v1/useraccount')
@@ -26,7 +27,7 @@ export class UseraccountController {
         return this.userAccountService.registerUserAccountWithPhoneNumber(registerReqPath);
     }
 
-    @Post('register/confirm/otpcode/:phoneNumber')
+    @Post('register/confirm/:phoneNumber/:optcode')
     @HttpCode(201)
     @ApiOperation({
         summary: 'Otp Code Confirmation API',
@@ -38,5 +39,19 @@ export class UseraccountController {
     })
     registerUserOtpCodeConfirm(@Param() confirmOtpCodeReqPath: RegisterUserPhoneNumberConfirmReqPathDto,@Body() confirmOtpCodeReqBody:RegisterUserOtpCodeConfirmReqBodyDto): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
         return this.userAccountService.registerUserAccountOtpConfirm(confirmOtpCodeReqPath,confirmOtpCodeReqBody);
+    }
+
+    @Post('register/confirm/:phoneNumber/:optcode')
+    @HttpCode(201)
+    @ApiOperation({
+        summary: 'Password Confirmation API',
+        description: 'Confirmation password to authenticated user'
+    })
+    @ApiOkResponse({
+        description: 'Confirm password to be authenticated user.',
+        type: RegisterUserOtpCodeConfirmResBodyDto
+    })
+    registerUserPasswordConfirm(@Param() phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto,@Param() optCode:RegisterUserOtpCodeConfirmReqPathDto,@Body() confirmPasswordReqBody:RegisterUserPasswordConfirmReqBodyDto): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
+        return this.userAccountService.registerUserAccountPasswordConfirm(phoneNumber,optCode,confirmPasswordReqBody);
     }
 }
