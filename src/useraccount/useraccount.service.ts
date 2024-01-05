@@ -24,8 +24,8 @@ export class UseraccountService {
         try {
             const userAccount = await this.prisma.users.findUnique({
                 where: {
-                    phone_number: phoneNumber + "",
-                    password: passsword + ""
+                    phone_number: phoneNumber.phoneNumber,
+                    password: passsword.password
                 },
             });
 
@@ -60,11 +60,10 @@ export class UseraccountService {
                 },
             });
             if (registerData) {
-                await this.twilioService.sendOtpCode('+959403851357', this.generateOTP(6).trim());
+                await this.twilioService.sendOtpCode('+959403851357', registerData.otp_code);
             }
             const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
-                phoneNumber: registerData.phone_number,
-                otpCode: Number(registerData.otp_code)
+                phoneNumber: registerData.phone_number
             }
             return responseData;
         }
@@ -85,7 +84,7 @@ export class UseraccountService {
     }
 
     async registerUserAccountOtpConfirm(
-        otpCodeConfirmReqPathDto: RegisterUserOtpCodeConfirmReqPathDto,
+        otpCodeConfirmReqPathDto: RegisterUserPhoneNumberConfirmReqPathDto,
         otpCodeConfirmReqBodyDto: RegisterUserOtpCodeConfirmReqBodyDto
     ): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
         try {
@@ -110,7 +109,6 @@ export class UseraccountService {
                 })
                 const responseData: RegisterUserOtpCodeConfirmResBodyDto = {
                     phoneNumber: confirmOtpCode.phone_number,
-                    optCode: confirmOtpCode.otp_code,
                     isSuccess: true
                 };
                 return responseData;
@@ -146,17 +144,17 @@ export class UseraccountService {
     }
 
     async registerUserAccountPasswordConfirm(
-        phoneNumber: RegisterUserOtpCodeConfirmReqPathDto, optCode: RegisterUserOtpCodeConfirmReqPathDto,
+        phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto, optCode: RegisterUserOtpCodeConfirmReqPathDto,
         passwordConfirmReqBodyDto: RegisterUserPasswordConfirmReqBodyDto
     ): Promise<RegisterUserPasswordConfirmResBodyDto> {
         try {
             const userAccount = await this.prisma.users.findUnique({
                 where: {
-                    phone_number: phoneNumber + "",
-                    otp_code: optCode + ""
+                    phone_number: phoneNumber.phoneNumber,
+                    otp_code: optCode.otpCode
                 },
             });
-           
+
 
             if (passwordConfirmReqBodyDto.password !== passwordConfirmReqBodyDto.confirmPassword) {
                 throw new HttpException({
@@ -167,7 +165,7 @@ export class UseraccountService {
             else {
                 const confirmPassword = await this.prisma.users.update({
                     where: {
-                        phone_number: phoneNumber + ""
+                        phone_number: phoneNumber.phoneNumber
                     },
                     data: {
                         password: passwordConfirmReqBodyDto.password
@@ -201,6 +199,166 @@ export class UseraccountService {
         }
     }
 
+    async forgotPasswordUserAccountWithPhoneNumber(
+        forgotPasswordReqPath: RegisterUserPhoneNumberConfirmReqPathDto
+    ): Promise<RegisterUserPhoneNumberConfirmResBodyDto> {
+        try {
+            const userAccount = await this.prisma.users.update({
+                where: {
+                    phone_number: forgotPasswordReqPath.phoneNumber,
+                },
+                data: {
+                    is_verify: '0',
+                    sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                    otp_code: this.generateOTP(6).trim()
+                }
+            });
+            if (userAccount) {
+                await this.twilioService.sendOtpCode('+959403851357', userAccount.otp_code);
+            }
+            const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
+                phoneNumber: forgotPasswordReqPath.phoneNumber,
+            }
+            return responseData;
+        }
+        catch (error) {
+
+            if (error.code === 'P2025') {
+                throw new HttpException({
+                    errorCode: 'E1111',
+                    errorMessage: 'Your accounnt not found.'
+                }, HttpStatus.NOT_FOUND);
+            }
+
+            if (error.code === 'P2002') {
+                throw new HttpException({
+                    errorCode: 'E1101',
+                    errorMessage: 'Your phone number have been registered.'
+                }, HttpStatus.BAD_REQUEST);
+            }
+            this.logger.error(error.stack)
+            throw new HttpException({
+                errorCode: 'E1119',
+                errorMessage: 'Internal server error.'
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+
+    }
+ 
+    async forgotPasswordUserAccountOtpConfirm(
+        otpCodeConfirmReqPathDto: RegisterUserPhoneNumberConfirmReqPathDto,
+        otpCodeConfirmReqBodyDto: RegisterUserOtpCodeConfirmReqBodyDto
+    ): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
+        try {
+            const userAccount = await this.prisma.users.findUnique({
+                where: {
+                    phone_number: otpCodeConfirmReqPathDto.phoneNumber,
+                    otp_code: String(otpCodeConfirmReqBodyDto.otpCode)
+                },
+            });
+            const currentTime = new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')) as any;
+            const twoMinutesAgo = new Date(dayjs(userAccount.sms_send_time).format('YYYY-MM-DD HH:mm:ss')) as any;
+            const diffTime = (currentTime - twoMinutesAgo) / (60 * 1000);
+            this.logger.log(diffTime)
+            if (userAccount.otp_code === otpCodeConfirmReqBodyDto.otpCode.toString() && Number(diffTime) <= 2) {
+                const confirmOtpCode = await this.prisma.users.update({
+                    where: {
+                        phone_number: otpCodeConfirmReqPathDto.phoneNumber
+                    },
+                    data: {
+                        is_verify: '1'
+                    }
+                })
+                const responseData: RegisterUserOtpCodeConfirmResBodyDto = {
+                    phoneNumber: confirmOtpCode.phone_number,
+                    isSuccess: true
+                };
+                return responseData;
+            }
+            else {
+                if (userAccount.otp_code !== otpCodeConfirmReqBodyDto.otpCode.toString()) {
+                    throw new HttpException({
+                        errorCode: 'E1113',
+                        errorMessage: 'Invalid Otp Code'
+                    }, HttpStatus.NOT_FOUND);
+                }
+                else if (Number(diffTime) <= 2) {
+                    throw new HttpException({
+                        errorCode: 'E1114',
+                        errorMessage: 'Your Otp Code is expired.'
+                    }, HttpStatus.BAD_REQUEST);
+                }
+            }
+        }
+        catch (error) {
+            if (error.code === 'P2025') {
+                throw new HttpException({
+                    errorCode: 'E1111',
+                    errorMessage: 'Your accounnt not found.'
+                }, HttpStatus.NOT_FOUND);
+            }
+            this.logger.error(error.stack)
+            throw new HttpException({
+                errorCode: 'E1119',
+                errorMessage: 'Internal server error.'
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async forgotPasswordUserAccountPasswordConfirm(
+        phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto, optCode: RegisterUserOtpCodeConfirmReqPathDto,
+        passwordConfirmReqBodyDto: RegisterUserPasswordConfirmReqBodyDto
+    ): Promise<RegisterUserPasswordConfirmResBodyDto> {
+        try {
+            const userAccount = await this.prisma.users.findUnique({
+                where: {
+                    phone_number: phoneNumber.phoneNumber,
+                    otp_code: optCode.otpCode
+                },
+            });
+
+            if (passwordConfirmReqBodyDto.password !== passwordConfirmReqBodyDto.confirmPassword) {
+                throw new HttpException({
+                    errorCode: 'E1113',
+                    errorMessage: 'Password and Confirm Password does not match!'
+                }, HttpStatus.NOT_FOUND);
+            }
+            else {
+                const confirmPassword = await this.prisma.users.update({
+                    where: {
+                        phone_number: phoneNumber.phoneNumber
+                    },
+                    data: {
+                        password: passwordConfirmReqBodyDto.password
+                    }
+                });
+
+                const payload = { phoneNumber: phoneNumber, sub: optCode };
+
+                const responseData: RegisterUserPasswordConfirmResBodyDto = {
+                    phoneNumber: confirmPassword.phone_number,
+                    optCode: confirmPassword.otp_code,
+                    token: await this.jwtService.signAsync(payload),
+                    isSuccess: true
+                };
+                return responseData;
+            }
+
+        }
+        catch (error) {
+            if (error.code === 'P2025') {
+                throw new HttpException({
+                    errorCode: 'E1111',
+                    errorMessage: 'Your accounnt not found.'
+                }, HttpStatus.NOT_FOUND);
+            }
+            this.logger.error(error.stack)
+            throw new HttpException({
+                errorCode: 'E1119',
+                errorMessage: 'Internal server error.'
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     generateOTP(length): string {
         const charset = '0123456789';

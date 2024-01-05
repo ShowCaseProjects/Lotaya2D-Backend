@@ -36,3 +36,54 @@ model Roles{
 
   @@map("roles")
 }
+
+model Wallet{
+  wallet_id      Int    @id         @default(autoincrement())
+  user_id        Int @unique        
+  game_amount    Decimal?            
+  main_amount    Decimal?
+  agent_id       Int                
+  register_date  DateTime           @default(now())
+  updated_date   DateTime           @default(now())
+  deleted_date   DateTime?
+
+  @@map("wallet")
+}
+
+
+model PaymentMethod{
+  payment_id        Int    @id         @default(autoincrement())
+  user_id           Int        
+  payment_type      String            
+  receiver_account  String
+  amount            Decimal   
+  register_date     DateTime           @default(now())
+  updated_date      DateTime           @default(now())
+  deleted_date      DateTime?
+
+  @@map("paymentmethod")
+}
+
+
+model Admin{
+  admin_id        Int    @id         @default(autoincrement())
+  phone_number   String @unique     @db.VarChar(13)
+  admin_name      String?            @db.VarChar(30)
+  password       String?                  
+  role_id        Int    
+  admin_role      Roles              @relation(fields:[role_id],references:[role_id])             
+  account_status String             @db.VarChar(1)               
+  register_date  DateTime           @default(now())
+  updated_date   DateTime           @default(now())
+  deleted_date   DateTime?
+
+  @@map("admin")
+}
+
+model AdminRoles{
+  role_id       Int         @id
+  name          String      @unique @db.VarChar(100)
+  users         Admin[]
+
+  @@map("adminroles")
+}

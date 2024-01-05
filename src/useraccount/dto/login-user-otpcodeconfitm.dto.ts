@@ -19,7 +19,7 @@ export class LoginUserOtpCodeConfirmReqPathDto {
         }
     })
     @ApiProperty()
-    phoneNumber: string;
+    otpCode: string;
 
 }
 

@@ -19,7 +19,7 @@ export class RegisterUserOtpCodeConfirmReqPathDto {
         }
     })
     @ApiProperty()
-    phoneNumber: string;
+    otpCode: string;
 
 }
 
@@ -57,9 +57,6 @@ export class RegisterUserOtpCodeConfirmReqBodyDto {
 export class RegisterUserOtpCodeConfirmResBodyDto {
     @ApiProperty()
     phoneNumber: string;
-
-    @ApiProperty()
-    optCode: string;
 
     @ApiProperty({default:true})
     isSuccess: boolean;
