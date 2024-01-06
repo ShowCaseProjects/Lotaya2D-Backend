@@ -37,6 +37,32 @@ model Roles{
   @@map("roles")
 }
 
+model UserWithdrawAccount{
+  user_withdraw_account_id      Int    @id         @default(autoincrement())
+  user_id                       Int         
+  account_type                  String            
+  account_name                  String 
+  account_id                    String   @unique           
+  register_date  DateTime       @default(now())
+  updated_date   DateTime       @default(now())
+  deleted_date   DateTime?
+
+  @@map("userwithdrawaccount")
+}
+
+model UserWithdrawAccountHistory{
+  user_withdraw_account_history_id      Int    @id         @default(autoincrement())
+  user_id                               Int         
+  account_type                          String            
+  account_name                          String 
+  account_id                            String   @unique           
+  register_date  DateTime               @default(now())
+  updated_date   DateTime               @default(now())
+  deleted_date   DateTime?
+
+  @@map("userwithdrawaccounthistory")
+}
+
 model Wallet{
   wallet_id      Int    @id         @default(autoincrement())
   user_id        Int @unique        
@@ -50,32 +76,94 @@ model Wallet{
   @@map("wallet")
 }
 
+model WalletHistory{
+  wallet_history_id      Int    @id         @default(autoincrement())
+  user_id        Int @unique        
+  game_amount    Decimal?            
+  main_amount    Decimal?
+  agent_id       Int                
+  register_date  DateTime           @default(now())
+  updated_date   DateTime           @default(now())
+  deleted_date   DateTime?
+
+  @@map("wallethistory")
+}
 
 model PaymentMethod{
-  payment_id        Int    @id         @default(autoincrement())
-  user_id           Int        
-  payment_type      String            
-  receiver_account  String
-  amount            Decimal   
-  register_date     DateTime           @default(now())
-  updated_date      DateTime           @default(now())
-  deleted_date      DateTime?
+  payment_id            Int    @id         @default(autoincrement())
+  user_id               Int        
+  payment_type          String 
+  receiver_account_name String           
+  receiver_account      String
+  amount                Decimal 
+  date                  DateTime
+  payment_confirm_code  String         @db.VarChar(6)
+  register_date         DateTime           @default(now())
+  updated_date          DateTime           @default(now())
+  deleted_date          DateTime?
 
   @@map("paymentmethod")
 }
 
+model PaymentHistory{
+  payment_history_id        Int    @id         @default(autoincrement())
+  user_id                   Int        
+  payment_type              String 
+  receiver_account_name     String            
+  receiver_account          String
+  amount                    Decimal 
+  payment_confirm_code      String         @db.VarChar(6)
+  date                      DateTime
+  register_date             DateTime           @default(now())
+  updated_date              DateTime           @default(now())
+  deleted_date              DateTime?
+
+  @@map("paymenthistory")
+}
+
+model WithdrawMethod{
+  withdraw_id            Int    @id         @default(autoincrement())
+  user_id                Int        
+  withdraw_type           String 
+  receiver_account_name  String            
+  receiver_account       String
+  amount                 Decimal 
+  date                   DateTime
+  withdraw_confirm_code  String         @db.VarChar(6)
+  register_date          DateTime           @default(now())
+  updated_date           DateTime           @default(now())
+  deleted_date           DateTime?
+
+  @@map("withdrawmethod")
+}
+
+model WithdrawHistory{
+  withdraw_history_id        Int    @id         @default(autoincrement())
+  user_id                    Int        
+  withdraw_type              String  
+  receiver_account_name      String           
+  receiver_account           String
+  amount                     Decimal 
+  withdraw_confirm_code      String         @db.VarChar(6)
+  date                       DateTime
+  register_date              DateTime           @default(now())
+  updated_date               DateTime           @default(now())
+  deleted_date               DateTime?
+
+  @@map("withdrawhistory")
+}
 
 model Admin{
-  admin_id        Int    @id         @default(autoincrement())
-  phone_number   String @unique     @db.VarChar(13)
-  admin_name      String?            @db.VarChar(30)
-  password       String?                  
-  role_id        Int    
-  admin_role      Roles              @relation(fields:[role_id],references:[role_id])             
-  account_status String             @db.VarChar(1)               
-  register_date  DateTime           @default(now())
-  updated_date   DateTime           @default(now())
-  deleted_date   DateTime?
+  admin_id         Int    @id         @default(autoincrement())
+  phone_number     String @unique     @db.VarChar(13)
+  admin_name       String?            @db.VarChar(30)
+  password         String?                  
+  role_id          Int    
+  admin_role       AdminRoles         @relation(fields:[role_id],references:[role_id])             
+  account_status   String             @db.VarChar(1)               
+  register_date    DateTime           @default(now())
+  updated_date     DateTime           @default(now())
+  deleted_date     DateTime?
 
   @@map("admin")
 }
@@ -83,7 +171,10 @@ model Admin{
 model AdminRoles{
   role_id       Int         @id
   name          String      @unique @db.VarChar(100)
-  users         Admin[]
+  admins         Admin[]
 
   @@map("adminroles")
 }
+
+
+
