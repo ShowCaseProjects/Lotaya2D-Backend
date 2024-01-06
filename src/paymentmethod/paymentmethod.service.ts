@@ -1,10 +1,9 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
-import { UserPaymentInsertReqBodyDto, UserPaymentInsertReqPathDto, UserPaymentInsertResBodyDto } from './dto/add-user-paymentdto';
+import { UserPaymentInsertReqBodyDto, UserPaymentInsertReqPathDto, UserPaymentInsertResBodyDto } from './dto/add-user-payment.dto';
 import * as dayjs from 'dayjs'
 import { UserPaymentUpdateReqBodyDto, UserPaymentUpdateReqPathDto, UserPaymentUpdateResBodyDto } from './dto/update-user-payment.dto';
-import { UserPaymentDeleteReqBodyDto, UserPaymentDeleteReqPathDto } from './dto/delete-user-payment.dto';
-import { Prisma } from '@prisma/client';
+import { UserPaymentDeleteReqBodyDto, UserPaymentDeleteReqPathDto, UserPaymentDeleteResBodyDto } from './dto/delete-user-payment.dto';
 import { UserPaymentFindResBodyDto } from './dto/find-user-payment.dto';
 
 @Injectable()
@@ -27,6 +26,7 @@ export class PaymentmethodService {
                         receiver_account_name:addPaymentReqBody.receiverAccountName,
                         receiver_account:addPaymentReqBody.receiverAccount,
                         amount:addPaymentReqBody.amount,
+                        delete_status:0,
                         date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                         payment_confirm_code:addPaymentReqBody.paymentConfirmationCode,
                         register_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
@@ -95,7 +95,7 @@ export class PaymentmethodService {
 
     async deleteUserPayment(
         addPaymentReqPath: UserPaymentDeleteReqPathDto,addPaymentReqBody:UserPaymentDeleteReqBodyDto
-    ): Promise<UserPaymentUpdateResBodyDto> {
+    ): Promise<UserPaymentDeleteResBodyDto> {
         try {
 
             const userAccount = await this.prisma.paymentMethod.findUnique({
@@ -119,12 +119,7 @@ export class PaymentmethodService {
                     user_id:addPaymentReqBody.userId,
                 },
                 data: {
-                        payment_type:addPaymentReqBody.paymentType,
-                        receiver_account_name:addPaymentReqBody.receiverAccountName,
-                        receiver_account:addPaymentReqBody.receiverAccount,
-                        amount:addPaymentReqBody.amount,
-                        payment_confirm_code:addPaymentReqBody.paymentConfirmationCode,
-                        updated_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+                       delete_status:1,
                 },
             });
             const responseData: UserPaymentUpdateResBodyDto = {
@@ -136,7 +131,7 @@ export class PaymentmethodService {
             if (error.code === 'P2002') {
                 throw new HttpException({
                     errorCode: 'E1101',
-                    errorMessage: 'Your payment have been updated.'
+                    errorMessage: 'Your payment have been deleted.'
                 }, HttpStatus.BAD_REQUEST);
             }
             this.logger.error(error.stack)

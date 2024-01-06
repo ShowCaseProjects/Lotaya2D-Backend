@@ -6,7 +6,7 @@ export class UserPaymentUpdateReqPathDto {
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment id as number.'
+                errorMessage: 'Please enter your payment number as number.'
             },
         }
     )
@@ -19,6 +19,23 @@ export class UserPaymentUpdateReqPathDto {
     @ApiProperty()
     paymentId: number;
 
+    @IsString(
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your id as number.'
+            },
+        }
+    )
+    @IsNotEmpty({
+        context: {
+            errorCode: 'E1000',
+            errorMessage: 'Please enter your id.'
+        }
+    })
+    @ApiProperty()
+    userId: number;
+
 }
 
 export class UserPaymentUpdateReqBodyDto {
@@ -26,7 +43,7 @@ export class UserPaymentUpdateReqBodyDto {
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment number as number.'
+                errorMessage: 'Please enter your phone number as number.'
             },
         }
     )

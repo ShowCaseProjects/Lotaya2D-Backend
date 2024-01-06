@@ -42,7 +42,8 @@ model UserWithdrawAccount{
   user_id                       Int         
   account_type                  String            
   account_name                  String 
-  account_id                    String   @unique           
+  account_id                    Int   @unique 
+  delete_status                 Int          
   register_date  DateTime       @default(now())
   updated_date   DateTime       @default(now())
   deleted_date   DateTime?
@@ -50,25 +51,13 @@ model UserWithdrawAccount{
   @@map("userwithdrawaccount")
 }
 
-model UserWithdrawAccountHistory{
-  user_withdraw_account_history_id      Int    @id         @default(autoincrement())
-  user_id                               Int         
-  account_type                          String            
-  account_name                          String 
-  account_id                            String   @unique           
-  register_date  DateTime               @default(now())
-  updated_date   DateTime               @default(now())
-  deleted_date   DateTime?
-
-  @@map("userwithdrawaccounthistory")
-}
-
 model Wallet{
   wallet_id      Int    @id         @default(autoincrement())
   user_id        Int @unique        
   game_amount    Decimal?            
   main_amount    Decimal?
-  agent_id       Int                
+  agent_id       Int 
+  delete_status  Int               
   register_date  DateTime           @default(now())
   updated_date   DateTime           @default(now())
   deleted_date   DateTime?
@@ -97,7 +86,8 @@ model PaymentMethod{
   receiver_account      String
   amount                Decimal 
   date                  DateTime
-  payment_confirm_code  Int               
+  payment_confirm_code  Int 
+  delete_status          Int              
   register_date         DateTime           @default(now())
   updated_date          DateTime           @default(now())
   deleted_date          DateTime?
@@ -113,7 +103,8 @@ model WithdrawMethod{
   receiver_account       String
   amount                 Decimal 
   date                   DateTime
-  withdraw_confirm_code  String         @db.VarChar(6)
+  withdraw_confirm_code  String             @db.VarChar(6)
+  delete_status          Int
   register_date          DateTime           @default(now())
   updated_date           DateTime           @default(now())
   deleted_date           DateTime?

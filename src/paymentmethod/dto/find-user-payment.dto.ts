@@ -169,20 +169,21 @@ export class UserPaymentFindResBodyDto {
     @ApiProperty()
     userId: string;
 
-  
     @ApiProperty()
     receiverAccountName: string;
-
     
     @ApiProperty()
     receiverAccount: string;
 
-   
     @ApiProperty()
     amount: number;
 
-
     @ApiProperty()
     paymentConfirmationCode: number;
+    
+    @ApiProperty()
+    registerDate: Date;
 
+    @ApiProperty()
+    updatedDate: Date;
 }
