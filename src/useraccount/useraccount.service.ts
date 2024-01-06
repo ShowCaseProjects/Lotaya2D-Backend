@@ -244,7 +244,7 @@ export class UseraccountService {
         }
 
     }
- 
+
     async forgotPasswordUserAccountOtpConfirm(
         otpCodeConfirmReqPathDto: RegisterUserPhoneNumberConfirmReqPathDto,
         otpCodeConfirmReqBodyDto: RegisterUserOtpCodeConfirmReqBodyDto

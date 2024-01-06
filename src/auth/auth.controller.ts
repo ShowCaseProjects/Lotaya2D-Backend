@@ -1,11 +1,13 @@
-import {  Controller, Get, HttpCode,  Logger, Param, Post, Req} from '@nestjs/common';
+import {  Controller, Get, HttpCode,  Logger, Param, Post, Req, UseGuards} from '@nestjs/common';
 import { AuthService } from './auth.service';
 import {  LoginUserOtpCodeConfirmResBodyDto } from 'src/useraccount/dto/login-user-otpcodeconfitm.dto';
-import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LogoutResBodyDto } from 'src/useraccount/dto/logout-user.dto';
 import { LoginUserPhoneNumberConfirmReqPathDto } from 'src/useraccount/dto/login-user-phonenumberconfirm.dto';
 import { LoginUserPasswordConfirmReqPathDto } from 'src/useraccount/dto/login-user-passwordconfirm.dto';
+import { AuthGuards } from './auth.guard';
 
+@ApiBearerAuth()
 @ApiTags('api/v1/auth')
 @Controller('api/v1/auth')
 export class AuthController {
@@ -28,7 +30,7 @@ export class AuthController {
         return this.authService.signInWithPassword(phoneNumber,password);
     }
 
-
+    @UseGuards(AuthGuards)
     @Get('logout')
     @HttpCode(200)
     @ApiOperation({

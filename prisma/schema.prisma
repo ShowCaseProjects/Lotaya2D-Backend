@@ -97,28 +97,12 @@ model PaymentMethod{
   receiver_account      String
   amount                Decimal 
   date                  DateTime
-  payment_confirm_code  String         @db.VarChar(6)
+  payment_confirm_code  Int               
   register_date         DateTime           @default(now())
   updated_date          DateTime           @default(now())
   deleted_date          DateTime?
 
   @@map("paymentmethod")
-}
-
-model PaymentHistory{
-  payment_history_id        Int    @id         @default(autoincrement())
-  user_id                   Int        
-  payment_type              String 
-  receiver_account_name     String            
-  receiver_account          String
-  amount                    Decimal 
-  payment_confirm_code      String         @db.VarChar(6)
-  date                      DateTime
-  register_date             DateTime           @default(now())
-  updated_date              DateTime           @default(now())
-  deleted_date              DateTime?
-
-  @@map("paymenthistory")
 }
 
 model WithdrawMethod{
@@ -135,22 +119,6 @@ model WithdrawMethod{
   deleted_date           DateTime?
 
   @@map("withdrawmethod")
-}
-
-model WithdrawHistory{
-  withdraw_history_id        Int    @id         @default(autoincrement())
-  user_id                    Int        
-  withdraw_type              String  
-  receiver_account_name      String           
-  receiver_account           String
-  amount                     Decimal 
-  withdraw_confirm_code      String         @db.VarChar(6)
-  date                       DateTime
-  register_date              DateTime           @default(now())
-  updated_date               DateTime           @default(now())
-  deleted_date               DateTime?
-
-  @@map("withdrawhistory")
 }
 
 model Admin{

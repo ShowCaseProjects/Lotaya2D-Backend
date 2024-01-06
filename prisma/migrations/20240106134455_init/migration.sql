@@ -89,29 +89,12 @@ CREATE TABLE "paymentmethod" (
     "receiver_account" TEXT NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
-    "payment_confirm_code" VARCHAR(6) NOT NULL,
+    "payment_confirm_code" INTEGER NOT NULL,
     "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deleted_date" TIMESTAMP(3),
 
     CONSTRAINT "paymentmethod_pkey" PRIMARY KEY ("payment_id")
-);
-
--- CreateTable
-CREATE TABLE "paymenthistory" (
-    "payment_history_id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "payment_type" TEXT NOT NULL,
-    "receiver_account_name" TEXT NOT NULL,
-    "receiver_account" TEXT NOT NULL,
-    "amount" DECIMAL(65,30) NOT NULL,
-    "payment_confirm_code" VARCHAR(6) NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL,
-    "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deleted_date" TIMESTAMP(3),
-
-    CONSTRAINT "paymenthistory_pkey" PRIMARY KEY ("payment_history_id")
 );
 
 -- CreateTable
@@ -129,23 +112,6 @@ CREATE TABLE "withdrawmethod" (
     "deleted_date" TIMESTAMP(3),
 
     CONSTRAINT "withdrawmethod_pkey" PRIMARY KEY ("withdraw_id")
-);
-
--- CreateTable
-CREATE TABLE "withdrawhistory" (
-    "withdraw_history_id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "withdraw_type" TEXT NOT NULL,
-    "receiver_account_name" TEXT NOT NULL,
-    "receiver_account" TEXT NOT NULL,
-    "amount" DECIMAL(65,30) NOT NULL,
-    "withdraw_confirm_code" VARCHAR(6) NOT NULL,
-    "date" TIMESTAMP(3) NOT NULL,
-    "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deleted_date" TIMESTAMP(3),
-
-    CONSTRAINT "withdrawhistory_pkey" PRIMARY KEY ("withdraw_history_id")
 );
 
 -- CreateTable
