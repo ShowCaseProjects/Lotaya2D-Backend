@@ -7,8 +7,9 @@ CREATE TABLE "users" (
     "otp_code" VARCHAR(6),
     "role_id" INTEGER NOT NULL,
     "sms_send_time" TIMESTAMP(3),
-    "is_verify" VARCHAR(1) NOT NULL,
-    "account_status" VARCHAR(1) NOT NULL,
+    "is_verify" INTEGER,
+    "account_status" INTEGER,
+    "delete_status" INTEGER NOT NULL,
     "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deleted_date" TIMESTAMP(3),
@@ -55,20 +56,6 @@ CREATE TABLE "wallet" (
 );
 
 -- CreateTable
-CREATE TABLE "wallethistory" (
-    "wallet_history_id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
-    "game_amount" DECIMAL(65,30),
-    "main_amount" DECIMAL(65,30),
-    "agent_id" INTEGER NOT NULL,
-    "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
-    "deleted_date" TIMESTAMP(3),
-
-    CONSTRAINT "wallethistory_pkey" PRIMARY KEY ("wallet_history_id")
-);
-
--- CreateTable
 CREATE TABLE "paymentmethod" (
     "payment_id" SERIAL NOT NULL,
     "user_id" INTEGER NOT NULL,
@@ -112,6 +99,7 @@ CREATE TABLE "admin" (
     "password" TEXT,
     "role_id" INTEGER NOT NULL,
     "account_status" VARCHAR(1) NOT NULL,
+    "delete_status" INTEGER NOT NULL,
     "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deleted_date" TIMESTAMP(3),
@@ -127,6 +115,26 @@ CREATE TABLE "adminroles" (
     CONSTRAINT "adminroles_pkey" PRIMARY KEY ("role_id")
 );
 
+-- CreateTable
+CREATE TABLE "transation" (
+    "transaction_id" SERIAL NOT NULL,
+    "user_id" INTEGER NOT NULL,
+    "amount" DECIMAL(65,30) NOT NULL,
+    "transaction_type_id" INTEGER NOT NULL,
+    "transaction_date" TIMESTAMP(3) NOT NULL,
+    "agent_id" INTEGER NOT NULL,
+
+    CONSTRAINT "transation_pkey" PRIMARY KEY ("transaction_id")
+);
+
+-- CreateTable
+CREATE TABLE "transationtype" (
+    "transaction_type_id" INTEGER NOT NULL,
+    "transaction_type" VARCHAR(100) NOT NULL,
+
+    CONSTRAINT "transationtype_pkey" PRIMARY KEY ("transaction_type_id")
+);
+
 -- CreateIndex
 CREATE UNIQUE INDEX "users_phone_number_key" ON "users"("phone_number");
 
@@ -140,16 +148,19 @@ CREATE UNIQUE INDEX "userwithdrawaccount_account_id_key" ON "userwithdrawaccount
 CREATE UNIQUE INDEX "wallet_user_id_key" ON "wallet"("user_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "wallethistory_user_id_key" ON "wallethistory"("user_id");
-
--- CreateIndex
 CREATE UNIQUE INDEX "admin_phone_number_key" ON "admin"("phone_number");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "adminroles_name_key" ON "adminroles"("name");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "transationtype_transaction_type_key" ON "transationtype"("transaction_type");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "roles"("role_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "admin" ADD CONSTRAINT "admin_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "adminroles"("role_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "transation" ADD CONSTRAINT "transation_transaction_type_id_fkey" FOREIGN KEY ("transaction_type_id") REFERENCES "transationtype"("transaction_type_id") ON DELETE RESTRICT ON UPDATE CASCADE;

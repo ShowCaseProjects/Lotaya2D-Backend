@@ -215,6 +215,7 @@ export class PaymentmethodService {
                                 ? undefined
                                 : Number(findAllUserPayment.paymentConfirmationCode)
                     },
+                    delete_status:0,
                     receiver_account: { contains: findAllUserPayment.receiverAccount, mode: 'insensitive' },
                     receiver_account_name: { contains: findAllUserPayment.receiverAccountName, mode: 'insensitive' },
                     amount: findAllUserPayment.amount,

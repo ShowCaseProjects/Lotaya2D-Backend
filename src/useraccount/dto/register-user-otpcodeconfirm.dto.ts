@@ -1,24 +1,24 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, Matches, MaxLength, MinLength } from "class-validator";
+import { IsNotEmpty, IsString, Length, Matches} from "class-validator";
 
 
 export class RegisterUserOtpCodeConfirmReqPathDto {
 
-    @IsString(
+    @Length(6, 6,
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your phone number as number.'
+                errorMessage: 'Please enter your otp code using 6 digits.'
             },
         }
     )
     @IsNotEmpty({
         context: {
             errorCode: 'E1000',
-            errorMessage: 'Please enter your phone number.'
+            errorMessage: 'Please enter your OTP Code.'
         }
     })
-    @ApiProperty()
+    @ApiProperty({default:'123456'})
     otpCode: string;
 
 }
@@ -32,32 +32,28 @@ export class RegisterUserOtpCodeConfirmReqBodyDto {
             },
         }
     )
-    @MaxLength(6, {
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your otp code using 6 digits.'
-        },
-    })
-    @MinLength(6, {
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your otp code using 6 digits.'
-        },
-    })
+    @Length(6, 6,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your otp code using 6 digits.'
+            },
+        }
+    )
     @IsNotEmpty({
         context: {
             errorCode: 'E1000',
             errorMessage: 'Please enter your otp code.'
         }
     })
-    @ApiProperty()
-    otpCode: number;
+    @ApiProperty({ default: '123456' })
+    otpCode: string;
 }
 
 export class RegisterUserOtpCodeConfirmResBodyDto {
     @ApiProperty()
     phoneNumber: string;
 
-    @ApiProperty({default:true})
+    @ApiProperty({ default: true })
     isSuccess: boolean;
 }

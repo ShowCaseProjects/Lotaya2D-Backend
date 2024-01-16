@@ -20,8 +20,9 @@ model Users{
   role_id        Int    
   sms_send_time  DateTime?
   user_role      Roles              @relation(fields:[role_id],references:[role_id])
-  is_verify      String             @db.VarChar(1)                
-  account_status String             @db.VarChar(1)               
+  is_verify      Int ?               
+  account_status Int ?
+  delete_status  Int              
   register_date  DateTime           @default(now())
   updated_date   DateTime           @default(now())
   deleted_date   DateTime?
@@ -65,18 +66,6 @@ model Wallet{
   @@map("wallet")
 }
 
-model WalletHistory{
-  wallet_history_id      Int    @id         @default(autoincrement())
-  user_id        Int @unique        
-  game_amount    Decimal?            
-  main_amount    Decimal?
-  agent_id       Int                
-  register_date  DateTime           @default(now())
-  updated_date   DateTime           @default(now())
-  deleted_date   DateTime?
-
-  @@map("wallethistory")
-}
 
 model PaymentMethod{
   payment_id            Int    @id         @default(autoincrement())
@@ -119,7 +108,8 @@ model Admin{
   password         String?                  
   role_id          Int    
   admin_role       AdminRoles         @relation(fields:[role_id],references:[role_id])             
-  account_status   String             @db.VarChar(1)               
+  account_status   String             @db.VarChar(1)   
+  delete_status    Int             
   register_date    DateTime           @default(now())
   updated_date     DateTime           @default(now())
   deleted_date     DateTime?
@@ -128,11 +118,31 @@ model Admin{
 }
 
 model AdminRoles{
-  role_id       Int         @id
-  name          String      @unique @db.VarChar(100)
+  role_id        Int         @id
+  name           String      @unique @db.VarChar(100)
   admins         Admin[]
 
   @@map("adminroles")
+}
+
+model  Transaction{
+  transaction_id         Int    @id         @default(autoincrement())
+  user_id                Int
+  amount                 Decimal
+  transaction_type_id         Int
+  transaction_type       TransactionType   @relation(fields:[transaction_type_id],references:[transaction_type_id]) 
+  transaction_date       DateTime  
+  agent_id               Int   
+
+  @@map("transation")  
+}
+
+model  TransactionType {
+transaction_type_id  Int      @id
+transaction_type     String   @unique @db.VarChar(100)
+transation           Transaction[]
+
+@@map("transationtype")
 }
 
 

@@ -1,7 +1,7 @@
 import { Injectable, Logger,  UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import {  LoginUserOtpCodeConfirmResBodyDto } from 'src/useraccount/dto/login-user-otpcodeconfitm.dto';
-import {  LoginUserPasswordConfirmReqPathDto, } from 'src/useraccount/dto/login-user-passwordconfirm.dto';
+import {  LoginUserPasswordConfirmReqBodyDto,  } from 'src/useraccount/dto/login-user-passwordconfirm.dto';
 import { LoginUserPhoneNumberConfirmReqPathDto } from 'src/useraccount/dto/login-user-phonenumberconfirm.dto';
 import { UseraccountService } from 'src/useraccount/useraccount.service';
 
@@ -10,7 +10,7 @@ export class AuthService {
     constructor(private usersService: UseraccountService, private jwtService: JwtService) { }
     private readonly logger = new Logger(AuthService.name);
 
-    async signInWithPassword(phoneNumber:LoginUserPhoneNumberConfirmReqPathDto, password:LoginUserPasswordConfirmReqPathDto): Promise<LoginUserOtpCodeConfirmResBodyDto> {
+    async signInWithPassword(phoneNumber:LoginUserPhoneNumberConfirmReqPathDto,password:LoginUserPasswordConfirmReqBodyDto): Promise<LoginUserOtpCodeConfirmResBodyDto> {
         const user = await this.usersService.findUserByPhoneNumber(phoneNumber,password);
 
             if (!user) {

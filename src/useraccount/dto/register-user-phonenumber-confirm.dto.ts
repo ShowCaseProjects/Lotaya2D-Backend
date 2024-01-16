@@ -1,10 +1,10 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEnum, IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { IsEnum, IsNotEmpty, IsString, Matches, MaxLength } from "class-validator";
 
 
 export class RegisterUserPhoneNumberConfirmReqPathDto {
 
-    @IsString(
+    @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
@@ -18,13 +18,13 @@ export class RegisterUserPhoneNumberConfirmReqPathDto {
             errorMessage: 'Please enter your phone number.'
         }
     })
-    @ApiProperty()
+    @ApiProperty({default:'09403951357'})
     phoneNumber: string;
 }
 
 export class RegisterUserOtpCodeConfirmReqPathDto {
 
-    @IsString(
+    @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
@@ -38,7 +38,7 @@ export class RegisterUserOtpCodeConfirmReqPathDto {
             errorMessage: 'Please enter your phone number.'
         }
     })
-    @ApiProperty()
+    @ApiProperty({default:'09403951357'})
     phoneNumber: string;
 
 }

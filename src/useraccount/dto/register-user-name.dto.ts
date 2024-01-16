@@ -1,9 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { IsNotEmpty, IsString, Matches, MaxLength } from "class-validator";
 
 export class RegisterUserNameInsertReqPathDto {
 
-    @IsString(
+    @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
@@ -17,7 +17,7 @@ export class RegisterUserNameInsertReqPathDto {
             errorMessage: 'Please enter your phone number.'
         }
     })
-    @ApiProperty()
+    @ApiProperty({ default: '09403951357' })
     phoneNumber: string;
 }
 
@@ -42,13 +42,15 @@ export class RegisterUserNameInsertReqBodyDto {
             errorMessage: 'Please enter your name.'
         }
     })
-    @ApiProperty()
+    @ApiProperty({default:'Aung Aung'})
     userName: string;
 }
 
 export class RegisterUserNameInsertResBodyDto {
+
     @ApiProperty()
     phoneNumber: string;
+
     @ApiProperty()
     userName: string;
 }

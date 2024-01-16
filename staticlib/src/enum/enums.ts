@@ -17,3 +17,21 @@ export enum AdminRoleName{
     LevelOne='Admin All Permission',
     LevelTwo='Admin Limited Permission'
 }
+
+export enum TransationTypeId{
+    Deposit   =1,
+    Withdrawal=2,
+    Loss      =3,
+    Win       =4,
+    Bet       =5
+}
+
+export enum TransationTypeName{
+    Deposit   ='Deposit',
+    Withdrawal='Withdraw',
+    Loss      ='Loss',
+    Win       ='Win',
+    Bet       ='Bet',
+}
+
+

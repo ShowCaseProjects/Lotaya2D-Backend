@@ -1,5 +1,5 @@
 
-import { AdminRoleId, AdminRoleName, RoleId, RoleName } from '../staticlib/index';
+import { AdminRoleId, AdminRoleName, RoleId, RoleName, TransationTypeId, TransationTypeName } from '../staticlib/index';
 import { PrismaClient, Prisma } from '/src/generated/lotaya_wallet';
 
 const prisma = new PrismaClient();
@@ -15,7 +15,7 @@ const roleData: Prisma.RolesCreateInput[] = [
     }
 ];
 
-const adminRoleData: Prisma.RolesCreateInput[] = [
+const adminRoleData: Prisma.AdminRolesCreateInput[] = [
     {
         role_id: AdminRoleId.LevelOne,
         name: AdminRoleName.LevelOne
@@ -25,6 +25,30 @@ const adminRoleData: Prisma.RolesCreateInput[] = [
         name: AdminRoleName.LevelTwo
     }
 ];
+
+const transationTypeData: Prisma.TransactionTypeCreateInput[] = [
+    {
+        transaction_type_id:TransationTypeId.Deposit,
+        transaction_type:TransationTypeName.Deposit
+    },
+    {
+        transaction_type_id:TransationTypeId.Withdrawal,
+        transaction_type:TransationTypeName.Withdrawal
+    },
+    {
+        transaction_type_id:TransationTypeId.Loss,
+        transaction_type:TransationTypeName.Loss
+    },
+    {
+        transaction_type_id:TransationTypeId.Win,
+        transaction_type:TransationTypeName.Win
+    },
+    {
+        transaction_type_id:TransationTypeId.Bet,
+        transaction_type:TransationTypeName.Bet
+    }
+];
+
 
 
 export const registerMasterData = async () => {
@@ -53,10 +77,24 @@ export const adminRegisterMasterData = async () => {
     }
 }
 
+export const transationTypeRegisterMasterData = async () => {
+    try {
+        await Promise.all(
+            transationTypeData.map(
+                async (insertData) => await prisma.transactionType.create({ data: insertData })
+            )
+        );
+    }
+    catch (error) {
+        console.log('Skip seeding lotaya DB')
+    }
+}
+
 const main = async () => {
     console.log('Start seeding...');
     await registerMasterData();
     await adminRegisterMasterData();
+    await transationTypeRegisterMasterData();
     console.log('Seeding finished...');
 }
 

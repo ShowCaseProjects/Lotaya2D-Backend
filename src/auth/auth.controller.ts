@@ -4,7 +4,7 @@ import {  LoginUserOtpCodeConfirmResBodyDto } from 'src/useraccount/dto/login-us
 import { ApiBearerAuth, ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LogoutResBodyDto } from 'src/useraccount/dto/logout-user.dto';
 import { LoginUserPhoneNumberConfirmReqPathDto } from 'src/useraccount/dto/login-user-phonenumberconfirm.dto';
-import { LoginUserPasswordConfirmReqPathDto } from 'src/useraccount/dto/login-user-passwordconfirm.dto';
+import { LoginUserPasswordConfirmReqBodyDto } from 'src/useraccount/dto/login-user-passwordconfirm.dto';
 import { AuthGuards } from './auth.guard';
 
 @ApiBearerAuth()
@@ -26,7 +26,7 @@ export class AuthController {
         description: 'Login Success',
         type: LoginUserOtpCodeConfirmResBodyDto
     })
-    signIn(@Param() phoneNumber:LoginUserPhoneNumberConfirmReqPathDto,@Param() password:LoginUserPasswordConfirmReqPathDto): Promise<LoginUserOtpCodeConfirmResBodyDto> {
+    signIn(@Param() phoneNumber:LoginUserPhoneNumberConfirmReqPathDto,@Param() password:LoginUserPasswordConfirmReqBodyDto): Promise<LoginUserOtpCodeConfirmResBodyDto> {
         return this.authService.signInWithPassword(phoneNumber,password);
     }
 
