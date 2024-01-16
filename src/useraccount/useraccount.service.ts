@@ -10,6 +10,7 @@ import { RegisterUserPasswordConfirmReqBodyDto, RegisterUserPasswordConfirmResBo
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { LoginUserPasswordConfirmReqBodyDto, LoginUserPasswordConfirmReqPathDto } from './dto/login-user-passwordconfirm.dto';
+import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
 
 @Injectable()
 export class UseraccountService {
@@ -199,6 +200,41 @@ export class UseraccountService {
             }
 
         }
+        catch (error) {
+            if (error.code === 'P2025') {
+                throw new HttpException({
+                    errorCode: 'E1111',
+                    errorMessage: 'Your accounnt not found.'
+                }, HttpStatus.NOT_FOUND);
+            }
+            this.logger.error(error.stack)
+            throw new HttpException({
+                errorCode: 'E1119',
+                errorMessage: 'Internal server error.'
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    async registerUserAccountName(
+        registerUserNameReqPath: RegisterUserNameInsertReqPathDto,
+         registerUserNameReqBody:RegisterUserNameInsertReqBodyDto
+    ): Promise<RegisterUserNameInsertResBodyDto> {
+        try {
+                const addUserName = await this.prisma.users.update({
+                    where: {
+                        phone_number: registerUserNameReqPath.phoneNumber
+                    },
+                    data: {
+                        user_name:registerUserNameReqBody.userName
+                    }
+                });
+
+                const responseData: RegisterUserNameInsertResBodyDto = {
+                    phoneNumber: addUserName.phone_number,
+                    userName:addUserName.user_name
+                };
+                return responseData;
+            }
         catch (error) {
             if (error.code === 'P2025') {
                 throw new HttpException({

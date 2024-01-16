@@ -4,6 +4,7 @@ import { UseraccountService } from './useraccount.service';
 import {  RegisterUserPhoneNumberConfirmReqPathDto, RegisterUserPhoneNumberConfirmResBodyDto } from './dto/register-user-phonenumber-confirm.dto';
 import { RegisterUserOtpCodeConfirmReqBodyDto, RegisterUserOtpCodeConfirmReqPathDto, RegisterUserOtpCodeConfirmResBodyDto } from './dto/register-user-otpcodeconfirm.dto';
 import { RegisterUserPasswordConfirmReqBodyDto } from './dto/register-user-passwordconfirm.dto';
+import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
 
 @ApiTags('api/v1/useraccount')
 @Controller('api/v1/useraccount')
@@ -53,6 +54,20 @@ export class UseraccountController {
     })
     registerUserPasswordConfirm(@Param() phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto,@Body() confirmPasswordReqBody:RegisterUserPasswordConfirmReqBodyDto): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
         return this.userAccountService.registerUserAccountPasswordConfirm(phoneNumber,confirmPasswordReqBody);
+    }
+    
+    @Post('register/username/:phoneNumber')
+    @HttpCode(201)
+    @ApiOperation({
+        summary: 'User Name Adding API',
+        description: 'Add Name to authenticated user'
+    })
+    @ApiOkResponse({
+        description: 'Add Name to be authenticated user.',
+        type: RegisterUserOtpCodeConfirmResBodyDto
+    })
+    registerUserName(@Param() registerUserNameReqPath: RegisterUserNameInsertReqPathDto,@Body() registerUserNameReqBody:RegisterUserNameInsertReqBodyDto): Promise<RegisterUserNameInsertResBodyDto> {
+        return this.userAccountService.registerUserAccountName(registerUserNameReqPath,registerUserNameReqBody);
     }
 
 
