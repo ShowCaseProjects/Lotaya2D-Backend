@@ -1,141 +1,105 @@
-import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString, MaxLength } from "class-validator";
+import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
+import { IsISO8601, IsOptional, Length, Matches } from "class-validator";
 
-export class UserPaymentFindReqPathDto {
+export class UserPaymentFindReqQueryDto {
 
-    @IsString(
+    @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your phone number as number.'
+                errorMessage: 'Please enter your payment id as number.'
             },
         }
     )
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your id.'
-        }
-    })
-    @ApiProperty()
-    userId: string;
+    @IsOptional()
+    @ApiPropertyOptional()
+    paymentId: string;
 
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment type.'
-        }
-    })
-    @ApiProperty()
-    paymentType: string;
-
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment account name.'
-        }
-    })
-    @ApiProperty()
-    receiverAccountName: string;
-
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment account.'
-        }
-    })
-    @ApiProperty()
-    receiverAccount: string;
-
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment amount.'
-        }
-    })
-    @IsString(
+    @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment amount as number.'
+                errorMessage: 'Please enter your id as number.'
             },
         }
     )
-    @ApiProperty()
-    amount: number;
+    @IsOptional()
+    @ApiPropertyOptional()
+    userId?: string;
 
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment confirmation code.'
-        }
-    })
-    @IsString(
+    @Matches(/^[/^[a-zA-Z0-9- _]+$/,
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment confirmation code.'
+                errorMessage: 'Please enter your payment type as alphanumeric character.'
             },
         }
     )
-    @ApiProperty()
-    paymentConfirmationCode: number;
+    @IsOptional()
+    @ApiPropertyOptional()
+    paymentType?: string;
 
-}
-
-export class UserPaymentFindReqBodyDto {
-    @IsString(
+    @Matches(/^[/^[a-zA-Z0-9- _]+$/,
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your phone number as number.'
+                errorMessage: 'Please enter your payment account name as alphanumeric character.'
             },
         }
     )
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your id.'
-        }
-    })
-    @ApiProperty()
-    userId: string;
+    @IsOptional()
+    @ApiPropertyOptional()
+    paymentAccountName?: string;
 
-
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment type.'
+    @Matches(/^[a-zA-Z0-9]+$/,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your payment account as alphanumeric character.'
+            },
         }
-    })
-    @ApiProperty()
-    paymentType: string;
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    paymentAccount?: string;
 
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment account name.'
+    @Matches(/^[/^[a-zA-Z0-9- _]+$/,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your receiver account type as alphanumeric character.'
+            },
         }
-    })
-    @ApiProperty()
-    receiverAccountName: string;
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    recevierAccountType?: string;
 
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment account.'
+    @Matches(/^[/^[a-zA-Z0-9- _]+$/,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your receiver account name as alphanumeric character.'
+            },
         }
-    })
-    @ApiProperty()
-    receiverAccount: string;
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    receiverAccountName?: string;
 
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment amount.'
+    @Matches(/^[a-zA-Z0-9]+$/,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your receiver account as alphanumeric character.'
+            },
         }
-    })
-    @IsString(
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    receiverAccount?: string;
+
+    @Matches(/^[0-9.]+$/,
         {
             context: {
                 errorCode: 'E1000',
@@ -143,47 +107,95 @@ export class UserPaymentFindReqBodyDto {
             },
         }
     )
-    @ApiProperty()
-    amount: number;
+    @IsOptional()
+    @ApiPropertyOptional()
+    amount?: string;
 
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your payment confirmation code.'
-        }
-    })
-    @IsString(
+    @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment confirmation code.'
+                errorMessage: 'Please enter your payment confirmation code as number.'
             },
         }
     )
-    @ApiProperty()
-    paymentConfirmationCode: number;
+    @Length(6, 6,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your payment confirmation code using 6 digits.'
+            },
+        }
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    paymentConfirmationCode?: string;
+
+    @IsISO8601({ strict: true },
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Invalid Date Format'
+            },
+        }
+    )
+    @Matches(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Invalid Date Format'
+            },
+        }
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    creationDateFrom?: string;
+
+    @IsISO8601({ strict: true },
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Invalid Date Format'
+            },
+        }
+    )
+    @Matches(/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Invalid Date Format'
+            },
+        }
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    creationDateTo?: string;
+
 }
 
 export class UserPaymentFindResBodyDto {
-   
+
     @ApiProperty()
-    userId: string;
+    paymentMethodId: number;
+
+    @ApiProperty()
+    userId: number;
 
     @ApiProperty()
     receiverAccountName: string;
-    
+
     @ApiProperty()
     receiverAccount: string;
 
     @ApiProperty()
-    amount: number;
+    amount: string;
 
     @ApiProperty()
     paymentConfirmationCode: number;
-    
-    @ApiProperty()
-    registerDate: Date;
 
     @ApiProperty()
-    updatedDate: Date;
+    registerDate: string;
+
+    @ApiProperty()
+    updatedDate: string;
 }

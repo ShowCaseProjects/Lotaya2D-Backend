@@ -2,6 +2,7 @@
 
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import * as Twilio from 'twilio';
+require('dotenv').config();
 
 @Injectable()
 export class TwilioService {
