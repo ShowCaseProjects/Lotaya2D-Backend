@@ -133,10 +133,14 @@ model  Transaction{
   transaction_id         Int    @id         @default(autoincrement())
   user_id                Int
   amount                 Decimal
-  transaction_type_id         Int
+  transaction_type_id    Int
   transaction_type       TransactionType   @relation(fields:[transaction_type_id],references:[transaction_type_id]) 
   transaction_date       DateTime  
-  agent_id               Int   
+  agent_id               Int  
+  delete_status    Int             
+  register_date    DateTime           @default(now())
+  updated_date     DateTime           @default(now())
+  deleted_date     DateTime?
 
   @@map("transation")  
 }

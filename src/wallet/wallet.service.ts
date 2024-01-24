@@ -1,6 +1,8 @@
-import { Injectable, Logger } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { Gateway } from 'src/gateway/gateway';
+import * as dayjs from 'dayjs'
+import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto, UserWalletInsertResBodyDto } from './dto/add-user-wallet.dto';
 
 @Injectable()
 export class WalletService {
@@ -10,47 +12,53 @@ export class WalletService {
         this.logger = new Logger(this.constructor.name);
     }
 
-//     async addUserWallet(
-//         addWalletReqPath: UserPaymentInsertReqPathDto, addPaymentReqBody: UserPaymentInsertReqBodyDto
-//     ): Promise<UserPaymentInsertResBodyDto> {
-//         try {
-//             const registerData = await this.prisma.paymentMethod.create({
-//                 data: {
-//                     user_id: Number(addPaymentReqPath.userId),
-//                     payment_type: addPaymentReqBody.paymentType,
-//                     receiver_account_name: addPaymentReqBody.receiverAccountName,
-//                     receiver_account: addPaymentReqBody.receiverAccount,
-//                     amount: addPaymentReqBody.amount,
-//                     delete_status: 0,
-//                     date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-//                     payment_confirm_code: Number(addPaymentReqBody.paymentConfirmationCode),
-//                     register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-//                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
-//                 },
-//             });
-//             const paymentdatadto = new UserPaymentFindResBodyDto();
-//             paymentdatadto.paymentMethodId = registerData.payment_id,
+    async addUserWallet(
+        addWalletReqPath: UserWalletInsertReqPathDto, addWalletReqBody: UserWalletInsertReqBodyDto
+    ): Promise<UserWalletInsertResBodyDto> {
+        try {
+            const registerData = await this.prisma.wallet.create({
+                data: {
+                    user_id: Number(addWalletReqPath.userId),
+                    main_amount: addWalletReqBody.mainAmount,
+                    game_amount: addWalletReqBody.gainAmount,
+                    agent_id: addWalletReqBody.agentId,
+                    delete_status: 0,
+                    register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+                },
+            });
 
-//                 paymentdatadto.userId = registerData.user_id,
-
-//                 paymentdatadto.receiverAccountName = registerData.receiver_account_name,
-
-//                 paymentdatadto.receiverAccount = registerData.receiver_account,
-
-//                 paymentdatadto.amount = registerData.amount.toFixed(5),
-
-//                 paymentdatadto.paymentConfirmationCode = registerData.payment_confirm_code,
-
-//                 paymentdatadto.registerDate = dayjs(registerData.register_date).format('YYYY-MM-DD HH:mm:ss'),
-
-//                 paymentdatadto.updatedDate = dayjs(registerData.updated_date).format('YYYY-MM-DD HH:mm:ss')
-
-//             this.paymentGateWay.notify('paymentmethod-added', paymentdatadto);
-
-//             const responseData: UserPaymentInsertResBodyDto = {
-//                 isSuccess: true,
-//             }
-//             return responseData;
-//         }
-// }
+            const transationData = await this.prisma.transaction.create({
+                data: {
+                    user_id: Number(addWalletReqPath.userId),
+                    amount: addWalletReqBody.mainAmount,
+                    agent_id: addWalletReqBody.agentId,
+                    transaction_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                    transaction_type_id :addWalletReqBody.transationTypeId,
+                    delete_status: 0,
+                    register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+                },
+            });
+        
+            const responseData: UserWalletInsertResBodyDto = {
+                isSuccess: true,
+            }
+            return responseData;
+        }
+        catch (error) {
+            if (error.code === 'P2002') {
+                throw new HttpException({
+                    errorCode: 'E1101',
+                    errorMessage: 'Your wallet have been added.'
+                }, HttpStatus.BAD_REQUEST);
+            }
+            this.logger.error(error.stack)
+            throw new HttpException({
+                errorCode: 'E1119',
+                errorMessage: 'Internal server error.'
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 }
+

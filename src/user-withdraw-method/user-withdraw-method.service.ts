@@ -3,7 +3,6 @@ import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { Gateway } from 'src/gateway/gateway';
 import { UserWithdrawMethodInsertReqBodyDto, UserWithdrawMethodInsertReqPathDto, UserWithdrawMethodInsertResBodyDto } from './dto/add-user-withdraw.dto';
 import * as dayjs from 'dayjs'
-import { UserWithdrawAccountFindResBodyDto } from 'src/user-withdraw-account/dto/find-user-withdraw-account..dto';
 import { UserWithdrawMethodFindReqQueryDto, UserWithdrawMethodFindResBodyDto } from './dto/find-user-withdraw.dto';
 import { UserWithdrawMethodUpdateReqBodyDto, UserWithdrawMethodUpdateReqPathDto } from './dto/update-user-withdraw.dto';
 import { UserWithdrawAccountUpdateResBodyDto } from 'src/user-withdraw-account/dto/update-user-withdraw-account..dto';

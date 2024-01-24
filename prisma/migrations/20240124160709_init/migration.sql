@@ -127,6 +127,10 @@ CREATE TABLE "transation" (
     "transaction_type_id" INTEGER NOT NULL,
     "transaction_date" TIMESTAMP(3) NOT NULL,
     "agent_id" INTEGER NOT NULL,
+    "delete_status" INTEGER NOT NULL,
+    "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deleted_date" TIMESTAMP(3),
 
     CONSTRAINT "transation_pkey" PRIMARY KEY ("transaction_id")
 );
