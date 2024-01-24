@@ -1,19 +1,19 @@
 import { ApiProperty, ApiPropertyOptional } from "@nestjs/swagger";
 import { IsISO8601, IsOptional, Length, Matches } from "class-validator";
 
-export class UserPaymentFindReqQueryDto {
+export class UserWithdrawMethodFindReqQueryDto {
 
     @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment id as number.'
+                errorMessage: 'Please enter your withdraw id as number.'
             },
         }
     )
     @IsOptional()
     @ApiPropertyOptional()
-    paymentId: string;
+    withdrawId: string;
 
     @Matches(/^[0-9]+$/,
         {
@@ -31,49 +31,13 @@ export class UserPaymentFindReqQueryDto {
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment type as alphanumeric character.'
+                errorMessage: 'Please enter your withdraw type as alphanumeric character.'
             },
         }
     )
     @IsOptional()
     @ApiPropertyOptional()
-    paymentType?: string;
-
-    @Matches(/^[/^[a-zA-Z0-9- _]+$/,
-        {
-            context: {
-                errorCode: 'E1000',
-                errorMessage: 'Please enter your payment account name as alphanumeric character.'
-            },
-        }
-    )
-    @IsOptional()
-    @ApiPropertyOptional()
-    paymentAccountName?: string;
-
-    @Matches(/^[a-zA-Z0-9]+$/,
-        {
-            context: {
-                errorCode: 'E1000',
-                errorMessage: 'Please enter your payment account as alphanumeric character.'
-            },
-        }
-    )
-    @IsOptional()
-    @ApiPropertyOptional()
-    paymentAccount?: string;
-
-    @Matches(/^[/^[a-zA-Z0-9- _]+$/,
-        {
-            context: {
-                errorCode: 'E1000',
-                errorMessage: 'Please enter your receiver account type as alphanumeric character.'
-            },
-        }
-    )
-    @IsOptional()
-    @ApiPropertyOptional()
-    recevierAccountType?: string;
+    withdrawType?: string;
 
     @Matches(/^[/^[a-zA-Z0-9- _]+$/,
         {
@@ -99,6 +63,7 @@ export class UserPaymentFindReqQueryDto {
     @ApiPropertyOptional()
     receiverAccount?: string;
 
+
     @Matches(/^[0-9.]+$/,
         {
             context: {
@@ -115,7 +80,7 @@ export class UserPaymentFindReqQueryDto {
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment confirmation code as number.'
+                errorMessage: 'Please enter your withdraw confirmation code as number.'
             },
         }
     )
@@ -123,13 +88,33 @@ export class UserPaymentFindReqQueryDto {
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your payment confirmation code using 6 digits.'
+                errorMessage: 'Please enter your withdraw confirmation code using 6 digits.'
             },
         }
     )
     @IsOptional()
     @ApiPropertyOptional()
-    paymentConfirmationCode?: string;
+    withdrawConfirmationCode?: string;
+
+    @Matches(/^[0-9]+$/,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your withdraw confirmation status as number.'
+            },
+        }
+    )
+    @Length(1, 1,
+        {
+            context: {
+                errorCode: 'E1000',
+                errorMessage: 'Please enter your withdraw confirmation status using 1 digits.'
+            },
+        }
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    isVerify?: string;
 
     @IsISO8601({ strict: true },
         {
@@ -170,8 +155,7 @@ export class UserPaymentFindReqQueryDto {
     @IsOptional()
     @ApiPropertyOptional()
     creationDateTo?: string;
- 
-
+   
     @IsISO8601({ strict: true },
         {
             context: {
@@ -211,17 +195,19 @@ export class UserPaymentFindReqQueryDto {
     @IsOptional()
     @ApiPropertyOptional()
     updatedDateTo?: string;
-
 }
 
-export class UserPaymentFindResBodyDto {
+export class UserWithdrawMethodFindResBodyDto {
 
     @ApiProperty()
-    paymentMethodId: number;
+    withdrawMethodId: number;
 
     @ApiProperty()
     userId: number;
 
+    @ApiProperty()
+    accountType: string;
+   
     @ApiProperty()
     receiverAccountName: string;
 

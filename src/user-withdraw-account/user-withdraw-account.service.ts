@@ -4,7 +4,7 @@ import { UserWithdrawAccountInsertReqBodyDto, UserWithdrawAccountInsertReqPathDt
 import * as dayjs from 'dayjs'
 import { UserWithdrawAccountUpdateReqBodyDto, UserWithdrawAccountUpdateReqPathDto, UserWithdrawAccountUpdateResBodyDto } from './dto/update-user-withdraw-account..dto';
 import { UserWithdrawAccountDeleteReqBodyDto, UserWithdrawAccountDeleteReqPathDto, UserWithdrawAccountDeleteResBodyDto } from './dto/delete-user-withdraw-account..dto';
-import { UserWithdrawAccountFindResBodyDto } from './dto/find-user-withdraw-account..dto';
+import { UserWithdrawAccountFindReqPathDto, UserWithdrawAccountFindResBodyDto } from './dto/find-user-withdraw-account..dto';
 
 @Injectable()
 export class UserWithdrawAccountService {
@@ -15,22 +15,22 @@ export class UserWithdrawAccountService {
     }
 
     async addUserWithdraw(
-        addWithdrawAccountReqPath: UserWithdrawAccountInsertReqPathDto,addWithdrawAccountReqBody:UserWithdrawAccountInsertReqBodyDto
+        addWithdrawAccountReqPath: UserWithdrawAccountInsertReqPathDto, addWithdrawAccountReqBody: UserWithdrawAccountInsertReqBodyDto
     ): Promise<UserWithdrawAccountInsertResBodyDto> {
         try {
             const registerData = await this.prisma.userWithdrawAccount.create({
                 data: {
-                        user_id:addWithdrawAccountReqPath.userId,
-                        account_type:addWithdrawAccountReqBody.accountType,
-                        account_name:addWithdrawAccountReqBody.accountName,
-                        account_id:addWithdrawAccountReqBody.accountId,
-                        delete_status:0,
-                        register_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-                        updated_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+                    user_id: addWithdrawAccountReqPath.userId,
+                    account_type: addWithdrawAccountReqBody.accountType,
+                    account_name: addWithdrawAccountReqBody.accountName,
+                    account_id: addWithdrawAccountReqBody.accountId,
+                    delete_status: 0,
+                    register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
             });
             const responseData: UserWithdrawAccountInsertResBodyDto = {
-                isSuccess:true,
+                isSuccess: true,
             }
             return responseData;
         }
@@ -51,23 +51,23 @@ export class UserWithdrawAccountService {
     }
 
     async updateUserWithdrawAccount(
-        addWithdrawAccountReqPath: UserWithdrawAccountUpdateReqPathDto,addWithdrawAccountReqBody:UserWithdrawAccountUpdateReqBodyDto
+        addWithdrawAccountReqPath: UserWithdrawAccountUpdateReqPathDto, addWithdrawAccountReqBody: UserWithdrawAccountUpdateReqBodyDto
     ): Promise<UserWithdrawAccountUpdateResBodyDto> {
         try {
             const updateData = await this.prisma.userWithdrawAccount.update({
-                where:{
-                    user_withdraw_account_id:addWithdrawAccountReqPath.withdrawAccountId,
-                    user_id:addWithdrawAccountReqBody.userId,
+                where: {
+                    user_withdraw_account_id: addWithdrawAccountReqPath.withdrawAccountId,
+                    user_id: addWithdrawAccountReqBody.userId,
                 },
                 data: {
-                    account_type:addWithdrawAccountReqBody.accountType,
-                    account_name:addWithdrawAccountReqBody.accountName,
-                    account_id:addWithdrawAccountReqBody.accountId,
-                    updated_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+                    account_type: addWithdrawAccountReqBody.accountType,
+                    account_name: addWithdrawAccountReqBody.accountName,
+                    account_id: addWithdrawAccountReqBody.accountId,
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
             });
             const responseData: UserWithdrawAccountUpdateResBodyDto = {
-                isSuccess:true,
+                isSuccess: true,
             }
             return responseData;
         }
@@ -88,34 +88,21 @@ export class UserWithdrawAccountService {
     }
 
     async deleteUserWithdrawAccount(
-        addWithdrawAccountReqPath: UserWithdrawAccountDeleteReqPathDto,addWithdrawAccountReqBody:UserWithdrawAccountDeleteReqBodyDto
+        addWithdrawAccountReqPath: UserWithdrawAccountDeleteReqPathDto, addWithdrawAccountReqBody: UserWithdrawAccountDeleteReqBodyDto
     ): Promise<UserWithdrawAccountDeleteResBodyDto> {
         try {
 
-            const userAccount = await this.prisma.userWithdrawAccount.findUnique({
-                where: {
-                    user_withdraw_account_id:addWithdrawAccountReqPath.withdrawAccountId,
-                    user_id:addWithdrawAccountReqBody.userId,
-                    account_type:addWithdrawAccountReqBody.accountType,
-                    account_name:addWithdrawAccountReqBody.accountName,
-                    account_id:addWithdrawAccountReqBody.accountId,
-                    delete_status:0,
-                    register_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-                    updated_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
-                },
-            });
-
             const updateData = await this.prisma.userWithdrawAccount.update({
-                where:{
-                    user_withdraw_account_id:addWithdrawAccountReqPath.withdrawAccountId,
-                    user_id:addWithdrawAccountReqBody.userId,
+                where: {
+                    user_withdraw_account_id: addWithdrawAccountReqPath.withdrawAccountId,
+                    user_id: addWithdrawAccountReqBody.userId,
                 },
                 data: {
-                    delete_status:1,
+                    delete_status: 1,
                 },
             });
             const responseData: UserWithdrawAccountDeleteResBodyDto = {
-                isSuccess:true,
+                isSuccess: true,
             }
             return responseData;
         }
@@ -123,7 +110,7 @@ export class UserWithdrawAccountService {
             if (error.code === 'P2002') {
                 throw new HttpException({
                     errorCode: 'E1101',
-                    errorMessage: 'Your payment have been updated.'
+                    errorMessage: 'Your payment have been deleted.'
                 }, HttpStatus.BAD_REQUEST);
             }
             this.logger.error(error.stack)
@@ -135,26 +122,96 @@ export class UserWithdrawAccountService {
 
     }
 
-    async findAllWithdrawAccount(params: {
-        skip?: number;
-        take?: number;
-        // cursor?: Prisma.PaymentMethod;
-        // where?: Prisma.;
-        // orderBy?: Prisma.UserOrderByWithRelationInput;
-    }): Promise<UserWithdrawAccountFindResBodyDto[]> {
-        const { skip, take,  } = params;
+    async findAllWithdrawAccount(
+        findAllUserWithdrawAccount: UserWithdrawAccountFindReqPathDto
+    ): Promise<UserWithdrawAccountFindResBodyDto[]> {
         try {
-            const withdrawaccountdata = await this.prisma.userWithdrawAccount.findMany({
-                skip,
-                take,
+            const paymentdata = await this.prisma.userWithdrawAccount.findMany({
+                select: {
+                    user_withdraw_account_id: true,
+                    user_id: true,
+                    account_type: true,
+                    account_name: true,
+                    account_id: true,
+                    register_date: true,
+                    updated_date: true,
+                },
+                orderBy: [
+                    { register_date: 'desc' },
+                    { updated_date: 'desc' }
+                ],
+                where: {
+                    user_withdraw_account_id: {
+                        gte:
+                            findAllUserWithdrawAccount.withdrawAccountId == undefined
+                                ? undefined
+                                : Number(findAllUserWithdrawAccount.withdrawAccountId),
+                        lte:
+                            findAllUserWithdrawAccount.withdrawAccountId == undefined
+                                ? undefined
+                                : Number(findAllUserWithdrawAccount.withdrawAccountId)
+                    },
+                    user_id: {
+                        gte:
+                            findAllUserWithdrawAccount.userId == undefined
+                                ? undefined
+                                : Number(findAllUserWithdrawAccount.userId),
+                        lte:
+                            findAllUserWithdrawAccount.userId == undefined ?
+                                undefined
+                                : Number(findAllUserWithdrawAccount.userId)
+                    },
+                    account_type: { contains: findAllUserWithdrawAccount.accountType, mode: 'insensitive' },
+                    account_name: {
+                        contains: findAllUserWithdrawAccount.accountName, mode: 'insensitive'
+                    },
+                    delete_status: 0,
+                    account_id: { equals: findAllUserWithdrawAccount.accountId },
+                    register_date: {
+                        gte:
+                            findAllUserWithdrawAccount.creationDateFrom == undefined
+                                ? undefined
+                                : `${findAllUserWithdrawAccount.creationDateFrom}T00:00:00Z`,
+                        lte:
+                            findAllUserWithdrawAccount.creationDateTo == undefined
+                                ? undefined
+                                : `${findAllUserWithdrawAccount.creationDateTo}T00:00:00Z`
+                    },
+                    updated_date: {
+                        gte:
+                            findAllUserWithdrawAccount.updatedDateFrom == undefined
+                                ? undefined
+                                : `${findAllUserWithdrawAccount.updatedDateFrom}T00:00:00Z`,
+                        lte:
+                            findAllUserWithdrawAccount.updatedDateTo == undefined
+                                ? undefined
+                                : `${findAllUserWithdrawAccount.updatedDateTo}T00:00:00Z`
+                    }
+                }
             });
             return (
-                withdrawaccountdata.map((a) => {
-                    const withdrawaccountdatadto = new UserWithdrawAccountFindResBodyDto();
-                    return withdrawaccountdatadto;
+                paymentdata.map((a) => {
+                    const withdrawdatadto = new UserWithdrawAccountFindResBodyDto();
+
+                    withdrawdatadto.withdrawAccountId = a.user_withdraw_account_id,
+
+                        withdrawdatadto.userId = a.user_id,
+
+                        withdrawdatadto.accountType = a.account_type,
+
+                        withdrawdatadto.accountName = a.account_name,
+
+                        withdrawdatadto.accountId = a.account_id,
+
+                        withdrawdatadto.registerDate = dayjs(a.register_date).format('YYYY-MM-DD HH:mm:ss'),
+
+                        withdrawdatadto.updatedDate = dayjs(a.updated_date).format('YYYY-MM-DD HH:mm:ss')
+
+                    return withdrawdatadto;
                 }));
         }
         catch (err) {
+            this.logger.log(err)
             if (err instanceof HttpException) {
                 throw err;
             } else {
@@ -164,7 +221,9 @@ export class UserWithdrawAccountService {
                 },
                     HttpStatus.INTERNAL_SERVER_ERROR);
             }
+
         }
 
     }
+
 }

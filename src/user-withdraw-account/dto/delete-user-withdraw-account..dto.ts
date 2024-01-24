@@ -1,9 +1,9 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsNotEmpty, IsString} from "class-validator";
+import { IsNotEmpty, IsString, Matches } from "class-validator";
 
 export class UserWithdrawAccountDeleteReqPathDto {
 
-    @IsString(
+    @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
@@ -23,7 +23,7 @@ export class UserWithdrawAccountDeleteReqPathDto {
 }
 
 export class UserWithdrawAccountDeleteReqBodyDto {
-    @IsString(
+    @Matches(/^[0-9]+$/,
         {
             context: {
                 errorCode: 'E1000',
@@ -65,7 +65,7 @@ export class UserWithdrawAccountDeleteReqBodyDto {
             errorMessage: 'Please enter your  account id.'
         }
     })
-    
+
     @ApiProperty()
     accountId: number;
 }

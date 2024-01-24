@@ -71,6 +71,9 @@ model PaymentMethod{
   payment_id            Int    @id         @default(autoincrement())
   user_id               Int        
   payment_type          String 
+  payment_account_name  String
+  payment_account       String
+  reciver_account_type  String 
   receiver_account_name String           
   receiver_account      String
   amount                Decimal 
@@ -92,7 +95,8 @@ model WithdrawMethod{
   receiver_account       String
   amount                 Decimal 
   date                   DateTime
-  withdraw_confirm_code  String             @db.VarChar(6)
+  withdraw_confirm_code  String?             @db.VarChar(6)
+  is_verify              Int ?  
   delete_status          Int
   register_date          DateTime           @default(now())
   updated_date           DateTime           @default(now())

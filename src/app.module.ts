@@ -6,9 +6,10 @@ import { AuthModule } from './auth/auth.module';
 import { WalletModule } from './wallet/wallet.module';
 import { PaymentmethodModule } from './paymentmethod/paymentmethod.module';
 import { UserWithdrawAccountModule } from './user-withdraw-account/user-withdraw-account.module';
+import { UserWithdrawMethodModule } from './user-withdraw-method/user-withdraw-method.module';
 
 @Module({
-  imports: [UseraccountModule,AuthModule, WalletModule, PaymentmethodModule, UserWithdrawAccountModule],
+  imports: [UseraccountModule,AuthModule, WalletModule, PaymentmethodModule, UserWithdrawAccountModule, UserWithdrawMethodModule],
   controllers: [AppController],
   providers: [AppService],
 })
