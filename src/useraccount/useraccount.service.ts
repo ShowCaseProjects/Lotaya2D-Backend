@@ -7,7 +7,6 @@ import { RegisterUserOtpCodeConfirmReqBodyDto,  RegisterUserOtpCodeConfirmResBod
 import { LoginUserPhoneNumberConfirmReqPathDto } from './dto/login-user-phonenumberconfirm.dto';
 import { RegisterUserPasswordConfirmReqBodyDto, RegisterUserPasswordConfirmResBodyDto } from './dto/register-user-passwordconfirm.dto';
 import { JwtService } from '@nestjs/jwt';
-import * as bcrypt from 'bcrypt';
 import { LoginUserPasswordConfirmReqBodyDto } from './dto/login-user-passwordconfirm.dto';
 import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
 import { LotayaLibService } from 'src/lotayalib';
@@ -30,8 +29,8 @@ export class UseraccountService {
                     phone_number: phoneNumber.phoneNumber
                 },
             });
-            const passwordValid = await bcrypt.compare(password.password, userAccount.password);
-            if(!passwordValid)
+            // const passwordValid = await bcrypt.compare(password.password, userAccount.password);
+            if(password.password!==userAccount.password)
             {
                 throw new NotAcceptableException({
                     errorCode:'E1118',
@@ -177,14 +176,14 @@ export class UseraccountService {
                 }, HttpStatus.NOT_FOUND);
             }
             else {
-                const salt = await bcrypt.genSalt();
-                const hashpassword = await bcrypt.hash(passwordConfirmReqBodyDto.password, salt);
+                // const salt = await bcrypt.genSalt();
+                // const hashpassword = await bcrypt.hash(passwordConfirmReqBodyDto.password, salt);
                 const confirmPassword = await this.prisma.users.update({
                     where: {
                         phone_number: phoneNumber.phoneNumber
                     },
                     data: {
-                        password: hashpassword
+                        password: passwordConfirmReqBodyDto.password
                     }
                 });
 
@@ -373,14 +372,14 @@ export class UseraccountService {
                 }, HttpStatus.NOT_FOUND);
             }
             else {
-                const salt = await bcrypt.genSalt();
-                const hashpassword = await bcrypt.hash(passwordConfirmReqBodyDto.password, salt);
+                // const salt = await bcrypt.genSalt();
+                // const hashpassword = await bcrypt.hash(passwordConfirmReqBodyDto.password, salt);
                 const confirmPassword = await this.prisma.users.update({
                     where: {
                         phone_number: phoneNumber.phoneNumber
                     },
                     data: {
-                        password: hashpassword
+                        password: passwordConfirmReqBodyDto.password
                     }
                 });
 
