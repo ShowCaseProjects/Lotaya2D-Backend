@@ -9,7 +9,7 @@ import { LoginUserPhoneNumberConfirmReqPathDto } from './dto/login-user-phonenum
 import { RegisterUserPasswordConfirmReqBodyDto, RegisterUserPasswordConfirmResBodyDto } from './dto/register-user-passwordconfirm.dto';
 import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
-import { LoginUserPasswordConfirmReqBodyDto, LoginUserPasswordConfirmReqPathDto } from './dto/login-user-passwordconfirm.dto';
+import { LoginUserPasswordConfirmReqBodyDto } from './dto/login-user-passwordconfirm.dto';
 import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
 
 @Injectable()
