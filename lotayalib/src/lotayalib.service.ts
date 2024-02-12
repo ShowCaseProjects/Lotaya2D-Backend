@@ -1,5 +1,5 @@
 import { INestApplication, Injectable, OnModuleInit } from '@nestjs/common';
-import { PrismaClient } from '/src/generated/lotaya_wallet';
+import { PrismaClient } from 'prisma/generated/lotaya_wallet';
 
 @Injectable()
 export class LotayaLibService extends PrismaClient implements OnModuleInit {
