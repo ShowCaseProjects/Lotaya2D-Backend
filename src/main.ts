@@ -59,7 +59,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.getHttpAdapter().getInstance().set('etag', false);
-  const port = 8080;
+  const port = 80;
   await app.listen(port).then(() => {
     Logger.overrideLogger(['error', 'warn', 'log', 'debug']);
   });
