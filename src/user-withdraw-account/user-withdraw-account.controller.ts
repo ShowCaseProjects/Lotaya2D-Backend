@@ -74,6 +74,6 @@ export class UserWithdrawAccountController {
         type: UserWithdrawAccountFindResBodyDto
     })
     findUserWithdrawAccountMethod(@Param() paymentReqPath: UserWithdrawAccountFindReqPathDto): Promise<UserWithdrawAccountFindResBodyDto[]> {
-        return this.userWithdrawAccount.findAllWithdrawAccount({});
+        return this.userWithdrawAccount.findAllWithdrawAccount(paymentReqPath);
     }
 }
