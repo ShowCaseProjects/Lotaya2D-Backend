@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus, Injectable, Logger, NotAcceptableException } from '@nestjs/common';
-import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { ValidateUserAuthenticationResBody } from './dto/validate-user-authentication.dto';
 import { RegisterUserPhoneNumberConfirmReqPathDto, RegisterUserPhoneNumberConfirmResBodyDto } from './dto/register-user-phonenumber-confirm.dto';
 import { TwilioService } from 'src/twilio/twilio.service';
@@ -11,6 +10,7 @@ import { JwtService } from '@nestjs/jwt';
 import * as bcrypt from 'bcrypt';
 import { LoginUserPasswordConfirmReqBodyDto } from './dto/login-user-passwordconfirm.dto';
 import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
+import { LotayaLibService } from 'src/lotayalib';
 
 @Injectable()
 export class UseraccountService {

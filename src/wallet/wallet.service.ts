@@ -1,8 +1,8 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { Gateway } from 'src/gateway/gateway';
 import * as dayjs from 'dayjs'
 import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto, UserWalletInsertResBodyDto } from './dto/add-user-wallet.dto';
+import { LotayaLibService } from 'src/lotayalib';
 
 @Injectable()
 export class WalletService {

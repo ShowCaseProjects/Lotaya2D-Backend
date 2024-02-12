@@ -3,7 +3,7 @@
 
 generator client {
   provider = "prisma-client-js"
-  output="./generated/lotaya_wallet"
+  //output="/generated/lotaya_wallet"
 }
 
 datasource db {

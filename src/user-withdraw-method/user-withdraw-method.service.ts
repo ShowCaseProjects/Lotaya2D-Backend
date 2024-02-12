@@ -1,5 +1,4 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { Gateway } from 'src/gateway/gateway';
 import { UserWithdrawMethodInsertReqBodyDto, UserWithdrawMethodInsertReqPathDto, UserWithdrawMethodInsertResBodyDto } from './dto/add-user-withdraw.dto';
 import * as dayjs from 'dayjs'
@@ -7,6 +6,7 @@ import { UserWithdrawMethodFindReqQueryDto, UserWithdrawMethodFindResBodyDto } f
 import { UserWithdrawMethodUpdateReqBodyDto, UserWithdrawMethodUpdateReqPathDto } from './dto/update-user-withdraw.dto';
 import { UserWithdrawAccountUpdateResBodyDto } from 'src/user-withdraw-account/dto/update-user-withdraw-account..dto';
 import { UserWithdrawMethodDeleteReqBodyDto, UserWithdrawMethodDeleteReqPathDto, UserWithdrawMethodDeleteResBodyDto } from './dto/delete-user-withdraw.dto';
+import { LotayaLibService } from 'src/lotayalib';
 
 @Injectable()
 export class UserWithdrawMethodService {

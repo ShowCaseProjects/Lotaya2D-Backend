@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { UserWithdrawAccountController } from './user-withdraw-account.controller';
 import { UserWithdrawAccountService } from './user-withdraw-account.service';
-import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
+import { LotayaLibService } from 'src/lotayalib';
 
 @Module({
   controllers: [UserWithdrawAccountController],
