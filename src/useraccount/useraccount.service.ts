@@ -7,7 +7,7 @@ import { RegisterUserOtpCodeConfirmReqBodyDto,  RegisterUserOtpCodeConfirmResBod
 import { LoginUserPhoneNumberConfirmReqPathDto } from './dto/login-user-phonenumberconfirm.dto';
 import { RegisterUserPasswordConfirmReqBodyDto, RegisterUserPasswordConfirmResBodyDto } from './dto/register-user-passwordconfirm.dto';
 import { JwtService } from '@nestjs/jwt';
- import * as bcrypt from 'bcrypt';
+ import * as bcrypt from 'bcryptjs';
 import { LoginUserPasswordConfirmReqBodyDto } from './dto/login-user-passwordconfirm.dto';
 import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
 import { LotayaLibService } from 'src/lotayalib';
