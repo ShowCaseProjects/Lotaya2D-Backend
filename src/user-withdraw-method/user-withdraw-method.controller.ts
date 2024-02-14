@@ -9,7 +9,7 @@ import { UserWithdrawMethodFindReqQueryDto, UserWithdrawMethodFindResBodyDto } f
 
 
 @ApiBearerAuth()
-@ApiTags('api/v1/paymentmethod')
+@ApiTags('api/v1/withdraw')
 @Controller('api/v1/user-withdraw-method')
 export class UserWithdrawMethodController {
     protected readonly logger: Logger;
