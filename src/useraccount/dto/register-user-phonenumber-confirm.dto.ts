@@ -47,4 +47,7 @@ export class RegisterUserPhoneNumberConfirmResBodyDto {
 
     @ApiProperty()
     phoneNumber: string;
+
+    @ApiProperty()
+    otpCode: string;
 }

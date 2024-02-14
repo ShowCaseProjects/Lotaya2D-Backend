@@ -78,7 +78,8 @@ export class UseraccountService {
                 await this.twilioService.sendOtpCode('+959403851357', otpCode);
 
             const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
-                phoneNumber: registerData.phone_number
+                phoneNumber: registerData.phone_number,
+                otpCode:registerData.otp_code
             }
             return responseData;
         }
@@ -270,6 +271,7 @@ export class UseraccountService {
             }
             const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
                 phoneNumber: forgotPasswordReqPath.phoneNumber,
+                otpCode:userAccount.otp_code
             }
             return responseData;
         }
