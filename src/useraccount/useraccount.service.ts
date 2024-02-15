@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable, Logger, NotAcceptableException } from '@nestjs/common';
 import { ValidateUserAuthenticationResBody } from './dto/validate-user-authentication.dto';
 import { RegisterUserPhoneNumberConfirmReqPathDto, RegisterUserPhoneNumberConfirmResBodyDto } from './dto/register-user-phonenumber-confirm.dto';
-import { TwilioService } from 'src/twilio/twilio.service';
 import * as dayjs from 'dayjs'
 import { RegisterUserOtpCodeConfirmReqBodyDto,  RegisterUserOtpCodeConfirmResBodyDto } from './dto/register-user-otpcodeconfirm.dto';
 import { LoginUserPhoneNumberConfirmReqPathDto } from './dto/login-user-phonenumberconfirm.dto';
@@ -16,7 +15,7 @@ import { LotayaLibService } from 'src/lotayalib';
 export class UseraccountService {
     protected logger: Logger;
 
-    constructor(private prisma: LotayaLibService, private readonly twilioService: TwilioService, private jwtService: JwtService) {
+    constructor(private prisma: LotayaLibService, private jwtService: JwtService) {
         this.logger = new Logger(this.constructor.name);
     }
 
@@ -74,8 +73,7 @@ export class UseraccountService {
                     otp_code: otpCode
                 },
             });
-            if (registerData)
-                await this.twilioService.sendOtpCode('+959403851357', otpCode);
+            if (registerData){
 
             const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
                 phoneNumber: registerData.phone_number,
@@ -83,6 +81,7 @@ export class UseraccountService {
             }
             return responseData;
         }
+    }
         catch (error) {
             if (error.code === 'P2002') {
                 throw new HttpException({
@@ -266,9 +265,6 @@ export class UseraccountService {
                     otp_code: this.generateOTP(6).trim()
                 }
             });
-            if (userAccount) {
-                await this.twilioService.sendOtpCode('+959403851357', userAccount.otp_code);
-            }
             const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
                 phoneNumber: forgotPasswordReqPath.phoneNumber,
                 otpCode:userAccount.otp_code
