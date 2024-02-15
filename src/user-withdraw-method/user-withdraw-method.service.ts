@@ -31,6 +31,7 @@ export class UserWithdrawMethodService {
                     receiver_account: addWithdrawMethodReqBody.receiverAccount,
                     amount: addWithdrawMethodReqBody.amount,
                     delete_status: 0,
+                    approve_reject:0,
                     date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                     is_verify:0,
                     register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),

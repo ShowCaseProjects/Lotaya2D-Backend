@@ -163,6 +163,8 @@ exports.Prisma.PaymentMethodScalarFieldEnum = {
   receiver_account: 'receiver_account',
   amount: 'amount',
   date: 'date',
+  approve_reject: 'approve_reject',
+  reason_for_reject: 'reason_for_reject',
   payment_confirm_code: 'payment_confirm_code',
   delete_status: 'delete_status',
   register_date: 'register_date',
@@ -180,6 +182,8 @@ exports.Prisma.WithdrawMethodScalarFieldEnum = {
   date: 'date',
   withdraw_confirm_code: 'withdraw_confirm_code',
   is_verify: 'is_verify',
+  approve_reject: 'approve_reject',
+  reason_for_reject: 'reason_for_reject',
   delete_status: 'delete_status',
   register_date: 'register_date',
   updated_date: 'updated_date',
@@ -222,6 +226,11 @@ exports.Prisma.TransactionTypeScalarFieldEnum = {
   transaction_type: 'transaction_type'
 };
 
+exports.Prisma.ApproveRejectScalarFieldEnum = {
+  approve_reject_type_id: 'approve_reject_type_id',
+  type: 'type'
+};
+
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
@@ -248,7 +257,8 @@ exports.Prisma.ModelName = {
   Admin: 'Admin',
   AdminRoles: 'AdminRoles',
   Transaction: 'Transaction',
-  TransactionType: 'TransactionType'
+  TransactionType: 'TransactionType',
+  ApproveReject: 'ApproveReject'
 };
 
 /**

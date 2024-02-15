@@ -78,8 +78,10 @@ model PaymentMethod{
   receiver_account      String
   amount                Decimal 
   date                  DateTime
+  approve_reject        Int
+  reason_for_reject     String?
   payment_confirm_code  Int 
-  delete_status          Int              
+  delete_status         Int              
   register_date         DateTime           @default(now())
   updated_date          DateTime           @default(now())
   deleted_date          DateTime?
@@ -97,6 +99,8 @@ model WithdrawMethod{
   date                   DateTime
   withdraw_confirm_code  String?             @db.VarChar(6)
   is_verify              Int ?  
+  approve_reject         Int
+  reason_for_reject      String?
   delete_status          Int
   register_date          DateTime           @default(now())
   updated_date           DateTime           @default(now())
@@ -151,6 +155,13 @@ transaction_type     String   @unique @db.VarChar(100)
 transation           Transaction[]
 
 @@map("transationtype")
+}
+
+model  ApproveReject {
+approve_reject_type_id  Int      @id
+type     String   @unique @db.VarChar(100)
+
+@@map("approve_reject")
 }
 
 

@@ -33,6 +33,7 @@ export class PaymentmethodService {
                     receiver_account: addPaymentReqBody.receiverAccount,
                     amount: addPaymentReqBody.amount,
                     delete_status: 0,
+                    approve_reject:0,
                     date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                     payment_confirm_code: Number(addPaymentReqBody.paymentConfirmationCode),
                     register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),

@@ -63,6 +63,11 @@ export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
  * 
  */
 export type TransactionType = $Result.DefaultSelection<Prisma.$TransactionTypePayload>
+/**
+ * Model ApproveReject
+ * 
+ */
+export type ApproveReject = $Result.DefaultSelection<Prisma.$ApproveRejectPayload>
 
 /**
  * ##  Prisma Client ʲˢ
@@ -285,6 +290,16 @@ export class PrismaClient<
     * ```
     */
   get transactionType(): Prisma.TransactionTypeDelegate<ExtArgs>;
+
+  /**
+   * `prisma.approveReject`: Exposes CRUD operations for the **ApproveReject** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ApproveRejects
+    * const approveRejects = await prisma.approveReject.findMany()
+    * ```
+    */
+  get approveReject(): Prisma.ApproveRejectDelegate<ExtArgs>;
 }
 
 export namespace Prisma {
@@ -764,7 +779,8 @@ export namespace Prisma {
     Admin: 'Admin',
     AdminRoles: 'AdminRoles',
     Transaction: 'Transaction',
-    TransactionType: 'TransactionType'
+    TransactionType: 'TransactionType',
+    ApproveReject: 'ApproveReject'
   };
 
   export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -781,7 +797,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'users' | 'roles' | 'userWithdrawAccount' | 'wallet' | 'paymentMethod' | 'withdrawMethod' | 'admin' | 'adminRoles' | 'transaction' | 'transactionType'
+      modelProps: 'users' | 'roles' | 'userWithdrawAccount' | 'wallet' | 'paymentMethod' | 'withdrawMethod' | 'admin' | 'adminRoles' | 'transaction' | 'transactionType' | 'approveReject'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -1442,6 +1458,72 @@ export namespace Prisma {
           count: {
             args: Prisma.TransactionTypeCountArgs<ExtArgs>,
             result: $Utils.Optional<TransactionTypeCountAggregateOutputType> | number
+          }
+        }
+      }
+      ApproveReject: {
+        payload: Prisma.$ApproveRejectPayload<ExtArgs>
+        fields: Prisma.ApproveRejectFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ApproveRejectFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ApproveRejectFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload>
+          }
+          findFirst: {
+            args: Prisma.ApproveRejectFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ApproveRejectFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload>
+          }
+          findMany: {
+            args: Prisma.ApproveRejectFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload>[]
+          }
+          create: {
+            args: Prisma.ApproveRejectCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload>
+          }
+          createMany: {
+            args: Prisma.ApproveRejectCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.ApproveRejectDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload>
+          }
+          update: {
+            args: Prisma.ApproveRejectUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload>
+          }
+          deleteMany: {
+            args: Prisma.ApproveRejectDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ApproveRejectUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.ApproveRejectUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$ApproveRejectPayload>
+          }
+          aggregate: {
+            args: Prisma.ApproveRejectAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateApproveReject>
+          }
+          groupBy: {
+            args: Prisma.ApproveRejectGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<ApproveRejectGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ApproveRejectCountArgs<ExtArgs>,
+            result: $Utils.Optional<ApproveRejectCountAggregateOutputType> | number
           }
         }
       }
@@ -5637,6 +5719,7 @@ export namespace Prisma {
     payment_id: number | null
     user_id: number | null
     amount: Decimal | null
+    approve_reject: number | null
     payment_confirm_code: number | null
     delete_status: number | null
   }
@@ -5645,6 +5728,7 @@ export namespace Prisma {
     payment_id: number | null
     user_id: number | null
     amount: Decimal | null
+    approve_reject: number | null
     payment_confirm_code: number | null
     delete_status: number | null
   }
@@ -5660,6 +5744,8 @@ export namespace Prisma {
     receiver_account: string | null
     amount: Decimal | null
     date: Date | null
+    approve_reject: number | null
+    reason_for_reject: string | null
     payment_confirm_code: number | null
     delete_status: number | null
     register_date: Date | null
@@ -5678,6 +5764,8 @@ export namespace Prisma {
     receiver_account: string | null
     amount: Decimal | null
     date: Date | null
+    approve_reject: number | null
+    reason_for_reject: string | null
     payment_confirm_code: number | null
     delete_status: number | null
     register_date: Date | null
@@ -5696,6 +5784,8 @@ export namespace Prisma {
     receiver_account: number
     amount: number
     date: number
+    approve_reject: number
+    reason_for_reject: number
     payment_confirm_code: number
     delete_status: number
     register_date: number
@@ -5709,6 +5799,7 @@ export namespace Prisma {
     payment_id?: true
     user_id?: true
     amount?: true
+    approve_reject?: true
     payment_confirm_code?: true
     delete_status?: true
   }
@@ -5717,6 +5808,7 @@ export namespace Prisma {
     payment_id?: true
     user_id?: true
     amount?: true
+    approve_reject?: true
     payment_confirm_code?: true
     delete_status?: true
   }
@@ -5732,6 +5824,8 @@ export namespace Prisma {
     receiver_account?: true
     amount?: true
     date?: true
+    approve_reject?: true
+    reason_for_reject?: true
     payment_confirm_code?: true
     delete_status?: true
     register_date?: true
@@ -5750,6 +5844,8 @@ export namespace Prisma {
     receiver_account?: true
     amount?: true
     date?: true
+    approve_reject?: true
+    reason_for_reject?: true
     payment_confirm_code?: true
     delete_status?: true
     register_date?: true
@@ -5768,6 +5864,8 @@ export namespace Prisma {
     receiver_account?: true
     amount?: true
     date?: true
+    approve_reject?: true
+    reason_for_reject?: true
     payment_confirm_code?: true
     delete_status?: true
     register_date?: true
@@ -5873,6 +5971,8 @@ export namespace Prisma {
     receiver_account: string
     amount: Decimal
     date: Date
+    approve_reject: number
+    reason_for_reject: string | null
     payment_confirm_code: number
     delete_status: number
     register_date: Date
@@ -5910,6 +6010,8 @@ export namespace Prisma {
     receiver_account?: boolean
     amount?: boolean
     date?: boolean
+    approve_reject?: boolean
+    reason_for_reject?: boolean
     payment_confirm_code?: boolean
     delete_status?: boolean
     register_date?: boolean
@@ -5928,6 +6030,8 @@ export namespace Prisma {
     receiver_account?: boolean
     amount?: boolean
     date?: boolean
+    approve_reject?: boolean
+    reason_for_reject?: boolean
     payment_confirm_code?: boolean
     delete_status?: boolean
     register_date?: boolean
@@ -5950,6 +6054,8 @@ export namespace Prisma {
       receiver_account: string
       amount: Prisma.Decimal
       date: Date
+      approve_reject: number
+      reason_for_reject: string | null
       payment_confirm_code: number
       delete_status: number
       register_date: Date
@@ -6359,6 +6465,8 @@ export namespace Prisma {
     readonly receiver_account: FieldRef<"PaymentMethod", 'String'>
     readonly amount: FieldRef<"PaymentMethod", 'Decimal'>
     readonly date: FieldRef<"PaymentMethod", 'DateTime'>
+    readonly approve_reject: FieldRef<"PaymentMethod", 'Int'>
+    readonly reason_for_reject: FieldRef<"PaymentMethod", 'String'>
     readonly payment_confirm_code: FieldRef<"PaymentMethod", 'Int'>
     readonly delete_status: FieldRef<"PaymentMethod", 'Int'>
     readonly register_date: FieldRef<"PaymentMethod", 'DateTime'>
@@ -6668,6 +6776,7 @@ export namespace Prisma {
     user_id: number | null
     amount: Decimal | null
     is_verify: number | null
+    approve_reject: number | null
     delete_status: number | null
   }
 
@@ -6676,6 +6785,7 @@ export namespace Prisma {
     user_id: number | null
     amount: Decimal | null
     is_verify: number | null
+    approve_reject: number | null
     delete_status: number | null
   }
 
@@ -6689,6 +6799,8 @@ export namespace Prisma {
     date: Date | null
     withdraw_confirm_code: string | null
     is_verify: number | null
+    approve_reject: number | null
+    reason_for_reject: string | null
     delete_status: number | null
     register_date: Date | null
     updated_date: Date | null
@@ -6705,6 +6817,8 @@ export namespace Prisma {
     date: Date | null
     withdraw_confirm_code: string | null
     is_verify: number | null
+    approve_reject: number | null
+    reason_for_reject: string | null
     delete_status: number | null
     register_date: Date | null
     updated_date: Date | null
@@ -6721,6 +6835,8 @@ export namespace Prisma {
     date: number
     withdraw_confirm_code: number
     is_verify: number
+    approve_reject: number
+    reason_for_reject: number
     delete_status: number
     register_date: number
     updated_date: number
@@ -6734,6 +6850,7 @@ export namespace Prisma {
     user_id?: true
     amount?: true
     is_verify?: true
+    approve_reject?: true
     delete_status?: true
   }
 
@@ -6742,6 +6859,7 @@ export namespace Prisma {
     user_id?: true
     amount?: true
     is_verify?: true
+    approve_reject?: true
     delete_status?: true
   }
 
@@ -6755,6 +6873,8 @@ export namespace Prisma {
     date?: true
     withdraw_confirm_code?: true
     is_verify?: true
+    approve_reject?: true
+    reason_for_reject?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -6771,6 +6891,8 @@ export namespace Prisma {
     date?: true
     withdraw_confirm_code?: true
     is_verify?: true
+    approve_reject?: true
+    reason_for_reject?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -6787,6 +6909,8 @@ export namespace Prisma {
     date?: true
     withdraw_confirm_code?: true
     is_verify?: true
+    approve_reject?: true
+    reason_for_reject?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -6890,6 +7014,8 @@ export namespace Prisma {
     date: Date
     withdraw_confirm_code: string | null
     is_verify: number | null
+    approve_reject: number
+    reason_for_reject: string | null
     delete_status: number
     register_date: Date
     updated_date: Date
@@ -6925,6 +7051,8 @@ export namespace Prisma {
     date?: boolean
     withdraw_confirm_code?: boolean
     is_verify?: boolean
+    approve_reject?: boolean
+    reason_for_reject?: boolean
     delete_status?: boolean
     register_date?: boolean
     updated_date?: boolean
@@ -6941,6 +7069,8 @@ export namespace Prisma {
     date?: boolean
     withdraw_confirm_code?: boolean
     is_verify?: boolean
+    approve_reject?: boolean
+    reason_for_reject?: boolean
     delete_status?: boolean
     register_date?: boolean
     updated_date?: boolean
@@ -6961,6 +7091,8 @@ export namespace Prisma {
       date: Date
       withdraw_confirm_code: string | null
       is_verify: number | null
+      approve_reject: number
+      reason_for_reject: string | null
       delete_status: number
       register_date: Date
       updated_date: Date
@@ -7368,6 +7500,8 @@ export namespace Prisma {
     readonly date: FieldRef<"WithdrawMethod", 'DateTime'>
     readonly withdraw_confirm_code: FieldRef<"WithdrawMethod", 'String'>
     readonly is_verify: FieldRef<"WithdrawMethod", 'Int'>
+    readonly approve_reject: FieldRef<"WithdrawMethod", 'Int'>
+    readonly reason_for_reject: FieldRef<"WithdrawMethod", 'String'>
     readonly delete_status: FieldRef<"WithdrawMethod", 'Int'>
     readonly register_date: FieldRef<"WithdrawMethod", 'DateTime'>
     readonly updated_date: FieldRef<"WithdrawMethod", 'DateTime'>
@@ -11586,6 +11720,877 @@ export namespace Prisma {
 
 
   /**
+   * Model ApproveReject
+   */
+
+  export type AggregateApproveReject = {
+    _count: ApproveRejectCountAggregateOutputType | null
+    _avg: ApproveRejectAvgAggregateOutputType | null
+    _sum: ApproveRejectSumAggregateOutputType | null
+    _min: ApproveRejectMinAggregateOutputType | null
+    _max: ApproveRejectMaxAggregateOutputType | null
+  }
+
+  export type ApproveRejectAvgAggregateOutputType = {
+    approve_reject_type_id: number | null
+  }
+
+  export type ApproveRejectSumAggregateOutputType = {
+    approve_reject_type_id: number | null
+  }
+
+  export type ApproveRejectMinAggregateOutputType = {
+    approve_reject_type_id: number | null
+    type: string | null
+  }
+
+  export type ApproveRejectMaxAggregateOutputType = {
+    approve_reject_type_id: number | null
+    type: string | null
+  }
+
+  export type ApproveRejectCountAggregateOutputType = {
+    approve_reject_type_id: number
+    type: number
+    _all: number
+  }
+
+
+  export type ApproveRejectAvgAggregateInputType = {
+    approve_reject_type_id?: true
+  }
+
+  export type ApproveRejectSumAggregateInputType = {
+    approve_reject_type_id?: true
+  }
+
+  export type ApproveRejectMinAggregateInputType = {
+    approve_reject_type_id?: true
+    type?: true
+  }
+
+  export type ApproveRejectMaxAggregateInputType = {
+    approve_reject_type_id?: true
+    type?: true
+  }
+
+  export type ApproveRejectCountAggregateInputType = {
+    approve_reject_type_id?: true
+    type?: true
+    _all?: true
+  }
+
+  export type ApproveRejectAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApproveReject to aggregate.
+     */
+    where?: ApproveRejectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApproveRejects to fetch.
+     */
+    orderBy?: ApproveRejectOrderByWithRelationInput | ApproveRejectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ApproveRejectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApproveRejects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApproveRejects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ApproveRejects
+    **/
+    _count?: true | ApproveRejectCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ApproveRejectAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ApproveRejectSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ApproveRejectMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ApproveRejectMaxAggregateInputType
+  }
+
+  export type GetApproveRejectAggregateType<T extends ApproveRejectAggregateArgs> = {
+        [P in keyof T & keyof AggregateApproveReject]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateApproveReject[P]>
+      : GetScalarType<T[P], AggregateApproveReject[P]>
+  }
+
+
+
+
+  export type ApproveRejectGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ApproveRejectWhereInput
+    orderBy?: ApproveRejectOrderByWithAggregationInput | ApproveRejectOrderByWithAggregationInput[]
+    by: ApproveRejectScalarFieldEnum[] | ApproveRejectScalarFieldEnum
+    having?: ApproveRejectScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ApproveRejectCountAggregateInputType | true
+    _avg?: ApproveRejectAvgAggregateInputType
+    _sum?: ApproveRejectSumAggregateInputType
+    _min?: ApproveRejectMinAggregateInputType
+    _max?: ApproveRejectMaxAggregateInputType
+  }
+
+  export type ApproveRejectGroupByOutputType = {
+    approve_reject_type_id: number
+    type: string
+    _count: ApproveRejectCountAggregateOutputType | null
+    _avg: ApproveRejectAvgAggregateOutputType | null
+    _sum: ApproveRejectSumAggregateOutputType | null
+    _min: ApproveRejectMinAggregateOutputType | null
+    _max: ApproveRejectMaxAggregateOutputType | null
+  }
+
+  type GetApproveRejectGroupByPayload<T extends ApproveRejectGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ApproveRejectGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ApproveRejectGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ApproveRejectGroupByOutputType[P]>
+            : GetScalarType<T[P], ApproveRejectGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ApproveRejectSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    approve_reject_type_id?: boolean
+    type?: boolean
+  }, ExtArgs["result"]["approveReject"]>
+
+  export type ApproveRejectSelectScalar = {
+    approve_reject_type_id?: boolean
+    type?: boolean
+  }
+
+
+  export type $ApproveRejectPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ApproveReject"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      approve_reject_type_id: number
+      type: string
+    }, ExtArgs["result"]["approveReject"]>
+    composites: {}
+  }
+
+
+  type ApproveRejectGetPayload<S extends boolean | null | undefined | ApproveRejectDefaultArgs> = $Result.GetResult<Prisma.$ApproveRejectPayload, S>
+
+  type ApproveRejectCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<ApproveRejectFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: ApproveRejectCountAggregateInputType | true
+    }
+
+  export interface ApproveRejectDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ApproveReject'], meta: { name: 'ApproveReject' } }
+    /**
+     * Find zero or one ApproveReject that matches the filter.
+     * @param {ApproveRejectFindUniqueArgs} args - Arguments to find a ApproveReject
+     * @example
+     * // Get one ApproveReject
+     * const approveReject = await prisma.approveReject.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends ApproveRejectFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, ApproveRejectFindUniqueArgs<ExtArgs>>
+    ): Prisma__ApproveRejectClient<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one ApproveReject that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {ApproveRejectFindUniqueOrThrowArgs} args - Arguments to find a ApproveReject
+     * @example
+     * // Get one ApproveReject
+     * const approveReject = await prisma.approveReject.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends ApproveRejectFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ApproveRejectFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__ApproveRejectClient<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first ApproveReject that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApproveRejectFindFirstArgs} args - Arguments to find a ApproveReject
+     * @example
+     * // Get one ApproveReject
+     * const approveReject = await prisma.approveReject.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends ApproveRejectFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, ApproveRejectFindFirstArgs<ExtArgs>>
+    ): Prisma__ApproveRejectClient<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first ApproveReject that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApproveRejectFindFirstOrThrowArgs} args - Arguments to find a ApproveReject
+     * @example
+     * // Get one ApproveReject
+     * const approveReject = await prisma.approveReject.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends ApproveRejectFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, ApproveRejectFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__ApproveRejectClient<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more ApproveRejects that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApproveRejectFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ApproveRejects
+     * const approveRejects = await prisma.approveReject.findMany()
+     * 
+     * // Get first 10 ApproveRejects
+     * const approveRejects = await prisma.approveReject.findMany({ take: 10 })
+     * 
+     * // Only select the `approve_reject_type_id`
+     * const approveRejectWithApprove_reject_type_idOnly = await prisma.approveReject.findMany({ select: { approve_reject_type_id: true } })
+     * 
+    **/
+    findMany<T extends ApproveRejectFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ApproveRejectFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a ApproveReject.
+     * @param {ApproveRejectCreateArgs} args - Arguments to create a ApproveReject.
+     * @example
+     * // Create one ApproveReject
+     * const ApproveReject = await prisma.approveReject.create({
+     *   data: {
+     *     // ... data to create a ApproveReject
+     *   }
+     * })
+     * 
+    **/
+    create<T extends ApproveRejectCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, ApproveRejectCreateArgs<ExtArgs>>
+    ): Prisma__ApproveRejectClient<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many ApproveRejects.
+     *     @param {ApproveRejectCreateManyArgs} args - Arguments to create many ApproveRejects.
+     *     @example
+     *     // Create many ApproveRejects
+     *     const approveReject = await prisma.approveReject.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends ApproveRejectCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ApproveRejectCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ApproveReject.
+     * @param {ApproveRejectDeleteArgs} args - Arguments to delete one ApproveReject.
+     * @example
+     * // Delete one ApproveReject
+     * const ApproveReject = await prisma.approveReject.delete({
+     *   where: {
+     *     // ... filter to delete one ApproveReject
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends ApproveRejectDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, ApproveRejectDeleteArgs<ExtArgs>>
+    ): Prisma__ApproveRejectClient<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one ApproveReject.
+     * @param {ApproveRejectUpdateArgs} args - Arguments to update one ApproveReject.
+     * @example
+     * // Update one ApproveReject
+     * const approveReject = await prisma.approveReject.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends ApproveRejectUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, ApproveRejectUpdateArgs<ExtArgs>>
+    ): Prisma__ApproveRejectClient<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more ApproveRejects.
+     * @param {ApproveRejectDeleteManyArgs} args - Arguments to filter ApproveRejects to delete.
+     * @example
+     * // Delete a few ApproveRejects
+     * const { count } = await prisma.approveReject.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends ApproveRejectDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, ApproveRejectDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ApproveRejects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApproveRejectUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ApproveRejects
+     * const approveReject = await prisma.approveReject.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends ApproveRejectUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, ApproveRejectUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ApproveReject.
+     * @param {ApproveRejectUpsertArgs} args - Arguments to update or create a ApproveReject.
+     * @example
+     * // Update or create a ApproveReject
+     * const approveReject = await prisma.approveReject.upsert({
+     *   create: {
+     *     // ... data to create a ApproveReject
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ApproveReject we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends ApproveRejectUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, ApproveRejectUpsertArgs<ExtArgs>>
+    ): Prisma__ApproveRejectClient<$Result.GetResult<Prisma.$ApproveRejectPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of ApproveRejects.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApproveRejectCountArgs} args - Arguments to filter ApproveRejects to count.
+     * @example
+     * // Count the number of ApproveRejects
+     * const count = await prisma.approveReject.count({
+     *   where: {
+     *     // ... the filter for the ApproveRejects we want to count
+     *   }
+     * })
+    **/
+    count<T extends ApproveRejectCountArgs>(
+      args?: Subset<T, ApproveRejectCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ApproveRejectCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ApproveReject.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApproveRejectAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ApproveRejectAggregateArgs>(args: Subset<T, ApproveRejectAggregateArgs>): Prisma.PrismaPromise<GetApproveRejectAggregateType<T>>
+
+    /**
+     * Group by ApproveReject.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ApproveRejectGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ApproveRejectGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ApproveRejectGroupByArgs['orderBy'] }
+        : { orderBy?: ApproveRejectGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ApproveRejectGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetApproveRejectGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ApproveReject model
+   */
+  readonly fields: ApproveRejectFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ApproveReject.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ApproveRejectClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the ApproveReject model
+   */ 
+  interface ApproveRejectFieldRefs {
+    readonly approve_reject_type_id: FieldRef<"ApproveReject", 'Int'>
+    readonly type: FieldRef<"ApproveReject", 'String'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * ApproveReject findUnique
+   */
+  export type ApproveRejectFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * Filter, which ApproveReject to fetch.
+     */
+    where: ApproveRejectWhereUniqueInput
+  }
+
+
+  /**
+   * ApproveReject findUniqueOrThrow
+   */
+  export type ApproveRejectFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * Filter, which ApproveReject to fetch.
+     */
+    where: ApproveRejectWhereUniqueInput
+  }
+
+
+  /**
+   * ApproveReject findFirst
+   */
+  export type ApproveRejectFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * Filter, which ApproveReject to fetch.
+     */
+    where?: ApproveRejectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApproveRejects to fetch.
+     */
+    orderBy?: ApproveRejectOrderByWithRelationInput | ApproveRejectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApproveRejects.
+     */
+    cursor?: ApproveRejectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApproveRejects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApproveRejects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApproveRejects.
+     */
+    distinct?: ApproveRejectScalarFieldEnum | ApproveRejectScalarFieldEnum[]
+  }
+
+
+  /**
+   * ApproveReject findFirstOrThrow
+   */
+  export type ApproveRejectFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * Filter, which ApproveReject to fetch.
+     */
+    where?: ApproveRejectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApproveRejects to fetch.
+     */
+    orderBy?: ApproveRejectOrderByWithRelationInput | ApproveRejectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ApproveRejects.
+     */
+    cursor?: ApproveRejectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApproveRejects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApproveRejects.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ApproveRejects.
+     */
+    distinct?: ApproveRejectScalarFieldEnum | ApproveRejectScalarFieldEnum[]
+  }
+
+
+  /**
+   * ApproveReject findMany
+   */
+  export type ApproveRejectFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * Filter, which ApproveRejects to fetch.
+     */
+    where?: ApproveRejectWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ApproveRejects to fetch.
+     */
+    orderBy?: ApproveRejectOrderByWithRelationInput | ApproveRejectOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ApproveRejects.
+     */
+    cursor?: ApproveRejectWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ApproveRejects from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ApproveRejects.
+     */
+    skip?: number
+    distinct?: ApproveRejectScalarFieldEnum | ApproveRejectScalarFieldEnum[]
+  }
+
+
+  /**
+   * ApproveReject create
+   */
+  export type ApproveRejectCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * The data needed to create a ApproveReject.
+     */
+    data: XOR<ApproveRejectCreateInput, ApproveRejectUncheckedCreateInput>
+  }
+
+
+  /**
+   * ApproveReject createMany
+   */
+  export type ApproveRejectCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ApproveRejects.
+     */
+    data: ApproveRejectCreateManyInput | ApproveRejectCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * ApproveReject update
+   */
+  export type ApproveRejectUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * The data needed to update a ApproveReject.
+     */
+    data: XOR<ApproveRejectUpdateInput, ApproveRejectUncheckedUpdateInput>
+    /**
+     * Choose, which ApproveReject to update.
+     */
+    where: ApproveRejectWhereUniqueInput
+  }
+
+
+  /**
+   * ApproveReject updateMany
+   */
+  export type ApproveRejectUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ApproveRejects.
+     */
+    data: XOR<ApproveRejectUpdateManyMutationInput, ApproveRejectUncheckedUpdateManyInput>
+    /**
+     * Filter which ApproveRejects to update
+     */
+    where?: ApproveRejectWhereInput
+  }
+
+
+  /**
+   * ApproveReject upsert
+   */
+  export type ApproveRejectUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * The filter to search for the ApproveReject to update in case it exists.
+     */
+    where: ApproveRejectWhereUniqueInput
+    /**
+     * In case the ApproveReject found by the `where` argument doesn't exist, create a new ApproveReject with this data.
+     */
+    create: XOR<ApproveRejectCreateInput, ApproveRejectUncheckedCreateInput>
+    /**
+     * In case the ApproveReject was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ApproveRejectUpdateInput, ApproveRejectUncheckedUpdateInput>
+  }
+
+
+  /**
+   * ApproveReject delete
+   */
+  export type ApproveRejectDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+    /**
+     * Filter which ApproveReject to delete.
+     */
+    where: ApproveRejectWhereUniqueInput
+  }
+
+
+  /**
+   * ApproveReject deleteMany
+   */
+  export type ApproveRejectDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ApproveRejects to delete
+     */
+    where?: ApproveRejectWhereInput
+  }
+
+
+  /**
+   * ApproveReject without action
+   */
+  export type ApproveRejectDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ApproveReject
+     */
+    select?: ApproveRejectSelect<ExtArgs> | null
+  }
+
+
+
+  /**
    * Enums
    */
 
@@ -11667,6 +12672,8 @@ export namespace Prisma {
     receiver_account: 'receiver_account',
     amount: 'amount',
     date: 'date',
+    approve_reject: 'approve_reject',
+    reason_for_reject: 'reason_for_reject',
     payment_confirm_code: 'payment_confirm_code',
     delete_status: 'delete_status',
     register_date: 'register_date',
@@ -11687,6 +12694,8 @@ export namespace Prisma {
     date: 'date',
     withdraw_confirm_code: 'withdraw_confirm_code',
     is_verify: 'is_verify',
+    approve_reject: 'approve_reject',
+    reason_for_reject: 'reason_for_reject',
     delete_status: 'delete_status',
     register_date: 'register_date',
     updated_date: 'updated_date',
@@ -11742,6 +12751,14 @@ export namespace Prisma {
   };
 
   export type TransactionTypeScalarFieldEnum = (typeof TransactionTypeScalarFieldEnum)[keyof typeof TransactionTypeScalarFieldEnum]
+
+
+  export const ApproveRejectScalarFieldEnum: {
+    approve_reject_type_id: 'approve_reject_type_id',
+    type: 'type'
+  };
+
+  export type ApproveRejectScalarFieldEnum = (typeof ApproveRejectScalarFieldEnum)[keyof typeof ApproveRejectScalarFieldEnum]
 
 
   export const SortOrder: {
@@ -12147,6 +13164,8 @@ export namespace Prisma {
     receiver_account?: StringFilter<"PaymentMethod"> | string
     amount?: DecimalFilter<"PaymentMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"PaymentMethod"> | Date | string
+    approve_reject?: IntFilter<"PaymentMethod"> | number
+    reason_for_reject?: StringNullableFilter<"PaymentMethod"> | string | null
     payment_confirm_code?: IntFilter<"PaymentMethod"> | number
     delete_status?: IntFilter<"PaymentMethod"> | number
     register_date?: DateTimeFilter<"PaymentMethod"> | Date | string
@@ -12165,6 +13184,8 @@ export namespace Prisma {
     receiver_account?: SortOrder
     amount?: SortOrder
     date?: SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrderInput | SortOrder
     payment_confirm_code?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
@@ -12186,6 +13207,8 @@ export namespace Prisma {
     receiver_account?: StringFilter<"PaymentMethod"> | string
     amount?: DecimalFilter<"PaymentMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"PaymentMethod"> | Date | string
+    approve_reject?: IntFilter<"PaymentMethod"> | number
+    reason_for_reject?: StringNullableFilter<"PaymentMethod"> | string | null
     payment_confirm_code?: IntFilter<"PaymentMethod"> | number
     delete_status?: IntFilter<"PaymentMethod"> | number
     register_date?: DateTimeFilter<"PaymentMethod"> | Date | string
@@ -12204,6 +13227,8 @@ export namespace Prisma {
     receiver_account?: SortOrder
     amount?: SortOrder
     date?: SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrderInput | SortOrder
     payment_confirm_code?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
@@ -12230,6 +13255,8 @@ export namespace Prisma {
     receiver_account?: StringWithAggregatesFilter<"PaymentMethod"> | string
     amount?: DecimalWithAggregatesFilter<"PaymentMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeWithAggregatesFilter<"PaymentMethod"> | Date | string
+    approve_reject?: IntWithAggregatesFilter<"PaymentMethod"> | number
+    reason_for_reject?: StringNullableWithAggregatesFilter<"PaymentMethod"> | string | null
     payment_confirm_code?: IntWithAggregatesFilter<"PaymentMethod"> | number
     delete_status?: IntWithAggregatesFilter<"PaymentMethod"> | number
     register_date?: DateTimeWithAggregatesFilter<"PaymentMethod"> | Date | string
@@ -12250,6 +13277,8 @@ export namespace Prisma {
     date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     withdraw_confirm_code?: StringNullableFilter<"WithdrawMethod"> | string | null
     is_verify?: IntNullableFilter<"WithdrawMethod"> | number | null
+    approve_reject?: IntFilter<"WithdrawMethod"> | number
+    reason_for_reject?: StringNullableFilter<"WithdrawMethod"> | string | null
     delete_status?: IntFilter<"WithdrawMethod"> | number
     register_date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     updated_date?: DateTimeFilter<"WithdrawMethod"> | Date | string
@@ -12266,6 +13295,8 @@ export namespace Prisma {
     date?: SortOrder
     withdraw_confirm_code?: SortOrderInput | SortOrder
     is_verify?: SortOrderInput | SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrderInput | SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -12285,6 +13316,8 @@ export namespace Prisma {
     date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     withdraw_confirm_code?: StringNullableFilter<"WithdrawMethod"> | string | null
     is_verify?: IntNullableFilter<"WithdrawMethod"> | number | null
+    approve_reject?: IntFilter<"WithdrawMethod"> | number
+    reason_for_reject?: StringNullableFilter<"WithdrawMethod"> | string | null
     delete_status?: IntFilter<"WithdrawMethod"> | number
     register_date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     updated_date?: DateTimeFilter<"WithdrawMethod"> | Date | string
@@ -12301,6 +13334,8 @@ export namespace Prisma {
     date?: SortOrder
     withdraw_confirm_code?: SortOrderInput | SortOrder
     is_verify?: SortOrderInput | SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrderInput | SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -12325,6 +13360,8 @@ export namespace Prisma {
     date?: DateTimeWithAggregatesFilter<"WithdrawMethod"> | Date | string
     withdraw_confirm_code?: StringNullableWithAggregatesFilter<"WithdrawMethod"> | string | null
     is_verify?: IntNullableWithAggregatesFilter<"WithdrawMethod"> | number | null
+    approve_reject?: IntWithAggregatesFilter<"WithdrawMethod"> | number
+    reason_for_reject?: StringNullableWithAggregatesFilter<"WithdrawMethod"> | string | null
     delete_status?: IntWithAggregatesFilter<"WithdrawMethod"> | number
     register_date?: DateTimeWithAggregatesFilter<"WithdrawMethod"> | Date | string
     updated_date?: DateTimeWithAggregatesFilter<"WithdrawMethod"> | Date | string
@@ -12577,6 +13614,45 @@ export namespace Prisma {
     NOT?: TransactionTypeScalarWhereWithAggregatesInput | TransactionTypeScalarWhereWithAggregatesInput[]
     transaction_type_id?: IntWithAggregatesFilter<"TransactionType"> | number
     transaction_type?: StringWithAggregatesFilter<"TransactionType"> | string
+  }
+
+  export type ApproveRejectWhereInput = {
+    AND?: ApproveRejectWhereInput | ApproveRejectWhereInput[]
+    OR?: ApproveRejectWhereInput[]
+    NOT?: ApproveRejectWhereInput | ApproveRejectWhereInput[]
+    approve_reject_type_id?: IntFilter<"ApproveReject"> | number
+    type?: StringFilter<"ApproveReject"> | string
+  }
+
+  export type ApproveRejectOrderByWithRelationInput = {
+    approve_reject_type_id?: SortOrder
+    type?: SortOrder
+  }
+
+  export type ApproveRejectWhereUniqueInput = Prisma.AtLeast<{
+    approve_reject_type_id?: number
+    type?: string
+    AND?: ApproveRejectWhereInput | ApproveRejectWhereInput[]
+    OR?: ApproveRejectWhereInput[]
+    NOT?: ApproveRejectWhereInput | ApproveRejectWhereInput[]
+  }, "approve_reject_type_id" | "type">
+
+  export type ApproveRejectOrderByWithAggregationInput = {
+    approve_reject_type_id?: SortOrder
+    type?: SortOrder
+    _count?: ApproveRejectCountOrderByAggregateInput
+    _avg?: ApproveRejectAvgOrderByAggregateInput
+    _max?: ApproveRejectMaxOrderByAggregateInput
+    _min?: ApproveRejectMinOrderByAggregateInput
+    _sum?: ApproveRejectSumOrderByAggregateInput
+  }
+
+  export type ApproveRejectScalarWhereWithAggregatesInput = {
+    AND?: ApproveRejectScalarWhereWithAggregatesInput | ApproveRejectScalarWhereWithAggregatesInput[]
+    OR?: ApproveRejectScalarWhereWithAggregatesInput[]
+    NOT?: ApproveRejectScalarWhereWithAggregatesInput | ApproveRejectScalarWhereWithAggregatesInput[]
+    approve_reject_type_id?: IntWithAggregatesFilter<"ApproveReject"> | number
+    type?: StringWithAggregatesFilter<"ApproveReject"> | string
   }
 
   export type UsersCreateInput = {
@@ -12898,6 +13974,8 @@ export namespace Prisma {
     receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
     payment_confirm_code: number
     delete_status: number
     register_date?: Date | string
@@ -12916,6 +13994,8 @@ export namespace Prisma {
     receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
     payment_confirm_code: number
     delete_status: number
     register_date?: Date | string
@@ -12933,6 +14013,8 @@ export namespace Prisma {
     receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
     payment_confirm_code?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12951,6 +14033,8 @@ export namespace Prisma {
     receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
     payment_confirm_code?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -12969,6 +14053,8 @@ export namespace Prisma {
     receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
     payment_confirm_code: number
     delete_status: number
     register_date?: Date | string
@@ -12986,6 +14072,8 @@ export namespace Prisma {
     receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
     payment_confirm_code?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13004,6 +14092,8 @@ export namespace Prisma {
     receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
     payment_confirm_code?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13020,6 +14110,8 @@ export namespace Prisma {
     date: Date | string
     withdraw_confirm_code?: string | null
     is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -13036,6 +14128,8 @@ export namespace Prisma {
     date: Date | string
     withdraw_confirm_code?: string | null
     is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -13051,6 +14145,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
     is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13067,6 +14163,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
     is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13083,6 +14181,8 @@ export namespace Prisma {
     date: Date | string
     withdraw_confirm_code?: string | null
     is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -13098,6 +14198,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
     is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13114,6 +14216,8 @@ export namespace Prisma {
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
     is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -13370,6 +14474,41 @@ export namespace Prisma {
   export type TransactionTypeUncheckedUpdateManyInput = {
     transaction_type_id?: IntFieldUpdateOperationsInput | number
     transaction_type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApproveRejectCreateInput = {
+    approve_reject_type_id: number
+    type: string
+  }
+
+  export type ApproveRejectUncheckedCreateInput = {
+    approve_reject_type_id: number
+    type: string
+  }
+
+  export type ApproveRejectUpdateInput = {
+    approve_reject_type_id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApproveRejectUncheckedUpdateInput = {
+    approve_reject_type_id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApproveRejectCreateManyInput = {
+    approve_reject_type_id: number
+    type: string
+  }
+
+  export type ApproveRejectUpdateManyMutationInput = {
+    approve_reject_type_id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type ApproveRejectUncheckedUpdateManyInput = {
+    approve_reject_type_id?: IntFieldUpdateOperationsInput | number
+    type?: StringFieldUpdateOperationsInput | string
   }
 
   export type IntFilter<$PrismaModel = never> = {
@@ -13802,6 +14941,8 @@ export namespace Prisma {
     receiver_account?: SortOrder
     amount?: SortOrder
     date?: SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrder
     payment_confirm_code?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
@@ -13813,6 +14954,7 @@ export namespace Prisma {
     payment_id?: SortOrder
     user_id?: SortOrder
     amount?: SortOrder
+    approve_reject?: SortOrder
     payment_confirm_code?: SortOrder
     delete_status?: SortOrder
   }
@@ -13828,6 +14970,8 @@ export namespace Prisma {
     receiver_account?: SortOrder
     amount?: SortOrder
     date?: SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrder
     payment_confirm_code?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
@@ -13846,6 +14990,8 @@ export namespace Prisma {
     receiver_account?: SortOrder
     amount?: SortOrder
     date?: SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrder
     payment_confirm_code?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
@@ -13857,6 +15003,7 @@ export namespace Prisma {
     payment_id?: SortOrder
     user_id?: SortOrder
     amount?: SortOrder
+    approve_reject?: SortOrder
     payment_confirm_code?: SortOrder
     delete_status?: SortOrder
   }
@@ -13887,6 +15034,8 @@ export namespace Prisma {
     date?: SortOrder
     withdraw_confirm_code?: SortOrder
     is_verify?: SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -13898,6 +15047,7 @@ export namespace Prisma {
     user_id?: SortOrder
     amount?: SortOrder
     is_verify?: SortOrder
+    approve_reject?: SortOrder
     delete_status?: SortOrder
   }
 
@@ -13911,6 +15061,8 @@ export namespace Prisma {
     date?: SortOrder
     withdraw_confirm_code?: SortOrder
     is_verify?: SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -13927,6 +15079,8 @@ export namespace Prisma {
     date?: SortOrder
     withdraw_confirm_code?: SortOrder
     is_verify?: SortOrder
+    approve_reject?: SortOrder
+    reason_for_reject?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -13938,6 +15092,7 @@ export namespace Prisma {
     user_id?: SortOrder
     amount?: SortOrder
     is_verify?: SortOrder
+    approve_reject?: SortOrder
     delete_status?: SortOrder
   }
 
@@ -14123,6 +15278,29 @@ export namespace Prisma {
 
   export type TransactionTypeSumOrderByAggregateInput = {
     transaction_type_id?: SortOrder
+  }
+
+  export type ApproveRejectCountOrderByAggregateInput = {
+    approve_reject_type_id?: SortOrder
+    type?: SortOrder
+  }
+
+  export type ApproveRejectAvgOrderByAggregateInput = {
+    approve_reject_type_id?: SortOrder
+  }
+
+  export type ApproveRejectMaxOrderByAggregateInput = {
+    approve_reject_type_id?: SortOrder
+    type?: SortOrder
+  }
+
+  export type ApproveRejectMinOrderByAggregateInput = {
+    approve_reject_type_id?: SortOrder
+    type?: SortOrder
+  }
+
+  export type ApproveRejectSumOrderByAggregateInput = {
+    approve_reject_type_id?: SortOrder
   }
 
   export type RolesCreateNestedOneWithoutUsersInput = {
@@ -15105,6 +16283,10 @@ export namespace Prisma {
      * @deprecated Use TransactionTypeDefaultArgs instead
      */
     export type TransactionTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = TransactionTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use ApproveRejectDefaultArgs instead
+     */
+    export type ApproveRejectArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = ApproveRejectDefaultArgs<ExtArgs>
 
   /**
    * Batch Payload for updateMany & deleteMany & createMany
