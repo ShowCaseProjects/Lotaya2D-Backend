@@ -308,7 +308,7 @@ export class UseraccountService {
             const currentTime = new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')) as any;
             const twoMinutesAgo = new Date(dayjs(userAccount.sms_send_time).format('YYYY-MM-DD HH:mm:ss')) as any;
             const diffTime = (currentTime - twoMinutesAgo) / (60 * 1000);
-            this.logger.log(diffTime)
+        
             if (userAccount.otp_code === otpCodeConfirmReqBodyDto.otpCode.toString() && Number(diffTime) <= 2) {
                 const confirmOtpCode = await this.prisma.users.update({
                     where: {

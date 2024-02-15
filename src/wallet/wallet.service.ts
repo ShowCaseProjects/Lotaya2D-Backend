@@ -13,9 +13,16 @@ export class WalletService {
     }
 
     async addUserWallet(
-        addWalletReqPath: UserWalletInsertReqPathDto, addWalletReqBody: UserWalletInsertReqBodyDto
+        addWalletReqPath: UserWalletInsertReqPathDto, addWalletReqBody: UserWalletInsertReqBodyDto,sign:String
     ): Promise<UserWalletInsertResBodyDto> {
         try {
+            const getWalletData=await this.prisma.wallet.findUnique({
+             where:{
+                user_id:Number(addWalletReqBody.userId)
+             }
+            });
+            if(getWalletData)
+            {
             const registerData = await this.prisma.wallet.create({
                 data: {
                     user_id: Number(addWalletReqPath.userId),
@@ -27,6 +34,23 @@ export class WalletService {
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
             });
+          }
+          else
+          {
+            const updatedData = await this.prisma.wallet.update({
+                data: {
+                    main_amount: addWalletReqBody.mainAmount+sign+getWalletData.main_amount,
+                    game_amount: addWalletReqBody.gainAmount+sign+getWalletData.game_amount,
+                    agent_id: addWalletReqBody.agentId,
+                    delete_status: 0,
+                    register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+                },
+                where:{
+                   user_id:Number(addWalletReqBody.userId)
+                }
+            });
+          }
 
             const transationData = await this.prisma.transaction.create({
                 data: {

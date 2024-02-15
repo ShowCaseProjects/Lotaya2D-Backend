@@ -7,12 +7,15 @@ import { UserWithdrawMethodUpdateReqBodyDto, UserWithdrawMethodUpdateReqPathDto 
 import { UserWithdrawAccountUpdateResBodyDto } from 'src/user-withdraw-account/dto/update-user-withdraw-account..dto';
 import { UserWithdrawMethodDeleteReqBodyDto, UserWithdrawMethodDeleteReqPathDto, UserWithdrawMethodDeleteResBodyDto } from './dto/delete-user-withdraw.dto';
 import { LotayaLibService } from 'src/lotayalib';
+import { RegisterUserPhoneNumberConfirmResBodyDto } from 'src/useraccount/dto/register-user-phonenumber-confirm.dto';
+import { WalletService } from 'src/wallet/wallet.service';
+import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto } from 'src/wallet/dto/add-user-wallet.dto';
 
 @Injectable()
 export class UserWithdrawMethodService {
     protected logger: Logger;
 
-    constructor(private prisma: LotayaLibService, private paymentGateWay: Gateway) {
+    constructor(private prisma: LotayaLibService, private paymentGateWay: Gateway,private walletService:WalletService) {
         this.logger = new Logger(this.constructor.name);
     }
 
@@ -34,6 +37,15 @@ export class UserWithdrawMethodService {
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
             });
+           
+            const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
+            userWalletInsertReqPathDto.userId=registerData.user_id;
+            const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
+            userWalletInsertReqBodyDto.gainAmount="0"
+            userWalletInsertReqBodyDto.mainAmount=registerData.amount.toString(),
+            userWalletInsertReqBodyDto.agentId=100,
+            userWalletInsertReqBodyDto.transationTypeId=2
+            const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'-');
             const withdrawmethoddatadto = new UserWithdrawMethodFindResBodyDto();
 
                 withdrawmethoddatadto.withdrawMethodId = registerData.withdraw_id,
@@ -90,6 +102,15 @@ export class UserWithdrawMethodService {
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
             });
+
+            const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
+            userWalletInsertReqPathDto.userId=updateData.user_id;
+            const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
+            userWalletInsertReqBodyDto.gainAmount="0"
+            userWalletInsertReqBodyDto.mainAmount=updateData.amount.toString(),
+            userWalletInsertReqBodyDto.agentId=100,
+            userWalletInsertReqBodyDto.transationTypeId=2
+            const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'-');
             const responseData: UserWithdrawAccountUpdateResBodyDto = {
                 isSuccess: true,
             }
@@ -250,5 +271,53 @@ export class UserWithdrawMethodService {
         }
 
     }
+   
+    async confirmOtpCodeForWithdraw(
+        otpCodeConfirmReqPathDto:  UserWithdrawMethodInsertReqPathDto
+    ): Promise<RegisterUserPhoneNumberConfirmResBodyDto> {
+        try {
+    
+            const userAccount = await this.prisma.users.update({
+                where: {
+                    user_id: Number(otpCodeConfirmReqPathDto.userId),
+                },
+                data: {
+                    is_verify: 0,
+                    sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                    otp_code: this.generateOTP(6).trim()
+                }
+            });
+            const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
+                phoneNumber: userAccount.phone_number,
+                otpCode:userAccount.otp_code
+            }
+            return responseData;
+          
+        }
+        catch (error) {
+            if (error.code === 'P2025') {
+                throw new HttpException({
+                    errorCode: 'E1111',
+                    errorMessage: 'Your accounnt not found.'
+                }, HttpStatus.NOT_FOUND);
+            }
+            this.logger.error(error.stack)
+            throw new HttpException({
+                errorCode: 'E1119',
+                errorMessage: 'Internal server error.'
+            }, HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
+    generateOTP(length): string {
+        const charset = '0123456789';
+        let otp = '';
+
+        for (let i = 0; i < length; i++) {
+            const randomIndex = Math.floor(Math.random() * charset.length);
+            otp += charset[randomIndex];
+        }
+
+        return otp;
+    }
 }
