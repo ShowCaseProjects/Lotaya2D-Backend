@@ -1,11 +1,12 @@
 import { Module } from '@nestjs/common';
 import { UseraccountController } from './useraccount.controller';
 import { UseraccountService } from './useraccount.service';
-import {  LotayaWalletlibModule } from 'src/lotayalib';
+import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
+
 
 @Module({
   controllers: [UseraccountController],
-  providers: [UseraccountService,LotayaWalletlibModule],
+  providers: [UseraccountService,LotayaLibService],
   exports:[UseraccountService]
 })
 export class UseraccountModule {}

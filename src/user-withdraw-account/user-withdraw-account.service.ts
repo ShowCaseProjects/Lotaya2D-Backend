@@ -4,7 +4,7 @@ import * as dayjs from 'dayjs'
 import { UserWithdrawAccountUpdateReqBodyDto, UserWithdrawAccountUpdateReqPathDto, UserWithdrawAccountUpdateResBodyDto } from './dto/update-user-withdraw-account..dto';
 import { UserWithdrawAccountDeleteReqBodyDto, UserWithdrawAccountDeleteReqPathDto, UserWithdrawAccountDeleteResBodyDto } from './dto/delete-user-withdraw-account..dto';
 import { UserWithdrawAccountFindReqPathDto, UserWithdrawAccountFindResBodyDto } from './dto/find-user-withdraw-account..dto';
-import { LotayaLibService } from 'src/lotayalib';
+import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 
 @Injectable()
 export class UserWithdrawAccountService {

@@ -9,7 +9,7 @@ import { JwtService } from '@nestjs/jwt';
  import * as bcrypt from 'bcryptjs';
 import { LoginUserPasswordConfirmReqBodyDto } from './dto/login-user-passwordconfirm.dto';
 import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
-import { LotayaLibService } from 'src/lotayalib';
+import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 
 @Injectable()
 export class UseraccountService {

@@ -7,6 +7,7 @@ import { UserWithdrawMethodUpdateReqBodyDto, UserWithdrawMethodUpdateReqPathDto,
 import { UserWithdrawMethodDeleteReqBodyDto, UserWithdrawMethodDeleteReqPathDto, UserWithdrawMethodDeleteResBodyDto } from './dto/delete-user-withdraw.dto';
 import { UserWithdrawMethodFindReqQueryDto, UserWithdrawMethodFindResBodyDto } from './dto/find-user-withdraw.dto';
 import { RegisterUserPhoneNumberConfirmResBodyDto } from 'src/useraccount/dto/register-user-phonenumber-confirm.dto';
+import { UserWithdrawMethodApproveReqBodyDto, UserWithdrawMethodApproveReqPathDto, UserWithdrawMethodApproveResBodyDto } from './dto/approve-user-withdraw.dto';
 
 
 @ApiBearerAuth()
@@ -92,5 +93,20 @@ export class UserWithdrawMethodController {
     })
     findUserWithdrawMethod(@Query() findAllWithdrawMethodReqQueryDto?: UserWithdrawMethodFindReqQueryDto): Promise<UserWithdrawMethodFindResBodyDto[]> {
         return this.userWithdrawMethod.findAllWithdrawMethod(findAllWithdrawMethodReqQueryDto);
+    }
+
+    @UseGuards(AuthGuards)
+    @Post('/:userId/approve')
+    @HttpCode(201)
+    @ApiOperation({
+        summary: 'Withdraw API',
+        description: 'To approve user withdraw money from gaining from game with authentication'
+    })
+    @ApiOkResponse({
+        description: 'To send success response to be authenticated user.',
+        type: UserWithdrawMethodInsertResBodyDto
+    })
+    approveWithdrawMethod(userWithdrawApproveReqPathDto:UserWithdrawMethodApproveReqPathDto,userWithdrawApproveReqBodyDto:UserWithdrawMethodApproveReqBodyDto): Promise<UserWithdrawMethodApproveResBodyDto> {
+        return this.userWithdrawMethod.approveUserWithdrawMethod(userWithdrawApproveReqPathDto,userWithdrawApproveReqBodyDto);
     }
 }

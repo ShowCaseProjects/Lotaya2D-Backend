@@ -7,7 +7,8 @@ import { WalletModule } from './wallet/wallet.module';
 import { PaymentmethodModule } from './paymentmethod/paymentmethod.module';
 import { UserWithdrawAccountModule } from './user-withdraw-account/user-withdraw-account.module';
 import { UserWithdrawMethodModule } from './user-withdraw-method/user-withdraw-method.module';
-import { LotayaWalletlibModule } from './lotayalib';
+import { LotayaWalletlibModule } from 'lotayalib';
+
 
 @Module({
   imports: [UseraccountModule,AuthModule, WalletModule, PaymentmethodModule, UserWithdrawAccountModule, UserWithdrawMethodModule,LotayaWalletlibModule],

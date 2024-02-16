@@ -2,7 +2,7 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { Gateway } from 'src/gateway/gateway';
 import * as dayjs from 'dayjs'
 import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto, UserWalletInsertResBodyDto } from './dto/add-user-wallet.dto';
-import { LotayaLibService } from 'src/lotayalib';
+import { LotayaLibService } from 'lotayalib';
 
 @Injectable()
 export class WalletService {
@@ -28,7 +28,7 @@ export class WalletService {
                     user_id: Number(addWalletReqPath.userId),
                     main_amount: addWalletReqBody.mainAmount,
                     game_amount: addWalletReqBody.gainAmount,
-                    agent_id: addWalletReqBody.agentId,
+                    agent_id: Number(addWalletReqBody.agentId),
                     delete_status: 0,
                     register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
@@ -41,7 +41,7 @@ export class WalletService {
                 data: {
                     main_amount: addWalletReqBody.mainAmount+sign+getWalletData.main_amount,
                     game_amount: addWalletReqBody.gainAmount+sign+getWalletData.game_amount,
-                    agent_id: addWalletReqBody.agentId,
+                    agent_id: Number(addWalletReqBody.agentId),
                     delete_status: 0,
                     register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
@@ -56,10 +56,11 @@ export class WalletService {
                 data: {
                     user_id: Number(addWalletReqPath.userId),
                     amount: addWalletReqBody.mainAmount,
-                    agent_id: addWalletReqBody.agentId,
+                    agent_id: Number(addWalletReqBody.agentId),
                     transaction_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                     transaction_type_id :addWalletReqBody.transationTypeId,
                     delete_status: 0,
+                    
                     register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },

@@ -4,7 +4,6 @@ import { AuthService } from './auth.service';
 import { JwtModule } from '@nestjs/jwt';
 import { jwtConstants } from './constant';
 import { UseraccountModule } from 'src/useraccount/useraccount.module';
-import { LotayaWalletlibModule } from 'src/lotayalib';
 
 @Module({
   imports:[UseraccountModule, JwtModule.register({

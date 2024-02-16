@@ -1,6 +1,6 @@
-
 import { AdminRoleId, AdminRoleName, RoleId, RoleName, TransationTypeId, TransationTypeName } from '../staticlib/index';
 import { Prisma, PrismaClient } from './lotaya_wallet';
+
 
 const prisma = new PrismaClient();
 

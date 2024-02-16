@@ -2,7 +2,7 @@ import { Module } from '@nestjs/common';
 import { WalletController } from './wallet.controller';
 import { WalletService } from './wallet.service';
 import { Gateway } from 'src/gateway/gateway';
-import { LotayaLibService } from 'src/lotayalib';
+import { LotayaLibService } from 'lotayalib';
 
 @Module({
   controllers: [WalletController],

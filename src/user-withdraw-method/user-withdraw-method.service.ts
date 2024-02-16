@@ -6,10 +6,11 @@ import { UserWithdrawMethodFindReqQueryDto, UserWithdrawMethodFindResBodyDto } f
 import { UserWithdrawMethodUpdateReqBodyDto, UserWithdrawMethodUpdateReqPathDto } from './dto/update-user-withdraw.dto';
 import { UserWithdrawAccountUpdateResBodyDto } from 'src/user-withdraw-account/dto/update-user-withdraw-account..dto';
 import { UserWithdrawMethodDeleteReqBodyDto, UserWithdrawMethodDeleteReqPathDto, UserWithdrawMethodDeleteResBodyDto } from './dto/delete-user-withdraw.dto';
-import { LotayaLibService } from 'src/lotayalib';
+import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { RegisterUserPhoneNumberConfirmResBodyDto } from 'src/useraccount/dto/register-user-phonenumber-confirm.dto';
 import { WalletService } from 'src/wallet/wallet.service';
 import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto } from 'src/wallet/dto/add-user-wallet.dto';
+import { UserWithdrawMethodApproveReqBodyDto, UserWithdrawMethodApproveReqPathDto, UserWithdrawMethodApproveResBodyDto } from './dto/approve-user-withdraw.dto';
 
 @Injectable()
 export class UserWithdrawMethodService {
@@ -39,14 +40,6 @@ export class UserWithdrawMethodService {
                 },
             });
            
-            const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId=registerData.user_id;
-            const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
-            userWalletInsertReqBodyDto.gainAmount="0"
-            userWalletInsertReqBodyDto.mainAmount=registerData.amount.toString(),
-            userWalletInsertReqBodyDto.agentId=100,
-            userWalletInsertReqBodyDto.transationTypeId=2
-            const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'-');
             const withdrawmethoddatadto = new UserWithdrawMethodFindResBodyDto();
 
                 withdrawmethoddatadto.withdrawMethodId = registerData.withdraw_id,
@@ -103,15 +96,6 @@ export class UserWithdrawMethodService {
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
             });
-
-            const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId=updateData.user_id;
-            const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
-            userWalletInsertReqBodyDto.gainAmount="0"
-            userWalletInsertReqBodyDto.mainAmount=updateData.amount.toString(),
-            userWalletInsertReqBodyDto.agentId=100,
-            userWalletInsertReqBodyDto.transationTypeId=2
-            const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'-');
             const responseData: UserWithdrawAccountUpdateResBodyDto = {
                 isSuccess: true,
             }
@@ -132,7 +116,21 @@ export class UserWithdrawMethodService {
         }
 
     }
-
+    
+    async approveUserWithdrawMethod(
+        userWithdrawApproveReqPathDto:UserWithdrawMethodApproveReqPathDto,
+        userWithdrawApproveReqBodyDto:UserWithdrawMethodApproveReqBodyDto
+    ):Promise<UserWithdrawMethodApproveResBodyDto>{
+        const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
+        userWalletInsertReqPathDto.userId=userWithdrawApproveReqPathDto.userId;
+        const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
+        userWalletInsertReqBodyDto.gainAmount="0"
+        userWalletInsertReqBodyDto.mainAmount=userWithdrawApproveReqBodyDto.amount.toString(),
+        userWalletInsertReqBodyDto.agentId=userWithdrawApproveReqBodyDto.agentId,
+        userWalletInsertReqBodyDto.transationTypeId=2
+        const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'-');
+       return { "isSuccess":true}
+    }
     async deleteUserWithdrawMethod(
         addWithdrawMethodReqPath: UserWithdrawMethodDeleteReqPathDto, addWithdrawMethodReqBody: UserWithdrawMethodDeleteReqBodyDto
     ): Promise<UserWithdrawMethodDeleteResBodyDto> {

@@ -5,7 +5,7 @@ import { UserPaymentUpdateReqBodyDto, UserPaymentUpdateReqPathDto, UserPaymentUp
 import { UserPaymentDeleteReqBodyDto, UserPaymentDeleteReqPathDto, UserPaymentDeleteResBodyDto } from './dto/delete-user-payment.dto';
 import { UserPaymentFindReqQueryDto, UserPaymentFindResBodyDto } from './dto/find-user-payment.dto';
 import { Gateway } from 'src/gateway/gateway';
-import { LotayaLibService } from 'src/lotayalib';
+import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { WalletService } from 'src/wallet/wallet.service';
 import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto } from 'src/wallet/dto/add-user-wallet.dto';
 
@@ -41,11 +41,11 @@ export class PaymentmethodService {
                 },
             });
             const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId=registerData.user_id;
+            userWalletInsertReqPathDto.userId=registerData.user_id.toString();
             const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
             userWalletInsertReqBodyDto.gainAmount="0"
             userWalletInsertReqBodyDto.mainAmount=registerData.amount.toString(),
-            userWalletInsertReqBodyDto.agentId=100,
+            userWalletInsertReqBodyDto.agentId="100",
             userWalletInsertReqBodyDto.transationTypeId=2
             const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'+');
             const paymentdatadto = new UserPaymentFindResBodyDto();
@@ -111,11 +111,11 @@ export class PaymentmethodService {
             });
 
             const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId=updateData.user_id;
+            userWalletInsertReqPathDto.userId=updateData.user_id.toString();
             const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
             userWalletInsertReqBodyDto.gainAmount="0"
             userWalletInsertReqBodyDto.mainAmount=updateData.amount.toString(),
-            userWalletInsertReqBodyDto.agentId=100,
+            userWalletInsertReqBodyDto.agentId="100",
             userWalletInsertReqBodyDto.transationTypeId=2
             const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'+');
             const responseData: UserPaymentUpdateResBodyDto = {

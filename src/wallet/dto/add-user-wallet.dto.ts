@@ -18,7 +18,7 @@ export class UserWalletInsertReqPathDto {
         }
     })
     @ApiProperty({ default: 1 })
-    userId: number;
+    userId: string;
 
 }
 
@@ -85,7 +85,7 @@ export class UserWalletInsertReqBodyDto {
     })
     
     @ApiProperty()
-    agentId: number;
+    agentId: string;
     
     @IsNotEmpty({
         context: {
