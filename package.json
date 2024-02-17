@@ -10,8 +10,9 @@
     "schema": "./prisma/schema.prisma"
   },
   "scripts": {
-    "build": "nest build",
-    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "build": "nest build && npm run copy-files",
+    "copy-files": "cpx prisma/lotaya_wallet/**.js dist/prisma/lotaya_wallet && cpx prisma/lotaya_wallet/runtime/**.js dist/prisma/lotaya_wallet/runtime",
+    "format": "prettier --write \"prisma/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
