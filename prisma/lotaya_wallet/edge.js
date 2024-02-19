@@ -251,7 +251,7 @@ const config = {
       "value": "prisma-client-js"
     },
     "output": {
-      "value": "C:\\NestJS\\Lotaya2D-Backend\\prisma\\lotaya_wallet",
+      "value": "/root/lotaya/Lotaya2D-Backend/prisma/lotaya_wallet",
       "fromEnvVar": null
     },
     "config": {
@@ -260,7 +260,7 @@ const config = {
     "binaryTargets": [
       {
         "fromEnvVar": null,
-        "value": "windows",
+        "value": "rhel-openssl-1.0.x",
         "native": true
       }
     ],
@@ -268,7 +268,7 @@ const config = {
     "isCustomOutput": true
   },
   "relativeEnvPaths": {
-    "rootEnvPath": null,
+    "rootEnvPath": "../../.env",
     "schemaEnvPath": "../../.env"
   },
   "relativePath": "..",
