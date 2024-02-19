@@ -66,7 +66,7 @@ export class UseraccountService {
                     phone_number: registerReqPath.phoneNumber
                 },
             });
-            if (userAccount.account_status !== 1) {
+            if (!userAccount || userAccount?.account_status === 1) {
                 const registerData = await this.prisma.users.create({
                     data: {
                         phone_number: registerReqPath.phoneNumber,
@@ -86,24 +86,24 @@ export class UseraccountService {
                     }
                     return responseData;
                 }
-                else if (userAccount.account_status === 1) {
-                    const confirmPassword = await this.prisma.users.update({
-                        where: {
-                            phone_number: registerReqPath.phoneNumber
-                        },
-                        data: {
-                            sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-                            otp_code: otpCode
-                        }
-                    });
-                    if (confirmPassword) {
-
-                        const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
-                            phoneNumber: confirmPassword.phone_number,
-                            otpCode: confirmPassword.otp_code
-                        }
-                        return responseData;
+            }
+            else if (userAccount.account_status === 0) {
+                const confirmPassword = await this.prisma.users.update({
+                    where: {
+                        phone_number: registerReqPath.phoneNumber
+                    },
+                    data: {
+                        sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                        otp_code: otpCode
                     }
+                });
+                if (confirmPassword) {
+
+                    const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
+                        phoneNumber: confirmPassword.phone_number,
+                        otpCode: confirmPassword.otp_code
+                    }
+                    return responseData;
                 }
             }
         }
