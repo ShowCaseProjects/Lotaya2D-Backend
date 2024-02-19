@@ -18,24 +18,6 @@ export class UserPaymentUpdateReqPathDto {
     })
     @ApiProperty({ default: 1 })
     paymentId: string;
-
-    @Matches(/^[0-9]+$/,
-        {
-            context: {
-                errorCode: 'E1000',
-                errorMessage: 'Please enter your id as number.'
-            },
-        }
-    )
-    @IsNotEmpty({
-        context: {
-            errorCode: 'E1000',
-            errorMessage: 'Please enter your id.'
-        }
-    })
-    @ApiProperty({ default: 1 })
-    userId: string;
-
 }
 
 export class UserPaymentUpdateReqBodyDto {

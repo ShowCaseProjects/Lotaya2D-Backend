@@ -2,11 +2,11 @@ import { HttpException, HttpStatus, Injectable, Logger, NotAcceptableException }
 import { ValidateUserAuthenticationResBody } from './dto/validate-user-authentication.dto';
 import { RegisterUserPhoneNumberConfirmReqPathDto, RegisterUserPhoneNumberConfirmResBodyDto } from './dto/register-user-phonenumber-confirm.dto';
 import * as dayjs from 'dayjs'
-import { RegisterUserOtpCodeConfirmReqBodyDto,  RegisterUserOtpCodeConfirmResBodyDto } from './dto/register-user-otpcodeconfirm.dto';
+import { RegisterUserOtpCodeConfirmReqBodyDto, RegisterUserOtpCodeConfirmResBodyDto } from './dto/register-user-otpcodeconfirm.dto';
 import { LoginUserPhoneNumberConfirmReqPathDto } from './dto/login-user-phonenumberconfirm.dto';
 import { RegisterUserPasswordConfirmReqBodyDto, RegisterUserPasswordConfirmResBodyDto } from './dto/register-user-passwordconfirm.dto';
 import { JwtService } from '@nestjs/jwt';
- import * as bcrypt from 'bcryptjs';
+import * as bcrypt from 'bcryptjs';
 import { LoginUserPasswordConfirmReqBodyDto } from './dto/login-user-passwordconfirm.dto';
 import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
@@ -21,7 +21,7 @@ export class UseraccountService {
 
     async findUserByPhoneNumber(
         phoneNumber: LoginUserPhoneNumberConfirmReqPathDto,
-        password:LoginUserPasswordConfirmReqBodyDto
+        password: LoginUserPasswordConfirmReqBodyDto
     ): Promise<ValidateUserAuthenticationResBody> {
         try {
             const userAccount = await this.prisma.users.findUnique({
@@ -29,13 +29,12 @@ export class UseraccountService {
                     phone_number: phoneNumber.phoneNumber
                 },
             });
-	       
+
             const passwordValid = await bcrypt.compare(password.password, userAccount.password);
-            if(!passwordValid)            
-            {
+            if (!passwordValid) {
                 throw new NotAcceptableException({
-                    errorCode:'E1118',
-                    errorMessage:'Invalid User Id or Password.'
+                    errorCode: 'E1118',
+                    errorMessage: 'Invalid User Id or Password.'
                 });
             }
             const userResponse: ValidateUserAuthenticationResBody = {
@@ -62,26 +61,52 @@ export class UseraccountService {
     ): Promise<RegisterUserPhoneNumberConfirmResBodyDto> {
         try {
             const otpCode = this.generateOTP(6).trim();
-            const registerData = await this.prisma.users.create({
-                data: {
-                    phone_number: registerReqPath.phoneNumber,
-                    role_id: 2,
-                    account_status: 0,
-                    is_verify: 0,
-                    delete_status: 0,
-                    sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-                    otp_code: otpCode
+            const userAccount = await this.prisma.users.findUnique({
+                where: {
+                    phone_number: registerReqPath.phoneNumber
                 },
             });
-            if (registerData){
+            if (userAccount.account_status !== 1) {
+                const registerData = await this.prisma.users.create({
+                    data: {
+                        phone_number: registerReqPath.phoneNumber,
+                        role_id: 2,
+                        account_status: 0,
+                        is_verify: 0,
+                        delete_status: 0,
+                        sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                        otp_code: otpCode
+                    },
+                });
+                if (registerData) {
 
-            const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
-                phoneNumber: registerData.phone_number,
-                otpCode:registerData.otp_code
+                    const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
+                        phoneNumber: registerData.phone_number,
+                        otpCode: registerData.otp_code
+                    }
+                    return responseData;
+                }
+                else if (userAccount.account_status === 1) {
+                    const confirmPassword = await this.prisma.users.update({
+                        where: {
+                            phone_number: registerReqPath.phoneNumber
+                        },
+                        data: {
+                            sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                            otp_code: otpCode
+                        }
+                    });
+                    if (confirmPassword) {
+
+                        const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
+                            phoneNumber: confirmPassword.phone_number,
+                            otpCode: confirmPassword.otp_code
+                        }
+                        return responseData;
+                    }
+                }
             }
-            return responseData;
         }
-    }
         catch (error) {
             if (error.code === 'P2002') {
                 throw new HttpException({
@@ -185,7 +210,8 @@ export class UseraccountService {
                         phone_number: phoneNumber.phoneNumber
                     },
                     data: {
-                    password:hashpassword
+                        password: hashpassword,
+                        account_status: 1
                     }
                 });
 
@@ -218,24 +244,24 @@ export class UseraccountService {
 
     async registerUserAccountName(
         registerUserNameReqPath: RegisterUserNameInsertReqPathDto,
-         registerUserNameReqBody:RegisterUserNameInsertReqBodyDto
+        registerUserNameReqBody: RegisterUserNameInsertReqBodyDto
     ): Promise<RegisterUserNameInsertResBodyDto> {
         try {
-                const addUserName = await this.prisma.users.update({
-                    where: {
-                        phone_number: registerUserNameReqPath.phoneNumber
-                    },
-                    data: {
-                        user_name:registerUserNameReqBody.userName
-                    }
-                });
+            const addUserName = await this.prisma.users.update({
+                where: {
+                    phone_number: registerUserNameReqPath.phoneNumber
+                },
+                data: {
+                    user_name: registerUserNameReqBody.userName
+                }
+            });
 
-                const responseData: RegisterUserNameInsertResBodyDto = {
-                    phoneNumber: addUserName.phone_number,
-                    userName:addUserName.user_name
-                };
-                return responseData;
-            }
+            const responseData: RegisterUserNameInsertResBodyDto = {
+                phoneNumber: addUserName.phone_number,
+                userName: addUserName.user_name
+            };
+            return responseData;
+        }
         catch (error) {
             if (error.code === 'P2025') {
                 throw new HttpException({
@@ -267,7 +293,7 @@ export class UseraccountService {
             });
             const responseData: RegisterUserPhoneNumberConfirmResBodyDto = {
                 phoneNumber: forgotPasswordReqPath.phoneNumber,
-                otpCode:userAccount.otp_code
+                otpCode: userAccount.otp_code
             }
             return responseData;
         }
@@ -308,7 +334,7 @@ export class UseraccountService {
             const currentTime = new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')) as any;
             const twoMinutesAgo = new Date(dayjs(userAccount.sms_send_time).format('YYYY-MM-DD HH:mm:ss')) as any;
             const diffTime = (currentTime - twoMinutesAgo) / (60 * 1000);
-        
+
             if (userAccount.otp_code === otpCodeConfirmReqBodyDto.otpCode.toString() && Number(diffTime) <= 2) {
                 const confirmOtpCode = await this.prisma.users.update({
                     where: {
@@ -355,7 +381,7 @@ export class UseraccountService {
     }
 
     async forgotPasswordUserAccountPasswordConfirm(
-        phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto, 
+        phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto,
         passwordConfirmReqBodyDto: RegisterUserPasswordConfirmReqBodyDto
     ): Promise<RegisterUserPasswordConfirmResBodyDto> {
         try {
