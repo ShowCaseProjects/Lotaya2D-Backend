@@ -11,7 +11,7 @@
   },
   "scripts": {
     "build": "nest build && npm run copy-files",
-    "copy-files": "cpx prisma/lotaya_wallet/*.js dist/prisma/lotaya_wallet --watch && cpx prisma/lotaya_wallet/runtime/*.js dist/prisma/lotaya_wallet/runtime --watch",
+    "copy-files": "cpx prisma/lotaya_wallet/*.js dist/prisma/lotaya_wallet  && cpx prisma/lotaya_wallet/runtime/*.js dist/prisma/lotaya_wallet/runtime ",
     "format": "prettier --write \"prisma/**/*.ts\" \"test/**/*.ts\"",
     "start": "nest start && npm run copy-files",
     "start:dev": "nest start --watch && npm run copy-files",
