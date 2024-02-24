@@ -5,6 +5,7 @@ import { UserWithdrawAccountUpdateReqBodyDto, UserWithdrawAccountUpdateReqPathDt
 import { UserWithdrawAccountDeleteReqBodyDto, UserWithdrawAccountDeleteReqPathDto, UserWithdrawAccountDeleteResBodyDto } from './dto/delete-user-withdraw-account..dto';
 import { UserWithdrawAccountFindReqPathDto, UserWithdrawAccountFindResBodyDto } from './dto/find-user-withdraw-account..dto';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
+import { ulid } from 'ulid';
 
 @Injectable()
 export class UserWithdrawAccountService {
@@ -20,6 +21,7 @@ export class UserWithdrawAccountService {
         try {
             const registerData = await this.prisma.userWithdrawAccount.create({
                 data: {
+                    user_withdraw_account_id: ulid(),
                     user_id: addWithdrawAccountReqPath.userId,
                     account_type: addWithdrawAccountReqBody.accountType,
                     account_name: addWithdrawAccountReqBody.accountName,
@@ -141,26 +143,26 @@ export class UserWithdrawAccountService {
                     { updated_date: 'desc' }
                 ],
                 where: {
-                    user_withdraw_account_id: {
-                        gte:
-                            findAllUserWithdrawAccount.withdrawAccountId == undefined
-                                ? undefined
-                                : Number(findAllUserWithdrawAccount.withdrawAccountId),
-                        lte:
-                            findAllUserWithdrawAccount.withdrawAccountId == undefined
-                                ? undefined
-                                : Number(findAllUserWithdrawAccount.withdrawAccountId)
-                    },
-                    user_id: {
-                        gte:
-                            findAllUserWithdrawAccount.userId == undefined
-                                ? undefined
-                                : Number(findAllUserWithdrawAccount.userId),
-                        lte:
-                            findAllUserWithdrawAccount.userId == undefined ?
-                                undefined
-                                : Number(findAllUserWithdrawAccount.userId)
-                    },
+                    // user_withdraw_account_id: {
+                    //     gte:
+                    //         findAllUserWithdrawAccount.withdrawAccountId == undefined
+                    //             ? undefined
+                    //             : findAllUserWithdrawAccount.withdrawAccountId,
+                    //     lte:
+                    //         findAllUserWithdrawAccount.withdrawAccountId == undefined
+                    //             ? undefined
+                    //             : findAllUserWithdrawAccount.withdrawAccountId
+                    // },
+                    // user_id: {
+                    //     gte:
+                    //         findAllUserWithdrawAccount.userId == undefined
+                    //             ? undefined
+                    //             : Number(findAllUserWithdrawAccount.userId),
+                    //     lte:
+                    //         findAllUserWithdrawAccount.userId == undefined ?
+                    //             undefined
+                    //             : findAllUserWithdrawAccount.userId
+                    // },
                     account_type: { contains: findAllUserWithdrawAccount.accountType, mode: 'insensitive' },
                     account_name: {
                         contains: findAllUserWithdrawAccount.accountName, mode: 'insensitive'
@@ -193,8 +195,8 @@ export class UserWithdrawAccountService {
                 paymentdata.map((a) => {
                     const withdrawdatadto = new UserWithdrawAccountFindResBodyDto();
 
-                    withdrawdatadto.withdrawAccountId = a.user_withdraw_account_id,
-
+                        withdrawdatadto.withdrawAccountId = a.user_withdraw_account_id,
+ 
                         withdrawdatadto.userId = a.user_id,
 
                         withdrawdatadto.accountType = a.account_type,

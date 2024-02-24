@@ -17,7 +17,7 @@ export class UserWithdrawAccountUpdateReqPathDto {
         }
     })
     @ApiProperty()
-    withdrawAccountId: number;
+    withdrawAccountId: string;
 
 }
 
@@ -37,7 +37,7 @@ export class UserWithdrawAccountUpdateReqBodyDto {
         }
     })
     @ApiProperty()
-    userId: number;
+    userId: string;
 
 
     @IsNotEmpty({

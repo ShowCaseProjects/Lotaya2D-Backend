@@ -200,10 +200,10 @@ export class UserWithdrawMethodFindReqQueryDto {
 export class UserWithdrawMethodFindResBodyDto {
 
     @ApiProperty()
-    withdrawMethodId: number;
+    withdrawMethodId: string;
 
     @ApiProperty()
-    userId: number;
+    userId: string;
 
     @ApiProperty()
     accountType: string;

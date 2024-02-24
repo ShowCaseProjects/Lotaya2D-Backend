@@ -18,7 +18,7 @@ export class UserWithdrawAccountDeleteReqPathDto {
         }
     })
     @ApiProperty()
-    withdrawAccountId: number;
+    withdrawAccountId: string;
 
 }
 
@@ -38,7 +38,7 @@ export class UserWithdrawAccountDeleteReqBodyDto {
         }
     })
     @ApiProperty()
-    userId: number;
+    userId: string;
 
 
     @IsNotEmpty({

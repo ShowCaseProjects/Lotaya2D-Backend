@@ -8,6 +8,7 @@ import { Gateway } from 'src/gateway/gateway';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { WalletService } from 'src/wallet/wallet.service';
 import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto } from 'src/wallet/dto/add-user-wallet.dto';
+import { ulid } from 'ulid';
 
 @Injectable()
 export class PaymentmethodService {
@@ -24,7 +25,8 @@ export class PaymentmethodService {
         try {
             const registerData = await this.prisma.paymentMethod.create({
                 data: {
-                    user_id: Number(addPaymentReqPath.userId),
+                    payment_id:ulid(),
+                    user_id: addPaymentReqPath.userId,
                     payment_type: addPaymentReqBody.paymentType,
                     payment_account_name: addPaymentReqBody.paymentAccount,
                     payment_account: addPaymentReqBody.paymentAccount,
@@ -49,7 +51,7 @@ export class PaymentmethodService {
                 userWalletInsertReqBodyDto.transationTypeId = 2
             const walletData = this.walletService.addUserWallet(userWalletInsertReqPathDto, userWalletInsertReqBodyDto, '+');
             const paymentdatadto = new UserPaymentFindResBodyDto();
-            paymentdatadto.paymentMethodId = registerData.payment_id,
+                paymentdatadto.paymentMethodId = registerData.payment_id,
 
                 paymentdatadto.userId = registerData.user_id,
 
@@ -94,8 +96,8 @@ export class PaymentmethodService {
         try {
             const updateData = await this.prisma.paymentMethod.update({
                 where: {
-                    payment_id: Number(addPaymentReqPath.paymentId),
-                    user_id: Number(addPaymentReqBody.userId),
+                    payment_id:addPaymentReqPath.paymentId,
+                    user_id: addPaymentReqBody.userId,
                 },
                 data: {
                     payment_type: addPaymentReqBody.paymentType,
@@ -145,8 +147,8 @@ export class PaymentmethodService {
         try {
             const updateData = await this.prisma.paymentMethod.update({
                 where: {
-                    payment_id: Number(addPaymentReqPath.paymentId),
-                    user_id: Number(addPaymentReqBody.userId),
+                    payment_id: addPaymentReqPath.paymentId,
+                    user_id: addPaymentReqBody.userId,
                 },
                 data: {
                     delete_status: 1,
@@ -194,26 +196,26 @@ export class PaymentmethodService {
                     { updated_date: 'desc' }
                 ],
                 where: {
-                    payment_id: {
-                        gte:
-                            findAllUserPayment.paymentId == undefined
-                                ? undefined
-                                : Number(findAllUserPayment.paymentId),
-                        lte:
-                            findAllUserPayment.paymentId == undefined
-                                ? undefined
-                                : Number(findAllUserPayment.paymentId)
-                    },
-                    user_id: {
-                        gte:
-                            findAllUserPayment.userId == undefined
-                                ? undefined
-                                : Number(findAllUserPayment.userId),
-                        lte:
-                            findAllUserPayment.userId == undefined ?
-                                undefined
-                                : Number(findAllUserPayment.userId)
-                    },
+                    // payment_id: {
+                    //     gte:
+                    //         findAllUserPayment.paymentId == undefined
+                    //             ? undefined
+                    //             : Number(findAllUserPayment.paymentId),
+                    //     lte:
+                    //         findAllUserPayment.paymentId == undefined
+                    //             ? undefined
+                    //             : Number(findAllUserPayment.paymentId)
+                    // },
+                    // user_id: {
+                    //     gte:
+                    //         findAllUserPayment.userId == undefined
+                    //             ? undefined
+                    //             : Number(findAllUserPayment.userId),
+                    //     lte:
+                    //         findAllUserPayment.userId == undefined ?
+                    //             undefined
+                    //             : Number(findAllUserPayment.userId)
+                    // },
                     payment_type: { contains: findAllUserPayment.paymentType, mode: 'insensitive' },
                     payment_account_name: { contains: findAllUserPayment.paymentAccountName, mode: 'insensitive' },
                     payment_account: { contains: findAllUserPayment.paymentAccount, mode: 'insensitive' },

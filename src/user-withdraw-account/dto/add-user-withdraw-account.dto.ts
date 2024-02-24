@@ -18,7 +18,7 @@ export class UserWithdrawAccountInsertReqPathDto {
         }
     })
     @ApiProperty({ default: 1 })
-    userId: number;
+    userId: string;
 
 }
 

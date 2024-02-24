@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "users" (
-    "user_id" SERIAL NOT NULL,
+    "user_id" VARCHAR(30) NOT NULL,
     "phone_number" VARCHAR(13) NOT NULL,
     "user_name" VARCHAR(30),
     "password" TEXT,
@@ -27,8 +27,8 @@ CREATE TABLE "roles" (
 
 -- CreateTable
 CREATE TABLE "userwithdrawaccount" (
-    "user_withdraw_account_id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
+    "user_withdraw_account_id" VARCHAR(30) NOT NULL,
+    "user_id" TEXT NOT NULL,
     "account_type" TEXT NOT NULL,
     "account_name" TEXT NOT NULL,
     "account_id" INTEGER NOT NULL,
@@ -42,8 +42,8 @@ CREATE TABLE "userwithdrawaccount" (
 
 -- CreateTable
 CREATE TABLE "wallet" (
-    "wallet_id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
+    "wallet_id" VARCHAR(30) NOT NULL,
+    "user_id" TEXT NOT NULL,
     "game_amount" DECIMAL(65,30),
     "main_amount" DECIMAL(65,30),
     "agent_id" INTEGER NOT NULL,
@@ -57,8 +57,8 @@ CREATE TABLE "wallet" (
 
 -- CreateTable
 CREATE TABLE "paymentmethod" (
-    "payment_id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
+    "payment_id" VARCHAR(30) NOT NULL,
+    "user_id" TEXT NOT NULL,
     "payment_type" TEXT NOT NULL,
     "payment_account_name" TEXT NOT NULL,
     "payment_account" TEXT NOT NULL,
@@ -80,8 +80,8 @@ CREATE TABLE "paymentmethod" (
 
 -- CreateTable
 CREATE TABLE "withdrawmethod" (
-    "withdraw_id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
+    "withdraw_id" VARCHAR(30) NOT NULL,
+    "user_id" TEXT NOT NULL,
     "withdraw_type" TEXT NOT NULL,
     "receiver_account_name" TEXT NOT NULL,
     "receiver_account" TEXT NOT NULL,
@@ -101,7 +101,7 @@ CREATE TABLE "withdrawmethod" (
 
 -- CreateTable
 CREATE TABLE "admin" (
-    "admin_internal_id" SERIAL NOT NULL,
+    "admin_internal_id" VARCHAR(30) NOT NULL,
     "admin_id" VARCHAR(13) NOT NULL,
     "admin_name" VARCHAR(30),
     "password" TEXT,
@@ -124,8 +124,8 @@ CREATE TABLE "adminroles" (
 
 -- CreateTable
 CREATE TABLE "transation" (
-    "transaction_id" SERIAL NOT NULL,
-    "user_id" INTEGER NOT NULL,
+    "transaction_id" VARCHAR(30) NOT NULL,
+    "user_id" TEXT NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
     "transaction_type_id" INTEGER NOT NULL,
     "transaction_date" TIMESTAMP(3) NOT NULL,
@@ -180,6 +180,21 @@ CREATE UNIQUE INDEX "approve_reject_type_key" ON "approve_reject"("type");
 
 -- AddForeignKey
 ALTER TABLE "users" ADD CONSTRAINT "users_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "roles"("role_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "userwithdrawaccount" ADD CONSTRAINT "userwithdrawaccount_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "wallet" ADD CONSTRAINT "wallet_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "paymentmethod" ADD CONSTRAINT "paymentmethod_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "withdrawmethod" ADD CONSTRAINT "withdrawmethod_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "transation" ADD CONSTRAINT "transation_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "transation" ADD CONSTRAINT "transation_transaction_type_id_fkey" FOREIGN KEY ("transaction_type_id") REFERENCES "transationtype"("transaction_type_id") ON DELETE RESTRICT ON UPDATE CASCADE;

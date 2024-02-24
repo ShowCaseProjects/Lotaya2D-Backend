@@ -11,6 +11,7 @@ import { RegisterUserPhoneNumberConfirmResBodyDto } from 'src/useraccount/dto/re
 import { WalletService } from 'src/wallet/wallet.service';
 import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto } from 'src/wallet/dto/add-user-wallet.dto';
 import { UserWithdrawMethodApproveReqBodyDto, UserWithdrawMethodApproveReqPathDto, UserWithdrawMethodApproveResBodyDto } from './dto/approve-user-withdraw.dto';
+import { ulid } from 'ulid';
 
 @Injectable()
 export class UserWithdrawMethodService {
@@ -26,7 +27,8 @@ export class UserWithdrawMethodService {
         try {
             const registerData = await this.prisma.withdrawMethod.create({
                 data: {
-                    user_id: Number(addWithdrawMethodReqPath.userId),
+                    withdraw_id:ulid(),
+                    user_id: addWithdrawMethodReqPath.userId,
                     withdraw_type: addWithdrawMethodReqBody.withdrawType,
                     receiver_account_name: addWithdrawMethodReqBody.receiverAccountName,
                     receiver_account: addWithdrawMethodReqBody.receiverAccount,
@@ -85,8 +87,8 @@ export class UserWithdrawMethodService {
         try {
             const updateData = await this.prisma.withdrawMethod.update({
                 where: {
-                    withdraw_id: Number(addWithdrawMethodReqPath.withdrawId),
-                    user_id: Number(addWithdrawMethodReqBody.userId),
+                    withdraw_id: addWithdrawMethodReqPath.withdrawId,
+                    user_id: addWithdrawMethodReqBody.userId,
                 },
                 data: {
                     withdraw_type: addWithdrawMethodReqBody.withdrawType,
@@ -137,8 +139,8 @@ export class UserWithdrawMethodService {
         try {
             const updateData = await this.prisma.paymentMethod.update({
                 where: {
-                    payment_id: Number(addWithdrawMethodReqPath.withdrawId),
-                    user_id: Number(addWithdrawMethodReqBody.userId),
+                    payment_id:addWithdrawMethodReqPath.withdrawId,
+                    user_id: addWithdrawMethodReqBody.userId,
                 },
                 data: {
                     delete_status: 1,
@@ -189,21 +191,21 @@ export class UserWithdrawMethodService {
                         gte:
                             findAllUserWithdrawMethod.withdrawId == undefined
                                 ? undefined
-                                : Number(findAllUserWithdrawMethod.withdrawId),
+                                : findAllUserWithdrawMethod.withdrawId,
                         lte:
                             findAllUserWithdrawMethod.withdrawId == undefined
                                 ? undefined
-                                : Number(findAllUserWithdrawMethod.withdrawId)
+                                : findAllUserWithdrawMethod.withdrawId
                     },
                     user_id: {
                         gte:
                             findAllUserWithdrawMethod.userId == undefined
                                 ? undefined
-                                : Number(findAllUserWithdrawMethod.userId),
+                                :findAllUserWithdrawMethod.userId,
                         lte:
                             findAllUserWithdrawMethod.userId == undefined ?
                                 undefined
-                                : Number(findAllUserWithdrawMethod.userId)
+                                :findAllUserWithdrawMethod.userId
                     },
                     withdraw_type: { contains: findAllUserWithdrawMethod.withdrawType, mode: 'insensitive' },
                     receiver_account_name: {
@@ -278,7 +280,7 @@ export class UserWithdrawMethodService {
     
             const userAccount = await this.prisma.users.update({
                 where: {
-                    user_id: Number(otpCodeConfirmReqPathDto.userId),
+                    user_id:otpCodeConfirmReqPathDto.userId,
                 },
                 data: {
                     is_verify: 0,

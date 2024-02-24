@@ -3,6 +3,7 @@ import { Gateway } from 'src/gateway/gateway';
 import * as dayjs from 'dayjs'
 import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto, UserWalletInsertResBodyDto } from './dto/add-user-wallet.dto';
 import { LotayaLibService } from 'lotayalib';
+import { ulid } from 'ulid';
 
 @Injectable()
 export class WalletService {
@@ -18,14 +19,15 @@ export class WalletService {
         try {
             const getWalletData=await this.prisma.wallet.findUnique({
              where:{
-                user_id:Number(addWalletReqBody.userId)
+                user_id:addWalletReqBody.userId
              }
             });
             if(getWalletData)
             {
             const registerData = await this.prisma.wallet.create({
                 data: {
-                    user_id: Number(addWalletReqPath.userId),
+                    wallet_id:ulid(),
+                    user_id: addWalletReqPath.userId,
                     main_amount: addWalletReqBody.mainAmount,
                     game_amount: addWalletReqBody.gainAmount,
                     agent_id: Number(addWalletReqBody.agentId),
@@ -47,14 +49,15 @@ export class WalletService {
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
                 where:{
-                   user_id:Number(addWalletReqBody.userId)
+                   user_id:addWalletReqBody.userId
                 }
             });
           }
 
             const transationData = await this.prisma.transaction.create({
                 data: {
-                    user_id: Number(addWalletReqPath.userId),
+                    transaction_id:ulid(),
+                    user_id: addWalletReqPath.userId,
                     amount: addWalletReqBody.mainAmount,
                     agent_id: Number(addWalletReqBody.agentId),
                     transaction_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),

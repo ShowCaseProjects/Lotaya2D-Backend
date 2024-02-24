@@ -13,7 +13,7 @@ export class UserWithdrawAccountFindReqPathDto {
     )
     @IsOptional()
     @ApiPropertyOptional()
-    userId: number;
+    userId: string;
 
     @Matches(/^[0-9]+$/,
         {
@@ -25,7 +25,7 @@ export class UserWithdrawAccountFindReqPathDto {
     )
     @IsOptional()
     @ApiPropertyOptional()
-    withdrawAccountId: number;
+    withdrawAccountId: string;
 
     @IsOptional()
     @ApiPropertyOptional()
@@ -130,13 +130,13 @@ export class UserWithdrawAccountFindReqPathDto {
 export class UserWithdrawAccountFindResBodyDto {
     
     @ApiProperty()
-    withdrawAccountId:number;
+    withdrawAccountId:string;
 
     @ApiProperty()
     accountType: string;
 
     @ApiProperty()
-    userId: number;
+    userId: string;
 
     @ApiProperty()
     accountName: string;

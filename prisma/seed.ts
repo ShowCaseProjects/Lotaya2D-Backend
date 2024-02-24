@@ -1,6 +1,7 @@
 import { AdminRoleId, AdminRoleName, RoleId, RoleName, TransationTypeId, TransationTypeName } from '../staticlib/index';
 import { Prisma, PrismaClient } from './lotaya_wallet';
 import * as bcrypt from "bcryptjs"
+import {ulid} from "ulid"
 
 const prisma = new PrismaClient();
 
@@ -82,21 +83,23 @@ export const adminRegisterLoginData = async () => {
         const salt = await bcrypt.genSalt();
         const hashpassword = await bcrypt.hash("Pass@initial", salt);
         const adminLoginData: Prisma.AdminCreateInput[] = [
-            {
+            {   
+                admin_internal_id:ulid(),
                 admin_id: "AdminUser1",
                 password: hashpassword
             },
-            {
+            {   
+                admin_internal_id:ulid(),
                 admin_id: "AdminUser2",
                 password: hashpassword,
-            },
-            {
+            }, 
+            {   
+                admin_internal_id:ulid(),
                 admin_id: "AdminUser3",
                 password: hashpassword
             },
             
         ];
-        console.log( await bcrypt.compare("Pass@initial", hashpassword));
         await Promise.all(
             adminLoginData.map(
                 async (insertData) => await prisma.admin.create({ data: insertData })

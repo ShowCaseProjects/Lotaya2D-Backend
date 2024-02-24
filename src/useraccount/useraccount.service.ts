@@ -10,6 +10,7 @@ import * as bcrypt from 'bcryptjs';
 import { LoginUserPasswordConfirmReqBodyDto } from './dto/login-user-passwordconfirm.dto';
 import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
+import { ulid } from 'ulid';
 
 @Injectable()
 export class UseraccountService {
@@ -69,6 +70,7 @@ export class UseraccountService {
             if (!userAccount || userAccount?.account_status === 1) {
                 const registerData = await this.prisma.users.create({
                     data: {
+                        user_id:ulid(),
                         phone_number: registerReqPath.phoneNumber,
                         role_id: 2,
                         account_status: 0,

@@ -229,10 +229,10 @@ export class UserPaymentFindReqQueryDto {
 export class UserPaymentFindResBodyDto {
 
     @ApiProperty()
-    paymentMethodId: number;
+    paymentMethodId: string;
 
     @ApiProperty()
-    userId: number;
+    userId: string;
 
     @ApiProperty()
     paymenttype: string;
