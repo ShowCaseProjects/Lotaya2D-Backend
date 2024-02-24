@@ -19,7 +19,7 @@ export class WalletService {
         try {
             const getWalletData=await this.prisma.wallet.findUnique({
              where:{
-                user_id:addWalletReqBody.userId
+                user_internal_id:addWalletReqBody.userId
              }
             });
             if(getWalletData)
@@ -27,7 +27,7 @@ export class WalletService {
             const registerData = await this.prisma.wallet.create({
                 data: {
                     wallet_id:ulid(),
-                    user_id: addWalletReqPath.userId,
+                    user_internal_id: addWalletReqPath.userId,
                     main_amount: addWalletReqBody.mainAmount,
                     game_amount: addWalletReqBody.gainAmount,
                     agent_id: Number(addWalletReqBody.agentId),
@@ -49,7 +49,7 @@ export class WalletService {
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
                 where:{
-                   user_id:addWalletReqBody.userId
+                   user_internal_id:addWalletReqBody.userId
                 }
             });
           }
@@ -57,7 +57,7 @@ export class WalletService {
             const transationData = await this.prisma.transaction.create({
                 data: {
                     transaction_id:ulid(),
-                    user_id: addWalletReqPath.userId,
+                    user_internal_id: addWalletReqPath.userId,
                     amount: addWalletReqBody.mainAmount,
                     agent_id: Number(addWalletReqBody.agentId),
                     transaction_date:new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),

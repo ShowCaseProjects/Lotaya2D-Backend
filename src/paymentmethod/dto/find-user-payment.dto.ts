@@ -27,17 +27,17 @@ export class UserPaymentFindReqQueryDto {
     @ApiPropertyOptional()
     paymentStatus: string;
 
-    @Matches(/^[0-9]+$/,
-        {
-            context: {
-                errorCode: 'E1000',
-                errorMessage: 'Please enter your id as number.'
-            },
-        }
-    )
-    @IsOptional()
-    @ApiPropertyOptional()
-    userId?: string;
+    // @Matches(/^[0-9]+$/,
+    //     {
+    //         context: {
+    //             errorCode: 'E1000',
+    //             errorMessage: 'Please enter your id as number.'
+    //         },
+    //     }
+    // )
+    // @IsOptional()
+    // @ApiPropertyOptional()
+    // userId?: string;
 
     @Matches(/^[/^[a-zA-Z0-9- _]+$/,
         {

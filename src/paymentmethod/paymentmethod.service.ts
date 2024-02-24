@@ -25,8 +25,12 @@ export class PaymentmethodService {
         try {
             const registerData = await this.prisma.paymentMethod.create({
                 data: {
-                    payment_id:ulid(),
-                    user_id: addPaymentReqPath.userId,
+                    payment_internal_id: ulid(),
+                    user: {
+                        connect: {
+                            phone_number: addPaymentReqBody.phoneNumber
+                        }
+                    },
                     payment_type: addPaymentReqBody.paymentType,
                     payment_account_name: addPaymentReqBody.paymentAccount,
                     payment_account: addPaymentReqBody.paymentAccount,
@@ -43,7 +47,7 @@ export class PaymentmethodService {
                 },
             });
             const userWalletInsertReqPathDto = new UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId = registerData.user_id.toString();
+            userWalletInsertReqPathDto.userId = registerData.user_internal_id.toString();
             const userWalletInsertReqBodyDto = new UserWalletInsertReqBodyDto();
             userWalletInsertReqBodyDto.gainAmount = "0"
             userWalletInsertReqBodyDto.mainAmount = registerData.amount.toString(),
@@ -51,9 +55,9 @@ export class PaymentmethodService {
                 userWalletInsertReqBodyDto.transationTypeId = 2
             const walletData = this.walletService.addUserWallet(userWalletInsertReqPathDto, userWalletInsertReqBodyDto, '+');
             const paymentdatadto = new UserPaymentFindResBodyDto();
-                paymentdatadto.paymentMethodId = registerData.payment_id,
+            paymentdatadto.paymentMethodId = registerData.payment_internal_id,
 
-                paymentdatadto.userId = registerData.user_id,
+                paymentdatadto.userId = registerData.user_internal_id,
 
                 paymentdatadto.receiverAccountName = registerData.receiver_account_name,
 
@@ -75,6 +79,7 @@ export class PaymentmethodService {
             return responseData;
         }
         catch (error) {
+            this.logger.log(error)
             if (error.code === 'P2002') {
                 throw new HttpException({
                     errorCode: 'E1101',
@@ -96,8 +101,8 @@ export class PaymentmethodService {
         try {
             const updateData = await this.prisma.paymentMethod.update({
                 where: {
-                    payment_id:addPaymentReqPath.paymentId,
-                    user_id: addPaymentReqBody.userId,
+                    payment_internal_id: addPaymentReqPath.paymentId,
+                    user_internal_id: addPaymentReqBody.userId,
                 },
                 data: {
                     payment_type: addPaymentReqBody.paymentType,
@@ -113,7 +118,7 @@ export class PaymentmethodService {
             });
 
             const userWalletInsertReqPathDto = new UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId = updateData.user_id.toString();
+            userWalletInsertReqPathDto.userId = updateData.user_internal_id.toString();
             const userWalletInsertReqBodyDto = new UserWalletInsertReqBodyDto();
             userWalletInsertReqBodyDto.gainAmount = "0"
             userWalletInsertReqBodyDto.mainAmount = updateData.amount.toString(),
@@ -147,8 +152,8 @@ export class PaymentmethodService {
         try {
             const updateData = await this.prisma.paymentMethod.update({
                 where: {
-                    payment_id: addPaymentReqPath.paymentId,
-                    user_id: addPaymentReqBody.userId,
+                    payment_internal_id: addPaymentReqPath.paymentId,
+                    user_internal_id: addPaymentReqBody.userId,
                 },
                 data: {
                     delete_status: 1,
@@ -181,8 +186,8 @@ export class PaymentmethodService {
         try {
             const paymentdata = await this.prisma.paymentMethod.findMany({
                 select: {
-                    payment_id: true,
-                    user_id: true,
+                    payment_internal_id: true,
+                    user_internal_id: true,
                     payment_type: true,
                     payment_confirm_code: true,
                     receiver_account: true,
@@ -190,32 +195,18 @@ export class PaymentmethodService {
                     amount: true,
                     register_date: true,
                     updated_date: true,
+                    user: {
+                        select: { phone_number: true }
+                    }
                 },
                 orderBy: [
                     { register_date: 'desc' },
                     { updated_date: 'desc' }
                 ],
                 where: {
-                    // payment_id: {
-                    //     gte:
-                    //         findAllUserPayment.paymentId == undefined
-                    //             ? undefined
-                    //             : Number(findAllUserPayment.paymentId),
-                    //     lte:
-                    //         findAllUserPayment.paymentId == undefined
-                    //             ? undefined
-                    //             : Number(findAllUserPayment.paymentId)
-                    // },
-                    // user_id: {
-                    //     gte:
-                    //         findAllUserPayment.userId == undefined
-                    //             ? undefined
-                    //             : Number(findAllUserPayment.userId),
-                    //     lte:
-                    //         findAllUserPayment.userId == undefined ?
-                    //             undefined
-                    //             : Number(findAllUserPayment.userId)
-                    // },
+                    payment_internal_id: {
+                        contains: findAllUserPayment.paymentId, mode: 'insensitive' 
+                    },
                     payment_type: { contains: findAllUserPayment.paymentType, mode: 'insensitive' },
                     payment_account_name: { contains: findAllUserPayment.paymentAccountName, mode: 'insensitive' },
                     payment_account: { contains: findAllUserPayment.paymentAccount, mode: 'insensitive' },
@@ -230,7 +221,7 @@ export class PaymentmethodService {
                                 : Number(findAllUserPayment.paymentConfirmationCode)
                     },
                     delete_status: 0,
-                    approve_reject: findAllUserPayment.paymentStatus == 'Approve' ? 1 : findAllUserPayment.paymentStatus  == 'Reject' ? 2 : findAllUserPayment.paymentStatus  == undefined ? undefined : 1,
+                    approve_reject: findAllUserPayment.paymentStatus == 'Approve' ? 1 : findAllUserPayment.paymentStatus == 'Reject' ? 2 : findAllUserPayment.paymentStatus == undefined ? undefined : 1,
                     reciver_account_type: { contains: findAllUserPayment.recevierAccountType, mode: 'insensitive' },
                     receiver_account: { contains: findAllUserPayment.receiverAccount, mode: 'insensitive' },
                     receiver_account_name: { contains: findAllUserPayment.receiverAccountName, mode: 'insensitive' },
@@ -254,15 +245,15 @@ export class PaymentmethodService {
                             findAllUserPayment.updatedDateTo == undefined
                                 ? undefined
                                 : `${findAllUserPayment.updatedDateTo}T00:00:00Z`
-                    }
+                    },
                 }
             });
             return (
                 paymentdata.map((a) => {
                     const paymentdatadto = new UserPaymentFindResBodyDto();
-                    paymentdatadto.paymentMethodId = a.payment_id,
+                    paymentdatadto.paymentMethodId = a.payment_internal_id,
 
-                        paymentdatadto.userId = a.user_id,
+                        paymentdatadto.userId = a.user.phone_number,
 
                         paymentdatadto.receiverAccountName = a.receiver_account_name,
 

@@ -28,7 +28,7 @@ export class UserWithdrawMethodService {
             const registerData = await this.prisma.withdrawMethod.create({
                 data: {
                     withdraw_id:ulid(),
-                    user_id: addWithdrawMethodReqPath.userId,
+                   user_internal_id: addWithdrawMethodReqPath.userId,
                     withdraw_type: addWithdrawMethodReqBody.withdrawType,
                     receiver_account_name: addWithdrawMethodReqBody.receiverAccountName,
                     receiver_account: addWithdrawMethodReqBody.receiverAccount,
@@ -46,7 +46,7 @@ export class UserWithdrawMethodService {
 
                 withdrawmethoddatadto.withdrawMethodId = registerData.withdraw_id,
 
-                withdrawmethoddatadto.userId = registerData.user_id,
+                withdrawmethoddatadto.userId = registerData.user_internal_id,
 
                 withdrawmethoddatadto.accountType = registerData.withdraw_type,
 
@@ -88,7 +88,7 @@ export class UserWithdrawMethodService {
             const updateData = await this.prisma.withdrawMethod.update({
                 where: {
                     withdraw_id: addWithdrawMethodReqPath.withdrawId,
-                    user_id: addWithdrawMethodReqBody.userId,
+                   user_internal_id: addWithdrawMethodReqBody.userId,
                 },
                 data: {
                     withdraw_type: addWithdrawMethodReqBody.withdrawType,
@@ -139,8 +139,8 @@ export class UserWithdrawMethodService {
         try {
             const updateData = await this.prisma.paymentMethod.update({
                 where: {
-                    payment_id:addWithdrawMethodReqPath.withdrawId,
-                    user_id: addWithdrawMethodReqBody.userId,
+                    payment_internal_id:addWithdrawMethodReqPath.withdrawId,
+                   user_internal_id: addWithdrawMethodReqBody.userId,
                 },
                 data: {
                     delete_status: 1,
@@ -174,7 +174,7 @@ export class UserWithdrawMethodService {
             const withdrawdata = await this.prisma.withdrawMethod.findMany({
                 select: {
                     withdraw_id: true,
-                    user_id: true,
+                   user_internal_id: true,
                     withdraw_type: true,
                     amount:true,
                     receiver_account_name: true,
@@ -197,7 +197,7 @@ export class UserWithdrawMethodService {
                                 ? undefined
                                 : findAllUserWithdrawMethod.withdrawId
                     },
-                    user_id: {
+                   user_internal_id: {
                         gte:
                             findAllUserWithdrawMethod.userId == undefined
                                 ? undefined
@@ -242,7 +242,7 @@ export class UserWithdrawMethodService {
 
                     withdrawmethoddatadto.withdrawMethodId = a.withdraw_id,
     
-                    withdrawmethoddatadto.userId = a.user_id,
+                    withdrawmethoddatadto.userId = a.user_internal_id,
     
                     withdrawmethoddatadto.accountType = a.withdraw_type,
     
@@ -280,7 +280,7 @@ export class UserWithdrawMethodService {
     
             const userAccount = await this.prisma.users.update({
                 where: {
-                    user_id:otpCodeConfirmReqPathDto.userId,
+                    user_internal_id:otpCodeConfirmReqPathDto.userId,
                 },
                 data: {
                     is_verify: 0,

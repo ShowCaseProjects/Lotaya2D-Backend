@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "users" (
-    "user_id" VARCHAR(30) NOT NULL,
+    "user_id" TEXT NOT NULL,
     "phone_number" VARCHAR(13) NOT NULL,
     "user_name" VARCHAR(30),
     "password" TEXT,

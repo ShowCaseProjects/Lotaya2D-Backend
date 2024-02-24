@@ -22,7 +22,7 @@ export class UserWithdrawAccountService {
             const registerData = await this.prisma.userWithdrawAccount.create({
                 data: {
                     user_withdraw_account_id: ulid(),
-                    user_id: addWithdrawAccountReqPath.userId,
+                   user_internal_id: addWithdrawAccountReqPath.userId,
                     account_type: addWithdrawAccountReqBody.accountType,
                     account_name: addWithdrawAccountReqBody.accountName,
                     account_id: addWithdrawAccountReqBody.accountId,
@@ -59,7 +59,7 @@ export class UserWithdrawAccountService {
             const updateData = await this.prisma.userWithdrawAccount.update({
                 where: {
                     user_withdraw_account_id: addWithdrawAccountReqPath.withdrawAccountId,
-                    user_id: addWithdrawAccountReqBody.userId,
+                   user_internal_id: addWithdrawAccountReqBody.userId,
                 },
                 data: {
                     account_type: addWithdrawAccountReqBody.accountType,
@@ -97,7 +97,7 @@ export class UserWithdrawAccountService {
             const updateData = await this.prisma.userWithdrawAccount.update({
                 where: {
                     user_withdraw_account_id: addWithdrawAccountReqPath.withdrawAccountId,
-                    user_id: addWithdrawAccountReqBody.userId,
+                   user_internal_id: addWithdrawAccountReqBody.userId,
                 },
                 data: {
                     delete_status: 1,
@@ -131,7 +131,7 @@ export class UserWithdrawAccountService {
             const paymentdata = await this.prisma.userWithdrawAccount.findMany({
                 select: {
                     user_withdraw_account_id: true,
-                    user_id: true,
+                   user_internal_id: true,
                     account_type: true,
                     account_name: true,
                     account_id: true,
@@ -153,7 +153,7 @@ export class UserWithdrawAccountService {
                     //             ? undefined
                     //             : findAllUserWithdrawAccount.withdrawAccountId
                     // },
-                    // user_id: {
+                    //user_internal_id: {
                     //     gte:
                     //         findAllUserWithdrawAccount.userId == undefined
                     //             ? undefined
@@ -197,7 +197,7 @@ export class UserWithdrawAccountService {
 
                         withdrawdatadto.withdrawAccountId = a.user_withdraw_account_id,
  
-                        withdrawdatadto.userId = a.user_id,
+                        withdrawdatadto.userId = a.user_internal_id,
 
                         withdrawdatadto.accountType = a.account_type,
 

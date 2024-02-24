@@ -7,18 +7,18 @@ export class UserPaymentInsertReqPathDto {
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your id as number.'
+                errorMessage: 'Please enter your phone number as number.'
             },
         }
     )
     @IsNotEmpty({
         context: {
             errorCode: 'E1000',
-            errorMessage: 'Please enter your id.'
+            errorMessage: 'Please enter your phone number.'
         }
     })
-    @ApiProperty({ default: 1 })
-    userId: string;
+    @ApiProperty({ default: '09403951357' })
+    phoneNumber: string;
 
 }
 
@@ -27,18 +27,18 @@ export class UserPaymentInsertReqBodyDto {
         {
             context: {
                 errorCode: 'E1000',
-                errorMessage: 'Please enter your id as number.'
+                errorMessage: 'Please enter your phone number as number.'
             },
         }
     )
     @IsNotEmpty({
         context: {
             errorCode: 'E1000',
-            errorMessage: 'Please enter your id.'
+            errorMessage: 'Please enter your phone number.'
         }
     })
-    @ApiProperty({ default: 1 })
-    userId: string;
+    @ApiProperty({ default: '09403951357' })
+    phoneNumber: string;
 
     @Matches(/^[/^[a-zA-Z0-9- _]+$/,
         {

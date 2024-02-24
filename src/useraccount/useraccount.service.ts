@@ -70,7 +70,7 @@ export class UseraccountService {
             if (!userAccount || userAccount?.account_status === 1) {
                 const registerData = await this.prisma.users.create({
                     data: {
-                        user_id:ulid(),
+                        user_internal_id:ulid(),
                         phone_number: registerReqPath.phoneNumber,
                         role_id: 2,
                         account_status: 0,
@@ -110,6 +110,7 @@ export class UseraccountService {
             }
         }
         catch (error) {
+            this.logger.log(error)
             if (error.code === 'P2002') {
                 throw new HttpException({
                     errorCode: 'E1101',

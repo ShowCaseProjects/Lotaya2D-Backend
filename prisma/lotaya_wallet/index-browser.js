@@ -108,7 +108,7 @@ exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
 });
 
 exports.Prisma.UsersScalarFieldEnum = {
-  user_id: 'user_id',
+  user_internal_id: 'user_internal_id',
   phone_number: 'phone_number',
   user_name: 'user_name',
   password: 'password',
@@ -130,7 +130,7 @@ exports.Prisma.RolesScalarFieldEnum = {
 
 exports.Prisma.UserWithdrawAccountScalarFieldEnum = {
   user_withdraw_account_id: 'user_withdraw_account_id',
-  user_id: 'user_id',
+  user_internal_id: 'user_internal_id',
   account_type: 'account_type',
   account_name: 'account_name',
   account_id: 'account_id',
@@ -142,7 +142,7 @@ exports.Prisma.UserWithdrawAccountScalarFieldEnum = {
 
 exports.Prisma.WalletScalarFieldEnum = {
   wallet_id: 'wallet_id',
-  user_id: 'user_id',
+  user_internal_id: 'user_internal_id',
   game_amount: 'game_amount',
   main_amount: 'main_amount',
   agent_id: 'agent_id',
@@ -153,8 +153,8 @@ exports.Prisma.WalletScalarFieldEnum = {
 };
 
 exports.Prisma.PaymentMethodScalarFieldEnum = {
-  payment_id: 'payment_id',
-  user_id: 'user_id',
+  payment_internal_id: 'payment_internal_id',
+  user_internal_id: 'user_internal_id',
   payment_type: 'payment_type',
   payment_account_name: 'payment_account_name',
   payment_account: 'payment_account',
@@ -174,7 +174,7 @@ exports.Prisma.PaymentMethodScalarFieldEnum = {
 
 exports.Prisma.WithdrawMethodScalarFieldEnum = {
   withdraw_id: 'withdraw_id',
-  user_id: 'user_id',
+  user_internal_id: 'user_internal_id',
   withdraw_type: 'withdraw_type',
   receiver_account_name: 'receiver_account_name',
   receiver_account: 'receiver_account',
@@ -209,7 +209,7 @@ exports.Prisma.AdminRolesScalarFieldEnum = {
 
 exports.Prisma.TransactionScalarFieldEnum = {
   transaction_id: 'transaction_id',
-  user_id: 'user_id',
+  user_internal_id: 'user_internal_id',
   amount: 'amount',
   transaction_type_id: 'transaction_type_id',
   transaction_date: 'transaction_date',

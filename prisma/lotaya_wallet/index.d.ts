@@ -1854,7 +1854,7 @@ export namespace Prisma {
   }
 
   export type UsersMinAggregateOutputType = {
-    user_id: string | null
+    user_internal_id: string | null
     phone_number: string | null
     user_name: string | null
     password: string | null
@@ -1870,7 +1870,7 @@ export namespace Prisma {
   }
 
   export type UsersMaxAggregateOutputType = {
-    user_id: string | null
+    user_internal_id: string | null
     phone_number: string | null
     user_name: string | null
     password: string | null
@@ -1886,7 +1886,7 @@ export namespace Prisma {
   }
 
   export type UsersCountAggregateOutputType = {
-    user_id: number
+    user_internal_id: number
     phone_number: number
     user_name: number
     password: number
@@ -1918,7 +1918,7 @@ export namespace Prisma {
   }
 
   export type UsersMinAggregateInputType = {
-    user_id?: true
+    user_internal_id?: true
     phone_number?: true
     user_name?: true
     password?: true
@@ -1934,7 +1934,7 @@ export namespace Prisma {
   }
 
   export type UsersMaxAggregateInputType = {
-    user_id?: true
+    user_internal_id?: true
     phone_number?: true
     user_name?: true
     password?: true
@@ -1950,7 +1950,7 @@ export namespace Prisma {
   }
 
   export type UsersCountAggregateInputType = {
-    user_id?: true
+    user_internal_id?: true
     phone_number?: true
     user_name?: true
     password?: true
@@ -2053,7 +2053,7 @@ export namespace Prisma {
   }
 
   export type UsersGroupByOutputType = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name: string | null
     password: string | null
@@ -2088,7 +2088,7 @@ export namespace Prisma {
 
 
   export type UsersSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    user_id?: boolean
+    user_internal_id?: boolean
     phone_number?: boolean
     user_name?: boolean
     password?: boolean
@@ -2111,7 +2111,7 @@ export namespace Prisma {
   }, ExtArgs["result"]["users"]>
 
   export type UsersSelectScalar = {
-    user_id?: boolean
+    user_internal_id?: boolean
     phone_number?: boolean
     user_name?: boolean
     password?: boolean
@@ -2148,7 +2148,7 @@ export namespace Prisma {
       transation: Prisma.$TransactionPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
-      user_id: string
+      user_internal_id: string
       phone_number: string
       user_name: string | null
       password: string | null
@@ -2253,8 +2253,8 @@ export namespace Prisma {
      * // Get first 10 Users
      * const users = await prisma.users.findMany({ take: 10 })
      * 
-     * // Only select the `user_id`
-     * const usersWithUser_idOnly = await prisma.users.findMany({ select: { user_id: true } })
+     * // Only select the `user_internal_id`
+     * const usersWithUser_internal_idOnly = await prisma.users.findMany({ select: { user_internal_id: true } })
      * 
     **/
     findMany<T extends UsersFindManyArgs<ExtArgs>>(
@@ -2566,7 +2566,7 @@ export namespace Prisma {
    * Fields of the Users model
    */ 
   interface UsersFieldRefs {
-    readonly user_id: FieldRef<"Users", 'String'>
+    readonly user_internal_id: FieldRef<"Users", 'String'>
     readonly phone_number: FieldRef<"Users", 'String'>
     readonly user_name: FieldRef<"Users", 'String'>
     readonly password: FieldRef<"Users", 'String'>
@@ -3977,7 +3977,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountMinAggregateOutputType = {
     user_withdraw_account_id: string | null
-    user_id: string | null
+    user_internal_id: string | null
     account_type: string | null
     account_name: string | null
     account_id: number | null
@@ -3989,7 +3989,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountMaxAggregateOutputType = {
     user_withdraw_account_id: string | null
-    user_id: string | null
+    user_internal_id: string | null
     account_type: string | null
     account_name: string | null
     account_id: number | null
@@ -4001,7 +4001,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountCountAggregateOutputType = {
     user_withdraw_account_id: number
-    user_id: number
+    user_internal_id: number
     account_type: number
     account_name: number
     account_id: number
@@ -4025,7 +4025,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountMinAggregateInputType = {
     user_withdraw_account_id?: true
-    user_id?: true
+    user_internal_id?: true
     account_type?: true
     account_name?: true
     account_id?: true
@@ -4037,7 +4037,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountMaxAggregateInputType = {
     user_withdraw_account_id?: true
-    user_id?: true
+    user_internal_id?: true
     account_type?: true
     account_name?: true
     account_id?: true
@@ -4049,7 +4049,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountCountAggregateInputType = {
     user_withdraw_account_id?: true
-    user_id?: true
+    user_internal_id?: true
     account_type?: true
     account_name?: true
     account_id?: true
@@ -4148,7 +4148,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountGroupByOutputType = {
     user_withdraw_account_id: string
-    user_id: string
+    user_internal_id: string
     account_type: string
     account_name: string
     account_id: number
@@ -4179,7 +4179,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     user_withdraw_account_id?: boolean
-    user_id?: boolean
+    user_internal_id?: boolean
     account_type?: boolean
     account_name?: boolean
     account_id?: boolean
@@ -4192,7 +4192,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountSelectScalar = {
     user_withdraw_account_id?: boolean
-    user_id?: boolean
+    user_internal_id?: boolean
     account_type?: boolean
     account_name?: boolean
     account_id?: boolean
@@ -4214,7 +4214,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       user_withdraw_account_id: string
-      user_id: string
+      user_internal_id: string
       account_type: string
       account_name: string
       account_id: number
@@ -4618,7 +4618,7 @@ export namespace Prisma {
    */ 
   interface UserWithdrawAccountFieldRefs {
     readonly user_withdraw_account_id: FieldRef<"UserWithdrawAccount", 'String'>
-    readonly user_id: FieldRef<"UserWithdrawAccount", 'String'>
+    readonly user_internal_id: FieldRef<"UserWithdrawAccount", 'String'>
     readonly account_type: FieldRef<"UserWithdrawAccount", 'String'>
     readonly account_name: FieldRef<"UserWithdrawAccount", 'String'>
     readonly account_id: FieldRef<"UserWithdrawAccount", 'Int'>
@@ -4981,7 +4981,7 @@ export namespace Prisma {
 
   export type WalletMinAggregateOutputType = {
     wallet_id: string | null
-    user_id: string | null
+    user_internal_id: string | null
     game_amount: Decimal | null
     main_amount: Decimal | null
     agent_id: number | null
@@ -4993,7 +4993,7 @@ export namespace Prisma {
 
   export type WalletMaxAggregateOutputType = {
     wallet_id: string | null
-    user_id: string | null
+    user_internal_id: string | null
     game_amount: Decimal | null
     main_amount: Decimal | null
     agent_id: number | null
@@ -5005,7 +5005,7 @@ export namespace Prisma {
 
   export type WalletCountAggregateOutputType = {
     wallet_id: number
-    user_id: number
+    user_internal_id: number
     game_amount: number
     main_amount: number
     agent_id: number
@@ -5033,7 +5033,7 @@ export namespace Prisma {
 
   export type WalletMinAggregateInputType = {
     wallet_id?: true
-    user_id?: true
+    user_internal_id?: true
     game_amount?: true
     main_amount?: true
     agent_id?: true
@@ -5045,7 +5045,7 @@ export namespace Prisma {
 
   export type WalletMaxAggregateInputType = {
     wallet_id?: true
-    user_id?: true
+    user_internal_id?: true
     game_amount?: true
     main_amount?: true
     agent_id?: true
@@ -5057,7 +5057,7 @@ export namespace Prisma {
 
   export type WalletCountAggregateInputType = {
     wallet_id?: true
-    user_id?: true
+    user_internal_id?: true
     game_amount?: true
     main_amount?: true
     agent_id?: true
@@ -5156,7 +5156,7 @@ export namespace Prisma {
 
   export type WalletGroupByOutputType = {
     wallet_id: string
-    user_id: string
+    user_internal_id: string
     game_amount: Decimal | null
     main_amount: Decimal | null
     agent_id: number
@@ -5187,7 +5187,7 @@ export namespace Prisma {
 
   export type WalletSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     wallet_id?: boolean
-    user_id?: boolean
+    user_internal_id?: boolean
     game_amount?: boolean
     main_amount?: boolean
     agent_id?: boolean
@@ -5200,7 +5200,7 @@ export namespace Prisma {
 
   export type WalletSelectScalar = {
     wallet_id?: boolean
-    user_id?: boolean
+    user_internal_id?: boolean
     game_amount?: boolean
     main_amount?: boolean
     agent_id?: boolean
@@ -5222,7 +5222,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       wallet_id: string
-      user_id: string
+      user_internal_id: string
       game_amount: Prisma.Decimal | null
       main_amount: Prisma.Decimal | null
       agent_id: number
@@ -5626,7 +5626,7 @@ export namespace Prisma {
    */ 
   interface WalletFieldRefs {
     readonly wallet_id: FieldRef<"Wallet", 'String'>
-    readonly user_id: FieldRef<"Wallet", 'String'>
+    readonly user_internal_id: FieldRef<"Wallet", 'String'>
     readonly game_amount: FieldRef<"Wallet", 'Decimal'>
     readonly main_amount: FieldRef<"Wallet", 'Decimal'>
     readonly agent_id: FieldRef<"Wallet", 'Int'>
@@ -5988,8 +5988,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodMinAggregateOutputType = {
-    payment_id: string | null
-    user_id: string | null
+    payment_internal_id: string | null
+    user_internal_id: string | null
     payment_type: string | null
     payment_account_name: string | null
     payment_account: string | null
@@ -6008,8 +6008,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodMaxAggregateOutputType = {
-    payment_id: string | null
-    user_id: string | null
+    payment_internal_id: string | null
+    user_internal_id: string | null
     payment_type: string | null
     payment_account_name: string | null
     payment_account: string | null
@@ -6028,8 +6028,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodCountAggregateOutputType = {
-    payment_id: number
-    user_id: number
+    payment_internal_id: number
+    user_internal_id: number
     payment_type: number
     payment_account_name: number
     payment_account: number
@@ -6064,8 +6064,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodMinAggregateInputType = {
-    payment_id?: true
-    user_id?: true
+    payment_internal_id?: true
+    user_internal_id?: true
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
@@ -6084,8 +6084,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodMaxAggregateInputType = {
-    payment_id?: true
-    user_id?: true
+    payment_internal_id?: true
+    user_internal_id?: true
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
@@ -6104,8 +6104,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodCountAggregateInputType = {
-    payment_id?: true
-    user_id?: true
+    payment_internal_id?: true
+    user_internal_id?: true
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
@@ -6211,8 +6211,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodGroupByOutputType = {
-    payment_id: string
-    user_id: string
+    payment_internal_id: string
+    user_internal_id: string
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -6250,8 +6250,8 @@ export namespace Prisma {
 
 
   export type PaymentMethodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
-    payment_id?: boolean
-    user_id?: boolean
+    payment_internal_id?: boolean
+    user_internal_id?: boolean
     payment_type?: boolean
     payment_account_name?: boolean
     payment_account?: boolean
@@ -6271,8 +6271,8 @@ export namespace Prisma {
   }, ExtArgs["result"]["paymentMethod"]>
 
   export type PaymentMethodSelectScalar = {
-    payment_id?: boolean
-    user_id?: boolean
+    payment_internal_id?: boolean
+    user_internal_id?: boolean
     payment_type?: boolean
     payment_account_name?: boolean
     payment_account?: boolean
@@ -6301,8 +6301,8 @@ export namespace Prisma {
       user: Prisma.$UsersPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
-      payment_id: string
-      user_id: string
+      payment_internal_id: string
+      user_internal_id: string
       payment_type: string
       payment_account_name: string
       payment_account: string
@@ -6410,8 +6410,8 @@ export namespace Prisma {
      * // Get first 10 PaymentMethods
      * const paymentMethods = await prisma.paymentMethod.findMany({ take: 10 })
      * 
-     * // Only select the `payment_id`
-     * const paymentMethodWithPayment_idOnly = await prisma.paymentMethod.findMany({ select: { payment_id: true } })
+     * // Only select the `payment_internal_id`
+     * const paymentMethodWithPayment_internal_idOnly = await prisma.paymentMethod.findMany({ select: { payment_internal_id: true } })
      * 
     **/
     findMany<T extends PaymentMethodFindManyArgs<ExtArgs>>(
@@ -6713,8 +6713,8 @@ export namespace Prisma {
    * Fields of the PaymentMethod model
    */ 
   interface PaymentMethodFieldRefs {
-    readonly payment_id: FieldRef<"PaymentMethod", 'String'>
-    readonly user_id: FieldRef<"PaymentMethod", 'String'>
+    readonly payment_internal_id: FieldRef<"PaymentMethod", 'String'>
+    readonly user_internal_id: FieldRef<"PaymentMethod", 'String'>
     readonly payment_type: FieldRef<"PaymentMethod", 'String'>
     readonly payment_account_name: FieldRef<"PaymentMethod", 'String'>
     readonly payment_account: FieldRef<"PaymentMethod", 'String'>
@@ -7085,7 +7085,7 @@ export namespace Prisma {
 
   export type WithdrawMethodMinAggregateOutputType = {
     withdraw_id: string | null
-    user_id: string | null
+    user_internal_id: string | null
     withdraw_type: string | null
     receiver_account_name: string | null
     receiver_account: string | null
@@ -7103,7 +7103,7 @@ export namespace Prisma {
 
   export type WithdrawMethodMaxAggregateOutputType = {
     withdraw_id: string | null
-    user_id: string | null
+    user_internal_id: string | null
     withdraw_type: string | null
     receiver_account_name: string | null
     receiver_account: string | null
@@ -7121,7 +7121,7 @@ export namespace Prisma {
 
   export type WithdrawMethodCountAggregateOutputType = {
     withdraw_id: number
-    user_id: number
+    user_internal_id: number
     withdraw_type: number
     receiver_account_name: number
     receiver_account: number
@@ -7155,7 +7155,7 @@ export namespace Prisma {
 
   export type WithdrawMethodMinAggregateInputType = {
     withdraw_id?: true
-    user_id?: true
+    user_internal_id?: true
     withdraw_type?: true
     receiver_account_name?: true
     receiver_account?: true
@@ -7173,7 +7173,7 @@ export namespace Prisma {
 
   export type WithdrawMethodMaxAggregateInputType = {
     withdraw_id?: true
-    user_id?: true
+    user_internal_id?: true
     withdraw_type?: true
     receiver_account_name?: true
     receiver_account?: true
@@ -7191,7 +7191,7 @@ export namespace Prisma {
 
   export type WithdrawMethodCountAggregateInputType = {
     withdraw_id?: true
-    user_id?: true
+    user_internal_id?: true
     withdraw_type?: true
     receiver_account_name?: true
     receiver_account?: true
@@ -7296,7 +7296,7 @@ export namespace Prisma {
 
   export type WithdrawMethodGroupByOutputType = {
     withdraw_id: string
-    user_id: string
+    user_internal_id: string
     withdraw_type: string
     receiver_account_name: string
     receiver_account: string
@@ -7333,7 +7333,7 @@ export namespace Prisma {
 
   export type WithdrawMethodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     withdraw_id?: boolean
-    user_id?: boolean
+    user_internal_id?: boolean
     withdraw_type?: boolean
     receiver_account_name?: boolean
     receiver_account?: boolean
@@ -7352,7 +7352,7 @@ export namespace Prisma {
 
   export type WithdrawMethodSelectScalar = {
     withdraw_id?: boolean
-    user_id?: boolean
+    user_internal_id?: boolean
     withdraw_type?: boolean
     receiver_account_name?: boolean
     receiver_account?: boolean
@@ -7380,7 +7380,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       withdraw_id: string
-      user_id: string
+      user_internal_id: string
       withdraw_type: string
       receiver_account_name: string
       receiver_account: string
@@ -7790,7 +7790,7 @@ export namespace Prisma {
    */ 
   interface WithdrawMethodFieldRefs {
     readonly withdraw_id: FieldRef<"WithdrawMethod", 'String'>
-    readonly user_id: FieldRef<"WithdrawMethod", 'String'>
+    readonly user_internal_id: FieldRef<"WithdrawMethod", 'String'>
     readonly withdraw_type: FieldRef<"WithdrawMethod", 'String'>
     readonly receiver_account_name: FieldRef<"WithdrawMethod", 'String'>
     readonly receiver_account: FieldRef<"WithdrawMethod", 'String'>
@@ -9978,7 +9978,7 @@ export namespace Prisma {
 
   export type TransactionMinAggregateOutputType = {
     transaction_id: string | null
-    user_id: string | null
+    user_internal_id: string | null
     amount: Decimal | null
     transaction_type_id: number | null
     transaction_date: Date | null
@@ -9991,7 +9991,7 @@ export namespace Prisma {
 
   export type TransactionMaxAggregateOutputType = {
     transaction_id: string | null
-    user_id: string | null
+    user_internal_id: string | null
     amount: Decimal | null
     transaction_type_id: number | null
     transaction_date: Date | null
@@ -10004,7 +10004,7 @@ export namespace Prisma {
 
   export type TransactionCountAggregateOutputType = {
     transaction_id: number
-    user_id: number
+    user_internal_id: number
     amount: number
     transaction_type_id: number
     transaction_date: number
@@ -10033,7 +10033,7 @@ export namespace Prisma {
 
   export type TransactionMinAggregateInputType = {
     transaction_id?: true
-    user_id?: true
+    user_internal_id?: true
     amount?: true
     transaction_type_id?: true
     transaction_date?: true
@@ -10046,7 +10046,7 @@ export namespace Prisma {
 
   export type TransactionMaxAggregateInputType = {
     transaction_id?: true
-    user_id?: true
+    user_internal_id?: true
     amount?: true
     transaction_type_id?: true
     transaction_date?: true
@@ -10059,7 +10059,7 @@ export namespace Prisma {
 
   export type TransactionCountAggregateInputType = {
     transaction_id?: true
-    user_id?: true
+    user_internal_id?: true
     amount?: true
     transaction_type_id?: true
     transaction_date?: true
@@ -10159,7 +10159,7 @@ export namespace Prisma {
 
   export type TransactionGroupByOutputType = {
     transaction_id: string
-    user_id: string
+    user_internal_id: string
     amount: Decimal
     transaction_type_id: number
     transaction_date: Date
@@ -10191,7 +10191,7 @@ export namespace Prisma {
 
   export type TransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     transaction_id?: boolean
-    user_id?: boolean
+    user_internal_id?: boolean
     amount?: boolean
     transaction_type_id?: boolean
     transaction_date?: boolean
@@ -10206,7 +10206,7 @@ export namespace Prisma {
 
   export type TransactionSelectScalar = {
     transaction_id?: boolean
-    user_id?: boolean
+    user_internal_id?: boolean
     amount?: boolean
     transaction_type_id?: boolean
     transaction_date?: boolean
@@ -10231,7 +10231,7 @@ export namespace Prisma {
     }
     scalars: $Extensions.GetPayloadResult<{
       transaction_id: string
-      user_id: string
+      user_internal_id: string
       amount: Prisma.Decimal
       transaction_type_id: number
       transaction_date: Date
@@ -10638,7 +10638,7 @@ export namespace Prisma {
    */ 
   interface TransactionFieldRefs {
     readonly transaction_id: FieldRef<"Transaction", 'String'>
-    readonly user_id: FieldRef<"Transaction", 'String'>
+    readonly user_internal_id: FieldRef<"Transaction", 'String'>
     readonly amount: FieldRef<"Transaction", 'Decimal'>
     readonly transaction_type_id: FieldRef<"Transaction", 'Int'>
     readonly transaction_date: FieldRef<"Transaction", 'DateTime'>
@@ -12802,7 +12802,7 @@ export namespace Prisma {
 
 
   export const UsersScalarFieldEnum: {
-    user_id: 'user_id',
+    user_internal_id: 'user_internal_id',
     phone_number: 'phone_number',
     user_name: 'user_name',
     password: 'password',
@@ -12830,7 +12830,7 @@ export namespace Prisma {
 
   export const UserWithdrawAccountScalarFieldEnum: {
     user_withdraw_account_id: 'user_withdraw_account_id',
-    user_id: 'user_id',
+    user_internal_id: 'user_internal_id',
     account_type: 'account_type',
     account_name: 'account_name',
     account_id: 'account_id',
@@ -12845,7 +12845,7 @@ export namespace Prisma {
 
   export const WalletScalarFieldEnum: {
     wallet_id: 'wallet_id',
-    user_id: 'user_id',
+    user_internal_id: 'user_internal_id',
     game_amount: 'game_amount',
     main_amount: 'main_amount',
     agent_id: 'agent_id',
@@ -12859,8 +12859,8 @@ export namespace Prisma {
 
 
   export const PaymentMethodScalarFieldEnum: {
-    payment_id: 'payment_id',
-    user_id: 'user_id',
+    payment_internal_id: 'payment_internal_id',
+    user_internal_id: 'user_internal_id',
     payment_type: 'payment_type',
     payment_account_name: 'payment_account_name',
     payment_account: 'payment_account',
@@ -12883,7 +12883,7 @@ export namespace Prisma {
 
   export const WithdrawMethodScalarFieldEnum: {
     withdraw_id: 'withdraw_id',
-    user_id: 'user_id',
+    user_internal_id: 'user_internal_id',
     withdraw_type: 'withdraw_type',
     receiver_account_name: 'receiver_account_name',
     receiver_account: 'receiver_account',
@@ -12927,7 +12927,7 @@ export namespace Prisma {
 
   export const TransactionScalarFieldEnum: {
     transaction_id: 'transaction_id',
-    user_id: 'user_id',
+    user_internal_id: 'user_internal_id',
     amount: 'amount',
     transaction_type_id: 'transaction_type_id',
     transaction_date: 'transaction_date',
@@ -13063,7 +13063,7 @@ export namespace Prisma {
     AND?: UsersWhereInput | UsersWhereInput[]
     OR?: UsersWhereInput[]
     NOT?: UsersWhereInput | UsersWhereInput[]
-    user_id?: StringFilter<"Users"> | string
+    user_internal_id?: StringFilter<"Users"> | string
     phone_number?: StringFilter<"Users"> | string
     user_name?: StringNullableFilter<"Users"> | string | null
     password?: StringNullableFilter<"Users"> | string | null
@@ -13085,7 +13085,7 @@ export namespace Prisma {
   }
 
   export type UsersOrderByWithRelationInput = {
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     phone_number?: SortOrder
     user_name?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
@@ -13107,7 +13107,7 @@ export namespace Prisma {
   }
 
   export type UsersWhereUniqueInput = Prisma.AtLeast<{
-    user_id?: string
+    user_internal_id?: string
     phone_number?: string
     AND?: UsersWhereInput | UsersWhereInput[]
     OR?: UsersWhereInput[]
@@ -13129,10 +13129,10 @@ export namespace Prisma {
     payment?: PaymentMethodListRelationFilter
     withdraw?: WithdrawMethodListRelationFilter
     transation?: TransactionListRelationFilter
-  }, "user_id" | "phone_number">
+  }, "user_internal_id" | "phone_number">
 
   export type UsersOrderByWithAggregationInput = {
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     phone_number?: SortOrder
     user_name?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
@@ -13156,7 +13156,7 @@ export namespace Prisma {
     AND?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[]
     OR?: UsersScalarWhereWithAggregatesInput[]
     NOT?: UsersScalarWhereWithAggregatesInput | UsersScalarWhereWithAggregatesInput[]
-    user_id?: StringWithAggregatesFilter<"Users"> | string
+    user_internal_id?: StringWithAggregatesFilter<"Users"> | string
     phone_number?: StringWithAggregatesFilter<"Users"> | string
     user_name?: StringNullableWithAggregatesFilter<"Users"> | string | null
     password?: StringNullableWithAggregatesFilter<"Users"> | string | null
@@ -13218,7 +13218,7 @@ export namespace Prisma {
     OR?: UserWithdrawAccountWhereInput[]
     NOT?: UserWithdrawAccountWhereInput | UserWithdrawAccountWhereInput[]
     user_withdraw_account_id?: StringFilter<"UserWithdrawAccount"> | string
-    user_id?: StringFilter<"UserWithdrawAccount"> | string
+    user_internal_id?: StringFilter<"UserWithdrawAccount"> | string
     account_type?: StringFilter<"UserWithdrawAccount"> | string
     account_name?: StringFilter<"UserWithdrawAccount"> | string
     account_id?: IntFilter<"UserWithdrawAccount"> | number
@@ -13231,7 +13231,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountOrderByWithRelationInput = {
     user_withdraw_account_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     account_type?: SortOrder
     account_name?: SortOrder
     account_id?: SortOrder
@@ -13248,7 +13248,7 @@ export namespace Prisma {
     AND?: UserWithdrawAccountWhereInput | UserWithdrawAccountWhereInput[]
     OR?: UserWithdrawAccountWhereInput[]
     NOT?: UserWithdrawAccountWhereInput | UserWithdrawAccountWhereInput[]
-    user_id?: StringFilter<"UserWithdrawAccount"> | string
+    user_internal_id?: StringFilter<"UserWithdrawAccount"> | string
     account_type?: StringFilter<"UserWithdrawAccount"> | string
     account_name?: StringFilter<"UserWithdrawAccount"> | string
     delete_status?: IntFilter<"UserWithdrawAccount"> | number
@@ -13260,7 +13260,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountOrderByWithAggregationInput = {
     user_withdraw_account_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     account_type?: SortOrder
     account_name?: SortOrder
     account_id?: SortOrder
@@ -13280,7 +13280,7 @@ export namespace Prisma {
     OR?: UserWithdrawAccountScalarWhereWithAggregatesInput[]
     NOT?: UserWithdrawAccountScalarWhereWithAggregatesInput | UserWithdrawAccountScalarWhereWithAggregatesInput[]
     user_withdraw_account_id?: StringWithAggregatesFilter<"UserWithdrawAccount"> | string
-    user_id?: StringWithAggregatesFilter<"UserWithdrawAccount"> | string
+    user_internal_id?: StringWithAggregatesFilter<"UserWithdrawAccount"> | string
     account_type?: StringWithAggregatesFilter<"UserWithdrawAccount"> | string
     account_name?: StringWithAggregatesFilter<"UserWithdrawAccount"> | string
     account_id?: IntWithAggregatesFilter<"UserWithdrawAccount"> | number
@@ -13295,7 +13295,7 @@ export namespace Prisma {
     OR?: WalletWhereInput[]
     NOT?: WalletWhereInput | WalletWhereInput[]
     wallet_id?: StringFilter<"Wallet"> | string
-    user_id?: StringFilter<"Wallet"> | string
+    user_internal_id?: StringFilter<"Wallet"> | string
     game_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     main_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     agent_id?: IntFilter<"Wallet"> | number
@@ -13308,7 +13308,7 @@ export namespace Prisma {
 
   export type WalletOrderByWithRelationInput = {
     wallet_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     game_amount?: SortOrderInput | SortOrder
     main_amount?: SortOrderInput | SortOrder
     agent_id?: SortOrder
@@ -13321,7 +13321,7 @@ export namespace Prisma {
 
   export type WalletWhereUniqueInput = Prisma.AtLeast<{
     wallet_id?: string
-    user_id?: string
+    user_internal_id?: string
     AND?: WalletWhereInput | WalletWhereInput[]
     OR?: WalletWhereInput[]
     NOT?: WalletWhereInput | WalletWhereInput[]
@@ -13333,11 +13333,11 @@ export namespace Prisma {
     updated_date?: DateTimeFilter<"Wallet"> | Date | string
     deleted_date?: DateTimeNullableFilter<"Wallet"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
-  }, "wallet_id" | "user_id">
+  }, "wallet_id" | "user_internal_id">
 
   export type WalletOrderByWithAggregationInput = {
     wallet_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     game_amount?: SortOrderInput | SortOrder
     main_amount?: SortOrderInput | SortOrder
     agent_id?: SortOrder
@@ -13357,7 +13357,7 @@ export namespace Prisma {
     OR?: WalletScalarWhereWithAggregatesInput[]
     NOT?: WalletScalarWhereWithAggregatesInput | WalletScalarWhereWithAggregatesInput[]
     wallet_id?: StringWithAggregatesFilter<"Wallet"> | string
-    user_id?: StringWithAggregatesFilter<"Wallet"> | string
+    user_internal_id?: StringWithAggregatesFilter<"Wallet"> | string
     game_amount?: DecimalNullableWithAggregatesFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     main_amount?: DecimalNullableWithAggregatesFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     agent_id?: IntWithAggregatesFilter<"Wallet"> | number
@@ -13371,8 +13371,8 @@ export namespace Prisma {
     AND?: PaymentMethodWhereInput | PaymentMethodWhereInput[]
     OR?: PaymentMethodWhereInput[]
     NOT?: PaymentMethodWhereInput | PaymentMethodWhereInput[]
-    payment_id?: StringFilter<"PaymentMethod"> | string
-    user_id?: StringFilter<"PaymentMethod"> | string
+    payment_internal_id?: StringFilter<"PaymentMethod"> | string
+    user_internal_id?: StringFilter<"PaymentMethod"> | string
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
@@ -13392,8 +13392,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodOrderByWithRelationInput = {
-    payment_id?: SortOrder
-    user_id?: SortOrder
+    payment_internal_id?: SortOrder
+    user_internal_id?: SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -13413,11 +13413,11 @@ export namespace Prisma {
   }
 
   export type PaymentMethodWhereUniqueInput = Prisma.AtLeast<{
-    payment_id?: string
+    payment_internal_id?: string
     AND?: PaymentMethodWhereInput | PaymentMethodWhereInput[]
     OR?: PaymentMethodWhereInput[]
     NOT?: PaymentMethodWhereInput | PaymentMethodWhereInput[]
-    user_id?: StringFilter<"PaymentMethod"> | string
+    user_internal_id?: StringFilter<"PaymentMethod"> | string
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
@@ -13434,11 +13434,11 @@ export namespace Prisma {
     updated_date?: DateTimeFilter<"PaymentMethod"> | Date | string
     deleted_date?: DateTimeNullableFilter<"PaymentMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
-  }, "payment_id">
+  }, "payment_internal_id">
 
   export type PaymentMethodOrderByWithAggregationInput = {
-    payment_id?: SortOrder
-    user_id?: SortOrder
+    payment_internal_id?: SortOrder
+    user_internal_id?: SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -13465,8 +13465,8 @@ export namespace Prisma {
     AND?: PaymentMethodScalarWhereWithAggregatesInput | PaymentMethodScalarWhereWithAggregatesInput[]
     OR?: PaymentMethodScalarWhereWithAggregatesInput[]
     NOT?: PaymentMethodScalarWhereWithAggregatesInput | PaymentMethodScalarWhereWithAggregatesInput[]
-    payment_id?: StringWithAggregatesFilter<"PaymentMethod"> | string
-    user_id?: StringWithAggregatesFilter<"PaymentMethod"> | string
+    payment_internal_id?: StringWithAggregatesFilter<"PaymentMethod"> | string
+    user_internal_id?: StringWithAggregatesFilter<"PaymentMethod"> | string
     payment_type?: StringWithAggregatesFilter<"PaymentMethod"> | string
     payment_account_name?: StringWithAggregatesFilter<"PaymentMethod"> | string
     payment_account?: StringWithAggregatesFilter<"PaymentMethod"> | string
@@ -13489,7 +13489,7 @@ export namespace Prisma {
     OR?: WithdrawMethodWhereInput[]
     NOT?: WithdrawMethodWhereInput | WithdrawMethodWhereInput[]
     withdraw_id?: StringFilter<"WithdrawMethod"> | string
-    user_id?: StringFilter<"WithdrawMethod"> | string
+    user_internal_id?: StringFilter<"WithdrawMethod"> | string
     withdraw_type?: StringFilter<"WithdrawMethod"> | string
     receiver_account_name?: StringFilter<"WithdrawMethod"> | string
     receiver_account?: StringFilter<"WithdrawMethod"> | string
@@ -13508,7 +13508,7 @@ export namespace Prisma {
 
   export type WithdrawMethodOrderByWithRelationInput = {
     withdraw_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -13530,7 +13530,7 @@ export namespace Prisma {
     AND?: WithdrawMethodWhereInput | WithdrawMethodWhereInput[]
     OR?: WithdrawMethodWhereInput[]
     NOT?: WithdrawMethodWhereInput | WithdrawMethodWhereInput[]
-    user_id?: StringFilter<"WithdrawMethod"> | string
+    user_internal_id?: StringFilter<"WithdrawMethod"> | string
     withdraw_type?: StringFilter<"WithdrawMethod"> | string
     receiver_account_name?: StringFilter<"WithdrawMethod"> | string
     receiver_account?: StringFilter<"WithdrawMethod"> | string
@@ -13549,7 +13549,7 @@ export namespace Prisma {
 
   export type WithdrawMethodOrderByWithAggregationInput = {
     withdraw_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -13575,7 +13575,7 @@ export namespace Prisma {
     OR?: WithdrawMethodScalarWhereWithAggregatesInput[]
     NOT?: WithdrawMethodScalarWhereWithAggregatesInput | WithdrawMethodScalarWhereWithAggregatesInput[]
     withdraw_id?: StringWithAggregatesFilter<"WithdrawMethod"> | string
-    user_id?: StringWithAggregatesFilter<"WithdrawMethod"> | string
+    user_internal_id?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     withdraw_type?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     receiver_account_name?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     receiver_account?: StringWithAggregatesFilter<"WithdrawMethod"> | string
@@ -13709,7 +13709,7 @@ export namespace Prisma {
     OR?: TransactionWhereInput[]
     NOT?: TransactionWhereInput | TransactionWhereInput[]
     transaction_id?: StringFilter<"Transaction"> | string
-    user_id?: StringFilter<"Transaction"> | string
+    user_internal_id?: StringFilter<"Transaction"> | string
     amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFilter<"Transaction"> | number
     transaction_date?: DateTimeFilter<"Transaction"> | Date | string
@@ -13724,7 +13724,7 @@ export namespace Prisma {
 
   export type TransactionOrderByWithRelationInput = {
     transaction_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
@@ -13742,7 +13742,7 @@ export namespace Prisma {
     AND?: TransactionWhereInput | TransactionWhereInput[]
     OR?: TransactionWhereInput[]
     NOT?: TransactionWhereInput | TransactionWhereInput[]
-    user_id?: StringFilter<"Transaction"> | string
+    user_internal_id?: StringFilter<"Transaction"> | string
     amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFilter<"Transaction"> | number
     transaction_date?: DateTimeFilter<"Transaction"> | Date | string
@@ -13757,7 +13757,7 @@ export namespace Prisma {
 
   export type TransactionOrderByWithAggregationInput = {
     transaction_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
@@ -13778,7 +13778,7 @@ export namespace Prisma {
     OR?: TransactionScalarWhereWithAggregatesInput[]
     NOT?: TransactionScalarWhereWithAggregatesInput | TransactionScalarWhereWithAggregatesInput[]
     transaction_id?: StringWithAggregatesFilter<"Transaction"> | string
-    user_id?: StringWithAggregatesFilter<"Transaction"> | string
+    user_internal_id?: StringWithAggregatesFilter<"Transaction"> | string
     amount?: DecimalWithAggregatesFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntWithAggregatesFilter<"Transaction"> | number
     transaction_date?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
@@ -13871,7 +13871,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -13892,7 +13892,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedCreateInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -13913,7 +13913,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13934,7 +13934,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13955,7 +13955,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateManyInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -13971,7 +13971,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateManyMutationInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -13986,7 +13986,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateManyInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -14054,7 +14054,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountUncheckedCreateInput = {
     user_withdraw_account_id: string
-    user_id: string
+    user_internal_id: string
     account_type: string
     account_name: string
     account_id: number
@@ -14078,7 +14078,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountUncheckedUpdateInput = {
     user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     account_type?: StringFieldUpdateOperationsInput | string
     account_name?: StringFieldUpdateOperationsInput | string
     account_id?: IntFieldUpdateOperationsInput | number
@@ -14090,7 +14090,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountCreateManyInput = {
     user_withdraw_account_id: string
-    user_id: string
+    user_internal_id: string
     account_type: string
     account_name: string
     account_id: number
@@ -14113,7 +14113,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountUncheckedUpdateManyInput = {
     user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     account_type?: StringFieldUpdateOperationsInput | string
     account_name?: StringFieldUpdateOperationsInput | string
     account_id?: IntFieldUpdateOperationsInput | number
@@ -14137,7 +14137,7 @@ export namespace Prisma {
 
   export type WalletUncheckedCreateInput = {
     wallet_id: string
-    user_id: string
+    user_internal_id: string
     game_amount?: Decimal | DecimalJsLike | number | string | null
     main_amount?: Decimal | DecimalJsLike | number | string | null
     agent_id: number
@@ -14161,7 +14161,7 @@ export namespace Prisma {
 
   export type WalletUncheckedUpdateInput = {
     wallet_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     agent_id?: IntFieldUpdateOperationsInput | number
@@ -14173,7 +14173,7 @@ export namespace Prisma {
 
   export type WalletCreateManyInput = {
     wallet_id: string
-    user_id: string
+    user_internal_id: string
     game_amount?: Decimal | DecimalJsLike | number | string | null
     main_amount?: Decimal | DecimalJsLike | number | string | null
     agent_id: number
@@ -14196,7 +14196,7 @@ export namespace Prisma {
 
   export type WalletUncheckedUpdateManyInput = {
     wallet_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     agent_id?: IntFieldUpdateOperationsInput | number
@@ -14207,7 +14207,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodCreateInput = {
-    payment_id: string
+    payment_internal_id: string
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -14227,8 +14227,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUncheckedCreateInput = {
-    payment_id: string
-    user_id: string
+    payment_internal_id: string
+    user_internal_id: string
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -14247,7 +14247,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUpdateInput = {
-    payment_id?: StringFieldUpdateOperationsInput | string
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -14267,8 +14267,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUncheckedUpdateInput = {
-    payment_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -14287,8 +14287,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodCreateManyInput = {
-    payment_id: string
-    user_id: string
+    payment_internal_id: string
+    user_internal_id: string
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -14307,7 +14307,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUpdateManyMutationInput = {
-    payment_id?: StringFieldUpdateOperationsInput | string
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -14326,8 +14326,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUncheckedUpdateManyInput = {
-    payment_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -14365,7 +14365,7 @@ export namespace Prisma {
 
   export type WithdrawMethodUncheckedCreateInput = {
     withdraw_id: string
-    user_id: string
+    user_internal_id: string
     withdraw_type: string
     receiver_account_name: string
     receiver_account: string
@@ -14401,7 +14401,7 @@ export namespace Prisma {
 
   export type WithdrawMethodUncheckedUpdateInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     withdraw_type?: StringFieldUpdateOperationsInput | string
     receiver_account_name?: StringFieldUpdateOperationsInput | string
     receiver_account?: StringFieldUpdateOperationsInput | string
@@ -14419,7 +14419,7 @@ export namespace Prisma {
 
   export type WithdrawMethodCreateManyInput = {
     withdraw_id: string
-    user_id: string
+    user_internal_id: string
     withdraw_type: string
     receiver_account_name: string
     receiver_account: string
@@ -14454,7 +14454,7 @@ export namespace Prisma {
 
   export type WithdrawMethodUncheckedUpdateManyInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     withdraw_type?: StringFieldUpdateOperationsInput | string
     receiver_account_name?: StringFieldUpdateOperationsInput | string
     receiver_account?: StringFieldUpdateOperationsInput | string
@@ -14604,7 +14604,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedCreateInput = {
     transaction_id: string
-    user_id: string
+    user_internal_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_type_id: number
     transaction_date: Date | string
@@ -14630,7 +14630,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedUpdateInput = {
     transaction_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFieldUpdateOperationsInput | number
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14643,7 +14643,7 @@ export namespace Prisma {
 
   export type TransactionCreateManyInput = {
     transaction_id: string
-    user_id: string
+    user_internal_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_type_id: number
     transaction_date: Date | string
@@ -14667,7 +14667,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedUpdateManyInput = {
     transaction_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFieldUpdateOperationsInput | number
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -14887,7 +14887,7 @@ export namespace Prisma {
   }
 
   export type UsersCountOrderByAggregateInput = {
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     phone_number?: SortOrder
     user_name?: SortOrder
     password?: SortOrder
@@ -14910,7 +14910,7 @@ export namespace Prisma {
   }
 
   export type UsersMaxOrderByAggregateInput = {
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     phone_number?: SortOrder
     user_name?: SortOrder
     password?: SortOrder
@@ -14926,7 +14926,7 @@ export namespace Prisma {
   }
 
   export type UsersMinOrderByAggregateInput = {
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     phone_number?: SortOrder
     user_name?: SortOrder
     password?: SortOrder
@@ -15084,7 +15084,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountCountOrderByAggregateInput = {
     user_withdraw_account_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     account_type?: SortOrder
     account_name?: SortOrder
     account_id?: SortOrder
@@ -15101,7 +15101,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountMaxOrderByAggregateInput = {
     user_withdraw_account_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     account_type?: SortOrder
     account_name?: SortOrder
     account_id?: SortOrder
@@ -15113,7 +15113,7 @@ export namespace Prisma {
 
   export type UserWithdrawAccountMinOrderByAggregateInput = {
     user_withdraw_account_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     account_type?: SortOrder
     account_name?: SortOrder
     account_id?: SortOrder
@@ -15141,7 +15141,7 @@ export namespace Prisma {
 
   export type WalletCountOrderByAggregateInput = {
     wallet_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     game_amount?: SortOrder
     main_amount?: SortOrder
     agent_id?: SortOrder
@@ -15160,7 +15160,7 @@ export namespace Prisma {
 
   export type WalletMaxOrderByAggregateInput = {
     wallet_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     game_amount?: SortOrder
     main_amount?: SortOrder
     agent_id?: SortOrder
@@ -15172,7 +15172,7 @@ export namespace Prisma {
 
   export type WalletMinOrderByAggregateInput = {
     wallet_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     game_amount?: SortOrder
     main_amount?: SortOrder
     agent_id?: SortOrder
@@ -15217,8 +15217,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodCountOrderByAggregateInput = {
-    payment_id?: SortOrder
-    user_id?: SortOrder
+    payment_internal_id?: SortOrder
+    user_internal_id?: SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -15244,8 +15244,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodMaxOrderByAggregateInput = {
-    payment_id?: SortOrder
-    user_id?: SortOrder
+    payment_internal_id?: SortOrder
+    user_internal_id?: SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -15264,8 +15264,8 @@ export namespace Prisma {
   }
 
   export type PaymentMethodMinOrderByAggregateInput = {
-    payment_id?: SortOrder
-    user_id?: SortOrder
+    payment_internal_id?: SortOrder
+    user_internal_id?: SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -15308,7 +15308,7 @@ export namespace Prisma {
 
   export type WithdrawMethodCountOrderByAggregateInput = {
     withdraw_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -15333,7 +15333,7 @@ export namespace Prisma {
 
   export type WithdrawMethodMaxOrderByAggregateInput = {
     withdraw_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -15351,7 +15351,7 @@ export namespace Prisma {
 
   export type WithdrawMethodMinOrderByAggregateInput = {
     withdraw_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -15448,7 +15448,7 @@ export namespace Prisma {
 
   export type TransactionCountOrderByAggregateInput = {
     transaction_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
@@ -15468,7 +15468,7 @@ export namespace Prisma {
 
   export type TransactionMaxOrderByAggregateInput = {
     transaction_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
@@ -15481,7 +15481,7 @@ export namespace Prisma {
 
   export type TransactionMinOrderByAggregateInput = {
     transaction_id?: SortOrder
-    user_id?: SortOrder
+    user_internal_id?: SortOrder
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
@@ -16307,7 +16307,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodCreateWithoutUserInput = {
-    payment_id: string
+    payment_internal_id: string
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -16326,7 +16326,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUncheckedCreateWithoutUserInput = {
-    payment_id: string
+    payment_internal_id: string
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -16474,7 +16474,7 @@ export namespace Prisma {
     OR?: UserWithdrawAccountScalarWhereInput[]
     NOT?: UserWithdrawAccountScalarWhereInput | UserWithdrawAccountScalarWhereInput[]
     user_withdraw_account_id?: StringFilter<"UserWithdrawAccount"> | string
-    user_id?: StringFilter<"UserWithdrawAccount"> | string
+    user_internal_id?: StringFilter<"UserWithdrawAccount"> | string
     account_type?: StringFilter<"UserWithdrawAccount"> | string
     account_name?: StringFilter<"UserWithdrawAccount"> | string
     account_id?: IntFilter<"UserWithdrawAccount"> | number
@@ -16505,7 +16505,7 @@ export namespace Prisma {
     OR?: WalletScalarWhereInput[]
     NOT?: WalletScalarWhereInput | WalletScalarWhereInput[]
     wallet_id?: StringFilter<"Wallet"> | string
-    user_id?: StringFilter<"Wallet"> | string
+    user_internal_id?: StringFilter<"Wallet"> | string
     game_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     main_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     agent_id?: IntFilter<"Wallet"> | number
@@ -16535,8 +16535,8 @@ export namespace Prisma {
     AND?: PaymentMethodScalarWhereInput | PaymentMethodScalarWhereInput[]
     OR?: PaymentMethodScalarWhereInput[]
     NOT?: PaymentMethodScalarWhereInput | PaymentMethodScalarWhereInput[]
-    payment_id?: StringFilter<"PaymentMethod"> | string
-    user_id?: StringFilter<"PaymentMethod"> | string
+    payment_internal_id?: StringFilter<"PaymentMethod"> | string
+    user_internal_id?: StringFilter<"PaymentMethod"> | string
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
@@ -16575,7 +16575,7 @@ export namespace Prisma {
     OR?: WithdrawMethodScalarWhereInput[]
     NOT?: WithdrawMethodScalarWhereInput | WithdrawMethodScalarWhereInput[]
     withdraw_id?: StringFilter<"WithdrawMethod"> | string
-    user_id?: StringFilter<"WithdrawMethod"> | string
+    user_internal_id?: StringFilter<"WithdrawMethod"> | string
     withdraw_type?: StringFilter<"WithdrawMethod"> | string
     receiver_account_name?: StringFilter<"WithdrawMethod"> | string
     receiver_account?: StringFilter<"WithdrawMethod"> | string
@@ -16612,7 +16612,7 @@ export namespace Prisma {
     OR?: TransactionScalarWhereInput[]
     NOT?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
     transaction_id?: StringFilter<"Transaction"> | string
-    user_id?: StringFilter<"Transaction"> | string
+    user_internal_id?: StringFilter<"Transaction"> | string
     amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFilter<"Transaction"> | number
     transaction_date?: DateTimeFilter<"Transaction"> | Date | string
@@ -16624,7 +16624,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateWithoutUser_roleInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -16644,7 +16644,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedCreateWithoutUser_roleInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -16693,7 +16693,7 @@ export namespace Prisma {
     AND?: UsersScalarWhereInput | UsersScalarWhereInput[]
     OR?: UsersScalarWhereInput[]
     NOT?: UsersScalarWhereInput | UsersScalarWhereInput[]
-    user_id?: StringFilter<"Users"> | string
+    user_internal_id?: StringFilter<"Users"> | string
     phone_number?: StringFilter<"Users"> | string
     user_name?: StringNullableFilter<"Users"> | string | null
     password?: StringNullableFilter<"Users"> | string | null
@@ -16709,7 +16709,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateWithoutWithdrawaccountInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -16729,7 +16729,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedCreateWithoutWithdrawaccountInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -16765,7 +16765,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateWithoutWithdrawaccountInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16785,7 +16785,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateWithoutWithdrawaccountInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16805,7 +16805,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateWithoutWalletInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -16825,7 +16825,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedCreateWithoutWalletInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -16861,7 +16861,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateWithoutWalletInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16881,7 +16881,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateWithoutWalletInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16901,7 +16901,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateWithoutPaymentInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -16921,7 +16921,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedCreateWithoutPaymentInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -16957,7 +16957,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateWithoutPaymentInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16977,7 +16977,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateWithoutPaymentInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -16997,7 +16997,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateWithoutWithdrawInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -17017,7 +17017,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedCreateWithoutWithdrawInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -17053,7 +17053,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateWithoutWithdrawInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17073,7 +17073,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateWithoutWithdrawInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17093,7 +17093,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateWithoutTransationInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -17113,7 +17113,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedCreateWithoutTransationInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -17164,7 +17164,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateWithoutTransationInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17184,7 +17184,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateWithoutTransationInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17238,7 +17238,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedCreateWithoutTransaction_typeInput = {
     transaction_id: string
-    user_id: string
+    user_internal_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_date: Date | string
     agent_id: number
@@ -17297,7 +17297,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodCreateManyUserInput = {
-    payment_id: string
+    payment_internal_id: string
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -17411,7 +17411,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUpdateWithoutUserInput = {
-    payment_id?: StringFieldUpdateOperationsInput | string
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -17430,7 +17430,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUncheckedUpdateWithoutUserInput = {
-    payment_id?: StringFieldUpdateOperationsInput | string
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -17449,7 +17449,7 @@ export namespace Prisma {
   }
 
   export type PaymentMethodUncheckedUpdateManyWithoutUserInput = {
-    payment_id?: StringFieldUpdateOperationsInput | string
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -17555,7 +17555,7 @@ export namespace Prisma {
   }
 
   export type UsersCreateManyUser_roleInput = {
-    user_id: string
+    user_internal_id: string
     phone_number: string
     user_name?: string | null
     password?: string | null
@@ -17570,7 +17570,7 @@ export namespace Prisma {
   }
 
   export type UsersUpdateWithoutUser_roleInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17590,7 +17590,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateWithoutUser_roleInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17610,7 +17610,7 @@ export namespace Prisma {
   }
 
   export type UsersUncheckedUpdateManyWithoutUser_roleInput = {
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     phone_number?: StringFieldUpdateOperationsInput | string
     user_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17626,7 +17626,7 @@ export namespace Prisma {
 
   export type TransactionCreateManyTransaction_typeInput = {
     transaction_id: string
-    user_id: string
+    user_internal_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_date: Date | string
     agent_id: number
@@ -17650,7 +17650,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedUpdateWithoutTransaction_typeInput = {
     transaction_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
     agent_id?: IntFieldUpdateOperationsInput | number
@@ -17662,7 +17662,7 @@ export namespace Prisma {
 
   export type TransactionUncheckedUpdateManyWithoutTransaction_typeInput = {
     transaction_id?: StringFieldUpdateOperationsInput | string
-    user_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
     agent_id?: IntFieldUpdateOperationsInput | number

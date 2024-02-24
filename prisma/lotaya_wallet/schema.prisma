@@ -12,7 +12,7 @@ datasource db {
 }
 
 model Users{
-  user_id         String    @id         @db.VarChar(30)
+  user_internal_id  String    @id      @db.VarChar(30)
   phone_number    String @unique     @db.VarChar(13)
   user_name       String?            @db.VarChar(30)
   password        String?            
@@ -45,8 +45,8 @@ model Roles{
 
 model UserWithdrawAccount{
   user_withdraw_account_id      String     @id          @db.VarChar(30)
-  user_id                       String 
-  user                          Users              @relation(fields:[user_id],references:[user_id])        
+  user_internal_id                       String 
+  user                          Users              @relation(fields:[user_internal_id],references:[user_internal_id])        
   account_type                  String            
   account_name                  String 
   account_id                    Int   @unique 
@@ -60,8 +60,8 @@ model UserWithdrawAccount{
 
 model Wallet{
   wallet_id      String     @id          @db.VarChar(30)
-  user_id        String @unique 
-  user           Users              @relation(fields:[user_id],references:[user_id])       
+  user_internal_id        String @unique 
+  user                          Users              @relation(fields:[user_internal_id],references:[user_internal_id])       
   game_amount    Decimal?            
   main_amount    Decimal?
   agent_id       Int 
@@ -75,9 +75,9 @@ model Wallet{
 
 
 model PaymentMethod{
-  payment_id            String    @id         @db.VarChar(30)
-  user_id               String 
-  user                  Users              @relation(fields:[user_id],references:[user_id])       
+  payment_internal_id            String    @id         @db.VarChar(30)
+  user_internal_id               String 
+  user                          Users              @relation(fields:[user_internal_id],references:[user_internal_id])        
   payment_type          String 
   payment_account_name  String
   payment_account       String
@@ -99,8 +99,8 @@ model PaymentMethod{
 
 model WithdrawMethod{
   withdraw_id            String     @id          @db.VarChar(30)
-  user_id                String
-  user                   Users              @relation(fields:[user_id],references:[user_id])        
+  user_internal_id                String
+  user                          Users              @relation(fields:[user_internal_id],references:[user_internal_id])         
   withdraw_type          String 
   receiver_account_name  String            
   receiver_account       String
@@ -120,8 +120,8 @@ model WithdrawMethod{
 
 model Admin{
   admin_internal_id         String     @id         @db.VarChar(30)
-  admin_id                  String   @unique     @db.VarChar(13)
-  admin_name                String?            @db.VarChar(30)
+  admin_id                  String     @unique     @db.VarChar(13)
+  admin_name                String?                @db.VarChar(30)
   password                  String?                  
   //role_id                   Int    
   //admin_role                AdminRoles         @relation(fields:[role_id],references:[role_id])             
@@ -144,8 +144,8 @@ model AdminRoles{
 
 model  Transaction{
   transaction_id         String    @id         @db.VarChar(30)
-  user_id                String
-  user                   Users              @relation(fields:[user_id],references:[user_id])
+  user_internal_id                String
+  user                          Users              @relation(fields:[user_internal_id],references:[user_internal_id])  
   amount                 Decimal
   transaction_type_id    Int
   transaction_type       TransactionType   @relation(fields:[transaction_type_id],references:[transaction_type_id]) 

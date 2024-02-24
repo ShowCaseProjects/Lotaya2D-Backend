@@ -19,7 +19,7 @@ export class PaymentmethodController {
     }
 
     // @UseGuards(AuthGuards)
-    @Post('/add/:userId')
+    @Post('/add/:phoneNumber')
     @HttpCode(201)
     @ApiOperation({
         summary: 'Payment API',

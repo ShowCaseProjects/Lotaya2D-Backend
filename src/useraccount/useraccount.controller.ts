@@ -24,8 +24,8 @@ export class UseraccountController {
         description: 'To send Otp Code to be authenticated user.',
         type: RegisterUserPhoneNumberConfirmResBodyDto
     })
-    registerWithPhoneNumber(@Param() registerReqPath: RegisterUserPhoneNumberConfirmReqPathDto): Promise<RegisterUserPhoneNumberConfirmResBodyDto> {
-        return this.userAccountService.registerUserAccountWithPhoneNumber(registerReqPath);
+    async registerWithPhoneNumber(@Param() registerReqPath: RegisterUserPhoneNumberConfirmReqPathDto): Promise<RegisterUserPhoneNumberConfirmResBodyDto> {
+        return await this.userAccountService.registerUserAccountWithPhoneNumber(registerReqPath);
     }
 
     @Post('register/otpCodeConfirm/:phoneNumber')
