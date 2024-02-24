@@ -228,7 +228,7 @@ export class PaymentmethodService {
                                 : Number(findAllUserPayment.paymentConfirmationCode)
                     },
                     delete_status: 0,
-                    approve_reject: findAllUserPayment.paymentType == 'Approve' ? 1 : findAllUserPayment.paymentType == 'Reject' ? 2 : findAllUserPayment.paymentType == undefined ? undefined : 1,
+                    approve_reject: findAllUserPayment.paymentStatus == 'Approve' ? 1 : findAllUserPayment.paymentStatus  == 'Reject' ? 2 : findAllUserPayment.paymentStatus  == undefined ? undefined : 1,
                     reciver_account_type: { contains: findAllUserPayment.recevierAccountType, mode: 'insensitive' },
                     receiver_account: { contains: findAllUserPayment.receiverAccount, mode: 'insensitive' },
                     receiver_account_name: { contains: findAllUserPayment.receiverAccountName, mode: 'insensitive' },
