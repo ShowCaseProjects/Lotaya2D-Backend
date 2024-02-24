@@ -110,17 +110,17 @@ model WithdrawMethod{
 }
 
 model Admin{
-  admin_id         Int    @id         @default(autoincrement())
-  phone_number     String @unique     @db.VarChar(13)
-  admin_name       String?            @db.VarChar(30)
-  password         String?                  
-  role_id          Int    
-  admin_role       AdminRoles         @relation(fields:[role_id],references:[role_id])             
-  account_status   String             @db.VarChar(1)   
-  delete_status    Int             
-  register_date    DateTime           @default(now())
-  updated_date     DateTime           @default(now())
-  deleted_date     DateTime?
+  admin_internal_id         Int    @id         @default(autoincrement())
+  admin_id                  String @unique     @db.VarChar(13)
+  admin_name                String?            @db.VarChar(30)
+  password                  String?                  
+  //role_id                   Int    
+  //admin_role                AdminRoles         @relation(fields:[role_id],references:[role_id])             
+  account_status            String ?           @db.VarChar(1)   
+  delete_status             Int ?            
+  register_date             DateTime           @default(now())
+  updated_date              DateTime           @default(now())
+  deleted_date              DateTime?
 
   @@map("admin")
 }
@@ -128,7 +128,7 @@ model Admin{
 model AdminRoles{
   role_id        Int         @id
   name           String      @unique @db.VarChar(100)
-  admins         Admin[]
+ // admins         Admin[]
 
   @@map("adminroles")
 }

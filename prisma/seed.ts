@@ -1,6 +1,6 @@
 import { AdminRoleId, AdminRoleName, RoleId, RoleName, TransationTypeId, TransationTypeName } from '../staticlib/index';
 import { Prisma, PrismaClient } from './lotaya_wallet';
-
+import * as bcrypt from "bcryptjs"
 
 const prisma = new PrismaClient();
 
@@ -77,6 +77,37 @@ export const adminRegisterMasterData = async () => {
     }
 }
 
+export const adminRegisterLoginData = async () => {
+    try {
+        const salt = await bcrypt.genSalt();
+        const hashpassword = await bcrypt.hash("Pass@initial", salt);
+        const adminLoginData: Prisma.AdminCreateInput[] = [
+            {
+                admin_id: "AdminUser1",
+                password: hashpassword
+            },
+            {
+                admin_id: "AdminUser2",
+                password: hashpassword,
+            },
+            {
+                admin_id: "AdminUser3",
+                password: hashpassword
+            },
+            
+        ];
+        console.log( await bcrypt.compare("Pass@initial", hashpassword));
+        await Promise.all(
+            adminLoginData.map(
+                async (insertData) => await prisma.admin.create({ data: insertData })
+            )
+        );
+    }
+    catch (error) {
+        console.log('Skip seeding lotaya DB')
+    }
+}
+
 export const transationTypeRegisterMasterData = async () => {
     try {
         await Promise.all(
@@ -94,6 +125,7 @@ const main = async () => {
     console.log('Start seeding...');
     await registerMasterData();
     await adminRegisterMasterData();
+    await adminRegisterLoginData();
     await transationTypeRegisterMasterData();
     console.log('Seeding finished...');
 }

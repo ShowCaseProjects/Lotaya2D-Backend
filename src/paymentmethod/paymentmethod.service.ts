@@ -14,7 +14,7 @@ export class PaymentmethodService {
 
     protected logger: Logger;
 
-    constructor(private prisma: LotayaLibService, private paymentGateWay: Gateway,private walletService:WalletService) {
+    constructor(private prisma: LotayaLibService, private paymentGateWay: Gateway, private walletService: WalletService) {
         this.logger = new Logger(this.constructor.name);
     }
 
@@ -26,28 +26,28 @@ export class PaymentmethodService {
                 data: {
                     user_id: Number(addPaymentReqPath.userId),
                     payment_type: addPaymentReqBody.paymentType,
-                    payment_account_name:addPaymentReqBody.paymentAccount,
-                    payment_account:addPaymentReqBody.paymentAccount,
-                    reciver_account_type:addPaymentReqBody.receiverAccount,
+                    payment_account_name: addPaymentReqBody.paymentAccount,
+                    payment_account: addPaymentReqBody.paymentAccount,
+                    reciver_account_type: addPaymentReqBody.receiverAccount,
                     receiver_account_name: addPaymentReqBody.receiverAccountName,
                     receiver_account: addPaymentReqBody.receiverAccount,
                     amount: addPaymentReqBody.amount,
                     delete_status: 0,
-                    approve_reject:0,
+                    approve_reject: 0,
                     date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                     payment_confirm_code: Number(addPaymentReqBody.paymentConfirmationCode),
                     register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                     updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
                 },
             });
-            const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId=registerData.user_id.toString();
-            const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
-            userWalletInsertReqBodyDto.gainAmount="0"
-            userWalletInsertReqBodyDto.mainAmount=registerData.amount.toString(),
-            userWalletInsertReqBodyDto.agentId="100",
-            userWalletInsertReqBodyDto.transationTypeId=2
-            const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'+');
+            const userWalletInsertReqPathDto = new UserWalletInsertReqPathDto();
+            userWalletInsertReqPathDto.userId = registerData.user_id.toString();
+            const userWalletInsertReqBodyDto = new UserWalletInsertReqBodyDto();
+            userWalletInsertReqBodyDto.gainAmount = "0"
+            userWalletInsertReqBodyDto.mainAmount = registerData.amount.toString(),
+                userWalletInsertReqBodyDto.agentId = "100",
+                userWalletInsertReqBodyDto.transationTypeId = 2
+            const walletData = this.walletService.addUserWallet(userWalletInsertReqPathDto, userWalletInsertReqBodyDto, '+');
             const paymentdatadto = new UserPaymentFindResBodyDto();
             paymentdatadto.paymentMethodId = registerData.payment_id,
 
@@ -99,9 +99,9 @@ export class PaymentmethodService {
                 },
                 data: {
                     payment_type: addPaymentReqBody.paymentType,
-                    payment_account_name:addPaymentReqBody.paymentAccount,
-                    payment_account:addPaymentReqBody.paymentAccount,
-                    reciver_account_type:addPaymentReqBody.receiverAccount,
+                    payment_account_name: addPaymentReqBody.paymentAccount,
+                    payment_account: addPaymentReqBody.paymentAccount,
+                    reciver_account_type: addPaymentReqBody.receiverAccount,
                     receiver_account_name: addPaymentReqBody.receiverAccountName,
                     receiver_account: addPaymentReqBody.receiverAccount,
                     amount: addPaymentReqBody.amount,
@@ -110,14 +110,14 @@ export class PaymentmethodService {
                 },
             });
 
-            const userWalletInsertReqPathDto=new  UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId=updateData.user_id.toString();
-            const userWalletInsertReqBodyDto=new UserWalletInsertReqBodyDto();
-            userWalletInsertReqBodyDto.gainAmount="0"
-            userWalletInsertReqBodyDto.mainAmount=updateData.amount.toString(),
-            userWalletInsertReqBodyDto.agentId="100",
-            userWalletInsertReqBodyDto.transationTypeId=2
-            const walletData=this.walletService.addUserWallet(userWalletInsertReqPathDto,userWalletInsertReqBodyDto,'+');
+            const userWalletInsertReqPathDto = new UserWalletInsertReqPathDto();
+            userWalletInsertReqPathDto.userId = updateData.user_id.toString();
+            const userWalletInsertReqBodyDto = new UserWalletInsertReqBodyDto();
+            userWalletInsertReqBodyDto.gainAmount = "0"
+            userWalletInsertReqBodyDto.mainAmount = updateData.amount.toString(),
+                userWalletInsertReqBodyDto.agentId = "100",
+                userWalletInsertReqBodyDto.transationTypeId = 2
+            const walletData = this.walletService.addUserWallet(userWalletInsertReqPathDto, userWalletInsertReqBodyDto, '+');
             const responseData: UserPaymentUpdateResBodyDto = {
                 isSuccess: true,
             }
@@ -215,8 +215,8 @@ export class PaymentmethodService {
                                 : Number(findAllUserPayment.userId)
                     },
                     payment_type: { contains: findAllUserPayment.paymentType, mode: 'insensitive' },
-                    payment_account_name:{contains:findAllUserPayment.paymentAccountName,mode:'insensitive'},
-                    payment_account:{contains:findAllUserPayment.paymentAccount,mode:'insensitive'},
+                    payment_account_name: { contains: findAllUserPayment.paymentAccountName, mode: 'insensitive' },
+                    payment_account: { contains: findAllUserPayment.paymentAccount, mode: 'insensitive' },
                     payment_confirm_code: {
                         gte:
                             findAllUserPayment.paymentConfirmationCode == undefined
@@ -228,7 +228,8 @@ export class PaymentmethodService {
                                 : Number(findAllUserPayment.paymentConfirmationCode)
                     },
                     delete_status: 0,
-                    reciver_account_type:{contains:findAllUserPayment.recevierAccountType,mode:'insensitive'},
+                    approve_reject: findAllUserPayment.paymentType == 'Approve' ? 1 : findAllUserPayment.paymentType == 'Reject' ? 2 : findAllUserPayment.paymentType == undefined ? undefined : 1,
+                    reciver_account_type: { contains: findAllUserPayment.recevierAccountType, mode: 'insensitive' },
                     receiver_account: { contains: findAllUserPayment.receiverAccount, mode: 'insensitive' },
                     receiver_account_name: { contains: findAllUserPayment.receiverAccountName, mode: 'insensitive' },
                     amount: findAllUserPayment.amount,

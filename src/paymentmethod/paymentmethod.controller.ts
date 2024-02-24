@@ -6,6 +6,7 @@ import { UserPaymentUpdateReqBodyDto, UserPaymentUpdateReqPathDto, UserPaymentUp
 import { AuthGuards } from 'src/auth/auth.guard';
 import { UserPaymentDeleteReqBodyDto, UserPaymentDeleteReqPathDto, UserPaymentDeleteResBodyDto } from './dto/delete-user-payment.dto';
 import { UserPaymentFindReqQueryDto, UserPaymentFindResBodyDto } from './dto/find-user-payment.dto';
+import { AdminAuthGuards } from 'src/auth/admin.auth.guard';
 
 @ApiBearerAuth()
 @ApiTags('api/v1/paymentmethod')
@@ -62,7 +63,7 @@ export class PaymentmethodController {
         return this.userPayment.deleteUserPayment(paymentReqPath, paymentReqBody);
     }
 
-    @UseGuards(AuthGuards)
+    // @UseGuards(AdminAuthGuards)
     @Get()
     @HttpCode(201)
     @ApiOperation({

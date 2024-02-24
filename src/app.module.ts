@@ -8,10 +8,11 @@ import { PaymentmethodModule } from './paymentmethod/paymentmethod.module';
 import { UserWithdrawAccountModule } from './user-withdraw-account/user-withdraw-account.module';
 import { UserWithdrawMethodModule } from './user-withdraw-method/user-withdraw-method.module';
 import { LotayaWalletlibModule } from 'lotayalib';
+import { AdminModule } from './admin/admin.module';
 
 
 @Module({
-  imports: [UseraccountModule,AuthModule, WalletModule, PaymentmethodModule, UserWithdrawAccountModule, UserWithdrawMethodModule,LotayaWalletlibModule],
+  imports: [UseraccountModule,AuthModule, WalletModule, PaymentmethodModule, UserWithdrawAccountModule, UserWithdrawMethodModule,LotayaWalletlibModule, AdminModule],
   controllers: [AppController],
   providers: [AppService],
 })

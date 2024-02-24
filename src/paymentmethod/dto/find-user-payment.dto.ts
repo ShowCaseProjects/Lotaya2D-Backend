@@ -19,6 +19,18 @@ export class UserPaymentFindReqQueryDto {
         {
             context: {
                 errorCode: 'E1000',
+                errorMessage: 'Please enter your payment id as number.'
+            },
+        }
+    )
+    @IsOptional()
+    @ApiPropertyOptional()
+    paymentStatus: string;
+
+    @Matches(/^[0-9]+$/,
+        {
+            context: {
+                errorCode: 'E1000',
                 errorMessage: 'Please enter your id as number.'
             },
         }
@@ -170,7 +182,7 @@ export class UserPaymentFindReqQueryDto {
     @IsOptional()
     @ApiPropertyOptional()
     creationDateTo?: string;
- 
+
 
     @IsISO8601({ strict: true },
         {
@@ -221,6 +233,15 @@ export class UserPaymentFindResBodyDto {
 
     @ApiProperty()
     userId: number;
+
+    @ApiProperty()
+    paymenttype: string;
+
+    @ApiProperty()
+    paymentAccountName: string;
+
+    @ApiProperty()
+    paymentAccount: string;
 
     @ApiProperty()
     receiverAccountName: string;
