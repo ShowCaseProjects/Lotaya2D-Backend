@@ -46,7 +46,7 @@ export class ReceiverAccountController {
         return this.receiverAccount.updateAdminAccount(accountReqBody,accountReqPath);
     }
     
-    //   @UseGuards(AuthGuards)
+      @UseGuards(AuthGuards)
       @Post('/get/receiveraccount')
       @HttpCode(201)
       @ApiOperation({
