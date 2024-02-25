@@ -29,6 +29,16 @@ export type Roles = $Result.DefaultSelection<Prisma.$RolesPayload>
  */
 export type UserWithdrawAccount = $Result.DefaultSelection<Prisma.$UserWithdrawAccountPayload>
 /**
+ * Model AdminReceiverAccount
+ * 
+ */
+export type AdminReceiverAccount = $Result.DefaultSelection<Prisma.$AdminReceiverAccountPayload>
+/**
+ * Model AdminReceiverAccountHistory
+ * 
+ */
+export type AdminReceiverAccountHistory = $Result.DefaultSelection<Prisma.$AdminReceiverAccountHistoryPayload>
+/**
  * Model Wallet
  * 
  */
@@ -220,6 +230,26 @@ export class PrismaClient<
     * ```
     */
   get userWithdrawAccount(): Prisma.UserWithdrawAccountDelegate<ExtArgs>;
+
+  /**
+   * `prisma.adminReceiverAccount`: Exposes CRUD operations for the **AdminReceiverAccount** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AdminReceiverAccounts
+    * const adminReceiverAccounts = await prisma.adminReceiverAccount.findMany()
+    * ```
+    */
+  get adminReceiverAccount(): Prisma.AdminReceiverAccountDelegate<ExtArgs>;
+
+  /**
+   * `prisma.adminReceiverAccountHistory`: Exposes CRUD operations for the **AdminReceiverAccountHistory** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more AdminReceiverAccountHistories
+    * const adminReceiverAccountHistories = await prisma.adminReceiverAccountHistory.findMany()
+    * ```
+    */
+  get adminReceiverAccountHistory(): Prisma.AdminReceiverAccountHistoryDelegate<ExtArgs>;
 
   /**
    * `prisma.wallet`: Exposes CRUD operations for the **Wallet** model.
@@ -773,6 +803,8 @@ export namespace Prisma {
     Users: 'Users',
     Roles: 'Roles',
     UserWithdrawAccount: 'UserWithdrawAccount',
+    AdminReceiverAccount: 'AdminReceiverAccount',
+    AdminReceiverAccountHistory: 'AdminReceiverAccountHistory',
     Wallet: 'Wallet',
     PaymentMethod: 'PaymentMethod',
     WithdrawMethod: 'WithdrawMethod',
@@ -797,7 +829,7 @@ export namespace Prisma {
 
   export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     meta: {
-      modelProps: 'users' | 'roles' | 'userWithdrawAccount' | 'wallet' | 'paymentMethod' | 'withdrawMethod' | 'admin' | 'adminRoles' | 'transaction' | 'transactionType' | 'approveReject'
+      modelProps: 'users' | 'roles' | 'userWithdrawAccount' | 'adminReceiverAccount' | 'adminReceiverAccountHistory' | 'wallet' | 'paymentMethod' | 'withdrawMethod' | 'admin' | 'adminRoles' | 'transaction' | 'transactionType' | 'approveReject'
       txIsolationLevel: Prisma.TransactionIsolationLevel
     },
     model: {
@@ -996,6 +1028,138 @@ export namespace Prisma {
           count: {
             args: Prisma.UserWithdrawAccountCountArgs<ExtArgs>,
             result: $Utils.Optional<UserWithdrawAccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      AdminReceiverAccount: {
+        payload: Prisma.$AdminReceiverAccountPayload<ExtArgs>
+        fields: Prisma.AdminReceiverAccountFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdminReceiverAccountFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdminReceiverAccountFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload>
+          }
+          findFirst: {
+            args: Prisma.AdminReceiverAccountFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdminReceiverAccountFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload>
+          }
+          findMany: {
+            args: Prisma.AdminReceiverAccountFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload>[]
+          }
+          create: {
+            args: Prisma.AdminReceiverAccountCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload>
+          }
+          createMany: {
+            args: Prisma.AdminReceiverAccountCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.AdminReceiverAccountDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload>
+          }
+          update: {
+            args: Prisma.AdminReceiverAccountUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdminReceiverAccountDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdminReceiverAccountUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.AdminReceiverAccountUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountPayload>
+          }
+          aggregate: {
+            args: Prisma.AdminReceiverAccountAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateAdminReceiverAccount>
+          }
+          groupBy: {
+            args: Prisma.AdminReceiverAccountGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<AdminReceiverAccountGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdminReceiverAccountCountArgs<ExtArgs>,
+            result: $Utils.Optional<AdminReceiverAccountCountAggregateOutputType> | number
+          }
+        }
+      }
+      AdminReceiverAccountHistory: {
+        payload: Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>
+        fields: Prisma.AdminReceiverAccountHistoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.AdminReceiverAccountHistoryFindUniqueArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.AdminReceiverAccountHistoryFindUniqueOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload>
+          }
+          findFirst: {
+            args: Prisma.AdminReceiverAccountHistoryFindFirstArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.AdminReceiverAccountHistoryFindFirstOrThrowArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload>
+          }
+          findMany: {
+            args: Prisma.AdminReceiverAccountHistoryFindManyArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload>[]
+          }
+          create: {
+            args: Prisma.AdminReceiverAccountHistoryCreateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload>
+          }
+          createMany: {
+            args: Prisma.AdminReceiverAccountHistoryCreateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          delete: {
+            args: Prisma.AdminReceiverAccountHistoryDeleteArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload>
+          }
+          update: {
+            args: Prisma.AdminReceiverAccountHistoryUpdateArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.AdminReceiverAccountHistoryDeleteManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          updateMany: {
+            args: Prisma.AdminReceiverAccountHistoryUpdateManyArgs<ExtArgs>,
+            result: Prisma.BatchPayload
+          }
+          upsert: {
+            args: Prisma.AdminReceiverAccountHistoryUpsertArgs<ExtArgs>,
+            result: $Utils.PayloadToResult<Prisma.$AdminReceiverAccountHistoryPayload>
+          }
+          aggregate: {
+            args: Prisma.AdminReceiverAccountHistoryAggregateArgs<ExtArgs>,
+            result: $Utils.Optional<AggregateAdminReceiverAccountHistory>
+          }
+          groupBy: {
+            args: Prisma.AdminReceiverAccountHistoryGroupByArgs<ExtArgs>,
+            result: $Utils.Optional<AdminReceiverAccountHistoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.AdminReceiverAccountHistoryCountArgs<ExtArgs>,
+            result: $Utils.Optional<AdminReceiverAccountHistoryCountAggregateOutputType> | number
           }
         }
       }
@@ -4949,6 +5113,1895 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well.
      */
     include?: UserWithdrawAccountInclude<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model AdminReceiverAccount
+   */
+
+  export type AggregateAdminReceiverAccount = {
+    _count: AdminReceiverAccountCountAggregateOutputType | null
+    _avg: AdminReceiverAccountAvgAggregateOutputType | null
+    _sum: AdminReceiverAccountSumAggregateOutputType | null
+    _min: AdminReceiverAccountMinAggregateOutputType | null
+    _max: AdminReceiverAccountMaxAggregateOutputType | null
+  }
+
+  export type AdminReceiverAccountAvgAggregateOutputType = {
+    delete_status: number | null
+  }
+
+  export type AdminReceiverAccountSumAggregateOutputType = {
+    delete_status: number | null
+  }
+
+  export type AdminReceiverAccountMinAggregateOutputType = {
+    admin_receiver_account_id: string | null
+    admin_account_type: string | null
+    admin_account_name: string | null
+    admin_account_id: string | null
+    delete_status: number | null
+    register_date: Date | null
+    updated_date: Date | null
+    deleted_date: Date | null
+  }
+
+  export type AdminReceiverAccountMaxAggregateOutputType = {
+    admin_receiver_account_id: string | null
+    admin_account_type: string | null
+    admin_account_name: string | null
+    admin_account_id: string | null
+    delete_status: number | null
+    register_date: Date | null
+    updated_date: Date | null
+    deleted_date: Date | null
+  }
+
+  export type AdminReceiverAccountCountAggregateOutputType = {
+    admin_receiver_account_id: number
+    admin_account_type: number
+    admin_account_name: number
+    admin_account_id: number
+    delete_status: number
+    register_date: number
+    updated_date: number
+    deleted_date: number
+    _all: number
+  }
+
+
+  export type AdminReceiverAccountAvgAggregateInputType = {
+    delete_status?: true
+  }
+
+  export type AdminReceiverAccountSumAggregateInputType = {
+    delete_status?: true
+  }
+
+  export type AdminReceiverAccountMinAggregateInputType = {
+    admin_receiver_account_id?: true
+    admin_account_type?: true
+    admin_account_name?: true
+    admin_account_id?: true
+    delete_status?: true
+    register_date?: true
+    updated_date?: true
+    deleted_date?: true
+  }
+
+  export type AdminReceiverAccountMaxAggregateInputType = {
+    admin_receiver_account_id?: true
+    admin_account_type?: true
+    admin_account_name?: true
+    admin_account_id?: true
+    delete_status?: true
+    register_date?: true
+    updated_date?: true
+    deleted_date?: true
+  }
+
+  export type AdminReceiverAccountCountAggregateInputType = {
+    admin_receiver_account_id?: true
+    admin_account_type?: true
+    admin_account_name?: true
+    admin_account_id?: true
+    delete_status?: true
+    register_date?: true
+    updated_date?: true
+    deleted_date?: true
+    _all?: true
+  }
+
+  export type AdminReceiverAccountAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminReceiverAccount to aggregate.
+     */
+    where?: AdminReceiverAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminReceiverAccounts to fetch.
+     */
+    orderBy?: AdminReceiverAccountOrderByWithRelationInput | AdminReceiverAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdminReceiverAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminReceiverAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminReceiverAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AdminReceiverAccounts
+    **/
+    _count?: true | AdminReceiverAccountCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AdminReceiverAccountAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AdminReceiverAccountSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdminReceiverAccountMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdminReceiverAccountMaxAggregateInputType
+  }
+
+  export type GetAdminReceiverAccountAggregateType<T extends AdminReceiverAccountAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdminReceiverAccount]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdminReceiverAccount[P]>
+      : GetScalarType<T[P], AggregateAdminReceiverAccount[P]>
+  }
+
+
+
+
+  export type AdminReceiverAccountGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminReceiverAccountWhereInput
+    orderBy?: AdminReceiverAccountOrderByWithAggregationInput | AdminReceiverAccountOrderByWithAggregationInput[]
+    by: AdminReceiverAccountScalarFieldEnum[] | AdminReceiverAccountScalarFieldEnum
+    having?: AdminReceiverAccountScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdminReceiverAccountCountAggregateInputType | true
+    _avg?: AdminReceiverAccountAvgAggregateInputType
+    _sum?: AdminReceiverAccountSumAggregateInputType
+    _min?: AdminReceiverAccountMinAggregateInputType
+    _max?: AdminReceiverAccountMaxAggregateInputType
+  }
+
+  export type AdminReceiverAccountGroupByOutputType = {
+    admin_receiver_account_id: string
+    admin_account_type: string
+    admin_account_name: string
+    admin_account_id: string
+    delete_status: number
+    register_date: Date
+    updated_date: Date
+    deleted_date: Date | null
+    _count: AdminReceiverAccountCountAggregateOutputType | null
+    _avg: AdminReceiverAccountAvgAggregateOutputType | null
+    _sum: AdminReceiverAccountSumAggregateOutputType | null
+    _min: AdminReceiverAccountMinAggregateOutputType | null
+    _max: AdminReceiverAccountMaxAggregateOutputType | null
+  }
+
+  type GetAdminReceiverAccountGroupByPayload<T extends AdminReceiverAccountGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdminReceiverAccountGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdminReceiverAccountGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdminReceiverAccountGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminReceiverAccountGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdminReceiverAccountSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    admin_receiver_account_id?: boolean
+    admin_account_type?: boolean
+    admin_account_name?: boolean
+    admin_account_id?: boolean
+    delete_status?: boolean
+    register_date?: boolean
+    updated_date?: boolean
+    deleted_date?: boolean
+  }, ExtArgs["result"]["adminReceiverAccount"]>
+
+  export type AdminReceiverAccountSelectScalar = {
+    admin_receiver_account_id?: boolean
+    admin_account_type?: boolean
+    admin_account_name?: boolean
+    admin_account_id?: boolean
+    delete_status?: boolean
+    register_date?: boolean
+    updated_date?: boolean
+    deleted_date?: boolean
+  }
+
+
+  export type $AdminReceiverAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AdminReceiverAccount"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      admin_receiver_account_id: string
+      admin_account_type: string
+      admin_account_name: string
+      admin_account_id: string
+      delete_status: number
+      register_date: Date
+      updated_date: Date
+      deleted_date: Date | null
+    }, ExtArgs["result"]["adminReceiverAccount"]>
+    composites: {}
+  }
+
+
+  type AdminReceiverAccountGetPayload<S extends boolean | null | undefined | AdminReceiverAccountDefaultArgs> = $Result.GetResult<Prisma.$AdminReceiverAccountPayload, S>
+
+  type AdminReceiverAccountCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AdminReceiverAccountFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AdminReceiverAccountCountAggregateInputType | true
+    }
+
+  export interface AdminReceiverAccountDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AdminReceiverAccount'], meta: { name: 'AdminReceiverAccount' } }
+    /**
+     * Find zero or one AdminReceiverAccount that matches the filter.
+     * @param {AdminReceiverAccountFindUniqueArgs} args - Arguments to find a AdminReceiverAccount
+     * @example
+     * // Get one AdminReceiverAccount
+     * const adminReceiverAccount = await prisma.adminReceiverAccount.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends AdminReceiverAccountFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountFindUniqueArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one AdminReceiverAccount that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {AdminReceiverAccountFindUniqueOrThrowArgs} args - Arguments to find a AdminReceiverAccount
+     * @example
+     * // Get one AdminReceiverAccount
+     * const adminReceiverAccount = await prisma.adminReceiverAccount.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends AdminReceiverAccountFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first AdminReceiverAccount that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountFindFirstArgs} args - Arguments to find a AdminReceiverAccount
+     * @example
+     * // Get one AdminReceiverAccount
+     * const adminReceiverAccount = await prisma.adminReceiverAccount.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends AdminReceiverAccountFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountFindFirstArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first AdminReceiverAccount that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountFindFirstOrThrowArgs} args - Arguments to find a AdminReceiverAccount
+     * @example
+     * // Get one AdminReceiverAccount
+     * const adminReceiverAccount = await prisma.adminReceiverAccount.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends AdminReceiverAccountFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more AdminReceiverAccounts that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AdminReceiverAccounts
+     * const adminReceiverAccounts = await prisma.adminReceiverAccount.findMany()
+     * 
+     * // Get first 10 AdminReceiverAccounts
+     * const adminReceiverAccounts = await prisma.adminReceiverAccount.findMany({ take: 10 })
+     * 
+     * // Only select the `admin_receiver_account_id`
+     * const adminReceiverAccountWithAdmin_receiver_account_idOnly = await prisma.adminReceiverAccount.findMany({ select: { admin_receiver_account_id: true } })
+     * 
+    **/
+    findMany<T extends AdminReceiverAccountFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a AdminReceiverAccount.
+     * @param {AdminReceiverAccountCreateArgs} args - Arguments to create a AdminReceiverAccount.
+     * @example
+     * // Create one AdminReceiverAccount
+     * const AdminReceiverAccount = await prisma.adminReceiverAccount.create({
+     *   data: {
+     *     // ... data to create a AdminReceiverAccount
+     *   }
+     * })
+     * 
+    **/
+    create<T extends AdminReceiverAccountCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountCreateArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many AdminReceiverAccounts.
+     *     @param {AdminReceiverAccountCreateManyArgs} args - Arguments to create many AdminReceiverAccounts.
+     *     @example
+     *     // Create many AdminReceiverAccounts
+     *     const adminReceiverAccount = await prisma.adminReceiverAccount.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends AdminReceiverAccountCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AdminReceiverAccount.
+     * @param {AdminReceiverAccountDeleteArgs} args - Arguments to delete one AdminReceiverAccount.
+     * @example
+     * // Delete one AdminReceiverAccount
+     * const AdminReceiverAccount = await prisma.adminReceiverAccount.delete({
+     *   where: {
+     *     // ... filter to delete one AdminReceiverAccount
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends AdminReceiverAccountDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountDeleteArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one AdminReceiverAccount.
+     * @param {AdminReceiverAccountUpdateArgs} args - Arguments to update one AdminReceiverAccount.
+     * @example
+     * // Update one AdminReceiverAccount
+     * const adminReceiverAccount = await prisma.adminReceiverAccount.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends AdminReceiverAccountUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountUpdateArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more AdminReceiverAccounts.
+     * @param {AdminReceiverAccountDeleteManyArgs} args - Arguments to filter AdminReceiverAccounts to delete.
+     * @example
+     * // Delete a few AdminReceiverAccounts
+     * const { count } = await prisma.adminReceiverAccount.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends AdminReceiverAccountDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdminReceiverAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AdminReceiverAccounts
+     * const adminReceiverAccount = await prisma.adminReceiverAccount.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends AdminReceiverAccountUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AdminReceiverAccount.
+     * @param {AdminReceiverAccountUpsertArgs} args - Arguments to update or create a AdminReceiverAccount.
+     * @example
+     * // Update or create a AdminReceiverAccount
+     * const adminReceiverAccount = await prisma.adminReceiverAccount.upsert({
+     *   create: {
+     *     // ... data to create a AdminReceiverAccount
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AdminReceiverAccount we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends AdminReceiverAccountUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountUpsertArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of AdminReceiverAccounts.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountCountArgs} args - Arguments to filter AdminReceiverAccounts to count.
+     * @example
+     * // Count the number of AdminReceiverAccounts
+     * const count = await prisma.adminReceiverAccount.count({
+     *   where: {
+     *     // ... the filter for the AdminReceiverAccounts we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdminReceiverAccountCountArgs>(
+      args?: Subset<T, AdminReceiverAccountCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdminReceiverAccountCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AdminReceiverAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdminReceiverAccountAggregateArgs>(args: Subset<T, AdminReceiverAccountAggregateArgs>): Prisma.PrismaPromise<GetAdminReceiverAccountAggregateType<T>>
+
+    /**
+     * Group by AdminReceiverAccount.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdminReceiverAccountGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdminReceiverAccountGroupByArgs['orderBy'] }
+        : { orderBy?: AdminReceiverAccountGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdminReceiverAccountGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminReceiverAccountGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AdminReceiverAccount model
+   */
+  readonly fields: AdminReceiverAccountFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AdminReceiverAccount.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdminReceiverAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the AdminReceiverAccount model
+   */ 
+  interface AdminReceiverAccountFieldRefs {
+    readonly admin_receiver_account_id: FieldRef<"AdminReceiverAccount", 'String'>
+    readonly admin_account_type: FieldRef<"AdminReceiverAccount", 'String'>
+    readonly admin_account_name: FieldRef<"AdminReceiverAccount", 'String'>
+    readonly admin_account_id: FieldRef<"AdminReceiverAccount", 'String'>
+    readonly delete_status: FieldRef<"AdminReceiverAccount", 'Int'>
+    readonly register_date: FieldRef<"AdminReceiverAccount", 'DateTime'>
+    readonly updated_date: FieldRef<"AdminReceiverAccount", 'DateTime'>
+    readonly deleted_date: FieldRef<"AdminReceiverAccount", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * AdminReceiverAccount findUnique
+   */
+  export type AdminReceiverAccountFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccount to fetch.
+     */
+    where: AdminReceiverAccountWhereUniqueInput
+  }
+
+
+  /**
+   * AdminReceiverAccount findUniqueOrThrow
+   */
+  export type AdminReceiverAccountFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccount to fetch.
+     */
+    where: AdminReceiverAccountWhereUniqueInput
+  }
+
+
+  /**
+   * AdminReceiverAccount findFirst
+   */
+  export type AdminReceiverAccountFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccount to fetch.
+     */
+    where?: AdminReceiverAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminReceiverAccounts to fetch.
+     */
+    orderBy?: AdminReceiverAccountOrderByWithRelationInput | AdminReceiverAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminReceiverAccounts.
+     */
+    cursor?: AdminReceiverAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminReceiverAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminReceiverAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminReceiverAccounts.
+     */
+    distinct?: AdminReceiverAccountScalarFieldEnum | AdminReceiverAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * AdminReceiverAccount findFirstOrThrow
+   */
+  export type AdminReceiverAccountFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccount to fetch.
+     */
+    where?: AdminReceiverAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminReceiverAccounts to fetch.
+     */
+    orderBy?: AdminReceiverAccountOrderByWithRelationInput | AdminReceiverAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminReceiverAccounts.
+     */
+    cursor?: AdminReceiverAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminReceiverAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminReceiverAccounts.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminReceiverAccounts.
+     */
+    distinct?: AdminReceiverAccountScalarFieldEnum | AdminReceiverAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * AdminReceiverAccount findMany
+   */
+  export type AdminReceiverAccountFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccounts to fetch.
+     */
+    where?: AdminReceiverAccountWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminReceiverAccounts to fetch.
+     */
+    orderBy?: AdminReceiverAccountOrderByWithRelationInput | AdminReceiverAccountOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AdminReceiverAccounts.
+     */
+    cursor?: AdminReceiverAccountWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminReceiverAccounts from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminReceiverAccounts.
+     */
+    skip?: number
+    distinct?: AdminReceiverAccountScalarFieldEnum | AdminReceiverAccountScalarFieldEnum[]
+  }
+
+
+  /**
+   * AdminReceiverAccount create
+   */
+  export type AdminReceiverAccountCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * The data needed to create a AdminReceiverAccount.
+     */
+    data: XOR<AdminReceiverAccountCreateInput, AdminReceiverAccountUncheckedCreateInput>
+  }
+
+
+  /**
+   * AdminReceiverAccount createMany
+   */
+  export type AdminReceiverAccountCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AdminReceiverAccounts.
+     */
+    data: AdminReceiverAccountCreateManyInput | AdminReceiverAccountCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * AdminReceiverAccount update
+   */
+  export type AdminReceiverAccountUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * The data needed to update a AdminReceiverAccount.
+     */
+    data: XOR<AdminReceiverAccountUpdateInput, AdminReceiverAccountUncheckedUpdateInput>
+    /**
+     * Choose, which AdminReceiverAccount to update.
+     */
+    where: AdminReceiverAccountWhereUniqueInput
+  }
+
+
+  /**
+   * AdminReceiverAccount updateMany
+   */
+  export type AdminReceiverAccountUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AdminReceiverAccounts.
+     */
+    data: XOR<AdminReceiverAccountUpdateManyMutationInput, AdminReceiverAccountUncheckedUpdateManyInput>
+    /**
+     * Filter which AdminReceiverAccounts to update
+     */
+    where?: AdminReceiverAccountWhereInput
+  }
+
+
+  /**
+   * AdminReceiverAccount upsert
+   */
+  export type AdminReceiverAccountUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * The filter to search for the AdminReceiverAccount to update in case it exists.
+     */
+    where: AdminReceiverAccountWhereUniqueInput
+    /**
+     * In case the AdminReceiverAccount found by the `where` argument doesn't exist, create a new AdminReceiverAccount with this data.
+     */
+    create: XOR<AdminReceiverAccountCreateInput, AdminReceiverAccountUncheckedCreateInput>
+    /**
+     * In case the AdminReceiverAccount was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdminReceiverAccountUpdateInput, AdminReceiverAccountUncheckedUpdateInput>
+  }
+
+
+  /**
+   * AdminReceiverAccount delete
+   */
+  export type AdminReceiverAccountDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Filter which AdminReceiverAccount to delete.
+     */
+    where: AdminReceiverAccountWhereUniqueInput
+  }
+
+
+  /**
+   * AdminReceiverAccount deleteMany
+   */
+  export type AdminReceiverAccountDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminReceiverAccounts to delete
+     */
+    where?: AdminReceiverAccountWhereInput
+  }
+
+
+  /**
+   * AdminReceiverAccount without action
+   */
+  export type AdminReceiverAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+  }
+
+
+
+  /**
+   * Model AdminReceiverAccountHistory
+   */
+
+  export type AggregateAdminReceiverAccountHistory = {
+    _count: AdminReceiverAccountHistoryCountAggregateOutputType | null
+    _avg: AdminReceiverAccountHistoryAvgAggregateOutputType | null
+    _sum: AdminReceiverAccountHistorySumAggregateOutputType | null
+    _min: AdminReceiverAccountHistoryMinAggregateOutputType | null
+    _max: AdminReceiverAccountHistoryMaxAggregateOutputType | null
+  }
+
+  export type AdminReceiverAccountHistoryAvgAggregateOutputType = {
+    account_id_history: number | null
+    delete_status: number | null
+  }
+
+  export type AdminReceiverAccountHistorySumAggregateOutputType = {
+    account_id_history: number | null
+    delete_status: number | null
+  }
+
+  export type AdminReceiverAccountHistoryMinAggregateOutputType = {
+    admin_receiver_account_history_id: string | null
+    admin_account_type_history: string | null
+    account_name_history: string | null
+    account_id_history: number | null
+    status: string | null
+    delete_status: number | null
+    register_date: Date | null
+    updated_date: Date | null
+    deleted_date: Date | null
+  }
+
+  export type AdminReceiverAccountHistoryMaxAggregateOutputType = {
+    admin_receiver_account_history_id: string | null
+    admin_account_type_history: string | null
+    account_name_history: string | null
+    account_id_history: number | null
+    status: string | null
+    delete_status: number | null
+    register_date: Date | null
+    updated_date: Date | null
+    deleted_date: Date | null
+  }
+
+  export type AdminReceiverAccountHistoryCountAggregateOutputType = {
+    admin_receiver_account_history_id: number
+    admin_account_type_history: number
+    account_name_history: number
+    account_id_history: number
+    status: number
+    delete_status: number
+    register_date: number
+    updated_date: number
+    deleted_date: number
+    _all: number
+  }
+
+
+  export type AdminReceiverAccountHistoryAvgAggregateInputType = {
+    account_id_history?: true
+    delete_status?: true
+  }
+
+  export type AdminReceiverAccountHistorySumAggregateInputType = {
+    account_id_history?: true
+    delete_status?: true
+  }
+
+  export type AdminReceiverAccountHistoryMinAggregateInputType = {
+    admin_receiver_account_history_id?: true
+    admin_account_type_history?: true
+    account_name_history?: true
+    account_id_history?: true
+    status?: true
+    delete_status?: true
+    register_date?: true
+    updated_date?: true
+    deleted_date?: true
+  }
+
+  export type AdminReceiverAccountHistoryMaxAggregateInputType = {
+    admin_receiver_account_history_id?: true
+    admin_account_type_history?: true
+    account_name_history?: true
+    account_id_history?: true
+    status?: true
+    delete_status?: true
+    register_date?: true
+    updated_date?: true
+    deleted_date?: true
+  }
+
+  export type AdminReceiverAccountHistoryCountAggregateInputType = {
+    admin_receiver_account_history_id?: true
+    admin_account_type_history?: true
+    account_name_history?: true
+    account_id_history?: true
+    status?: true
+    delete_status?: true
+    register_date?: true
+    updated_date?: true
+    deleted_date?: true
+    _all?: true
+  }
+
+  export type AdminReceiverAccountHistoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminReceiverAccountHistory to aggregate.
+     */
+    where?: AdminReceiverAccountHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminReceiverAccountHistories to fetch.
+     */
+    orderBy?: AdminReceiverAccountHistoryOrderByWithRelationInput | AdminReceiverAccountHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: AdminReceiverAccountHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminReceiverAccountHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminReceiverAccountHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned AdminReceiverAccountHistories
+    **/
+    _count?: true | AdminReceiverAccountHistoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: AdminReceiverAccountHistoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: AdminReceiverAccountHistorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: AdminReceiverAccountHistoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: AdminReceiverAccountHistoryMaxAggregateInputType
+  }
+
+  export type GetAdminReceiverAccountHistoryAggregateType<T extends AdminReceiverAccountHistoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateAdminReceiverAccountHistory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateAdminReceiverAccountHistory[P]>
+      : GetScalarType<T[P], AggregateAdminReceiverAccountHistory[P]>
+  }
+
+
+
+
+  export type AdminReceiverAccountHistoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminReceiverAccountHistoryWhereInput
+    orderBy?: AdminReceiverAccountHistoryOrderByWithAggregationInput | AdminReceiverAccountHistoryOrderByWithAggregationInput[]
+    by: AdminReceiverAccountHistoryScalarFieldEnum[] | AdminReceiverAccountHistoryScalarFieldEnum
+    having?: AdminReceiverAccountHistoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: AdminReceiverAccountHistoryCountAggregateInputType | true
+    _avg?: AdminReceiverAccountHistoryAvgAggregateInputType
+    _sum?: AdminReceiverAccountHistorySumAggregateInputType
+    _min?: AdminReceiverAccountHistoryMinAggregateInputType
+    _max?: AdminReceiverAccountHistoryMaxAggregateInputType
+  }
+
+  export type AdminReceiverAccountHistoryGroupByOutputType = {
+    admin_receiver_account_history_id: string
+    admin_account_type_history: string
+    account_name_history: string
+    account_id_history: number
+    status: string | null
+    delete_status: number
+    register_date: Date
+    updated_date: Date
+    deleted_date: Date | null
+    _count: AdminReceiverAccountHistoryCountAggregateOutputType | null
+    _avg: AdminReceiverAccountHistoryAvgAggregateOutputType | null
+    _sum: AdminReceiverAccountHistorySumAggregateOutputType | null
+    _min: AdminReceiverAccountHistoryMinAggregateOutputType | null
+    _max: AdminReceiverAccountHistoryMaxAggregateOutputType | null
+  }
+
+  type GetAdminReceiverAccountHistoryGroupByPayload<T extends AdminReceiverAccountHistoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<AdminReceiverAccountHistoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof AdminReceiverAccountHistoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], AdminReceiverAccountHistoryGroupByOutputType[P]>
+            : GetScalarType<T[P], AdminReceiverAccountHistoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type AdminReceiverAccountHistorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    admin_receiver_account_history_id?: boolean
+    admin_account_type_history?: boolean
+    account_name_history?: boolean
+    account_id_history?: boolean
+    status?: boolean
+    delete_status?: boolean
+    register_date?: boolean
+    updated_date?: boolean
+    deleted_date?: boolean
+  }, ExtArgs["result"]["adminReceiverAccountHistory"]>
+
+  export type AdminReceiverAccountHistorySelectScalar = {
+    admin_receiver_account_history_id?: boolean
+    admin_account_type_history?: boolean
+    account_name_history?: boolean
+    account_id_history?: boolean
+    status?: boolean
+    delete_status?: boolean
+    register_date?: boolean
+    updated_date?: boolean
+    deleted_date?: boolean
+  }
+
+
+  export type $AdminReceiverAccountHistoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "AdminReceiverAccountHistory"
+    objects: {}
+    scalars: $Extensions.GetPayloadResult<{
+      admin_receiver_account_history_id: string
+      admin_account_type_history: string
+      account_name_history: string
+      account_id_history: number
+      status: string | null
+      delete_status: number
+      register_date: Date
+      updated_date: Date
+      deleted_date: Date | null
+    }, ExtArgs["result"]["adminReceiverAccountHistory"]>
+    composites: {}
+  }
+
+
+  type AdminReceiverAccountHistoryGetPayload<S extends boolean | null | undefined | AdminReceiverAccountHistoryDefaultArgs> = $Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload, S>
+
+  type AdminReceiverAccountHistoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = 
+    Omit<AdminReceiverAccountHistoryFindManyArgs, 'select' | 'include' | 'distinct'> & {
+      select?: AdminReceiverAccountHistoryCountAggregateInputType | true
+    }
+
+  export interface AdminReceiverAccountHistoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['AdminReceiverAccountHistory'], meta: { name: 'AdminReceiverAccountHistory' } }
+    /**
+     * Find zero or one AdminReceiverAccountHistory that matches the filter.
+     * @param {AdminReceiverAccountHistoryFindUniqueArgs} args - Arguments to find a AdminReceiverAccountHistory
+     * @example
+     * // Get one AdminReceiverAccountHistory
+     * const adminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUnique<T extends AdminReceiverAccountHistoryFindUniqueArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountHistoryFindUniqueArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountHistoryClient<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'findUnique'> | null, null, ExtArgs>
+
+    /**
+     * Find one AdminReceiverAccountHistory that matches the filter or throw an error  with `error.code='P2025'` 
+     *     if no matches were found.
+     * @param {AdminReceiverAccountHistoryFindUniqueOrThrowArgs} args - Arguments to find a AdminReceiverAccountHistory
+     * @example
+     * // Get one AdminReceiverAccountHistory
+     * const adminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findUniqueOrThrow<T extends AdminReceiverAccountHistoryFindUniqueOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountHistoryFindUniqueOrThrowArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountHistoryClient<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'findUniqueOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find the first AdminReceiverAccountHistory that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountHistoryFindFirstArgs} args - Arguments to find a AdminReceiverAccountHistory
+     * @example
+     * // Get one AdminReceiverAccountHistory
+     * const adminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirst<T extends AdminReceiverAccountHistoryFindFirstArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountHistoryFindFirstArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountHistoryClient<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'findFirst'> | null, null, ExtArgs>
+
+    /**
+     * Find the first AdminReceiverAccountHistory that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountHistoryFindFirstOrThrowArgs} args - Arguments to find a AdminReceiverAccountHistory
+     * @example
+     * // Get one AdminReceiverAccountHistory
+     * const adminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+    **/
+    findFirstOrThrow<T extends AdminReceiverAccountHistoryFindFirstOrThrowArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountHistoryFindFirstOrThrowArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountHistoryClient<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'findFirstOrThrow'>, never, ExtArgs>
+
+    /**
+     * Find zero or more AdminReceiverAccountHistories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountHistoryFindManyArgs=} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all AdminReceiverAccountHistories
+     * const adminReceiverAccountHistories = await prisma.adminReceiverAccountHistory.findMany()
+     * 
+     * // Get first 10 AdminReceiverAccountHistories
+     * const adminReceiverAccountHistories = await prisma.adminReceiverAccountHistory.findMany({ take: 10 })
+     * 
+     * // Only select the `admin_receiver_account_history_id`
+     * const adminReceiverAccountHistoryWithAdmin_receiver_account_history_idOnly = await prisma.adminReceiverAccountHistory.findMany({ select: { admin_receiver_account_history_id: true } })
+     * 
+    **/
+    findMany<T extends AdminReceiverAccountHistoryFindManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountHistoryFindManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'findMany'>>
+
+    /**
+     * Create a AdminReceiverAccountHistory.
+     * @param {AdminReceiverAccountHistoryCreateArgs} args - Arguments to create a AdminReceiverAccountHistory.
+     * @example
+     * // Create one AdminReceiverAccountHistory
+     * const AdminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.create({
+     *   data: {
+     *     // ... data to create a AdminReceiverAccountHistory
+     *   }
+     * })
+     * 
+    **/
+    create<T extends AdminReceiverAccountHistoryCreateArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountHistoryCreateArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountHistoryClient<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'create'>, never, ExtArgs>
+
+    /**
+     * Create many AdminReceiverAccountHistories.
+     *     @param {AdminReceiverAccountHistoryCreateManyArgs} args - Arguments to create many AdminReceiverAccountHistories.
+     *     @example
+     *     // Create many AdminReceiverAccountHistories
+     *     const adminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.createMany({
+     *       data: {
+     *         // ... provide data here
+     *       }
+     *     })
+     *     
+    **/
+    createMany<T extends AdminReceiverAccountHistoryCreateManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountHistoryCreateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a AdminReceiverAccountHistory.
+     * @param {AdminReceiverAccountHistoryDeleteArgs} args - Arguments to delete one AdminReceiverAccountHistory.
+     * @example
+     * // Delete one AdminReceiverAccountHistory
+     * const AdminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.delete({
+     *   where: {
+     *     // ... filter to delete one AdminReceiverAccountHistory
+     *   }
+     * })
+     * 
+    **/
+    delete<T extends AdminReceiverAccountHistoryDeleteArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountHistoryDeleteArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountHistoryClient<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'delete'>, never, ExtArgs>
+
+    /**
+     * Update one AdminReceiverAccountHistory.
+     * @param {AdminReceiverAccountHistoryUpdateArgs} args - Arguments to update one AdminReceiverAccountHistory.
+     * @example
+     * // Update one AdminReceiverAccountHistory
+     * const adminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    update<T extends AdminReceiverAccountHistoryUpdateArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountHistoryUpdateArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountHistoryClient<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'update'>, never, ExtArgs>
+
+    /**
+     * Delete zero or more AdminReceiverAccountHistories.
+     * @param {AdminReceiverAccountHistoryDeleteManyArgs} args - Arguments to filter AdminReceiverAccountHistories to delete.
+     * @example
+     * // Delete a few AdminReceiverAccountHistories
+     * const { count } = await prisma.adminReceiverAccountHistory.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+    **/
+    deleteMany<T extends AdminReceiverAccountHistoryDeleteManyArgs<ExtArgs>>(
+      args?: SelectSubset<T, AdminReceiverAccountHistoryDeleteManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more AdminReceiverAccountHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountHistoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many AdminReceiverAccountHistories
+     * const adminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+    **/
+    updateMany<T extends AdminReceiverAccountHistoryUpdateManyArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountHistoryUpdateManyArgs<ExtArgs>>
+    ): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one AdminReceiverAccountHistory.
+     * @param {AdminReceiverAccountHistoryUpsertArgs} args - Arguments to update or create a AdminReceiverAccountHistory.
+     * @example
+     * // Update or create a AdminReceiverAccountHistory
+     * const adminReceiverAccountHistory = await prisma.adminReceiverAccountHistory.upsert({
+     *   create: {
+     *     // ... data to create a AdminReceiverAccountHistory
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the AdminReceiverAccountHistory we want to update
+     *   }
+     * })
+    **/
+    upsert<T extends AdminReceiverAccountHistoryUpsertArgs<ExtArgs>>(
+      args: SelectSubset<T, AdminReceiverAccountHistoryUpsertArgs<ExtArgs>>
+    ): Prisma__AdminReceiverAccountHistoryClient<$Result.GetResult<Prisma.$AdminReceiverAccountHistoryPayload<ExtArgs>, T, 'upsert'>, never, ExtArgs>
+
+    /**
+     * Count the number of AdminReceiverAccountHistories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountHistoryCountArgs} args - Arguments to filter AdminReceiverAccountHistories to count.
+     * @example
+     * // Count the number of AdminReceiverAccountHistories
+     * const count = await prisma.adminReceiverAccountHistory.count({
+     *   where: {
+     *     // ... the filter for the AdminReceiverAccountHistories we want to count
+     *   }
+     * })
+    **/
+    count<T extends AdminReceiverAccountHistoryCountArgs>(
+      args?: Subset<T, AdminReceiverAccountHistoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], AdminReceiverAccountHistoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a AdminReceiverAccountHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountHistoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends AdminReceiverAccountHistoryAggregateArgs>(args: Subset<T, AdminReceiverAccountHistoryAggregateArgs>): Prisma.PrismaPromise<GetAdminReceiverAccountHistoryAggregateType<T>>
+
+    /**
+     * Group by AdminReceiverAccountHistory.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {AdminReceiverAccountHistoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends AdminReceiverAccountHistoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: AdminReceiverAccountHistoryGroupByArgs['orderBy'] }
+        : { orderBy?: AdminReceiverAccountHistoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, AdminReceiverAccountHistoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetAdminReceiverAccountHistoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the AdminReceiverAccountHistory model
+   */
+  readonly fields: AdminReceiverAccountHistoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for AdminReceiverAccountHistory.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__AdminReceiverAccountHistoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: 'PrismaPromise';
+
+
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>;
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>;
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>;
+  }
+
+
+
+  /**
+   * Fields of the AdminReceiverAccountHistory model
+   */ 
+  interface AdminReceiverAccountHistoryFieldRefs {
+    readonly admin_receiver_account_history_id: FieldRef<"AdminReceiverAccountHistory", 'String'>
+    readonly admin_account_type_history: FieldRef<"AdminReceiverAccountHistory", 'String'>
+    readonly account_name_history: FieldRef<"AdminReceiverAccountHistory", 'String'>
+    readonly account_id_history: FieldRef<"AdminReceiverAccountHistory", 'Int'>
+    readonly status: FieldRef<"AdminReceiverAccountHistory", 'String'>
+    readonly delete_status: FieldRef<"AdminReceiverAccountHistory", 'Int'>
+    readonly register_date: FieldRef<"AdminReceiverAccountHistory", 'DateTime'>
+    readonly updated_date: FieldRef<"AdminReceiverAccountHistory", 'DateTime'>
+    readonly deleted_date: FieldRef<"AdminReceiverAccountHistory", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+
+  /**
+   * AdminReceiverAccountHistory findUnique
+   */
+  export type AdminReceiverAccountHistoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccountHistory to fetch.
+     */
+    where: AdminReceiverAccountHistoryWhereUniqueInput
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory findUniqueOrThrow
+   */
+  export type AdminReceiverAccountHistoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccountHistory to fetch.
+     */
+    where: AdminReceiverAccountHistoryWhereUniqueInput
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory findFirst
+   */
+  export type AdminReceiverAccountHistoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccountHistory to fetch.
+     */
+    where?: AdminReceiverAccountHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminReceiverAccountHistories to fetch.
+     */
+    orderBy?: AdminReceiverAccountHistoryOrderByWithRelationInput | AdminReceiverAccountHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminReceiverAccountHistories.
+     */
+    cursor?: AdminReceiverAccountHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminReceiverAccountHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminReceiverAccountHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminReceiverAccountHistories.
+     */
+    distinct?: AdminReceiverAccountHistoryScalarFieldEnum | AdminReceiverAccountHistoryScalarFieldEnum[]
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory findFirstOrThrow
+   */
+  export type AdminReceiverAccountHistoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccountHistory to fetch.
+     */
+    where?: AdminReceiverAccountHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminReceiverAccountHistories to fetch.
+     */
+    orderBy?: AdminReceiverAccountHistoryOrderByWithRelationInput | AdminReceiverAccountHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for AdminReceiverAccountHistories.
+     */
+    cursor?: AdminReceiverAccountHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminReceiverAccountHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminReceiverAccountHistories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of AdminReceiverAccountHistories.
+     */
+    distinct?: AdminReceiverAccountHistoryScalarFieldEnum | AdminReceiverAccountHistoryScalarFieldEnum[]
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory findMany
+   */
+  export type AdminReceiverAccountHistoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * Filter, which AdminReceiverAccountHistories to fetch.
+     */
+    where?: AdminReceiverAccountHistoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of AdminReceiverAccountHistories to fetch.
+     */
+    orderBy?: AdminReceiverAccountHistoryOrderByWithRelationInput | AdminReceiverAccountHistoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing AdminReceiverAccountHistories.
+     */
+    cursor?: AdminReceiverAccountHistoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` AdminReceiverAccountHistories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` AdminReceiverAccountHistories.
+     */
+    skip?: number
+    distinct?: AdminReceiverAccountHistoryScalarFieldEnum | AdminReceiverAccountHistoryScalarFieldEnum[]
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory create
+   */
+  export type AdminReceiverAccountHistoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to create a AdminReceiverAccountHistory.
+     */
+    data: XOR<AdminReceiverAccountHistoryCreateInput, AdminReceiverAccountHistoryUncheckedCreateInput>
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory createMany
+   */
+  export type AdminReceiverAccountHistoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many AdminReceiverAccountHistories.
+     */
+    data: AdminReceiverAccountHistoryCreateManyInput | AdminReceiverAccountHistoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory update
+   */
+  export type AdminReceiverAccountHistoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * The data needed to update a AdminReceiverAccountHistory.
+     */
+    data: XOR<AdminReceiverAccountHistoryUpdateInput, AdminReceiverAccountHistoryUncheckedUpdateInput>
+    /**
+     * Choose, which AdminReceiverAccountHistory to update.
+     */
+    where: AdminReceiverAccountHistoryWhereUniqueInput
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory updateMany
+   */
+  export type AdminReceiverAccountHistoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update AdminReceiverAccountHistories.
+     */
+    data: XOR<AdminReceiverAccountHistoryUpdateManyMutationInput, AdminReceiverAccountHistoryUncheckedUpdateManyInput>
+    /**
+     * Filter which AdminReceiverAccountHistories to update
+     */
+    where?: AdminReceiverAccountHistoryWhereInput
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory upsert
+   */
+  export type AdminReceiverAccountHistoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * The filter to search for the AdminReceiverAccountHistory to update in case it exists.
+     */
+    where: AdminReceiverAccountHistoryWhereUniqueInput
+    /**
+     * In case the AdminReceiverAccountHistory found by the `where` argument doesn't exist, create a new AdminReceiverAccountHistory with this data.
+     */
+    create: XOR<AdminReceiverAccountHistoryCreateInput, AdminReceiverAccountHistoryUncheckedCreateInput>
+    /**
+     * In case the AdminReceiverAccountHistory was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<AdminReceiverAccountHistoryUpdateInput, AdminReceiverAccountHistoryUncheckedUpdateInput>
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory delete
+   */
+  export type AdminReceiverAccountHistoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
+    /**
+     * Filter which AdminReceiverAccountHistory to delete.
+     */
+    where: AdminReceiverAccountHistoryWhereUniqueInput
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory deleteMany
+   */
+  export type AdminReceiverAccountHistoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which AdminReceiverAccountHistories to delete
+     */
+    where?: AdminReceiverAccountHistoryWhereInput
+  }
+
+
+  /**
+   * AdminReceiverAccountHistory without action
+   */
+  export type AdminReceiverAccountHistoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountHistory
+     */
+    select?: AdminReceiverAccountHistorySelect<ExtArgs> | null
   }
 
 
@@ -12843,6 +14896,35 @@ export namespace Prisma {
   export type UserWithdrawAccountScalarFieldEnum = (typeof UserWithdrawAccountScalarFieldEnum)[keyof typeof UserWithdrawAccountScalarFieldEnum]
 
 
+  export const AdminReceiverAccountScalarFieldEnum: {
+    admin_receiver_account_id: 'admin_receiver_account_id',
+    admin_account_type: 'admin_account_type',
+    admin_account_name: 'admin_account_name',
+    admin_account_id: 'admin_account_id',
+    delete_status: 'delete_status',
+    register_date: 'register_date',
+    updated_date: 'updated_date',
+    deleted_date: 'deleted_date'
+  };
+
+  export type AdminReceiverAccountScalarFieldEnum = (typeof AdminReceiverAccountScalarFieldEnum)[keyof typeof AdminReceiverAccountScalarFieldEnum]
+
+
+  export const AdminReceiverAccountHistoryScalarFieldEnum: {
+    admin_receiver_account_history_id: 'admin_receiver_account_history_id',
+    admin_account_type_history: 'admin_account_type_history',
+    account_name_history: 'account_name_history',
+    account_id_history: 'account_id_history',
+    status: 'status',
+    delete_status: 'delete_status',
+    register_date: 'register_date',
+    updated_date: 'updated_date',
+    deleted_date: 'deleted_date'
+  };
+
+  export type AdminReceiverAccountHistoryScalarFieldEnum = (typeof AdminReceiverAccountHistoryScalarFieldEnum)[keyof typeof AdminReceiverAccountHistoryScalarFieldEnum]
+
+
   export const WalletScalarFieldEnum: {
     wallet_id: 'wallet_id',
     user_internal_id: 'user_internal_id',
@@ -13288,6 +15370,149 @@ export namespace Prisma {
     register_date?: DateTimeWithAggregatesFilter<"UserWithdrawAccount"> | Date | string
     updated_date?: DateTimeWithAggregatesFilter<"UserWithdrawAccount"> | Date | string
     deleted_date?: DateTimeNullableWithAggregatesFilter<"UserWithdrawAccount"> | Date | string | null
+  }
+
+  export type AdminReceiverAccountWhereInput = {
+    AND?: AdminReceiverAccountWhereInput | AdminReceiverAccountWhereInput[]
+    OR?: AdminReceiverAccountWhereInput[]
+    NOT?: AdminReceiverAccountWhereInput | AdminReceiverAccountWhereInput[]
+    admin_receiver_account_id?: StringFilter<"AdminReceiverAccount"> | string
+    admin_account_type?: StringFilter<"AdminReceiverAccount"> | string
+    admin_account_name?: StringFilter<"AdminReceiverAccount"> | string
+    admin_account_id?: StringFilter<"AdminReceiverAccount"> | string
+    delete_status?: IntFilter<"AdminReceiverAccount"> | number
+    register_date?: DateTimeFilter<"AdminReceiverAccount"> | Date | string
+    updated_date?: DateTimeFilter<"AdminReceiverAccount"> | Date | string
+    deleted_date?: DateTimeNullableFilter<"AdminReceiverAccount"> | Date | string | null
+  }
+
+  export type AdminReceiverAccountOrderByWithRelationInput = {
+    admin_receiver_account_id?: SortOrder
+    admin_account_type?: SortOrder
+    admin_account_name?: SortOrder
+    admin_account_id?: SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrderInput | SortOrder
+  }
+
+  export type AdminReceiverAccountWhereUniqueInput = Prisma.AtLeast<{
+    admin_receiver_account_id?: string
+    admin_account_id?: string
+    AND?: AdminReceiverAccountWhereInput | AdminReceiverAccountWhereInput[]
+    OR?: AdminReceiverAccountWhereInput[]
+    NOT?: AdminReceiverAccountWhereInput | AdminReceiverAccountWhereInput[]
+    admin_account_type?: StringFilter<"AdminReceiverAccount"> | string
+    admin_account_name?: StringFilter<"AdminReceiverAccount"> | string
+    delete_status?: IntFilter<"AdminReceiverAccount"> | number
+    register_date?: DateTimeFilter<"AdminReceiverAccount"> | Date | string
+    updated_date?: DateTimeFilter<"AdminReceiverAccount"> | Date | string
+    deleted_date?: DateTimeNullableFilter<"AdminReceiverAccount"> | Date | string | null
+  }, "admin_receiver_account_id" | "admin_account_id">
+
+  export type AdminReceiverAccountOrderByWithAggregationInput = {
+    admin_receiver_account_id?: SortOrder
+    admin_account_type?: SortOrder
+    admin_account_name?: SortOrder
+    admin_account_id?: SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrderInput | SortOrder
+    _count?: AdminReceiverAccountCountOrderByAggregateInput
+    _avg?: AdminReceiverAccountAvgOrderByAggregateInput
+    _max?: AdminReceiverAccountMaxOrderByAggregateInput
+    _min?: AdminReceiverAccountMinOrderByAggregateInput
+    _sum?: AdminReceiverAccountSumOrderByAggregateInput
+  }
+
+  export type AdminReceiverAccountScalarWhereWithAggregatesInput = {
+    AND?: AdminReceiverAccountScalarWhereWithAggregatesInput | AdminReceiverAccountScalarWhereWithAggregatesInput[]
+    OR?: AdminReceiverAccountScalarWhereWithAggregatesInput[]
+    NOT?: AdminReceiverAccountScalarWhereWithAggregatesInput | AdminReceiverAccountScalarWhereWithAggregatesInput[]
+    admin_receiver_account_id?: StringWithAggregatesFilter<"AdminReceiverAccount"> | string
+    admin_account_type?: StringWithAggregatesFilter<"AdminReceiverAccount"> | string
+    admin_account_name?: StringWithAggregatesFilter<"AdminReceiverAccount"> | string
+    admin_account_id?: StringWithAggregatesFilter<"AdminReceiverAccount"> | string
+    delete_status?: IntWithAggregatesFilter<"AdminReceiverAccount"> | number
+    register_date?: DateTimeWithAggregatesFilter<"AdminReceiverAccount"> | Date | string
+    updated_date?: DateTimeWithAggregatesFilter<"AdminReceiverAccount"> | Date | string
+    deleted_date?: DateTimeNullableWithAggregatesFilter<"AdminReceiverAccount"> | Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryWhereInput = {
+    AND?: AdminReceiverAccountHistoryWhereInput | AdminReceiverAccountHistoryWhereInput[]
+    OR?: AdminReceiverAccountHistoryWhereInput[]
+    NOT?: AdminReceiverAccountHistoryWhereInput | AdminReceiverAccountHistoryWhereInput[]
+    admin_receiver_account_history_id?: StringFilter<"AdminReceiverAccountHistory"> | string
+    admin_account_type_history?: StringFilter<"AdminReceiverAccountHistory"> | string
+    account_name_history?: StringFilter<"AdminReceiverAccountHistory"> | string
+    account_id_history?: IntFilter<"AdminReceiverAccountHistory"> | number
+    status?: StringNullableFilter<"AdminReceiverAccountHistory"> | string | null
+    delete_status?: IntFilter<"AdminReceiverAccountHistory"> | number
+    register_date?: DateTimeFilter<"AdminReceiverAccountHistory"> | Date | string
+    updated_date?: DateTimeFilter<"AdminReceiverAccountHistory"> | Date | string
+    deleted_date?: DateTimeNullableFilter<"AdminReceiverAccountHistory"> | Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryOrderByWithRelationInput = {
+    admin_receiver_account_history_id?: SortOrder
+    admin_account_type_history?: SortOrder
+    account_name_history?: SortOrder
+    account_id_history?: SortOrder
+    status?: SortOrderInput | SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrderInput | SortOrder
+  }
+
+  export type AdminReceiverAccountHistoryWhereUniqueInput = Prisma.AtLeast<{
+    admin_receiver_account_history_id?: string
+    account_id_history?: number
+    AND?: AdminReceiverAccountHistoryWhereInput | AdminReceiverAccountHistoryWhereInput[]
+    OR?: AdminReceiverAccountHistoryWhereInput[]
+    NOT?: AdminReceiverAccountHistoryWhereInput | AdminReceiverAccountHistoryWhereInput[]
+    admin_account_type_history?: StringFilter<"AdminReceiverAccountHistory"> | string
+    account_name_history?: StringFilter<"AdminReceiverAccountHistory"> | string
+    status?: StringNullableFilter<"AdminReceiverAccountHistory"> | string | null
+    delete_status?: IntFilter<"AdminReceiverAccountHistory"> | number
+    register_date?: DateTimeFilter<"AdminReceiverAccountHistory"> | Date | string
+    updated_date?: DateTimeFilter<"AdminReceiverAccountHistory"> | Date | string
+    deleted_date?: DateTimeNullableFilter<"AdminReceiverAccountHistory"> | Date | string | null
+  }, "admin_receiver_account_history_id" | "account_id_history">
+
+  export type AdminReceiverAccountHistoryOrderByWithAggregationInput = {
+    admin_receiver_account_history_id?: SortOrder
+    admin_account_type_history?: SortOrder
+    account_name_history?: SortOrder
+    account_id_history?: SortOrder
+    status?: SortOrderInput | SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrderInput | SortOrder
+    _count?: AdminReceiverAccountHistoryCountOrderByAggregateInput
+    _avg?: AdminReceiverAccountHistoryAvgOrderByAggregateInput
+    _max?: AdminReceiverAccountHistoryMaxOrderByAggregateInput
+    _min?: AdminReceiverAccountHistoryMinOrderByAggregateInput
+    _sum?: AdminReceiverAccountHistorySumOrderByAggregateInput
+  }
+
+  export type AdminReceiverAccountHistoryScalarWhereWithAggregatesInput = {
+    AND?: AdminReceiverAccountHistoryScalarWhereWithAggregatesInput | AdminReceiverAccountHistoryScalarWhereWithAggregatesInput[]
+    OR?: AdminReceiverAccountHistoryScalarWhereWithAggregatesInput[]
+    NOT?: AdminReceiverAccountHistoryScalarWhereWithAggregatesInput | AdminReceiverAccountHistoryScalarWhereWithAggregatesInput[]
+    admin_receiver_account_history_id?: StringWithAggregatesFilter<"AdminReceiverAccountHistory"> | string
+    admin_account_type_history?: StringWithAggregatesFilter<"AdminReceiverAccountHistory"> | string
+    account_name_history?: StringWithAggregatesFilter<"AdminReceiverAccountHistory"> | string
+    account_id_history?: IntWithAggregatesFilter<"AdminReceiverAccountHistory"> | number
+    status?: StringNullableWithAggregatesFilter<"AdminReceiverAccountHistory"> | string | null
+    delete_status?: IntWithAggregatesFilter<"AdminReceiverAccountHistory"> | number
+    register_date?: DateTimeWithAggregatesFilter<"AdminReceiverAccountHistory"> | Date | string
+    updated_date?: DateTimeWithAggregatesFilter<"AdminReceiverAccountHistory"> | Date | string
+    deleted_date?: DateTimeNullableWithAggregatesFilter<"AdminReceiverAccountHistory"> | Date | string | null
   }
 
   export type WalletWhereInput = {
@@ -14117,6 +16342,167 @@ export namespace Prisma {
     account_type?: StringFieldUpdateOperationsInput | string
     account_name?: StringFieldUpdateOperationsInput | string
     account_id?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountCreateInput = {
+    admin_receiver_account_id: string
+    admin_account_type: string
+    admin_account_name: string
+    admin_account_id: string
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminReceiverAccountUncheckedCreateInput = {
+    admin_receiver_account_id: string
+    admin_account_type: string
+    admin_account_name: string
+    admin_account_id: string
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminReceiverAccountUpdateInput = {
+    admin_receiver_account_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type?: StringFieldUpdateOperationsInput | string
+    admin_account_name?: StringFieldUpdateOperationsInput | string
+    admin_account_id?: StringFieldUpdateOperationsInput | string
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountUncheckedUpdateInput = {
+    admin_receiver_account_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type?: StringFieldUpdateOperationsInput | string
+    admin_account_name?: StringFieldUpdateOperationsInput | string
+    admin_account_id?: StringFieldUpdateOperationsInput | string
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountCreateManyInput = {
+    admin_receiver_account_id: string
+    admin_account_type: string
+    admin_account_name: string
+    admin_account_id: string
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminReceiverAccountUpdateManyMutationInput = {
+    admin_receiver_account_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type?: StringFieldUpdateOperationsInput | string
+    admin_account_name?: StringFieldUpdateOperationsInput | string
+    admin_account_id?: StringFieldUpdateOperationsInput | string
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountUncheckedUpdateManyInput = {
+    admin_receiver_account_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type?: StringFieldUpdateOperationsInput | string
+    admin_account_name?: StringFieldUpdateOperationsInput | string
+    admin_account_id?: StringFieldUpdateOperationsInput | string
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryCreateInput = {
+    admin_receiver_account_history_id: string
+    admin_account_type_history: string
+    account_name_history: string
+    account_id_history: number
+    status?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryUncheckedCreateInput = {
+    admin_receiver_account_history_id: string
+    admin_account_type_history: string
+    account_name_history: string
+    account_id_history: number
+    status?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryUpdateInput = {
+    admin_receiver_account_history_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type_history?: StringFieldUpdateOperationsInput | string
+    account_name_history?: StringFieldUpdateOperationsInput | string
+    account_id_history?: IntFieldUpdateOperationsInput | number
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryUncheckedUpdateInput = {
+    admin_receiver_account_history_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type_history?: StringFieldUpdateOperationsInput | string
+    account_name_history?: StringFieldUpdateOperationsInput | string
+    account_id_history?: IntFieldUpdateOperationsInput | number
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryCreateManyInput = {
+    admin_receiver_account_history_id: string
+    admin_account_type_history: string
+    account_name_history: string
+    account_id_history: number
+    status?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryUpdateManyMutationInput = {
+    admin_receiver_account_history_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type_history?: StringFieldUpdateOperationsInput | string
+    account_name_history?: StringFieldUpdateOperationsInput | string
+    account_id_history?: IntFieldUpdateOperationsInput | number
+    status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountHistoryUncheckedUpdateManyInput = {
+    admin_receiver_account_history_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type_history?: StringFieldUpdateOperationsInput | string
+    account_name_history?: StringFieldUpdateOperationsInput | string
+    account_id_history?: IntFieldUpdateOperationsInput | number
+    status?: NullableStringFieldUpdateOperationsInput | string | null
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -15125,6 +17511,93 @@ export namespace Prisma {
 
   export type UserWithdrawAccountSumOrderByAggregateInput = {
     account_id?: SortOrder
+    delete_status?: SortOrder
+  }
+
+  export type AdminReceiverAccountCountOrderByAggregateInput = {
+    admin_receiver_account_id?: SortOrder
+    admin_account_type?: SortOrder
+    admin_account_name?: SortOrder
+    admin_account_id?: SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrder
+  }
+
+  export type AdminReceiverAccountAvgOrderByAggregateInput = {
+    delete_status?: SortOrder
+  }
+
+  export type AdminReceiverAccountMaxOrderByAggregateInput = {
+    admin_receiver_account_id?: SortOrder
+    admin_account_type?: SortOrder
+    admin_account_name?: SortOrder
+    admin_account_id?: SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrder
+  }
+
+  export type AdminReceiverAccountMinOrderByAggregateInput = {
+    admin_receiver_account_id?: SortOrder
+    admin_account_type?: SortOrder
+    admin_account_name?: SortOrder
+    admin_account_id?: SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrder
+  }
+
+  export type AdminReceiverAccountSumOrderByAggregateInput = {
+    delete_status?: SortOrder
+  }
+
+  export type AdminReceiverAccountHistoryCountOrderByAggregateInput = {
+    admin_receiver_account_history_id?: SortOrder
+    admin_account_type_history?: SortOrder
+    account_name_history?: SortOrder
+    account_id_history?: SortOrder
+    status?: SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrder
+  }
+
+  export type AdminReceiverAccountHistoryAvgOrderByAggregateInput = {
+    account_id_history?: SortOrder
+    delete_status?: SortOrder
+  }
+
+  export type AdminReceiverAccountHistoryMaxOrderByAggregateInput = {
+    admin_receiver_account_history_id?: SortOrder
+    admin_account_type_history?: SortOrder
+    account_name_history?: SortOrder
+    account_id_history?: SortOrder
+    status?: SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrder
+  }
+
+  export type AdminReceiverAccountHistoryMinOrderByAggregateInput = {
+    admin_receiver_account_history_id?: SortOrder
+    admin_account_type_history?: SortOrder
+    account_name_history?: SortOrder
+    account_id_history?: SortOrder
+    status?: SortOrder
+    delete_status?: SortOrder
+    register_date?: SortOrder
+    updated_date?: SortOrder
+    deleted_date?: SortOrder
+  }
+
+  export type AdminReceiverAccountHistorySumOrderByAggregateInput = {
+    account_id_history?: SortOrder
     delete_status?: SortOrder
   }
 
@@ -17701,6 +20174,14 @@ export namespace Prisma {
      * @deprecated Use UserWithdrawAccountDefaultArgs instead
      */
     export type UserWithdrawAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserWithdrawAccountDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AdminReceiverAccountDefaultArgs instead
+     */
+    export type AdminReceiverAccountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AdminReceiverAccountDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AdminReceiverAccountHistoryDefaultArgs instead
+     */
+    export type AdminReceiverAccountHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AdminReceiverAccountHistoryDefaultArgs<ExtArgs>
     /**
      * @deprecated Use WalletDefaultArgs instead
      */

@@ -30,7 +30,8 @@ export class UseraccountService {
                     phone_number: phoneNumber.phoneNumber
                 },
             });
-
+        if(userAccount)
+        {
             const passwordValid = await bcrypt.compare(password.password, userAccount.password);
             if (!passwordValid) {
                 throw new NotAcceptableException({
@@ -44,6 +45,13 @@ export class UseraccountService {
                 smsSendTime: userAccount.sms_send_time
             };
             return userResponse;
+        }
+        else{
+            throw new NotAcceptableException({
+                errorCode: 'E1121',
+                errorMessage: 'Does not exist account.Please create account..'
+            });
+        }
         }
         catch (error) {
             if (error instanceof HttpException) {
@@ -154,8 +162,10 @@ export class UseraccountService {
                         is_verify: 1
                     }
                 })
+                const payload = { phoneNumber: otpCodeConfirmReqPathDto.phoneNumber, sub: confirmOtpCode.otp_code };
                 const responseData: RegisterUserOtpCodeConfirmResBodyDto = {
                     phoneNumber: confirmOtpCode.phone_number,
+                    token:await this.jwtService.signAsync(payload),
                     isSuccess: true
                 };
                 return responseData;
@@ -217,13 +227,10 @@ export class UseraccountService {
                         account_status: 1
                     }
                 });
-
-                const payload = { phoneNumber: phoneNumber, sub: confirmPassword.otp_code };
-
+            
                 const responseData: RegisterUserPasswordConfirmResBodyDto = {
                     phoneNumber: confirmPassword.phone_number,
                     optCode: confirmPassword.otp_code,
-                    token: await this.jwtService.signAsync(payload),
                     isSuccess: true
                 };
                 return responseData;
@@ -347,8 +354,10 @@ export class UseraccountService {
                         is_verify: 0
                     }
                 })
+                const payload = { phoneNumber: otpCodeConfirmReqPathDto.phoneNumber, sub: confirmOtpCode.otp_code };
                 const responseData: RegisterUserOtpCodeConfirmResBodyDto = {
                     phoneNumber: confirmOtpCode.phone_number,
+                    token:await this.jwtService.signAsync(payload),
                     isSuccess: true
                 };
                 return responseData;
@@ -417,7 +426,6 @@ export class UseraccountService {
                 const responseData: RegisterUserPasswordConfirmResBodyDto = {
                     phoneNumber: confirmPassword.phone_number,
                     optCode: confirmPassword.otp_code,
-                    token: await this.jwtService.signAsync(payload),
                     isSuccess: true
                 };
                 return responseData;

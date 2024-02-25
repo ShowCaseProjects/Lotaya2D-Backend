@@ -54,6 +54,9 @@ export class RegisterUserOtpCodeConfirmResBodyDto {
     @ApiProperty()
     phoneNumber: string;
 
+    @ApiProperty()
+    token: string;
+
     @ApiProperty({ default: true })
     isSuccess: boolean;
 }

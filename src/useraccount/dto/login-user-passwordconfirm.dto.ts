@@ -47,7 +47,5 @@ export class LoginUserPasswordConfirmResBodyDto {
 
     @ApiProperty({ default: true })
     isSuccess: boolean;
-
-    @ApiProperty()
-    token: string;
+    
 }

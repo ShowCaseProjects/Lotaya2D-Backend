@@ -58,6 +58,33 @@ model UserWithdrawAccount{
   @@map("userwithdrawaccount")
 }
 
+model AdminReceiverAccount{
+  admin_receiver_account_id           String     @id          @db.VarChar(30)    
+  admin_account_type                  String            
+  admin_account_name                  String 
+  admin_account_id                    String @unique     @db.VarChar(13)
+  delete_status                       Int          
+  register_date  DateTime             @default(now())
+  updated_date   DateTime             @default(now())
+  deleted_date   DateTime?
+
+  @@map("adminreceiveraccount")
+}
+
+model AdminReceiverAccountHistory{
+  admin_receiver_account_history_id     String     @id          @db.VarChar(30)    
+  admin_account_type_history                  String            
+  account_name_history                  String 
+  account_id_history                    Int   @unique 
+  status                        String?
+  delete_status                 Int          
+  register_date  DateTime       @default(now())
+  updated_date   DateTime       @default(now())
+  deleted_date   DateTime?
+
+  @@map("adminreceiveraccounthistory")
+}
+
 model Wallet{
   wallet_id      String     @id          @db.VarChar(30)
   user_internal_id        String @unique 

@@ -18,7 +18,7 @@ export class PaymentmethodController {
         this.logger = new Logger(PaymentmethodController.name);
     }
 
-    // @UseGuards(AuthGuards)
+    @UseGuards(AuthGuards)
     @Post('/add/:phoneNumber')
     @HttpCode(201)
     @ApiOperation({

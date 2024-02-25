@@ -66,8 +66,5 @@ export class RegisterUserPasswordConfirmResBodyDto {
     optCode: string;
 
     @ApiProperty()
-    token: string;
-
-    @ApiProperty()
     isSuccess: boolean;
 }

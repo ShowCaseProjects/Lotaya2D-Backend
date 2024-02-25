@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "users" (
-    "user_id" TEXT NOT NULL,
+    "user_internal_id" VARCHAR(30) NOT NULL,
     "phone_number" VARCHAR(13) NOT NULL,
     "user_name" VARCHAR(30),
     "password" TEXT,
@@ -14,7 +14,7 @@ CREATE TABLE "users" (
     "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deleted_date" TIMESTAMP(3),
 
-    CONSTRAINT "users_pkey" PRIMARY KEY ("user_id")
+    CONSTRAINT "users_pkey" PRIMARY KEY ("user_internal_id")
 );
 
 -- CreateTable
@@ -28,7 +28,7 @@ CREATE TABLE "roles" (
 -- CreateTable
 CREATE TABLE "userwithdrawaccount" (
     "user_withdraw_account_id" VARCHAR(30) NOT NULL,
-    "user_id" TEXT NOT NULL,
+    "user_internal_id" TEXT NOT NULL,
     "account_type" TEXT NOT NULL,
     "account_name" TEXT NOT NULL,
     "account_id" INTEGER NOT NULL,
@@ -41,9 +41,38 @@ CREATE TABLE "userwithdrawaccount" (
 );
 
 -- CreateTable
+CREATE TABLE "adminreceiveraccount" (
+    "admin_receiver_account_id" VARCHAR(30) NOT NULL,
+    "admin_account_type" TEXT NOT NULL,
+    "admin_account_name" TEXT NOT NULL,
+    "admin_account_id" INTEGER NOT NULL,
+    "delete_status" INTEGER NOT NULL,
+    "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deleted_date" TIMESTAMP(3),
+
+    CONSTRAINT "adminreceiveraccount_pkey" PRIMARY KEY ("admin_receiver_account_id")
+);
+
+-- CreateTable
+CREATE TABLE "adminreceiveraccounthistory" (
+    "admin_receiver_account_history_id" VARCHAR(30) NOT NULL,
+    "admin_account_type_history" TEXT NOT NULL,
+    "account_name_history" TEXT NOT NULL,
+    "account_id_history" INTEGER NOT NULL,
+    "status" TEXT,
+    "delete_status" INTEGER NOT NULL,
+    "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "deleted_date" TIMESTAMP(3),
+
+    CONSTRAINT "adminreceiveraccounthistory_pkey" PRIMARY KEY ("admin_receiver_account_history_id")
+);
+
+-- CreateTable
 CREATE TABLE "wallet" (
     "wallet_id" VARCHAR(30) NOT NULL,
-    "user_id" TEXT NOT NULL,
+    "user_internal_id" TEXT NOT NULL,
     "game_amount" DECIMAL(65,30),
     "main_amount" DECIMAL(65,30),
     "agent_id" INTEGER NOT NULL,
@@ -57,8 +86,8 @@ CREATE TABLE "wallet" (
 
 -- CreateTable
 CREATE TABLE "paymentmethod" (
-    "payment_id" VARCHAR(30) NOT NULL,
-    "user_id" TEXT NOT NULL,
+    "payment_internal_id" VARCHAR(30) NOT NULL,
+    "user_internal_id" TEXT NOT NULL,
     "payment_type" TEXT NOT NULL,
     "payment_account_name" TEXT NOT NULL,
     "payment_account" TEXT NOT NULL,
@@ -75,13 +104,13 @@ CREATE TABLE "paymentmethod" (
     "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "deleted_date" TIMESTAMP(3),
 
-    CONSTRAINT "paymentmethod_pkey" PRIMARY KEY ("payment_id")
+    CONSTRAINT "paymentmethod_pkey" PRIMARY KEY ("payment_internal_id")
 );
 
 -- CreateTable
 CREATE TABLE "withdrawmethod" (
     "withdraw_id" VARCHAR(30) NOT NULL,
-    "user_id" TEXT NOT NULL,
+    "user_internal_id" TEXT NOT NULL,
     "withdraw_type" TEXT NOT NULL,
     "receiver_account_name" TEXT NOT NULL,
     "receiver_account" TEXT NOT NULL,
@@ -125,7 +154,7 @@ CREATE TABLE "adminroles" (
 -- CreateTable
 CREATE TABLE "transation" (
     "transaction_id" VARCHAR(30) NOT NULL,
-    "user_id" TEXT NOT NULL,
+    "user_internal_id" TEXT NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
     "transaction_type_id" INTEGER NOT NULL,
     "transaction_date" TIMESTAMP(3) NOT NULL,
@@ -164,7 +193,13 @@ CREATE UNIQUE INDEX "roles_name_key" ON "roles"("name");
 CREATE UNIQUE INDEX "userwithdrawaccount_account_id_key" ON "userwithdrawaccount"("account_id");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "wallet_user_id_key" ON "wallet"("user_id");
+CREATE UNIQUE INDEX "adminreceiveraccount_admin_account_id_key" ON "adminreceiveraccount"("admin_account_id");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "adminreceiveraccounthistory_account_id_history_key" ON "adminreceiveraccounthistory"("account_id_history");
+
+-- CreateIndex
+CREATE UNIQUE INDEX "wallet_user_internal_id_key" ON "wallet"("user_internal_id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "admin_admin_id_key" ON "admin"("admin_id");
@@ -182,19 +217,19 @@ CREATE UNIQUE INDEX "approve_reject_type_key" ON "approve_reject"("type");
 ALTER TABLE "users" ADD CONSTRAINT "users_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "roles"("role_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "userwithdrawaccount" ADD CONSTRAINT "userwithdrawaccount_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "userwithdrawaccount" ADD CONSTRAINT "userwithdrawaccount_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "wallet" ADD CONSTRAINT "wallet_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "wallet" ADD CONSTRAINT "wallet_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "paymentmethod" ADD CONSTRAINT "paymentmethod_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "paymentmethod" ADD CONSTRAINT "paymentmethod_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "withdrawmethod" ADD CONSTRAINT "withdrawmethod_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "withdrawmethod" ADD CONSTRAINT "withdrawmethod_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "transation" ADD CONSTRAINT "transation_user_id_fkey" FOREIGN KEY ("user_id") REFERENCES "users"("user_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "transation" ADD CONSTRAINT "transation_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "transation" ADD CONSTRAINT "transation_transaction_type_id_fkey" FOREIGN KEY ("transaction_type_id") REFERENCES "transationtype"("transaction_type_id") ON DELETE RESTRICT ON UPDATE CASCADE;

@@ -1,10 +1,11 @@
-import { Body, Controller, HttpCode, Logger, Param, Post } from '@nestjs/common';
+import { Body, Controller, HttpCode, Logger, Param, Post, UseGuards } from '@nestjs/common';
 import { ApiOkResponse, ApiOperation, ApiTags } from '@nestjs/swagger';
 import { UseraccountService } from './useraccount.service';
 import {  RegisterUserPhoneNumberConfirmReqPathDto, RegisterUserPhoneNumberConfirmResBodyDto } from './dto/register-user-phonenumber-confirm.dto';
 import { RegisterUserOtpCodeConfirmReqBodyDto, RegisterUserOtpCodeConfirmReqPathDto, RegisterUserOtpCodeConfirmResBodyDto } from './dto/register-user-otpcodeconfirm.dto';
-import { RegisterUserPasswordConfirmReqBodyDto } from './dto/register-user-passwordconfirm.dto';
+import { RegisterUserPasswordConfirmReqBodyDto, RegisterUserPasswordConfirmResBodyDto } from './dto/register-user-passwordconfirm.dto';
 import { RegisterUserNameInsertReqBodyDto, RegisterUserNameInsertReqPathDto, RegisterUserNameInsertResBodyDto } from './dto/register-user-name.dto';
+import { AuthGuards } from 'src/auth/auth.guard';
 
 @ApiTags('api/v1/useraccount')
 @Controller('api/v1/useraccount')
@@ -27,7 +28,7 @@ export class UseraccountController {
     async registerWithPhoneNumber(@Param() registerReqPath: RegisterUserPhoneNumberConfirmReqPathDto): Promise<RegisterUserPhoneNumberConfirmResBodyDto> {
         return await this.userAccountService.registerUserAccountWithPhoneNumber(registerReqPath);
     }
-
+    
     @Post('register/otpCodeConfirm/:phoneNumber')
     @HttpCode(201)
     @ApiOperation({
@@ -41,7 +42,8 @@ export class UseraccountController {
     registerUserOtpCodeConfirm(@Param() confirmOtpCodeReqPath: RegisterUserPhoneNumberConfirmReqPathDto,@Body() confirmOtpCodeReqBody:RegisterUserOtpCodeConfirmReqBodyDto): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
         return this.userAccountService.registerUserAccountOtpConfirm(confirmOtpCodeReqPath,confirmOtpCodeReqBody);
     }
-
+    
+    @UseGuards(AuthGuards)
     @Post('register/password/:phoneNumber')
     @HttpCode(201)
     @ApiOperation({
@@ -52,10 +54,11 @@ export class UseraccountController {
         description: 'Confirm password to be authenticated user.',
         type: RegisterUserOtpCodeConfirmResBodyDto
     })
-    registerUserPasswordConfirm(@Param() phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto,@Body() confirmPasswordReqBody:RegisterUserPasswordConfirmReqBodyDto): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
+    registerUserPasswordConfirm(@Param() phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto,@Body() confirmPasswordReqBody:RegisterUserPasswordConfirmReqBodyDto): Promise<RegisterUserPasswordConfirmResBodyDto> {
         return this.userAccountService.registerUserAccountPasswordConfirm(phoneNumber,confirmPasswordReqBody);
     }
     
+    @UseGuards(AuthGuards)
     @Post('register/username/:phoneNumber')
     @HttpCode(201)
     @ApiOperation({
@@ -70,7 +73,8 @@ export class UseraccountController {
         return this.userAccountService.registerUserAccountName(registerUserNameReqPath,registerUserNameReqBody);
     }
 
-
+    
+    @UseGuards(AuthGuards)
     @Post('forgotPassword/:phoneNumber')
     @HttpCode(201)
     @ApiOperation({
@@ -84,7 +88,8 @@ export class UseraccountController {
     forgotPasswordWithPhoneNumber(@Param() registerReqPath: RegisterUserPhoneNumberConfirmReqPathDto): Promise<RegisterUserPhoneNumberConfirmResBodyDto> {
         return this.userAccountService.forgotPasswordUserAccountWithPhoneNumber(registerReqPath);
     }
-
+    
+    @UseGuards(AuthGuards)
     @Post('forgotPassword/otpCodeConfirm/:phoneNumber')
     @HttpCode(201)
     @ApiOperation({
@@ -98,7 +103,8 @@ export class UseraccountController {
     forgotPasswordUserOtpCodeConfirm(@Param() confirmOtpCodeReqPath: RegisterUserPhoneNumberConfirmReqPathDto,@Body() confirmOtpCodeReqBody:RegisterUserOtpCodeConfirmReqBodyDto): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
         return this.userAccountService.forgotPasswordUserAccountOtpConfirm(confirmOtpCodeReqPath,confirmOtpCodeReqBody);
     }
-
+    
+    
     @Post('forgotPassword/password/:phoneNumber')
     @HttpCode(201)
     @ApiOperation({
@@ -109,7 +115,7 @@ export class UseraccountController {
         description: 'Confirm password to be authenticated user.',
         type: RegisterUserOtpCodeConfirmResBodyDto
     })
-    forgotPasswordUserPasswordConfirm(@Param() phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto,@Body() confirmPasswordReqBody:RegisterUserPasswordConfirmReqBodyDto): Promise<RegisterUserOtpCodeConfirmResBodyDto> {
+    forgotPasswordUserPasswordConfirm(@Param() phoneNumber: RegisterUserPhoneNumberConfirmReqPathDto,@Body() confirmPasswordReqBody:RegisterUserPasswordConfirmReqBodyDto): Promise<RegisterUserPasswordConfirmResBodyDto> {
         return this.userAccountService.forgotPasswordUserAccountPasswordConfirm(phoneNumber,confirmPasswordReqBody);
     }
 }
