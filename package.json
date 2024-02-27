@@ -10,7 +10,7 @@
     "schema": "./prisma/schema.prisma"
   },
   "scripts": {
-    "build": "nest build && npm run copy-files && npm run seed:db",
+    "build": "nest build",
     "seed:db": "ts-node ./seed.ts",
     "copy-files": "cpx prisma/lotaya_wallet/*.js dist/prisma/lotaya_wallet  && cpx prisma/lotaya_wallet/runtime/*.js dist/prisma/lotaya_wallet/runtime ",
     "format": "prettier --write \"prisma/**/*.ts\" \"test/**/*.ts\"",
