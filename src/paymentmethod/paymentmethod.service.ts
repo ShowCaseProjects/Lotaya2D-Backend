@@ -1,26 +1,56 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
-import { UserPaymentInsertReqBodyDto, UserPaymentInsertReqPathDto, UserPaymentInsertResBodyDto } from './dto/add-user-payment.dto';
-import * as dayjs from 'dayjs'
-import { UserPaymentUpdateReqBodyDto, UserPaymentUpdateReqPathDto, UserPaymentUpdateResBodyDto } from './dto/update-user-payment.dto';
-import { UserPaymentDeleteReqBodyDto, UserPaymentDeleteReqPathDto, UserPaymentDeleteResBodyDto } from './dto/delete-user-payment.dto';
-import { UserPaymentFindReqQueryDto, UserPaymentFindResBodyDto } from './dto/find-user-payment.dto';
+import {
+    UserPaymentInsertReqBodyDto,
+    UserPaymentInsertResBodyDto,
+} from './dto/add-user-payment.dto';
+import * as dayjs from 'dayjs';
+import {
+    UserPaymentUpdateReqBodyDto,
+    UserPaymentUpdateReqPathDto,
+    UserPaymentUpdateResBodyDto,
+} from './dto/update-user-payment.dto';
+import {
+    UserPaymentDeleteReqBodyDto,
+    UserPaymentDeleteReqPathDto,
+    UserPaymentDeleteResBodyDto,
+} from './dto/delete-user-payment.dto';
+import {
+    UserPaymentFindReqQueryDto,
+    UserPaymentFindResBodyDto,
+} from './dto/find-user-payment.dto';
 import { Gateway } from 'src/gateway/gateway';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { WalletService } from 'src/wallet/wallet.service';
-import { UserWalletInsertReqBodyDto, UserWalletInsertReqPathDto } from 'src/wallet/dto/add-user-wallet.dto';
+import {
+    UserWalletInsertReqBodyDto,
+    UserWalletInsertReqPathDto,
+} from 'src/wallet/dto/add-user-wallet.dto';
 import { ulid } from 'ulid';
+import {
+    UserPaymentMethodApproveReqBodyDto,
+    UserPaymentMethodApproveReqPathDto,
+    UserPaymentMethodApproveResBodyDto,
+} from './dto/approve-user-payment.dto';
+import {
+    UserPaymentMethodRejectReqBodyDto,
+    UserPaymentMethodRejectReqPathDto,
+    UserPaymentMethodRejectResBodyDto,
+} from './dto/reject-user-payment.dto';
 
 @Injectable()
 export class PaymentmethodService {
-
     protected logger: Logger;
 
-    constructor(private prisma: LotayaLibService, private paymentGateWay: Gateway, private walletService: WalletService) {
+    constructor(
+        private prisma: LotayaLibService,
+        private paymentGateWay: Gateway,
+        private walletService: WalletService,
+    ) {
         this.logger = new Logger(this.constructor.name);
     }
 
     async addUserPayment(
-        addPaymentReqPath: UserPaymentInsertReqPathDto, addPaymentReqBody: UserPaymentInsertReqBodyDto
+        addPaymentReqBody: UserPaymentInsertReqBodyDto,
     ): Promise<UserPaymentInsertResBodyDto> {
         try {
             const registerData = await this.prisma.paymentMethod.create({
@@ -28,8 +58,8 @@ export class PaymentmethodService {
                     payment_internal_id: ulid(),
                     user: {
                         connect: {
-                            phone_number: addPaymentReqBody.phoneNumber
-                        }
+                            phone_number: addPaymentReqBody.phoneNumber,
+                        },
                     },
                     payment_type: addPaymentReqBody.paymentType,
                     payment_account_name: addPaymentReqBody.paymentAccount,
@@ -41,62 +71,69 @@ export class PaymentmethodService {
                     delete_status: 0,
                     approve_reject: 0,
                     date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-                    payment_confirm_code: Number(addPaymentReqBody.paymentConfirmationCode),
+                    payment_confirm_code: Number(
+                        addPaymentReqBody.paymentConfirmationCode,
+                    ),
                     register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                 },
             });
-            const userWalletInsertReqPathDto = new UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId = registerData.user_internal_id.toString();
-            const userWalletInsertReqBodyDto = new UserWalletInsertReqBodyDto();
-            userWalletInsertReqBodyDto.gainAmount = "0"
-            userWalletInsertReqBodyDto.mainAmount = registerData.amount.toString(),
-                userWalletInsertReqBodyDto.agentId = "100",
-                userWalletInsertReqBodyDto.transationTypeId = 2
-            const walletData = this.walletService.addUserWallet(userWalletInsertReqPathDto, userWalletInsertReqBodyDto, '+');
             const paymentdatadto = new UserPaymentFindResBodyDto();
-            paymentdatadto.paymentMethodId = registerData.payment_internal_id,
-
-                paymentdatadto.userId = registerData.user_internal_id,
-
-                paymentdatadto.receiverAccountName = registerData.receiver_account_name,
-
-                paymentdatadto.receiverAccount = registerData.receiver_account,
-
-                paymentdatadto.amount = registerData.amount.toFixed(5),
-
-                paymentdatadto.paymentConfirmationCode = registerData.payment_confirm_code,
-
-                paymentdatadto.registerDate = dayjs(registerData.register_date).format('YYYY-MM-DD HH:mm:ss'),
-
-                paymentdatadto.updatedDate = dayjs(registerData.updated_date).format('YYYY-MM-DD HH:mm:ss')
+            (paymentdatadto.paymentMethodId = registerData.payment_internal_id),
+                (paymentdatadto.userId = registerData.user_internal_id),
+                (paymentdatadto.receiverAccountName =
+                    registerData.receiver_account_name),
+                (paymentdatadto.receiverAccount = registerData.receiver_account),
+                (paymentdatadto.amount = registerData.amount.toFixed(5)),
+                (paymentdatadto.paymentConfirmationCode =
+                    registerData.payment_confirm_code),
+                (paymentdatadto.registerDate = dayjs(registerData.register_date).format(
+                    'YYYY-MM-DD HH:mm:ss',
+                )),
+                (paymentdatadto.updatedDate = dayjs(registerData.updated_date).format(
+                    'YYYY-MM-DD HH:mm:ss',
+                ));
 
             this.paymentGateWay.notify('paymentmethod-added', paymentdatadto);
 
             const responseData: UserPaymentInsertResBodyDto = {
                 isSuccess: true,
-            }
+            };
             return responseData;
-        }
-        catch (error) {
-            this.logger.log(error)
+        } catch (error) {
+            this.logger.log(error);
             if (error.code === 'P2002') {
-                throw new HttpException({
-                    errorCode: 'E1101',
-                    errorMessage: 'Your payment have been added.'
-                }, HttpStatus.BAD_REQUEST);
+                throw new HttpException(
+                    {
+                        errorCode: 'E1101',
+                        errorMessage: 'Your payment have been added.',
+                    },
+                    HttpStatus.BAD_REQUEST,
+                );
             }
-            this.logger.error(error.stack)
-            throw new HttpException({
-                errorCode: 'E1119',
-                errorMessage: 'Internal server error.'
-            }, HttpStatus.INTERNAL_SERVER_ERROR);
+            if (error.code === 'P2025') {
+                throw new HttpException(
+                    {
+                        errorCode: 'E1111',
+                        errorMessage: 'Your accounnt not found.',
+                    },
+                    HttpStatus.NOT_FOUND,
+                );
+            }
+            this.logger.error(error.stack);
+            throw new HttpException(
+                {
+                    errorCode: 'E1119',
+                    errorMessage: 'Internal server error.',
+                },
+                HttpStatus.INTERNAL_SERVER_ERROR,
+            );
         }
-
     }
 
     async updateUserPayment(
-        addPaymentReqPath: UserPaymentUpdateReqPathDto, addPaymentReqBody: UserPaymentUpdateReqBodyDto
+        addPaymentReqPath: UserPaymentUpdateReqPathDto,
+        addPaymentReqBody: UserPaymentUpdateReqBodyDto,
     ): Promise<UserPaymentUpdateResBodyDto> {
         try {
             const updateData = await this.prisma.paymentMethod.update({
@@ -112,42 +149,50 @@ export class PaymentmethodService {
                     receiver_account_name: addPaymentReqBody.receiverAccountName,
                     receiver_account: addPaymentReqBody.receiverAccount,
                     amount: addPaymentReqBody.amount,
-                    payment_confirm_code: Number(addPaymentReqBody.paymentConfirmationCode),
-                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss'))
+                    payment_confirm_code: Number(
+                        addPaymentReqBody.paymentConfirmationCode,
+                    ),
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
                 },
             });
 
-            const userWalletInsertReqPathDto = new UserWalletInsertReqPathDto();
-            userWalletInsertReqPathDto.userId = updateData.user_internal_id.toString();
-            const userWalletInsertReqBodyDto = new UserWalletInsertReqBodyDto();
-            userWalletInsertReqBodyDto.gainAmount = "0"
-            userWalletInsertReqBodyDto.mainAmount = updateData.amount.toString(),
-                userWalletInsertReqBodyDto.agentId = "100",
-                userWalletInsertReqBodyDto.transationTypeId = 2
-            const walletData = this.walletService.addUserWallet(userWalletInsertReqPathDto, userWalletInsertReqBodyDto, '+');
             const responseData: UserPaymentUpdateResBodyDto = {
                 isSuccess: true,
-            }
+            };
             return responseData;
-        }
-        catch (error) {
+        } catch (error) {
             if (error.code === 'P2002') {
-                throw new HttpException({
-                    errorCode: 'E1101',
-                    errorMessage: 'Your payment have been updated.'
-                }, HttpStatus.BAD_REQUEST);
+                throw new HttpException(
+                    {
+                        errorCode: 'E1101',
+                        errorMessage: 'Your payment have been updated.',
+                    },
+                    HttpStatus.BAD_REQUEST,
+                );
             }
-            this.logger.error(error.stack)
-            throw new HttpException({
-                errorCode: 'E1119',
-                errorMessage: 'Internal server error.'
-            }, HttpStatus.INTERNAL_SERVER_ERROR);
+            if (error.code === 'P2025') {
+                throw new HttpException(
+                    {
+                        errorCode: 'E1111',
+                        errorMessage: 'Your accounnt not found.',
+                    },
+                    HttpStatus.NOT_FOUND,
+                );
+            }
+            this.logger.error(error.stack);
+            throw new HttpException(
+                {
+                    errorCode: 'E1119',
+                    errorMessage: 'Internal server error.',
+                },
+                HttpStatus.INTERNAL_SERVER_ERROR,
+            );
         }
-
     }
 
     async deleteUserPayment(
-        addPaymentReqPath: UserPaymentDeleteReqPathDto, addPaymentReqBody: UserPaymentDeleteReqBodyDto
+        addPaymentReqPath: UserPaymentDeleteReqPathDto,
+        addPaymentReqBody: UserPaymentDeleteReqBodyDto,
     ): Promise<UserPaymentDeleteResBodyDto> {
         try {
             const updateData = await this.prisma.paymentMethod.update({
@@ -161,27 +206,40 @@ export class PaymentmethodService {
             });
             const responseData: UserPaymentUpdateResBodyDto = {
                 isSuccess: true,
-            }
+            };
             return responseData;
-        }
-        catch (error) {
+        } catch (error) {
             if (error.code === 'P2002') {
-                throw new HttpException({
-                    errorCode: 'E1101',
-                    errorMessage: 'Your payment have been deleted.'
-                }, HttpStatus.BAD_REQUEST);
+                throw new HttpException(
+                    {
+                        errorCode: 'E1101',
+                        errorMessage: 'Your payment have been deleted.',
+                    },
+                    HttpStatus.BAD_REQUEST,
+                );
             }
-            this.logger.error(error.stack)
-            throw new HttpException({
-                errorCode: 'E1119',
-                errorMessage: 'Internal server error.'
-            }, HttpStatus.INTERNAL_SERVER_ERROR);
+            if (error.code === 'P2025') {
+                throw new HttpException(
+                    {
+                        errorCode: 'E1111',
+                        errorMessage: 'Your accounnt not found.',
+                    },
+                    HttpStatus.NOT_FOUND,
+                );
+            }
+            this.logger.error(error.stack);
+            throw new HttpException(
+                {
+                    errorCode: 'E1119',
+                    errorMessage: 'Internal server error.',
+                },
+                HttpStatus.INTERNAL_SERVER_ERROR,
+            );
         }
-
     }
 
     async findAllPayment(
-        findAllUserPayment: UserPaymentFindReqQueryDto
+        findAllUserPayment: UserPaymentFindReqQueryDto,
     ): Promise<UserPaymentFindResBodyDto[]> {
         try {
             const paymentdata = await this.prisma.paymentMethod.findMany({
@@ -196,20 +254,27 @@ export class PaymentmethodService {
                     register_date: true,
                     updated_date: true,
                     user: {
-                        select: { phone_number: true }
-                    }
+                        select: { phone_number: true },
+                    },
                 },
-                orderBy: [
-                    { register_date: 'desc' },
-                    { updated_date: 'desc' }
-                ],
+                orderBy: [{ register_date: 'desc' }, { updated_date: 'desc' }],
                 where: {
                     payment_internal_id: {
-                        contains: findAllUserPayment.paymentId, mode: 'insensitive' 
+                        contains: findAllUserPayment.paymentId,
+                        mode: 'insensitive',
                     },
-                    payment_type: { contains: findAllUserPayment.paymentType, mode: 'insensitive' },
-                    payment_account_name: { contains: findAllUserPayment.paymentAccountName, mode: 'insensitive' },
-                    payment_account: { contains: findAllUserPayment.paymentAccount, mode: 'insensitive' },
+                    payment_type: {
+                        contains: findAllUserPayment.paymentType,
+                        mode: 'insensitive',
+                    },
+                    payment_account_name: {
+                        contains: findAllUserPayment.paymentAccountName,
+                        mode: 'insensitive',
+                    },
+                    payment_account: {
+                        contains: findAllUserPayment.paymentAccount,
+                        mode: 'insensitive',
+                    },
                     payment_confirm_code: {
                         gte:
                             findAllUserPayment.paymentConfirmationCode == undefined
@@ -218,13 +283,29 @@ export class PaymentmethodService {
                         lte:
                             findAllUserPayment.paymentConfirmationCode == undefined
                                 ? undefined
-                                : Number(findAllUserPayment.paymentConfirmationCode)
+                                : Number(findAllUserPayment.paymentConfirmationCode),
                     },
                     delete_status: 0,
-                    approve_reject: findAllUserPayment.paymentStatus == 'Approve' ? 1 : findAllUserPayment.paymentStatus == 'Reject' ? 2 : findAllUserPayment.paymentStatus == undefined ? undefined : 1,
-                    reciver_account_type: { contains: findAllUserPayment.recevierAccountType, mode: 'insensitive' },
-                    receiver_account: { contains: findAllUserPayment.receiverAccount, mode: 'insensitive' },
-                    receiver_account_name: { contains: findAllUserPayment.receiverAccountName, mode: 'insensitive' },
+                    approve_reject:
+                        findAllUserPayment.paymentStatus == 'Approve'
+                            ? 1
+                            : findAllUserPayment.paymentStatus == 'Reject'
+                                ? 2
+                                : findAllUserPayment.paymentStatus == undefined
+                                    ? undefined
+                                    : 1,
+                    reciver_account_type: {
+                        contains: findAllUserPayment.recevierAccountType,
+                        mode: 'insensitive',
+                    },
+                    receiver_account: {
+                        contains: findAllUserPayment.receiverAccount,
+                        mode: 'insensitive',
+                    },
+                    receiver_account_name: {
+                        contains: findAllUserPayment.receiverAccountName,
+                        mode: 'insensitive',
+                    },
                     amount: findAllUserPayment.amount,
                     register_date: {
                         gte:
@@ -234,7 +315,7 @@ export class PaymentmethodService {
                         lte:
                             findAllUserPayment.creationDateTo == undefined
                                 ? undefined
-                                : `${findAllUserPayment.creationDateTo}T00:00:00Z`
+                                : `${findAllUserPayment.creationDateTo}T00:00:00Z`,
                     },
                     updated_date: {
                         gte:
@@ -244,45 +325,120 @@ export class PaymentmethodService {
                         lte:
                             findAllUserPayment.updatedDateTo == undefined
                                 ? undefined
-                                : `${findAllUserPayment.updatedDateTo}T00:00:00Z`
+                                : `${findAllUserPayment.updatedDateTo}T00:00:00Z`,
                     },
-                }
+                },
             });
-            return (
-                paymentdata.map((a) => {
-                    const paymentdatadto = new UserPaymentFindResBodyDto();
-                    paymentdatadto.paymentMethodId = a.payment_internal_id,
+            return paymentdata.map((a) => {
+                const paymentdatadto = new UserPaymentFindResBodyDto();
+                (paymentdatadto.paymentMethodId = a.payment_internal_id),
+                    (paymentdatadto.userId = a.user.phone_number),
+                    (paymentdatadto.receiverAccountName = a.receiver_account_name),
+                    (paymentdatadto.receiverAccount = a.receiver_account),
+                    (paymentdatadto.amount = a.amount.toFixed(5)),
+                    (paymentdatadto.paymentConfirmationCode = a.payment_confirm_code),
+                    (paymentdatadto.registerDate = dayjs(a.register_date).format(
+                        'YYYY-MM-DD HH:mm:ss',
+                    )),
+                    (paymentdatadto.updatedDate = dayjs(a.updated_date).format(
+                        'YYYY-MM-DD HH:mm:ss',
+                    ));
 
-                        paymentdatadto.userId = a.user.phone_number,
-
-                        paymentdatadto.receiverAccountName = a.receiver_account_name,
-
-                        paymentdatadto.receiverAccount = a.receiver_account,
-
-                        paymentdatadto.amount = a.amount.toFixed(5),
-
-                        paymentdatadto.paymentConfirmationCode = a.payment_confirm_code,
-
-                        paymentdatadto.registerDate = dayjs(a.register_date).format('YYYY-MM-DD HH:mm:ss'),
-
-                        paymentdatadto.updatedDate = dayjs(a.updated_date).format('YYYY-MM-DD HH:mm:ss')
-
-                    return paymentdatadto;
-                }));
-        }
-        catch (err) {
-            this.logger.log(err)
+                return paymentdatadto;
+            });
+        } catch (err) {
+            this.logger.log(err);
             if (err instanceof HttpException) {
                 throw err;
             } else {
-                throw new HttpException({
-                    errorCode: "E1119",
-                    errorMessage: "Internal Server Error"
-                },
-                    HttpStatus.INTERNAL_SERVER_ERROR);
+                throw new HttpException(
+                    {
+                        errorCode: 'E1119',
+                        errorMessage: 'Internal Server Error',
+                    },
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                );
             }
-
         }
+    }
 
+    async approveUserPaymentByAdmin(
+        userpaymentApproveReqPathDto: UserPaymentMethodApproveReqPathDto,
+        userpaymentApproveReqBodyDto: UserPaymentMethodApproveReqBodyDto,
+    ): Promise<UserPaymentMethodApproveResBodyDto> {
+        try {
+            const updateData = await this.prisma.paymentMethod.update({
+                where: {
+                    payment_internal_id: userpaymentApproveReqPathDto.paymentId,
+                },
+                data: {
+                    approve_reject: 1,
+                    admin: {
+                        connect: {
+                            admin_id: userpaymentApproveReqBodyDto.approverId,
+                        },
+                    },
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                },
+            });
+
+            const userWalletInsertReqBodyDto = new UserWalletInsertReqBodyDto();
+
+            userWalletInsertReqBodyDto.phoneNumber =
+                userpaymentApproveReqBodyDto.phoneNumber;
+            userWalletInsertReqBodyDto.gainAmount = '0';
+            (userWalletInsertReqBodyDto.mainAmount =
+                userpaymentApproveReqBodyDto.amount),
+                (userWalletInsertReqBodyDto.transationType = 'Deposit');
+            const walletData = this.walletService.addUserWallet(
+                userWalletInsertReqBodyDto,
+                '+',
+            );
+            return { isSuccess: true };
+        } catch (error) {
+            {
+                throw new HttpException(
+                    {
+                        errorCode: 'E1119',
+                        errorMessage: 'Internal Server Error',
+                    },
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                );
+            }
+        }
+    }
+
+    async rejectUserPaymentByAdmin(
+        userpaymentRejectReqPathDto: UserPaymentMethodRejectReqPathDto,
+        userpaymentRejectReqBodyDto: UserPaymentMethodRejectReqBodyDto,
+    ): Promise<UserPaymentMethodRejectResBodyDto> {
+        try {
+            const updateData = await this.prisma.paymentMethod.update({
+                where: {
+                    payment_internal_id: userpaymentRejectReqPathDto.paymentId,
+                },
+                data: {
+                    approve_reject: 2,
+                    admin: {
+                        connect: {
+                            admin_id: userpaymentRejectReqBodyDto.approverId,
+                        },
+                    },
+                    reason_for_reject: userpaymentRejectReqBodyDto.reasonForReject,
+                    updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+                },
+            });
+            return { isSuccess: true };
+        } catch (error) {
+            {
+                throw new HttpException(
+                    {
+                        errorCode: 'E1119',
+                        errorMessage: 'Internal Server Error',
+                    },
+                    HttpStatus.INTERNAL_SERVER_ERROR,
+                );
+            }
+        }
     }
 }

@@ -5,7 +5,7 @@ import { LotayaLibService } from 'lotayalib';
 
 @Module({
   controllers: [AdminController],
-  providers: [AdminService,LotayaLibService],
-  exports:[AdminService]
+  providers: [AdminService, LotayaLibService],
+  exports: [AdminService],
 })
 export class AdminModule {}

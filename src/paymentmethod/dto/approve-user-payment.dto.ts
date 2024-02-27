@@ -1,30 +1,24 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsNotEmpty,
-  IsNumber,
-  IsNumberString,
-  Length,
-  Matches,
-} from 'class-validator';
+import { IsNotEmpty, Matches } from 'class-validator';
 
-export class UserWithdrawMethodInsertReqPathDto {
-  @Matches(/^[0-9]+$/, {
+export class UserPaymentMethodApproveReqPathDto {
+  @Matches(/^[0-9a-zA-Z]+$/, {
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your phone number as number.',
+      errorMessage: 'Please enter your payment id as number.',
     },
   })
   @IsNotEmpty({
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your phone number.',
+      errorMessage: 'Please enter your payment id.',
     },
   })
-  @ApiProperty({ default: '09403951357' })
-  phoneNumber: string;
+  @ApiProperty({ default: 1 })
+  paymentId: string;
 }
 
-export class UserWithdrawMethodInsertReqBodyDto {
+export class UserPaymentMethodApproveReqBodyDto {
   @Matches(/^[0-9]+$/, {
     context: {
       errorCode: 'E1000',
@@ -53,19 +47,19 @@ export class UserWithdrawMethodInsertReqBodyDto {
     },
   })
   @ApiProperty({ default: 'KBZ Account' })
-  withdrawType: string;
+  paymentType: string;
 
   @Matches(/^[/^[a-zA-Z0-9- _]+$/, {
     context: {
       errorCode: 'E1000',
       errorMessage:
-        'Please enter your receiver account name as alphanumeric character.',
+        'Please enter your payment account name as alphanumeric character.',
     },
   })
   @IsNotEmpty({
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your receiver account name.',
+      errorMessage: 'Please enter your payment account name.',
     },
   })
   @ApiProperty({ default: 'Aung Aung' })
@@ -75,13 +69,13 @@ export class UserWithdrawMethodInsertReqBodyDto {
     context: {
       errorCode: 'E1000',
       errorMessage:
-        'Please enter your receiver account as alphanumeric character.',
+        'Please enter your payment account as alphanumeric character.',
     },
   })
   @IsNotEmpty({
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your receiver account.',
+      errorMessage: 'Please enter your payment account.',
     },
   })
   @ApiProperty({ default: '09403855555' })
@@ -101,9 +95,24 @@ export class UserWithdrawMethodInsertReqBodyDto {
   })
   @ApiProperty({ default: '100000.4444' })
   amount: string;
+
+  @Matches(/^[0-9a-zA-Z]+$/, {
+    context: {
+      errorCode: 'E1000',
+      errorMessage: 'Please enter your approver id as alpha numeric character.',
+    },
+  })
+  @IsNotEmpty({
+    context: {
+      errorCode: 'E1000',
+      errorMessage: 'Please enter  your approver id.',
+    },
+  })
+  @ApiProperty({ default: 1 })
+  approverId: string;
 }
 
-export class UserWithdrawMethodInsertResBodyDto {
+export class UserPaymentMethodApproveResBodyDto {
   @ApiProperty()
   isSuccess: boolean;
 }

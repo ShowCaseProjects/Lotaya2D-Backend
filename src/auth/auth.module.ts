@@ -8,13 +8,17 @@ import { AdminAuthService } from './adminauth.service';
 import { AdminModule } from 'src/admin/admin.module';
 
 @Module({
-  imports:[UseraccountModule,AdminModule, JwtModule.register({
-    global: true,
-    secret: jwtConstants.secret,
-    signOptions: { expiresIn: '12000000s' },
-  })],
+  imports: [
+    UseraccountModule,
+    AdminModule,
+    JwtModule.register({
+      global: true,
+      secret: jwtConstants.secret,
+      signOptions: { expiresIn: '12000000s' },
+    }),
+  ],
   controllers: [AuthController],
-  providers: [AuthService,AdminAuthService],
-  exports:[AuthService,AdminAuthService]
+  providers: [AuthService, AdminAuthService],
+  exports: [AuthService, AdminAuthService],
 })
 export class AuthModule {}

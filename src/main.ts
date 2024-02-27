@@ -7,16 +7,16 @@ import { ValidatePipe } from 'lib/valiadtepipe';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
-    logger: ['error', 'warn', 'debug']
+    logger: ['error', 'warn', 'debug'],
   });
   const configService = new ConfigService();
   const loyataBackendApiPrefix = configService.get<string>(
-    'LOTAYA_BACKEND_API_PREFIX'
+    'LOTAYA_BACKEND_API_PREFIX',
   );
   app.setGlobalPrefix(loyataBackendApiPrefix);
   app.enableCors({
     origin: '*',
-    allowedHeaders: 'Origin,X-Requested-Width,Content-Type,Accept,'
+    allowedHeaders: 'Origin,X-Requested-Width,Content-Type,Accept,',
   });
 
   app.useGlobalPipes(new ValidatePipe());
@@ -48,11 +48,12 @@ async function bootstrap() {
   // );
   // app.use(express.json({ limit: '15mb' }));
   // app.use(express.urlencoded({ limit: '15mb' }));
-  
+
   const config = new DocumentBuilder()
     .setTitle('Lotaya')
     .setDescription('Lotaya API common')
     .setVersion('1.0')
+    .addBearerAuth()
     .build();
 
   const document = SwaggerModule.createDocument(app, config);
@@ -63,6 +64,6 @@ async function bootstrap() {
   await app.listen(port).then(() => {
     Logger.overrideLogger(['error', 'warn', 'log', 'debug']);
   });
-  Logger.debug(`Application common listen port ${port} `)
+  Logger.debug(`Application common listen port ${port} `);
 }
 bootstrap();

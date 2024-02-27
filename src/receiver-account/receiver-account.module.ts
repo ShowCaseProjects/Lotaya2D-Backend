@@ -4,6 +4,6 @@ import { ReceiverAccountService } from './receiver-account.service';
 
 @Module({
   controllers: [ReceiverAccountController],
-  providers: [ReceiverAccountService]
+  providers: [ReceiverAccountService],
 })
 export class ReceiverAccountModule {}

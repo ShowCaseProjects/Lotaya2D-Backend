@@ -9,7 +9,9 @@ describe('ReceiverAccountController', () => {
       controllers: [ReceiverAccountController],
     }).compile();
 
-    controller = module.get<ReceiverAccountController>(ReceiverAccountController);
+    controller = module.get<ReceiverAccountController>(
+      ReceiverAccountController,
+    );
   });
 
   it('should be defined', () => {

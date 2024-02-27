@@ -1954,6 +1954,84 @@ export namespace Prisma {
 
 
   /**
+   * Count Type AdminCountOutputType
+   */
+
+  export type AdminCountOutputType = {
+    payment: number
+    withdraw: number
+  }
+
+  export type AdminCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    payment?: boolean | AdminCountOutputTypeCountPaymentArgs
+    withdraw?: boolean | AdminCountOutputTypeCountWithdrawArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminCountOutputType
+     */
+    select?: AdminCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeCountPaymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WithdrawMethodWhereInput
+  }
+
+
+  /**
+   * AdminCountOutputType without action
+   */
+  export type AdminCountOutputTypeCountWithdrawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaymentMethodWhereInput
+  }
+
+
+
+  /**
+   * Count Type AdminRolesCountOutputType
+   */
+
+  export type AdminRolesCountOutputType = {
+    admins: number
+  }
+
+  export type AdminRolesCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admins?: boolean | AdminRolesCountOutputTypeCountAdminsArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * AdminRolesCountOutputType without action
+   */
+  export type AdminRolesCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminRolesCountOutputType
+     */
+    select?: AdminRolesCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * AdminRolesCountOutputType without action
+   */
+  export type AdminRolesCountOutputTypeCountAdminsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: AdminWhereInput
+  }
+
+
+
+  /**
    * Count Type TransactionTypeCountOutputType
    */
 
@@ -7021,14 +7099,12 @@ export namespace Prisma {
   export type WalletAvgAggregateOutputType = {
     game_amount: Decimal | null
     main_amount: Decimal | null
-    agent_id: number | null
     delete_status: number | null
   }
 
   export type WalletSumAggregateOutputType = {
     game_amount: Decimal | null
     main_amount: Decimal | null
-    agent_id: number | null
     delete_status: number | null
   }
 
@@ -7037,7 +7113,6 @@ export namespace Prisma {
     user_internal_id: string | null
     game_amount: Decimal | null
     main_amount: Decimal | null
-    agent_id: number | null
     delete_status: number | null
     register_date: Date | null
     updated_date: Date | null
@@ -7049,7 +7124,6 @@ export namespace Prisma {
     user_internal_id: string | null
     game_amount: Decimal | null
     main_amount: Decimal | null
-    agent_id: number | null
     delete_status: number | null
     register_date: Date | null
     updated_date: Date | null
@@ -7061,7 +7135,6 @@ export namespace Prisma {
     user_internal_id: number
     game_amount: number
     main_amount: number
-    agent_id: number
     delete_status: number
     register_date: number
     updated_date: number
@@ -7073,14 +7146,12 @@ export namespace Prisma {
   export type WalletAvgAggregateInputType = {
     game_amount?: true
     main_amount?: true
-    agent_id?: true
     delete_status?: true
   }
 
   export type WalletSumAggregateInputType = {
     game_amount?: true
     main_amount?: true
-    agent_id?: true
     delete_status?: true
   }
 
@@ -7089,7 +7160,6 @@ export namespace Prisma {
     user_internal_id?: true
     game_amount?: true
     main_amount?: true
-    agent_id?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -7101,7 +7171,6 @@ export namespace Prisma {
     user_internal_id?: true
     game_amount?: true
     main_amount?: true
-    agent_id?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -7113,7 +7182,6 @@ export namespace Prisma {
     user_internal_id?: true
     game_amount?: true
     main_amount?: true
-    agent_id?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -7212,7 +7280,6 @@ export namespace Prisma {
     user_internal_id: string
     game_amount: Decimal | null
     main_amount: Decimal | null
-    agent_id: number
     delete_status: number
     register_date: Date
     updated_date: Date
@@ -7243,7 +7310,6 @@ export namespace Prisma {
     user_internal_id?: boolean
     game_amount?: boolean
     main_amount?: boolean
-    agent_id?: boolean
     delete_status?: boolean
     register_date?: boolean
     updated_date?: boolean
@@ -7256,7 +7322,6 @@ export namespace Prisma {
     user_internal_id?: boolean
     game_amount?: boolean
     main_amount?: boolean
-    agent_id?: boolean
     delete_status?: boolean
     register_date?: boolean
     updated_date?: boolean
@@ -7278,7 +7343,6 @@ export namespace Prisma {
       user_internal_id: string
       game_amount: Prisma.Decimal | null
       main_amount: Prisma.Decimal | null
-      agent_id: number
       delete_status: number
       register_date: Date
       updated_date: Date
@@ -7682,7 +7746,6 @@ export namespace Prisma {
     readonly user_internal_id: FieldRef<"Wallet", 'String'>
     readonly game_amount: FieldRef<"Wallet", 'Decimal'>
     readonly main_amount: FieldRef<"Wallet", 'Decimal'>
-    readonly agent_id: FieldRef<"Wallet", 'Int'>
     readonly delete_status: FieldRef<"Wallet", 'Int'>
     readonly register_date: FieldRef<"Wallet", 'DateTime'>
     readonly updated_date: FieldRef<"Wallet", 'DateTime'>
@@ -8043,6 +8106,7 @@ export namespace Prisma {
   export type PaymentMethodMinAggregateOutputType = {
     payment_internal_id: string | null
     user_internal_id: string | null
+    admin_internal_id: string | null
     payment_type: string | null
     payment_account_name: string | null
     payment_account: string | null
@@ -8063,6 +8127,7 @@ export namespace Prisma {
   export type PaymentMethodMaxAggregateOutputType = {
     payment_internal_id: string | null
     user_internal_id: string | null
+    admin_internal_id: string | null
     payment_type: string | null
     payment_account_name: string | null
     payment_account: string | null
@@ -8083,6 +8148,7 @@ export namespace Prisma {
   export type PaymentMethodCountAggregateOutputType = {
     payment_internal_id: number
     user_internal_id: number
+    admin_internal_id: number
     payment_type: number
     payment_account_name: number
     payment_account: number
@@ -8119,6 +8185,7 @@ export namespace Prisma {
   export type PaymentMethodMinAggregateInputType = {
     payment_internal_id?: true
     user_internal_id?: true
+    admin_internal_id?: true
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
@@ -8139,6 +8206,7 @@ export namespace Prisma {
   export type PaymentMethodMaxAggregateInputType = {
     payment_internal_id?: true
     user_internal_id?: true
+    admin_internal_id?: true
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
@@ -8159,6 +8227,7 @@ export namespace Prisma {
   export type PaymentMethodCountAggregateInputType = {
     payment_internal_id?: true
     user_internal_id?: true
+    admin_internal_id?: true
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
@@ -8266,6 +8335,7 @@ export namespace Prisma {
   export type PaymentMethodGroupByOutputType = {
     payment_internal_id: string
     user_internal_id: string
+    admin_internal_id: string | null
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -8305,6 +8375,7 @@ export namespace Prisma {
   export type PaymentMethodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     payment_internal_id?: boolean
     user_internal_id?: boolean
+    admin_internal_id?: boolean
     payment_type?: boolean
     payment_account_name?: boolean
     payment_account?: boolean
@@ -8321,11 +8392,13 @@ export namespace Prisma {
     updated_date?: boolean
     deleted_date?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | PaymentMethod$adminArgs<ExtArgs>
   }, ExtArgs["result"]["paymentMethod"]>
 
   export type PaymentMethodSelectScalar = {
     payment_internal_id?: boolean
     user_internal_id?: boolean
+    admin_internal_id?: boolean
     payment_type?: boolean
     payment_account_name?: boolean
     payment_account?: boolean
@@ -8345,6 +8418,7 @@ export namespace Prisma {
 
   export type PaymentMethodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | PaymentMethod$adminArgs<ExtArgs>
   }
 
 
@@ -8352,10 +8426,12 @@ export namespace Prisma {
     name: "PaymentMethod"
     objects: {
       user: Prisma.$UsersPayload<ExtArgs>
+      admin: Prisma.$AdminPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       payment_internal_id: string
       user_internal_id: string
+      admin_internal_id: string | null
       payment_type: string
       payment_account_name: string
       payment_account: string
@@ -8738,6 +8814,8 @@ export namespace Prisma {
 
     user<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
+    admin<T extends PaymentMethod$adminArgs<ExtArgs> = {}>(args?: Subset<T, PaymentMethod$adminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8768,6 +8846,7 @@ export namespace Prisma {
   interface PaymentMethodFieldRefs {
     readonly payment_internal_id: FieldRef<"PaymentMethod", 'String'>
     readonly user_internal_id: FieldRef<"PaymentMethod", 'String'>
+    readonly admin_internal_id: FieldRef<"PaymentMethod", 'String'>
     readonly payment_type: FieldRef<"PaymentMethod", 'String'>
     readonly payment_account_name: FieldRef<"PaymentMethod", 'String'>
     readonly payment_account: FieldRef<"PaymentMethod", 'String'>
@@ -9095,6 +9174,22 @@ export namespace Prisma {
 
 
   /**
+   * PaymentMethod.admin
+   */
+  export type PaymentMethod$adminArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    where?: AdminWhereInput
+  }
+
+
+  /**
    * PaymentMethod without action
    */
   export type PaymentMethodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9139,6 +9234,7 @@ export namespace Prisma {
   export type WithdrawMethodMinAggregateOutputType = {
     withdraw_id: string | null
     user_internal_id: string | null
+    admin_internal_id: string | null
     withdraw_type: string | null
     receiver_account_name: string | null
     receiver_account: string | null
@@ -9157,6 +9253,7 @@ export namespace Prisma {
   export type WithdrawMethodMaxAggregateOutputType = {
     withdraw_id: string | null
     user_internal_id: string | null
+    admin_internal_id: string | null
     withdraw_type: string | null
     receiver_account_name: string | null
     receiver_account: string | null
@@ -9175,6 +9272,7 @@ export namespace Prisma {
   export type WithdrawMethodCountAggregateOutputType = {
     withdraw_id: number
     user_internal_id: number
+    admin_internal_id: number
     withdraw_type: number
     receiver_account_name: number
     receiver_account: number
@@ -9209,6 +9307,7 @@ export namespace Prisma {
   export type WithdrawMethodMinAggregateInputType = {
     withdraw_id?: true
     user_internal_id?: true
+    admin_internal_id?: true
     withdraw_type?: true
     receiver_account_name?: true
     receiver_account?: true
@@ -9227,6 +9326,7 @@ export namespace Prisma {
   export type WithdrawMethodMaxAggregateInputType = {
     withdraw_id?: true
     user_internal_id?: true
+    admin_internal_id?: true
     withdraw_type?: true
     receiver_account_name?: true
     receiver_account?: true
@@ -9245,6 +9345,7 @@ export namespace Prisma {
   export type WithdrawMethodCountAggregateInputType = {
     withdraw_id?: true
     user_internal_id?: true
+    admin_internal_id?: true
     withdraw_type?: true
     receiver_account_name?: true
     receiver_account?: true
@@ -9350,6 +9451,7 @@ export namespace Prisma {
   export type WithdrawMethodGroupByOutputType = {
     withdraw_id: string
     user_internal_id: string
+    admin_internal_id: string | null
     withdraw_type: string
     receiver_account_name: string
     receiver_account: string
@@ -9387,6 +9489,7 @@ export namespace Prisma {
   export type WithdrawMethodSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     withdraw_id?: boolean
     user_internal_id?: boolean
+    admin_internal_id?: boolean
     withdraw_type?: boolean
     receiver_account_name?: boolean
     receiver_account?: boolean
@@ -9401,11 +9504,13 @@ export namespace Prisma {
     updated_date?: boolean
     deleted_date?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | WithdrawMethod$adminArgs<ExtArgs>
   }, ExtArgs["result"]["withdrawMethod"]>
 
   export type WithdrawMethodSelectScalar = {
     withdraw_id?: boolean
     user_internal_id?: boolean
+    admin_internal_id?: boolean
     withdraw_type?: boolean
     receiver_account_name?: boolean
     receiver_account?: boolean
@@ -9423,6 +9528,7 @@ export namespace Prisma {
 
   export type WithdrawMethodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
+    admin?: boolean | WithdrawMethod$adminArgs<ExtArgs>
   }
 
 
@@ -9430,10 +9536,12 @@ export namespace Prisma {
     name: "WithdrawMethod"
     objects: {
       user: Prisma.$UsersPayload<ExtArgs>
+      admin: Prisma.$AdminPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       withdraw_id: string
       user_internal_id: string
+      admin_internal_id: string | null
       withdraw_type: string
       receiver_account_name: string
       receiver_account: string
@@ -9814,6 +9922,8 @@ export namespace Prisma {
 
     user<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
+    admin<T extends WithdrawMethod$adminArgs<ExtArgs> = {}>(args?: Subset<T, WithdrawMethod$adminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9844,6 +9954,7 @@ export namespace Prisma {
   interface WithdrawMethodFieldRefs {
     readonly withdraw_id: FieldRef<"WithdrawMethod", 'String'>
     readonly user_internal_id: FieldRef<"WithdrawMethod", 'String'>
+    readonly admin_internal_id: FieldRef<"WithdrawMethod", 'String'>
     readonly withdraw_type: FieldRef<"WithdrawMethod", 'String'>
     readonly receiver_account_name: FieldRef<"WithdrawMethod", 'String'>
     readonly receiver_account: FieldRef<"WithdrawMethod", 'String'>
@@ -10169,6 +10280,22 @@ export namespace Prisma {
 
 
   /**
+   * WithdrawMethod.admin
+   */
+  export type WithdrawMethod$adminArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    where?: AdminWhereInput
+  }
+
+
+  /**
    * WithdrawMethod without action
    */
   export type WithdrawMethodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -10197,10 +10324,12 @@ export namespace Prisma {
   }
 
   export type AdminAvgAggregateOutputType = {
+    role_id: number | null
     delete_status: number | null
   }
 
   export type AdminSumAggregateOutputType = {
+    role_id: number | null
     delete_status: number | null
   }
 
@@ -10209,6 +10338,7 @@ export namespace Prisma {
     admin_id: string | null
     admin_name: string | null
     password: string | null
+    role_id: number | null
     account_status: string | null
     delete_status: number | null
     register_date: Date | null
@@ -10221,6 +10351,7 @@ export namespace Prisma {
     admin_id: string | null
     admin_name: string | null
     password: string | null
+    role_id: number | null
     account_status: string | null
     delete_status: number | null
     register_date: Date | null
@@ -10233,6 +10364,7 @@ export namespace Prisma {
     admin_id: number
     admin_name: number
     password: number
+    role_id: number
     account_status: number
     delete_status: number
     register_date: number
@@ -10243,10 +10375,12 @@ export namespace Prisma {
 
 
   export type AdminAvgAggregateInputType = {
+    role_id?: true
     delete_status?: true
   }
 
   export type AdminSumAggregateInputType = {
+    role_id?: true
     delete_status?: true
   }
 
@@ -10255,6 +10389,7 @@ export namespace Prisma {
     admin_id?: true
     admin_name?: true
     password?: true
+    role_id?: true
     account_status?: true
     delete_status?: true
     register_date?: true
@@ -10267,6 +10402,7 @@ export namespace Prisma {
     admin_id?: true
     admin_name?: true
     password?: true
+    role_id?: true
     account_status?: true
     delete_status?: true
     register_date?: true
@@ -10279,6 +10415,7 @@ export namespace Prisma {
     admin_id?: true
     admin_name?: true
     password?: true
+    role_id?: true
     account_status?: true
     delete_status?: true
     register_date?: true
@@ -10378,6 +10515,7 @@ export namespace Prisma {
     admin_id: string
     admin_name: string | null
     password: string | null
+    role_id: number
     account_status: string | null
     delete_status: number | null
     register_date: Date
@@ -10409,11 +10547,16 @@ export namespace Prisma {
     admin_id?: boolean
     admin_name?: boolean
     password?: boolean
+    role_id?: boolean
     account_status?: boolean
     delete_status?: boolean
     register_date?: boolean
     updated_date?: boolean
     deleted_date?: boolean
+    admin_role?: boolean | AdminRolesDefaultArgs<ExtArgs>
+    payment?: boolean | Admin$paymentArgs<ExtArgs>
+    withdraw?: boolean | Admin$withdrawArgs<ExtArgs>
+    _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["admin"]>
 
   export type AdminSelectScalar = {
@@ -10421,6 +10564,7 @@ export namespace Prisma {
     admin_id?: boolean
     admin_name?: boolean
     password?: boolean
+    role_id?: boolean
     account_status?: boolean
     delete_status?: boolean
     register_date?: boolean
@@ -10428,15 +10572,27 @@ export namespace Prisma {
     deleted_date?: boolean
   }
 
+  export type AdminInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admin_role?: boolean | AdminRolesDefaultArgs<ExtArgs>
+    payment?: boolean | Admin$paymentArgs<ExtArgs>
+    withdraw?: boolean | Admin$withdrawArgs<ExtArgs>
+    _count?: boolean | AdminCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
 
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
-    objects: {}
+    objects: {
+      admin_role: Prisma.$AdminRolesPayload<ExtArgs>
+      payment: Prisma.$WithdrawMethodPayload<ExtArgs>[]
+      withdraw: Prisma.$PaymentMethodPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       admin_internal_id: string
       admin_id: string
       admin_name: string | null
       password: string | null
+      role_id: number
       account_status: string | null
       delete_status: number | null
       register_date: Date
@@ -10807,6 +10963,11 @@ export namespace Prisma {
   export interface Prisma__AdminClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    admin_role<T extends AdminRolesDefaultArgs<ExtArgs> = {}>(args?: Subset<T, AdminRolesDefaultArgs<ExtArgs>>): Prisma__AdminRolesClient<$Result.GetResult<Prisma.$AdminRolesPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
+    payment<T extends Admin$paymentArgs<ExtArgs> = {}>(args?: Subset<T, Admin$paymentArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WithdrawMethodPayload<ExtArgs>, T, 'findMany'> | Null>;
+
+    withdraw<T extends Admin$withdrawArgs<ExtArgs> = {}>(args?: Subset<T, Admin$withdrawArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentMethodPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -10840,6 +11001,7 @@ export namespace Prisma {
     readonly admin_id: FieldRef<"Admin", 'String'>
     readonly admin_name: FieldRef<"Admin", 'String'>
     readonly password: FieldRef<"Admin", 'String'>
+    readonly role_id: FieldRef<"Admin", 'Int'>
     readonly account_status: FieldRef<"Admin", 'String'>
     readonly delete_status: FieldRef<"Admin", 'Int'>
     readonly register_date: FieldRef<"Admin", 'DateTime'>
@@ -10859,6 +11021,10 @@ export namespace Prisma {
      */
     select?: AdminSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter, which Admin to fetch.
      */
     where: AdminWhereUniqueInput
@@ -10874,6 +11040,10 @@ export namespace Prisma {
      */
     select?: AdminSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter, which Admin to fetch.
      */
     where: AdminWhereUniqueInput
@@ -10888,6 +11058,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Admin
      */
     select?: AdminSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
     /**
      * Filter, which Admin to fetch.
      */
@@ -10934,6 +11108,10 @@ export namespace Prisma {
      */
     select?: AdminSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter, which Admin to fetch.
      */
     where?: AdminWhereInput
@@ -10979,6 +11157,10 @@ export namespace Prisma {
      */
     select?: AdminSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter, which Admins to fetch.
      */
     where?: AdminWhereInput
@@ -11019,6 +11201,10 @@ export namespace Prisma {
      */
     select?: AdminSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * The data needed to create a Admin.
      */
     data: XOR<AdminCreateInput, AdminUncheckedCreateInput>
@@ -11045,6 +11231,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Admin
      */
     select?: AdminSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
     /**
      * The data needed to update a Admin.
      */
@@ -11080,6 +11270,10 @@ export namespace Prisma {
      */
     select?: AdminSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * The filter to search for the Admin to update in case it exists.
      */
     where: AdminWhereUniqueInput
@@ -11103,6 +11297,10 @@ export namespace Prisma {
      */
     select?: AdminSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    /**
      * Filter which Admin to delete.
      */
     where: AdminWhereUniqueInput
@@ -11121,6 +11319,48 @@ export namespace Prisma {
 
 
   /**
+   * Admin.payment
+   */
+  export type Admin$paymentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WithdrawMethod
+     */
+    select?: WithdrawMethodSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: WithdrawMethodInclude<ExtArgs> | null
+    where?: WithdrawMethodWhereInput
+    orderBy?: WithdrawMethodOrderByWithRelationInput | WithdrawMethodOrderByWithRelationInput[]
+    cursor?: WithdrawMethodWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WithdrawMethodScalarFieldEnum | WithdrawMethodScalarFieldEnum[]
+  }
+
+
+  /**
+   * Admin.withdraw
+   */
+  export type Admin$withdrawArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMethod
+     */
+    select?: PaymentMethodSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentMethodInclude<ExtArgs> | null
+    where?: PaymentMethodWhereInput
+    orderBy?: PaymentMethodOrderByWithRelationInput | PaymentMethodOrderByWithRelationInput[]
+    cursor?: PaymentMethodWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaymentMethodScalarFieldEnum | PaymentMethodScalarFieldEnum[]
+  }
+
+
+  /**
    * Admin without action
    */
   export type AdminDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11128,6 +11368,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the Admin
      */
     select?: AdminSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
   }
 
 
@@ -11306,6 +11550,8 @@ export namespace Prisma {
   export type AdminRolesSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
     role_id?: boolean
     name?: boolean
+    admins?: boolean | AdminRoles$adminsArgs<ExtArgs>
+    _count?: boolean | AdminRolesCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["adminRoles"]>
 
   export type AdminRolesSelectScalar = {
@@ -11313,10 +11559,17 @@ export namespace Prisma {
     name?: boolean
   }
 
+  export type AdminRolesInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    admins?: boolean | AdminRoles$adminsArgs<ExtArgs>
+    _count?: boolean | AdminRolesCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
 
   export type $AdminRolesPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AdminRoles"
-    objects: {}
+    objects: {
+      admins: Prisma.$AdminPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       role_id: number
       name: string
@@ -11685,6 +11938,7 @@ export namespace Prisma {
   export interface Prisma__AdminRolesClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    admins<T extends AdminRoles$adminsArgs<ExtArgs> = {}>(args?: Subset<T, AdminRoles$adminsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -11730,6 +11984,10 @@ export namespace Prisma {
      */
     select?: AdminRolesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
+    /**
      * Filter, which AdminRoles to fetch.
      */
     where: AdminRolesWhereUniqueInput
@@ -11745,6 +12003,10 @@ export namespace Prisma {
      */
     select?: AdminRolesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
+    /**
      * Filter, which AdminRoles to fetch.
      */
     where: AdminRolesWhereUniqueInput
@@ -11759,6 +12021,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the AdminRoles
      */
     select?: AdminRolesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
     /**
      * Filter, which AdminRoles to fetch.
      */
@@ -11805,6 +12071,10 @@ export namespace Prisma {
      */
     select?: AdminRolesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
+    /**
      * Filter, which AdminRoles to fetch.
      */
     where?: AdminRolesWhereInput
@@ -11850,6 +12120,10 @@ export namespace Prisma {
      */
     select?: AdminRolesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
+    /**
      * Filter, which AdminRoles to fetch.
      */
     where?: AdminRolesWhereInput
@@ -11890,6 +12164,10 @@ export namespace Prisma {
      */
     select?: AdminRolesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
+    /**
      * The data needed to create a AdminRoles.
      */
     data: XOR<AdminRolesCreateInput, AdminRolesUncheckedCreateInput>
@@ -11916,6 +12194,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the AdminRoles
      */
     select?: AdminRolesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
     /**
      * The data needed to update a AdminRoles.
      */
@@ -11951,6 +12233,10 @@ export namespace Prisma {
      */
     select?: AdminRolesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
+    /**
      * The filter to search for the AdminRoles to update in case it exists.
      */
     where: AdminRolesWhereUniqueInput
@@ -11974,6 +12260,10 @@ export namespace Prisma {
      */
     select?: AdminRolesSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
+    /**
      * Filter which AdminRoles to delete.
      */
     where: AdminRolesWhereUniqueInput
@@ -11992,6 +12282,27 @@ export namespace Prisma {
 
 
   /**
+   * AdminRoles.admins
+   */
+  export type AdminRoles$adminsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Admin
+     */
+    select?: AdminSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminInclude<ExtArgs> | null
+    where?: AdminWhereInput
+    orderBy?: AdminOrderByWithRelationInput | AdminOrderByWithRelationInput[]
+    cursor?: AdminWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: AdminScalarFieldEnum | AdminScalarFieldEnum[]
+  }
+
+
+  /**
    * AdminRoles without action
    */
   export type AdminRolesDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -11999,6 +12310,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the AdminRoles
      */
     select?: AdminRolesSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminRolesInclude<ExtArgs> | null
   }
 
 
@@ -12018,14 +12333,12 @@ export namespace Prisma {
   export type TransactionAvgAggregateOutputType = {
     amount: Decimal | null
     transaction_type_id: number | null
-    agent_id: number | null
     delete_status: number | null
   }
 
   export type TransactionSumAggregateOutputType = {
     amount: Decimal | null
     transaction_type_id: number | null
-    agent_id: number | null
     delete_status: number | null
   }
 
@@ -12035,7 +12348,6 @@ export namespace Prisma {
     amount: Decimal | null
     transaction_type_id: number | null
     transaction_date: Date | null
-    agent_id: number | null
     delete_status: number | null
     register_date: Date | null
     updated_date: Date | null
@@ -12048,7 +12360,6 @@ export namespace Prisma {
     amount: Decimal | null
     transaction_type_id: number | null
     transaction_date: Date | null
-    agent_id: number | null
     delete_status: number | null
     register_date: Date | null
     updated_date: Date | null
@@ -12061,7 +12372,6 @@ export namespace Prisma {
     amount: number
     transaction_type_id: number
     transaction_date: number
-    agent_id: number
     delete_status: number
     register_date: number
     updated_date: number
@@ -12073,14 +12383,12 @@ export namespace Prisma {
   export type TransactionAvgAggregateInputType = {
     amount?: true
     transaction_type_id?: true
-    agent_id?: true
     delete_status?: true
   }
 
   export type TransactionSumAggregateInputType = {
     amount?: true
     transaction_type_id?: true
-    agent_id?: true
     delete_status?: true
   }
 
@@ -12090,7 +12398,6 @@ export namespace Prisma {
     amount?: true
     transaction_type_id?: true
     transaction_date?: true
-    agent_id?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -12103,7 +12410,6 @@ export namespace Prisma {
     amount?: true
     transaction_type_id?: true
     transaction_date?: true
-    agent_id?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -12116,7 +12422,6 @@ export namespace Prisma {
     amount?: true
     transaction_type_id?: true
     transaction_date?: true
-    agent_id?: true
     delete_status?: true
     register_date?: true
     updated_date?: true
@@ -12216,7 +12521,6 @@ export namespace Prisma {
     amount: Decimal
     transaction_type_id: number
     transaction_date: Date
-    agent_id: number
     delete_status: number
     register_date: Date
     updated_date: Date
@@ -12248,7 +12552,6 @@ export namespace Prisma {
     amount?: boolean
     transaction_type_id?: boolean
     transaction_date?: boolean
-    agent_id?: boolean
     delete_status?: boolean
     register_date?: boolean
     updated_date?: boolean
@@ -12263,7 +12566,6 @@ export namespace Prisma {
     amount?: boolean
     transaction_type_id?: boolean
     transaction_date?: boolean
-    agent_id?: boolean
     delete_status?: boolean
     register_date?: boolean
     updated_date?: boolean
@@ -12288,7 +12590,6 @@ export namespace Prisma {
       amount: Prisma.Decimal
       transaction_type_id: number
       transaction_date: Date
-      agent_id: number
       delete_status: number
       register_date: Date
       updated_date: Date
@@ -12695,7 +12996,6 @@ export namespace Prisma {
     readonly amount: FieldRef<"Transaction", 'Decimal'>
     readonly transaction_type_id: FieldRef<"Transaction", 'Int'>
     readonly transaction_date: FieldRef<"Transaction", 'DateTime'>
-    readonly agent_id: FieldRef<"Transaction", 'Int'>
     readonly delete_status: FieldRef<"Transaction", 'Int'>
     readonly register_date: FieldRef<"Transaction", 'DateTime'>
     readonly updated_date: FieldRef<"Transaction", 'DateTime'>
@@ -14930,7 +15230,6 @@ export namespace Prisma {
     user_internal_id: 'user_internal_id',
     game_amount: 'game_amount',
     main_amount: 'main_amount',
-    agent_id: 'agent_id',
     delete_status: 'delete_status',
     register_date: 'register_date',
     updated_date: 'updated_date',
@@ -14943,6 +15242,7 @@ export namespace Prisma {
   export const PaymentMethodScalarFieldEnum: {
     payment_internal_id: 'payment_internal_id',
     user_internal_id: 'user_internal_id',
+    admin_internal_id: 'admin_internal_id',
     payment_type: 'payment_type',
     payment_account_name: 'payment_account_name',
     payment_account: 'payment_account',
@@ -14966,6 +15266,7 @@ export namespace Prisma {
   export const WithdrawMethodScalarFieldEnum: {
     withdraw_id: 'withdraw_id',
     user_internal_id: 'user_internal_id',
+    admin_internal_id: 'admin_internal_id',
     withdraw_type: 'withdraw_type',
     receiver_account_name: 'receiver_account_name',
     receiver_account: 'receiver_account',
@@ -14989,6 +15290,7 @@ export namespace Prisma {
     admin_id: 'admin_id',
     admin_name: 'admin_name',
     password: 'password',
+    role_id: 'role_id',
     account_status: 'account_status',
     delete_status: 'delete_status',
     register_date: 'register_date',
@@ -15013,7 +15315,6 @@ export namespace Prisma {
     amount: 'amount',
     transaction_type_id: 'transaction_type_id',
     transaction_date: 'transaction_date',
-    agent_id: 'agent_id',
     delete_status: 'delete_status',
     register_date: 'register_date',
     updated_date: 'updated_date',
@@ -15523,7 +15824,6 @@ export namespace Prisma {
     user_internal_id?: StringFilter<"Wallet"> | string
     game_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     main_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFilter<"Wallet"> | number
     delete_status?: IntFilter<"Wallet"> | number
     register_date?: DateTimeFilter<"Wallet"> | Date | string
     updated_date?: DateTimeFilter<"Wallet"> | Date | string
@@ -15536,7 +15836,6 @@ export namespace Prisma {
     user_internal_id?: SortOrder
     game_amount?: SortOrderInput | SortOrder
     main_amount?: SortOrderInput | SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -15552,7 +15851,6 @@ export namespace Prisma {
     NOT?: WalletWhereInput | WalletWhereInput[]
     game_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     main_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFilter<"Wallet"> | number
     delete_status?: IntFilter<"Wallet"> | number
     register_date?: DateTimeFilter<"Wallet"> | Date | string
     updated_date?: DateTimeFilter<"Wallet"> | Date | string
@@ -15565,7 +15863,6 @@ export namespace Prisma {
     user_internal_id?: SortOrder
     game_amount?: SortOrderInput | SortOrder
     main_amount?: SortOrderInput | SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -15585,7 +15882,6 @@ export namespace Prisma {
     user_internal_id?: StringWithAggregatesFilter<"Wallet"> | string
     game_amount?: DecimalNullableWithAggregatesFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     main_amount?: DecimalNullableWithAggregatesFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntWithAggregatesFilter<"Wallet"> | number
     delete_status?: IntWithAggregatesFilter<"Wallet"> | number
     register_date?: DateTimeWithAggregatesFilter<"Wallet"> | Date | string
     updated_date?: DateTimeWithAggregatesFilter<"Wallet"> | Date | string
@@ -15598,6 +15894,7 @@ export namespace Prisma {
     NOT?: PaymentMethodWhereInput | PaymentMethodWhereInput[]
     payment_internal_id?: StringFilter<"PaymentMethod"> | string
     user_internal_id?: StringFilter<"PaymentMethod"> | string
+    admin_internal_id?: StringNullableFilter<"PaymentMethod"> | string | null
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
@@ -15614,11 +15911,13 @@ export namespace Prisma {
     updated_date?: DateTimeFilter<"PaymentMethod"> | Date | string
     deleted_date?: DateTimeNullableFilter<"PaymentMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
+    admin?: XOR<AdminNullableRelationFilter, AdminWhereInput> | null
   }
 
   export type PaymentMethodOrderByWithRelationInput = {
     payment_internal_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrderInput | SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -15635,6 +15934,7 @@ export namespace Prisma {
     updated_date?: SortOrder
     deleted_date?: SortOrderInput | SortOrder
     user?: UsersOrderByWithRelationInput
+    admin?: AdminOrderByWithRelationInput
   }
 
   export type PaymentMethodWhereUniqueInput = Prisma.AtLeast<{
@@ -15643,6 +15943,7 @@ export namespace Prisma {
     OR?: PaymentMethodWhereInput[]
     NOT?: PaymentMethodWhereInput | PaymentMethodWhereInput[]
     user_internal_id?: StringFilter<"PaymentMethod"> | string
+    admin_internal_id?: StringNullableFilter<"PaymentMethod"> | string | null
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
@@ -15659,11 +15960,13 @@ export namespace Prisma {
     updated_date?: DateTimeFilter<"PaymentMethod"> | Date | string
     deleted_date?: DateTimeNullableFilter<"PaymentMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
+    admin?: XOR<AdminNullableRelationFilter, AdminWhereInput> | null
   }, "payment_internal_id">
 
   export type PaymentMethodOrderByWithAggregationInput = {
     payment_internal_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrderInput | SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -15692,6 +15995,7 @@ export namespace Prisma {
     NOT?: PaymentMethodScalarWhereWithAggregatesInput | PaymentMethodScalarWhereWithAggregatesInput[]
     payment_internal_id?: StringWithAggregatesFilter<"PaymentMethod"> | string
     user_internal_id?: StringWithAggregatesFilter<"PaymentMethod"> | string
+    admin_internal_id?: StringNullableWithAggregatesFilter<"PaymentMethod"> | string | null
     payment_type?: StringWithAggregatesFilter<"PaymentMethod"> | string
     payment_account_name?: StringWithAggregatesFilter<"PaymentMethod"> | string
     payment_account?: StringWithAggregatesFilter<"PaymentMethod"> | string
@@ -15715,6 +16019,7 @@ export namespace Prisma {
     NOT?: WithdrawMethodWhereInput | WithdrawMethodWhereInput[]
     withdraw_id?: StringFilter<"WithdrawMethod"> | string
     user_internal_id?: StringFilter<"WithdrawMethod"> | string
+    admin_internal_id?: StringNullableFilter<"WithdrawMethod"> | string | null
     withdraw_type?: StringFilter<"WithdrawMethod"> | string
     receiver_account_name?: StringFilter<"WithdrawMethod"> | string
     receiver_account?: StringFilter<"WithdrawMethod"> | string
@@ -15729,11 +16034,13 @@ export namespace Prisma {
     updated_date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     deleted_date?: DateTimeNullableFilter<"WithdrawMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
+    admin?: XOR<AdminNullableRelationFilter, AdminWhereInput> | null
   }
 
   export type WithdrawMethodOrderByWithRelationInput = {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrderInput | SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -15748,6 +16055,7 @@ export namespace Prisma {
     updated_date?: SortOrder
     deleted_date?: SortOrderInput | SortOrder
     user?: UsersOrderByWithRelationInput
+    admin?: AdminOrderByWithRelationInput
   }
 
   export type WithdrawMethodWhereUniqueInput = Prisma.AtLeast<{
@@ -15756,6 +16064,7 @@ export namespace Prisma {
     OR?: WithdrawMethodWhereInput[]
     NOT?: WithdrawMethodWhereInput | WithdrawMethodWhereInput[]
     user_internal_id?: StringFilter<"WithdrawMethod"> | string
+    admin_internal_id?: StringNullableFilter<"WithdrawMethod"> | string | null
     withdraw_type?: StringFilter<"WithdrawMethod"> | string
     receiver_account_name?: StringFilter<"WithdrawMethod"> | string
     receiver_account?: StringFilter<"WithdrawMethod"> | string
@@ -15770,11 +16079,13 @@ export namespace Prisma {
     updated_date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     deleted_date?: DateTimeNullableFilter<"WithdrawMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
+    admin?: XOR<AdminNullableRelationFilter, AdminWhereInput> | null
   }, "withdraw_id">
 
   export type WithdrawMethodOrderByWithAggregationInput = {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrderInput | SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -15801,6 +16112,7 @@ export namespace Prisma {
     NOT?: WithdrawMethodScalarWhereWithAggregatesInput | WithdrawMethodScalarWhereWithAggregatesInput[]
     withdraw_id?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     user_internal_id?: StringWithAggregatesFilter<"WithdrawMethod"> | string
+    admin_internal_id?: StringNullableWithAggregatesFilter<"WithdrawMethod"> | string | null
     withdraw_type?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     receiver_account_name?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     receiver_account?: StringWithAggregatesFilter<"WithdrawMethod"> | string
@@ -15824,11 +16136,15 @@ export namespace Prisma {
     admin_id?: StringFilter<"Admin"> | string
     admin_name?: StringNullableFilter<"Admin"> | string | null
     password?: StringNullableFilter<"Admin"> | string | null
+    role_id?: IntFilter<"Admin"> | number
     account_status?: StringNullableFilter<"Admin"> | string | null
     delete_status?: IntNullableFilter<"Admin"> | number | null
     register_date?: DateTimeFilter<"Admin"> | Date | string
     updated_date?: DateTimeFilter<"Admin"> | Date | string
     deleted_date?: DateTimeNullableFilter<"Admin"> | Date | string | null
+    admin_role?: XOR<AdminRolesRelationFilter, AdminRolesWhereInput>
+    payment?: WithdrawMethodListRelationFilter
+    withdraw?: PaymentMethodListRelationFilter
   }
 
   export type AdminOrderByWithRelationInput = {
@@ -15836,11 +16152,15 @@ export namespace Prisma {
     admin_id?: SortOrder
     admin_name?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
+    role_id?: SortOrder
     account_status?: SortOrderInput | SortOrder
     delete_status?: SortOrderInput | SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
     deleted_date?: SortOrderInput | SortOrder
+    admin_role?: AdminRolesOrderByWithRelationInput
+    payment?: WithdrawMethodOrderByRelationAggregateInput
+    withdraw?: PaymentMethodOrderByRelationAggregateInput
   }
 
   export type AdminWhereUniqueInput = Prisma.AtLeast<{
@@ -15851,11 +16171,15 @@ export namespace Prisma {
     NOT?: AdminWhereInput | AdminWhereInput[]
     admin_name?: StringNullableFilter<"Admin"> | string | null
     password?: StringNullableFilter<"Admin"> | string | null
+    role_id?: IntFilter<"Admin"> | number
     account_status?: StringNullableFilter<"Admin"> | string | null
     delete_status?: IntNullableFilter<"Admin"> | number | null
     register_date?: DateTimeFilter<"Admin"> | Date | string
     updated_date?: DateTimeFilter<"Admin"> | Date | string
     deleted_date?: DateTimeNullableFilter<"Admin"> | Date | string | null
+    admin_role?: XOR<AdminRolesRelationFilter, AdminRolesWhereInput>
+    payment?: WithdrawMethodListRelationFilter
+    withdraw?: PaymentMethodListRelationFilter
   }, "admin_internal_id" | "admin_id">
 
   export type AdminOrderByWithAggregationInput = {
@@ -15863,6 +16187,7 @@ export namespace Prisma {
     admin_id?: SortOrder
     admin_name?: SortOrderInput | SortOrder
     password?: SortOrderInput | SortOrder
+    role_id?: SortOrder
     account_status?: SortOrderInput | SortOrder
     delete_status?: SortOrderInput | SortOrder
     register_date?: SortOrder
@@ -15883,6 +16208,7 @@ export namespace Prisma {
     admin_id?: StringWithAggregatesFilter<"Admin"> | string
     admin_name?: StringNullableWithAggregatesFilter<"Admin"> | string | null
     password?: StringNullableWithAggregatesFilter<"Admin"> | string | null
+    role_id?: IntWithAggregatesFilter<"Admin"> | number
     account_status?: StringNullableWithAggregatesFilter<"Admin"> | string | null
     delete_status?: IntNullableWithAggregatesFilter<"Admin"> | number | null
     register_date?: DateTimeWithAggregatesFilter<"Admin"> | Date | string
@@ -15896,11 +16222,13 @@ export namespace Prisma {
     NOT?: AdminRolesWhereInput | AdminRolesWhereInput[]
     role_id?: IntFilter<"AdminRoles"> | number
     name?: StringFilter<"AdminRoles"> | string
+    admins?: AdminListRelationFilter
   }
 
   export type AdminRolesOrderByWithRelationInput = {
     role_id?: SortOrder
     name?: SortOrder
+    admins?: AdminOrderByRelationAggregateInput
   }
 
   export type AdminRolesWhereUniqueInput = Prisma.AtLeast<{
@@ -15909,6 +16237,7 @@ export namespace Prisma {
     AND?: AdminRolesWhereInput | AdminRolesWhereInput[]
     OR?: AdminRolesWhereInput[]
     NOT?: AdminRolesWhereInput | AdminRolesWhereInput[]
+    admins?: AdminListRelationFilter
   }, "role_id" | "name">
 
   export type AdminRolesOrderByWithAggregationInput = {
@@ -15938,7 +16267,6 @@ export namespace Prisma {
     amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFilter<"Transaction"> | number
     transaction_date?: DateTimeFilter<"Transaction"> | Date | string
-    agent_id?: IntFilter<"Transaction"> | number
     delete_status?: IntFilter<"Transaction"> | number
     register_date?: DateTimeFilter<"Transaction"> | Date | string
     updated_date?: DateTimeFilter<"Transaction"> | Date | string
@@ -15953,7 +16281,6 @@ export namespace Prisma {
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -15971,7 +16298,6 @@ export namespace Prisma {
     amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFilter<"Transaction"> | number
     transaction_date?: DateTimeFilter<"Transaction"> | Date | string
-    agent_id?: IntFilter<"Transaction"> | number
     delete_status?: IntFilter<"Transaction"> | number
     register_date?: DateTimeFilter<"Transaction"> | Date | string
     updated_date?: DateTimeFilter<"Transaction"> | Date | string
@@ -15986,7 +16312,6 @@ export namespace Prisma {
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -16007,7 +16332,6 @@ export namespace Prisma {
     amount?: DecimalWithAggregatesFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntWithAggregatesFilter<"Transaction"> | number
     transaction_date?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
-    agent_id?: IntWithAggregatesFilter<"Transaction"> | number
     delete_status?: IntWithAggregatesFilter<"Transaction"> | number
     register_date?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
     updated_date?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
@@ -16513,7 +16837,6 @@ export namespace Prisma {
     wallet_id: string
     game_amount?: Decimal | DecimalJsLike | number | string | null
     main_amount?: Decimal | DecimalJsLike | number | string | null
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -16526,7 +16849,6 @@ export namespace Prisma {
     user_internal_id: string
     game_amount?: Decimal | DecimalJsLike | number | string | null
     main_amount?: Decimal | DecimalJsLike | number | string | null
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -16537,7 +16859,6 @@ export namespace Prisma {
     wallet_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16550,7 +16871,6 @@ export namespace Prisma {
     user_internal_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16562,7 +16882,6 @@ export namespace Prisma {
     user_internal_id: string
     game_amount?: Decimal | DecimalJsLike | number | string | null
     main_amount?: Decimal | DecimalJsLike | number | string | null
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -16573,7 +16892,6 @@ export namespace Prisma {
     wallet_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16585,7 +16903,6 @@ export namespace Prisma {
     user_internal_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16610,11 +16927,13 @@ export namespace Prisma {
     updated_date?: Date | string
     deleted_date?: Date | string | null
     user: UsersCreateNestedOneWithoutPaymentInput
+    admin?: AdminCreateNestedOneWithoutWithdrawInput
   }
 
   export type PaymentMethodUncheckedCreateInput = {
     payment_internal_id: string
     user_internal_id: string
+    admin_internal_id?: string | null
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -16650,11 +16969,13 @@ export namespace Prisma {
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UsersUpdateOneRequiredWithoutPaymentNestedInput
+    admin?: AdminUpdateOneWithoutWithdrawNestedInput
   }
 
   export type PaymentMethodUncheckedUpdateInput = {
     payment_internal_id?: StringFieldUpdateOperationsInput | string
     user_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -16675,6 +16996,7 @@ export namespace Prisma {
   export type PaymentMethodCreateManyInput = {
     payment_internal_id: string
     user_internal_id: string
+    admin_internal_id?: string | null
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -16714,6 +17036,7 @@ export namespace Prisma {
   export type PaymentMethodUncheckedUpdateManyInput = {
     payment_internal_id?: StringFieldUpdateOperationsInput | string
     user_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -16747,11 +17070,13 @@ export namespace Prisma {
     updated_date?: Date | string
     deleted_date?: Date | string | null
     user: UsersCreateNestedOneWithoutWithdrawInput
+    admin?: AdminCreateNestedOneWithoutPaymentInput
   }
 
   export type WithdrawMethodUncheckedCreateInput = {
     withdraw_id: string
     user_internal_id: string
+    admin_internal_id?: string | null
     withdraw_type: string
     receiver_account_name: string
     receiver_account: string
@@ -16783,11 +17108,13 @@ export namespace Prisma {
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UsersUpdateOneRequiredWithoutWithdrawNestedInput
+    admin?: AdminUpdateOneWithoutPaymentNestedInput
   }
 
   export type WithdrawMethodUncheckedUpdateInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
     user_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
     withdraw_type?: StringFieldUpdateOperationsInput | string
     receiver_account_name?: StringFieldUpdateOperationsInput | string
     receiver_account?: StringFieldUpdateOperationsInput | string
@@ -16806,6 +17133,7 @@ export namespace Prisma {
   export type WithdrawMethodCreateManyInput = {
     withdraw_id: string
     user_internal_id: string
+    admin_internal_id?: string | null
     withdraw_type: string
     receiver_account_name: string
     receiver_account: string
@@ -16841,6 +17169,7 @@ export namespace Prisma {
   export type WithdrawMethodUncheckedUpdateManyInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
     user_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
     withdraw_type?: StringFieldUpdateOperationsInput | string
     receiver_account_name?: StringFieldUpdateOperationsInput | string
     receiver_account?: StringFieldUpdateOperationsInput | string
@@ -16866,6 +17195,9 @@ export namespace Prisma {
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    admin_role: AdminRolesCreateNestedOneWithoutAdminsInput
+    payment?: WithdrawMethodCreateNestedManyWithoutAdminInput
+    withdraw?: PaymentMethodCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUncheckedCreateInput = {
@@ -16873,11 +17205,14 @@ export namespace Prisma {
     admin_id: string
     admin_name?: string | null
     password?: string | null
+    role_id: number
     account_status?: string | null
     delete_status?: number | null
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    payment?: WithdrawMethodUncheckedCreateNestedManyWithoutAdminInput
+    withdraw?: PaymentMethodUncheckedCreateNestedManyWithoutAdminInput
   }
 
   export type AdminUpdateInput = {
@@ -16890,6 +17225,9 @@ export namespace Prisma {
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    admin_role?: AdminRolesUpdateOneRequiredWithoutAdminsNestedInput
+    payment?: WithdrawMethodUpdateManyWithoutAdminNestedInput
+    withdraw?: PaymentMethodUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminUncheckedUpdateInput = {
@@ -16897,11 +17235,14 @@ export namespace Prisma {
     admin_id?: StringFieldUpdateOperationsInput | string
     admin_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    role_id?: IntFieldUpdateOperationsInput | number
     account_status?: NullableStringFieldUpdateOperationsInput | string | null
     delete_status?: NullableIntFieldUpdateOperationsInput | number | null
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment?: WithdrawMethodUncheckedUpdateManyWithoutAdminNestedInput
+    withdraw?: PaymentMethodUncheckedUpdateManyWithoutAdminNestedInput
   }
 
   export type AdminCreateManyInput = {
@@ -16909,6 +17250,7 @@ export namespace Prisma {
     admin_id: string
     admin_name?: string | null
     password?: string | null
+    role_id: number
     account_status?: string | null
     delete_status?: number | null
     register_date?: Date | string
@@ -16933,6 +17275,7 @@ export namespace Prisma {
     admin_id?: StringFieldUpdateOperationsInput | string
     admin_name?: NullableStringFieldUpdateOperationsInput | string | null
     password?: NullableStringFieldUpdateOperationsInput | string | null
+    role_id?: IntFieldUpdateOperationsInput | number
     account_status?: NullableStringFieldUpdateOperationsInput | string | null
     delete_status?: NullableIntFieldUpdateOperationsInput | number | null
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -16943,21 +17286,25 @@ export namespace Prisma {
   export type AdminRolesCreateInput = {
     role_id: number
     name: string
+    admins?: AdminCreateNestedManyWithoutAdmin_roleInput
   }
 
   export type AdminRolesUncheckedCreateInput = {
     role_id: number
     name: string
+    admins?: AdminUncheckedCreateNestedManyWithoutAdmin_roleInput
   }
 
   export type AdminRolesUpdateInput = {
     role_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    admins?: AdminUpdateManyWithoutAdmin_roleNestedInput
   }
 
   export type AdminRolesUncheckedUpdateInput = {
     role_id?: IntFieldUpdateOperationsInput | number
     name?: StringFieldUpdateOperationsInput | string
+    admins?: AdminUncheckedUpdateManyWithoutAdmin_roleNestedInput
   }
 
   export type AdminRolesCreateManyInput = {
@@ -16979,7 +17326,6 @@ export namespace Prisma {
     transaction_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -16994,7 +17340,6 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     transaction_type_id: number
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -17005,7 +17350,6 @@ export namespace Prisma {
     transaction_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17020,7 +17364,6 @@ export namespace Prisma {
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFieldUpdateOperationsInput | number
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17033,7 +17376,6 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     transaction_type_id: number
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -17044,7 +17386,6 @@ export namespace Prisma {
     transaction_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17057,7 +17398,6 @@ export namespace Prisma {
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFieldUpdateOperationsInput | number
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -17617,7 +17957,6 @@ export namespace Prisma {
     user_internal_id?: SortOrder
     game_amount?: SortOrder
     main_amount?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -17627,7 +17966,6 @@ export namespace Prisma {
   export type WalletAvgOrderByAggregateInput = {
     game_amount?: SortOrder
     main_amount?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
   }
 
@@ -17636,7 +17974,6 @@ export namespace Prisma {
     user_internal_id?: SortOrder
     game_amount?: SortOrder
     main_amount?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -17648,7 +17985,6 @@ export namespace Prisma {
     user_internal_id?: SortOrder
     game_amount?: SortOrder
     main_amount?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -17658,7 +17994,6 @@ export namespace Prisma {
   export type WalletSumOrderByAggregateInput = {
     game_amount?: SortOrder
     main_amount?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
   }
 
@@ -17689,9 +18024,15 @@ export namespace Prisma {
     not?: NestedDecimalFilter<$PrismaModel> | Decimal | DecimalJsLike | number | string
   }
 
+  export type AdminNullableRelationFilter = {
+    is?: AdminWhereInput | null
+    isNot?: AdminWhereInput | null
+  }
+
   export type PaymentMethodCountOrderByAggregateInput = {
     payment_internal_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -17719,6 +18060,7 @@ export namespace Prisma {
   export type PaymentMethodMaxOrderByAggregateInput = {
     payment_internal_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -17739,6 +18081,7 @@ export namespace Prisma {
   export type PaymentMethodMinOrderByAggregateInput = {
     payment_internal_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrder
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
@@ -17782,6 +18125,7 @@ export namespace Prisma {
   export type WithdrawMethodCountOrderByAggregateInput = {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -17807,6 +18151,7 @@ export namespace Prisma {
   export type WithdrawMethodMaxOrderByAggregateInput = {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -17825,6 +18170,7 @@ export namespace Prisma {
   export type WithdrawMethodMinOrderByAggregateInput = {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
+    admin_internal_id?: SortOrder
     withdraw_type?: SortOrder
     receiver_account_name?: SortOrder
     receiver_account?: SortOrder
@@ -17847,11 +18193,17 @@ export namespace Prisma {
     delete_status?: SortOrder
   }
 
+  export type AdminRolesRelationFilter = {
+    is?: AdminRolesWhereInput
+    isNot?: AdminRolesWhereInput
+  }
+
   export type AdminCountOrderByAggregateInput = {
     admin_internal_id?: SortOrder
     admin_id?: SortOrder
     admin_name?: SortOrder
     password?: SortOrder
+    role_id?: SortOrder
     account_status?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
@@ -17860,6 +18212,7 @@ export namespace Prisma {
   }
 
   export type AdminAvgOrderByAggregateInput = {
+    role_id?: SortOrder
     delete_status?: SortOrder
   }
 
@@ -17868,6 +18221,7 @@ export namespace Prisma {
     admin_id?: SortOrder
     admin_name?: SortOrder
     password?: SortOrder
+    role_id?: SortOrder
     account_status?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
@@ -17880,6 +18234,7 @@ export namespace Prisma {
     admin_id?: SortOrder
     admin_name?: SortOrder
     password?: SortOrder
+    role_id?: SortOrder
     account_status?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
@@ -17888,7 +18243,18 @@ export namespace Prisma {
   }
 
   export type AdminSumOrderByAggregateInput = {
+    role_id?: SortOrder
     delete_status?: SortOrder
+  }
+
+  export type AdminListRelationFilter = {
+    every?: AdminWhereInput
+    some?: AdminWhereInput
+    none?: AdminWhereInput
+  }
+
+  export type AdminOrderByRelationAggregateInput = {
+    _count?: SortOrder
   }
 
   export type AdminRolesCountOrderByAggregateInput = {
@@ -17925,7 +18291,6 @@ export namespace Prisma {
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -17935,7 +18300,6 @@ export namespace Prisma {
   export type TransactionAvgOrderByAggregateInput = {
     amount?: SortOrder
     transaction_type_id?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
   }
 
@@ -17945,7 +18309,6 @@ export namespace Prisma {
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -17958,7 +18321,6 @@ export namespace Prisma {
     amount?: SortOrder
     transaction_type_id?: SortOrder
     transaction_date?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
     register_date?: SortOrder
     updated_date?: SortOrder
@@ -17968,7 +18330,6 @@ export namespace Prisma {
   export type TransactionSumOrderByAggregateInput = {
     amount?: SortOrder
     transaction_type_id?: SortOrder
-    agent_id?: SortOrder
     delete_status?: SortOrder
   }
 
@@ -18358,6 +18719,12 @@ export namespace Prisma {
     connect?: UsersWhereUniqueInput
   }
 
+  export type AdminCreateNestedOneWithoutWithdrawInput = {
+    create?: XOR<AdminCreateWithoutWithdrawInput, AdminUncheckedCreateWithoutWithdrawInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutWithdrawInput
+    connect?: AdminWhereUniqueInput
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -18374,10 +18741,26 @@ export namespace Prisma {
     update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutPaymentInput, UsersUpdateWithoutPaymentInput>, UsersUncheckedUpdateWithoutPaymentInput>
   }
 
+  export type AdminUpdateOneWithoutWithdrawNestedInput = {
+    create?: XOR<AdminCreateWithoutWithdrawInput, AdminUncheckedCreateWithoutWithdrawInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutWithdrawInput
+    upsert?: AdminUpsertWithoutWithdrawInput
+    disconnect?: AdminWhereInput | boolean
+    delete?: AdminWhereInput | boolean
+    connect?: AdminWhereUniqueInput
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutWithdrawInput, AdminUpdateWithoutWithdrawInput>, AdminUncheckedUpdateWithoutWithdrawInput>
+  }
+
   export type UsersCreateNestedOneWithoutWithdrawInput = {
     create?: XOR<UsersCreateWithoutWithdrawInput, UsersUncheckedCreateWithoutWithdrawInput>
     connectOrCreate?: UsersCreateOrConnectWithoutWithdrawInput
     connect?: UsersWhereUniqueInput
+  }
+
+  export type AdminCreateNestedOneWithoutPaymentInput = {
+    create?: XOR<AdminCreateWithoutPaymentInput, AdminUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutPaymentInput
+    connect?: AdminWhereUniqueInput
   }
 
   export type UsersUpdateOneRequiredWithoutWithdrawNestedInput = {
@@ -18386,6 +18769,156 @@ export namespace Prisma {
     upsert?: UsersUpsertWithoutWithdrawInput
     connect?: UsersWhereUniqueInput
     update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutWithdrawInput, UsersUpdateWithoutWithdrawInput>, UsersUncheckedUpdateWithoutWithdrawInput>
+  }
+
+  export type AdminUpdateOneWithoutPaymentNestedInput = {
+    create?: XOR<AdminCreateWithoutPaymentInput, AdminUncheckedCreateWithoutPaymentInput>
+    connectOrCreate?: AdminCreateOrConnectWithoutPaymentInput
+    upsert?: AdminUpsertWithoutPaymentInput
+    disconnect?: AdminWhereInput | boolean
+    delete?: AdminWhereInput | boolean
+    connect?: AdminWhereUniqueInput
+    update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutPaymentInput, AdminUpdateWithoutPaymentInput>, AdminUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type AdminRolesCreateNestedOneWithoutAdminsInput = {
+    create?: XOR<AdminRolesCreateWithoutAdminsInput, AdminRolesUncheckedCreateWithoutAdminsInput>
+    connectOrCreate?: AdminRolesCreateOrConnectWithoutAdminsInput
+    connect?: AdminRolesWhereUniqueInput
+  }
+
+  export type WithdrawMethodCreateNestedManyWithoutAdminInput = {
+    create?: XOR<WithdrawMethodCreateWithoutAdminInput, WithdrawMethodUncheckedCreateWithoutAdminInput> | WithdrawMethodCreateWithoutAdminInput[] | WithdrawMethodUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: WithdrawMethodCreateOrConnectWithoutAdminInput | WithdrawMethodCreateOrConnectWithoutAdminInput[]
+    createMany?: WithdrawMethodCreateManyAdminInputEnvelope
+    connect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+  }
+
+  export type PaymentMethodCreateNestedManyWithoutAdminInput = {
+    create?: XOR<PaymentMethodCreateWithoutAdminInput, PaymentMethodUncheckedCreateWithoutAdminInput> | PaymentMethodCreateWithoutAdminInput[] | PaymentMethodUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: PaymentMethodCreateOrConnectWithoutAdminInput | PaymentMethodCreateOrConnectWithoutAdminInput[]
+    createMany?: PaymentMethodCreateManyAdminInputEnvelope
+    connect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+  }
+
+  export type WithdrawMethodUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<WithdrawMethodCreateWithoutAdminInput, WithdrawMethodUncheckedCreateWithoutAdminInput> | WithdrawMethodCreateWithoutAdminInput[] | WithdrawMethodUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: WithdrawMethodCreateOrConnectWithoutAdminInput | WithdrawMethodCreateOrConnectWithoutAdminInput[]
+    createMany?: WithdrawMethodCreateManyAdminInputEnvelope
+    connect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+  }
+
+  export type PaymentMethodUncheckedCreateNestedManyWithoutAdminInput = {
+    create?: XOR<PaymentMethodCreateWithoutAdminInput, PaymentMethodUncheckedCreateWithoutAdminInput> | PaymentMethodCreateWithoutAdminInput[] | PaymentMethodUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: PaymentMethodCreateOrConnectWithoutAdminInput | PaymentMethodCreateOrConnectWithoutAdminInput[]
+    createMany?: PaymentMethodCreateManyAdminInputEnvelope
+    connect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+  }
+
+  export type AdminRolesUpdateOneRequiredWithoutAdminsNestedInput = {
+    create?: XOR<AdminRolesCreateWithoutAdminsInput, AdminRolesUncheckedCreateWithoutAdminsInput>
+    connectOrCreate?: AdminRolesCreateOrConnectWithoutAdminsInput
+    upsert?: AdminRolesUpsertWithoutAdminsInput
+    connect?: AdminRolesWhereUniqueInput
+    update?: XOR<XOR<AdminRolesUpdateToOneWithWhereWithoutAdminsInput, AdminRolesUpdateWithoutAdminsInput>, AdminRolesUncheckedUpdateWithoutAdminsInput>
+  }
+
+  export type WithdrawMethodUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<WithdrawMethodCreateWithoutAdminInput, WithdrawMethodUncheckedCreateWithoutAdminInput> | WithdrawMethodCreateWithoutAdminInput[] | WithdrawMethodUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: WithdrawMethodCreateOrConnectWithoutAdminInput | WithdrawMethodCreateOrConnectWithoutAdminInput[]
+    upsert?: WithdrawMethodUpsertWithWhereUniqueWithoutAdminInput | WithdrawMethodUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: WithdrawMethodCreateManyAdminInputEnvelope
+    set?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    disconnect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    delete?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    connect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    update?: WithdrawMethodUpdateWithWhereUniqueWithoutAdminInput | WithdrawMethodUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: WithdrawMethodUpdateManyWithWhereWithoutAdminInput | WithdrawMethodUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: WithdrawMethodScalarWhereInput | WithdrawMethodScalarWhereInput[]
+  }
+
+  export type PaymentMethodUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<PaymentMethodCreateWithoutAdminInput, PaymentMethodUncheckedCreateWithoutAdminInput> | PaymentMethodCreateWithoutAdminInput[] | PaymentMethodUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: PaymentMethodCreateOrConnectWithoutAdminInput | PaymentMethodCreateOrConnectWithoutAdminInput[]
+    upsert?: PaymentMethodUpsertWithWhereUniqueWithoutAdminInput | PaymentMethodUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: PaymentMethodCreateManyAdminInputEnvelope
+    set?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    disconnect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    delete?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    connect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    update?: PaymentMethodUpdateWithWhereUniqueWithoutAdminInput | PaymentMethodUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: PaymentMethodUpdateManyWithWhereWithoutAdminInput | PaymentMethodUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: PaymentMethodScalarWhereInput | PaymentMethodScalarWhereInput[]
+  }
+
+  export type WithdrawMethodUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<WithdrawMethodCreateWithoutAdminInput, WithdrawMethodUncheckedCreateWithoutAdminInput> | WithdrawMethodCreateWithoutAdminInput[] | WithdrawMethodUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: WithdrawMethodCreateOrConnectWithoutAdminInput | WithdrawMethodCreateOrConnectWithoutAdminInput[]
+    upsert?: WithdrawMethodUpsertWithWhereUniqueWithoutAdminInput | WithdrawMethodUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: WithdrawMethodCreateManyAdminInputEnvelope
+    set?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    disconnect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    delete?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    connect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    update?: WithdrawMethodUpdateWithWhereUniqueWithoutAdminInput | WithdrawMethodUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: WithdrawMethodUpdateManyWithWhereWithoutAdminInput | WithdrawMethodUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: WithdrawMethodScalarWhereInput | WithdrawMethodScalarWhereInput[]
+  }
+
+  export type PaymentMethodUncheckedUpdateManyWithoutAdminNestedInput = {
+    create?: XOR<PaymentMethodCreateWithoutAdminInput, PaymentMethodUncheckedCreateWithoutAdminInput> | PaymentMethodCreateWithoutAdminInput[] | PaymentMethodUncheckedCreateWithoutAdminInput[]
+    connectOrCreate?: PaymentMethodCreateOrConnectWithoutAdminInput | PaymentMethodCreateOrConnectWithoutAdminInput[]
+    upsert?: PaymentMethodUpsertWithWhereUniqueWithoutAdminInput | PaymentMethodUpsertWithWhereUniqueWithoutAdminInput[]
+    createMany?: PaymentMethodCreateManyAdminInputEnvelope
+    set?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    disconnect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    delete?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    connect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    update?: PaymentMethodUpdateWithWhereUniqueWithoutAdminInput | PaymentMethodUpdateWithWhereUniqueWithoutAdminInput[]
+    updateMany?: PaymentMethodUpdateManyWithWhereWithoutAdminInput | PaymentMethodUpdateManyWithWhereWithoutAdminInput[]
+    deleteMany?: PaymentMethodScalarWhereInput | PaymentMethodScalarWhereInput[]
+  }
+
+  export type AdminCreateNestedManyWithoutAdmin_roleInput = {
+    create?: XOR<AdminCreateWithoutAdmin_roleInput, AdminUncheckedCreateWithoutAdmin_roleInput> | AdminCreateWithoutAdmin_roleInput[] | AdminUncheckedCreateWithoutAdmin_roleInput[]
+    connectOrCreate?: AdminCreateOrConnectWithoutAdmin_roleInput | AdminCreateOrConnectWithoutAdmin_roleInput[]
+    createMany?: AdminCreateManyAdmin_roleInputEnvelope
+    connect?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+  }
+
+  export type AdminUncheckedCreateNestedManyWithoutAdmin_roleInput = {
+    create?: XOR<AdminCreateWithoutAdmin_roleInput, AdminUncheckedCreateWithoutAdmin_roleInput> | AdminCreateWithoutAdmin_roleInput[] | AdminUncheckedCreateWithoutAdmin_roleInput[]
+    connectOrCreate?: AdminCreateOrConnectWithoutAdmin_roleInput | AdminCreateOrConnectWithoutAdmin_roleInput[]
+    createMany?: AdminCreateManyAdmin_roleInputEnvelope
+    connect?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+  }
+
+  export type AdminUpdateManyWithoutAdmin_roleNestedInput = {
+    create?: XOR<AdminCreateWithoutAdmin_roleInput, AdminUncheckedCreateWithoutAdmin_roleInput> | AdminCreateWithoutAdmin_roleInput[] | AdminUncheckedCreateWithoutAdmin_roleInput[]
+    connectOrCreate?: AdminCreateOrConnectWithoutAdmin_roleInput | AdminCreateOrConnectWithoutAdmin_roleInput[]
+    upsert?: AdminUpsertWithWhereUniqueWithoutAdmin_roleInput | AdminUpsertWithWhereUniqueWithoutAdmin_roleInput[]
+    createMany?: AdminCreateManyAdmin_roleInputEnvelope
+    set?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+    disconnect?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+    delete?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+    connect?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+    update?: AdminUpdateWithWhereUniqueWithoutAdmin_roleInput | AdminUpdateWithWhereUniqueWithoutAdmin_roleInput[]
+    updateMany?: AdminUpdateManyWithWhereWithoutAdmin_roleInput | AdminUpdateManyWithWhereWithoutAdmin_roleInput[]
+    deleteMany?: AdminScalarWhereInput | AdminScalarWhereInput[]
+  }
+
+  export type AdminUncheckedUpdateManyWithoutAdmin_roleNestedInput = {
+    create?: XOR<AdminCreateWithoutAdmin_roleInput, AdminUncheckedCreateWithoutAdmin_roleInput> | AdminCreateWithoutAdmin_roleInput[] | AdminUncheckedCreateWithoutAdmin_roleInput[]
+    connectOrCreate?: AdminCreateOrConnectWithoutAdmin_roleInput | AdminCreateOrConnectWithoutAdmin_roleInput[]
+    upsert?: AdminUpsertWithWhereUniqueWithoutAdmin_roleInput | AdminUpsertWithWhereUniqueWithoutAdmin_roleInput[]
+    createMany?: AdminCreateManyAdmin_roleInputEnvelope
+    set?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+    disconnect?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+    delete?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+    connect?: AdminWhereUniqueInput | AdminWhereUniqueInput[]
+    update?: AdminUpdateWithWhereUniqueWithoutAdmin_roleInput | AdminUpdateWithWhereUniqueWithoutAdmin_roleInput[]
+    updateMany?: AdminUpdateManyWithWhereWithoutAdmin_roleInput | AdminUpdateManyWithWhereWithoutAdmin_roleInput[]
+    deleteMany?: AdminScalarWhereInput | AdminScalarWhereInput[]
   }
 
   export type UsersCreateNestedOneWithoutTransationInput = {
@@ -18751,7 +19284,6 @@ export namespace Prisma {
     wallet_id: string
     game_amount?: Decimal | DecimalJsLike | number | string | null
     main_amount?: Decimal | DecimalJsLike | number | string | null
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -18762,7 +19294,6 @@ export namespace Prisma {
     wallet_id: string
     game_amount?: Decimal | DecimalJsLike | number | string | null
     main_amount?: Decimal | DecimalJsLike | number | string | null
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -18796,10 +19327,12 @@ export namespace Prisma {
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    admin?: AdminCreateNestedOneWithoutWithdrawInput
   }
 
   export type PaymentMethodUncheckedCreateWithoutUserInput = {
     payment_internal_id: string
+    admin_internal_id?: string | null
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -18842,10 +19375,12 @@ export namespace Prisma {
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    admin?: AdminCreateNestedOneWithoutPaymentInput
   }
 
   export type WithdrawMethodUncheckedCreateWithoutUserInput = {
     withdraw_id: string
+    admin_internal_id?: string | null
     withdraw_type: string
     receiver_account_name: string
     receiver_account: string
@@ -18875,7 +19410,6 @@ export namespace Prisma {
     transaction_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -18888,7 +19422,6 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     transaction_type_id: number
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -18981,7 +19514,6 @@ export namespace Prisma {
     user_internal_id?: StringFilter<"Wallet"> | string
     game_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
     main_amount?: DecimalNullableFilter<"Wallet"> | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFilter<"Wallet"> | number
     delete_status?: IntFilter<"Wallet"> | number
     register_date?: DateTimeFilter<"Wallet"> | Date | string
     updated_date?: DateTimeFilter<"Wallet"> | Date | string
@@ -19010,6 +19542,7 @@ export namespace Prisma {
     NOT?: PaymentMethodScalarWhereInput | PaymentMethodScalarWhereInput[]
     payment_internal_id?: StringFilter<"PaymentMethod"> | string
     user_internal_id?: StringFilter<"PaymentMethod"> | string
+    admin_internal_id?: StringNullableFilter<"PaymentMethod"> | string | null
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
@@ -19049,6 +19582,7 @@ export namespace Prisma {
     NOT?: WithdrawMethodScalarWhereInput | WithdrawMethodScalarWhereInput[]
     withdraw_id?: StringFilter<"WithdrawMethod"> | string
     user_internal_id?: StringFilter<"WithdrawMethod"> | string
+    admin_internal_id?: StringNullableFilter<"WithdrawMethod"> | string | null
     withdraw_type?: StringFilter<"WithdrawMethod"> | string
     receiver_account_name?: StringFilter<"WithdrawMethod"> | string
     receiver_account?: StringFilter<"WithdrawMethod"> | string
@@ -19089,7 +19623,6 @@ export namespace Prisma {
     amount?: DecimalFilter<"Transaction"> | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFilter<"Transaction"> | number
     transaction_date?: DateTimeFilter<"Transaction"> | Date | string
-    agent_id?: IntFilter<"Transaction"> | number
     delete_status?: IntFilter<"Transaction"> | number
     register_date?: DateTimeFilter<"Transaction"> | Date | string
     updated_date?: DateTimeFilter<"Transaction"> | Date | string
@@ -19418,6 +19951,39 @@ export namespace Prisma {
     create: XOR<UsersCreateWithoutPaymentInput, UsersUncheckedCreateWithoutPaymentInput>
   }
 
+  export type AdminCreateWithoutWithdrawInput = {
+    admin_internal_id: string
+    admin_id: string
+    admin_name?: string | null
+    password?: string | null
+    account_status?: string | null
+    delete_status?: number | null
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    admin_role: AdminRolesCreateNestedOneWithoutAdminsInput
+    payment?: WithdrawMethodCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateWithoutWithdrawInput = {
+    admin_internal_id: string
+    admin_id: string
+    admin_name?: string | null
+    password?: string | null
+    role_id: number
+    account_status?: string | null
+    delete_status?: number | null
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    payment?: WithdrawMethodUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminCreateOrConnectWithoutWithdrawInput = {
+    where: AdminWhereUniqueInput
+    create: XOR<AdminCreateWithoutWithdrawInput, AdminUncheckedCreateWithoutWithdrawInput>
+  }
+
   export type UsersUpsertWithoutPaymentInput = {
     update: XOR<UsersUpdateWithoutPaymentInput, UsersUncheckedUpdateWithoutPaymentInput>
     create: XOR<UsersCreateWithoutPaymentInput, UsersUncheckedCreateWithoutPaymentInput>
@@ -19469,6 +20035,45 @@ export namespace Prisma {
     transation?: TransactionUncheckedUpdateManyWithoutUserNestedInput
   }
 
+  export type AdminUpsertWithoutWithdrawInput = {
+    update: XOR<AdminUpdateWithoutWithdrawInput, AdminUncheckedUpdateWithoutWithdrawInput>
+    create: XOR<AdminCreateWithoutWithdrawInput, AdminUncheckedCreateWithoutWithdrawInput>
+    where?: AdminWhereInput
+  }
+
+  export type AdminUpdateToOneWithWhereWithoutWithdrawInput = {
+    where?: AdminWhereInput
+    data: XOR<AdminUpdateWithoutWithdrawInput, AdminUncheckedUpdateWithoutWithdrawInput>
+  }
+
+  export type AdminUpdateWithoutWithdrawInput = {
+    admin_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_id?: StringFieldUpdateOperationsInput | string
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    account_status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: NullableIntFieldUpdateOperationsInput | number | null
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    admin_role?: AdminRolesUpdateOneRequiredWithoutAdminsNestedInput
+    payment?: WithdrawMethodUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateWithoutWithdrawInput = {
+    admin_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_id?: StringFieldUpdateOperationsInput | string
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role_id?: IntFieldUpdateOperationsInput | number
+    account_status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: NullableIntFieldUpdateOperationsInput | number | null
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment?: WithdrawMethodUncheckedUpdateManyWithoutAdminNestedInput
+  }
+
   export type UsersCreateWithoutWithdrawInput = {
     user_internal_id: string
     phone_number: string
@@ -19512,6 +20117,39 @@ export namespace Prisma {
   export type UsersCreateOrConnectWithoutWithdrawInput = {
     where: UsersWhereUniqueInput
     create: XOR<UsersCreateWithoutWithdrawInput, UsersUncheckedCreateWithoutWithdrawInput>
+  }
+
+  export type AdminCreateWithoutPaymentInput = {
+    admin_internal_id: string
+    admin_id: string
+    admin_name?: string | null
+    password?: string | null
+    account_status?: string | null
+    delete_status?: number | null
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    admin_role: AdminRolesCreateNestedOneWithoutAdminsInput
+    withdraw?: PaymentMethodCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateWithoutPaymentInput = {
+    admin_internal_id: string
+    admin_id: string
+    admin_name?: string | null
+    password?: string | null
+    role_id: number
+    account_status?: string | null
+    delete_status?: number | null
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    withdraw?: PaymentMethodUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminCreateOrConnectWithoutPaymentInput = {
+    where: AdminWhereUniqueInput
+    create: XOR<AdminCreateWithoutPaymentInput, AdminUncheckedCreateWithoutPaymentInput>
   }
 
   export type UsersUpsertWithoutWithdrawInput = {
@@ -19563,6 +20201,279 @@ export namespace Prisma {
     wallet?: WalletUncheckedUpdateManyWithoutUserNestedInput
     payment?: PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     transation?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type AdminUpsertWithoutPaymentInput = {
+    update: XOR<AdminUpdateWithoutPaymentInput, AdminUncheckedUpdateWithoutPaymentInput>
+    create: XOR<AdminCreateWithoutPaymentInput, AdminUncheckedCreateWithoutPaymentInput>
+    where?: AdminWhereInput
+  }
+
+  export type AdminUpdateToOneWithWhereWithoutPaymentInput = {
+    where?: AdminWhereInput
+    data: XOR<AdminUpdateWithoutPaymentInput, AdminUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type AdminUpdateWithoutPaymentInput = {
+    admin_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_id?: StringFieldUpdateOperationsInput | string
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    account_status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: NullableIntFieldUpdateOperationsInput | number | null
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    admin_role?: AdminRolesUpdateOneRequiredWithoutAdminsNestedInput
+    withdraw?: PaymentMethodUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateWithoutPaymentInput = {
+    admin_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_id?: StringFieldUpdateOperationsInput | string
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    role_id?: IntFieldUpdateOperationsInput | number
+    account_status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: NullableIntFieldUpdateOperationsInput | number | null
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    withdraw?: PaymentMethodUncheckedUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminRolesCreateWithoutAdminsInput = {
+    role_id: number
+    name: string
+  }
+
+  export type AdminRolesUncheckedCreateWithoutAdminsInput = {
+    role_id: number
+    name: string
+  }
+
+  export type AdminRolesCreateOrConnectWithoutAdminsInput = {
+    where: AdminRolesWhereUniqueInput
+    create: XOR<AdminRolesCreateWithoutAdminsInput, AdminRolesUncheckedCreateWithoutAdminsInput>
+  }
+
+  export type WithdrawMethodCreateWithoutAdminInput = {
+    withdraw_id: string
+    withdraw_type: string
+    receiver_account_name: string
+    receiver_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    withdraw_confirm_code?: string | null
+    is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    user: UsersCreateNestedOneWithoutWithdrawInput
+  }
+
+  export type WithdrawMethodUncheckedCreateWithoutAdminInput = {
+    withdraw_id: string
+    user_internal_id: string
+    withdraw_type: string
+    receiver_account_name: string
+    receiver_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    withdraw_confirm_code?: string | null
+    is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type WithdrawMethodCreateOrConnectWithoutAdminInput = {
+    where: WithdrawMethodWhereUniqueInput
+    create: XOR<WithdrawMethodCreateWithoutAdminInput, WithdrawMethodUncheckedCreateWithoutAdminInput>
+  }
+
+  export type WithdrawMethodCreateManyAdminInputEnvelope = {
+    data: WithdrawMethodCreateManyAdminInput | WithdrawMethodCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PaymentMethodCreateWithoutAdminInput = {
+    payment_internal_id: string
+    payment_type: string
+    payment_account_name: string
+    payment_account: string
+    reciver_account_type: string
+    receiver_account_name: string
+    receiver_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
+    payment_confirm_code: number
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    user: UsersCreateNestedOneWithoutPaymentInput
+  }
+
+  export type PaymentMethodUncheckedCreateWithoutAdminInput = {
+    payment_internal_id: string
+    user_internal_id: string
+    payment_type: string
+    payment_account_name: string
+    payment_account: string
+    reciver_account_type: string
+    receiver_account_name: string
+    receiver_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
+    payment_confirm_code: number
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type PaymentMethodCreateOrConnectWithoutAdminInput = {
+    where: PaymentMethodWhereUniqueInput
+    create: XOR<PaymentMethodCreateWithoutAdminInput, PaymentMethodUncheckedCreateWithoutAdminInput>
+  }
+
+  export type PaymentMethodCreateManyAdminInputEnvelope = {
+    data: PaymentMethodCreateManyAdminInput | PaymentMethodCreateManyAdminInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AdminRolesUpsertWithoutAdminsInput = {
+    update: XOR<AdminRolesUpdateWithoutAdminsInput, AdminRolesUncheckedUpdateWithoutAdminsInput>
+    create: XOR<AdminRolesCreateWithoutAdminsInput, AdminRolesUncheckedCreateWithoutAdminsInput>
+    where?: AdminRolesWhereInput
+  }
+
+  export type AdminRolesUpdateToOneWithWhereWithoutAdminsInput = {
+    where?: AdminRolesWhereInput
+    data: XOR<AdminRolesUpdateWithoutAdminsInput, AdminRolesUncheckedUpdateWithoutAdminsInput>
+  }
+
+  export type AdminRolesUpdateWithoutAdminsInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type AdminRolesUncheckedUpdateWithoutAdminsInput = {
+    role_id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type WithdrawMethodUpsertWithWhereUniqueWithoutAdminInput = {
+    where: WithdrawMethodWhereUniqueInput
+    update: XOR<WithdrawMethodUpdateWithoutAdminInput, WithdrawMethodUncheckedUpdateWithoutAdminInput>
+    create: XOR<WithdrawMethodCreateWithoutAdminInput, WithdrawMethodUncheckedCreateWithoutAdminInput>
+  }
+
+  export type WithdrawMethodUpdateWithWhereUniqueWithoutAdminInput = {
+    where: WithdrawMethodWhereUniqueInput
+    data: XOR<WithdrawMethodUpdateWithoutAdminInput, WithdrawMethodUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type WithdrawMethodUpdateManyWithWhereWithoutAdminInput = {
+    where: WithdrawMethodScalarWhereInput
+    data: XOR<WithdrawMethodUpdateManyMutationInput, WithdrawMethodUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type PaymentMethodUpsertWithWhereUniqueWithoutAdminInput = {
+    where: PaymentMethodWhereUniqueInput
+    update: XOR<PaymentMethodUpdateWithoutAdminInput, PaymentMethodUncheckedUpdateWithoutAdminInput>
+    create: XOR<PaymentMethodCreateWithoutAdminInput, PaymentMethodUncheckedCreateWithoutAdminInput>
+  }
+
+  export type PaymentMethodUpdateWithWhereUniqueWithoutAdminInput = {
+    where: PaymentMethodWhereUniqueInput
+    data: XOR<PaymentMethodUpdateWithoutAdminInput, PaymentMethodUncheckedUpdateWithoutAdminInput>
+  }
+
+  export type PaymentMethodUpdateManyWithWhereWithoutAdminInput = {
+    where: PaymentMethodScalarWhereInput
+    data: XOR<PaymentMethodUpdateManyMutationInput, PaymentMethodUncheckedUpdateManyWithoutAdminInput>
+  }
+
+  export type AdminCreateWithoutAdmin_roleInput = {
+    admin_internal_id: string
+    admin_id: string
+    admin_name?: string | null
+    password?: string | null
+    account_status?: string | null
+    delete_status?: number | null
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    payment?: WithdrawMethodCreateNestedManyWithoutAdminInput
+    withdraw?: PaymentMethodCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminUncheckedCreateWithoutAdmin_roleInput = {
+    admin_internal_id: string
+    admin_id: string
+    admin_name?: string | null
+    password?: string | null
+    account_status?: string | null
+    delete_status?: number | null
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    payment?: WithdrawMethodUncheckedCreateNestedManyWithoutAdminInput
+    withdraw?: PaymentMethodUncheckedCreateNestedManyWithoutAdminInput
+  }
+
+  export type AdminCreateOrConnectWithoutAdmin_roleInput = {
+    where: AdminWhereUniqueInput
+    create: XOR<AdminCreateWithoutAdmin_roleInput, AdminUncheckedCreateWithoutAdmin_roleInput>
+  }
+
+  export type AdminCreateManyAdmin_roleInputEnvelope = {
+    data: AdminCreateManyAdmin_roleInput | AdminCreateManyAdmin_roleInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type AdminUpsertWithWhereUniqueWithoutAdmin_roleInput = {
+    where: AdminWhereUniqueInput
+    update: XOR<AdminUpdateWithoutAdmin_roleInput, AdminUncheckedUpdateWithoutAdmin_roleInput>
+    create: XOR<AdminCreateWithoutAdmin_roleInput, AdminUncheckedCreateWithoutAdmin_roleInput>
+  }
+
+  export type AdminUpdateWithWhereUniqueWithoutAdmin_roleInput = {
+    where: AdminWhereUniqueInput
+    data: XOR<AdminUpdateWithoutAdmin_roleInput, AdminUncheckedUpdateWithoutAdmin_roleInput>
+  }
+
+  export type AdminUpdateManyWithWhereWithoutAdmin_roleInput = {
+    where: AdminScalarWhereInput
+    data: XOR<AdminUpdateManyMutationInput, AdminUncheckedUpdateManyWithoutAdmin_roleInput>
+  }
+
+  export type AdminScalarWhereInput = {
+    AND?: AdminScalarWhereInput | AdminScalarWhereInput[]
+    OR?: AdminScalarWhereInput[]
+    NOT?: AdminScalarWhereInput | AdminScalarWhereInput[]
+    admin_internal_id?: StringFilter<"Admin"> | string
+    admin_id?: StringFilter<"Admin"> | string
+    admin_name?: StringNullableFilter<"Admin"> | string | null
+    password?: StringNullableFilter<"Admin"> | string | null
+    role_id?: IntFilter<"Admin"> | number
+    account_status?: StringNullableFilter<"Admin"> | string | null
+    delete_status?: IntNullableFilter<"Admin"> | number | null
+    register_date?: DateTimeFilter<"Admin"> | Date | string
+    updated_date?: DateTimeFilter<"Admin"> | Date | string
+    deleted_date?: DateTimeNullableFilter<"Admin"> | Date | string | null
   }
 
   export type UsersCreateWithoutTransationInput = {
@@ -19701,7 +20612,6 @@ export namespace Prisma {
     transaction_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -19714,7 +20624,6 @@ export namespace Prisma {
     user_internal_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -19762,7 +20671,6 @@ export namespace Prisma {
     wallet_id: string
     game_amount?: Decimal | DecimalJsLike | number | string | null
     main_amount?: Decimal | DecimalJsLike | number | string | null
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -19771,6 +20679,7 @@ export namespace Prisma {
 
   export type PaymentMethodCreateManyUserInput = {
     payment_internal_id: string
+    admin_internal_id?: string | null
     payment_type: string
     payment_account_name: string
     payment_account: string
@@ -19790,6 +20699,7 @@ export namespace Prisma {
 
   export type WithdrawMethodCreateManyUserInput = {
     withdraw_id: string
+    admin_internal_id?: string | null
     withdraw_type: string
     receiver_account_name: string
     receiver_account: string
@@ -19810,7 +20720,6 @@ export namespace Prisma {
     amount: Decimal | DecimalJsLike | number | string
     transaction_type_id: number
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -19854,7 +20763,6 @@ export namespace Prisma {
     wallet_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19865,7 +20773,6 @@ export namespace Prisma {
     wallet_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19876,7 +20783,6 @@ export namespace Prisma {
     wallet_id?: StringFieldUpdateOperationsInput | string
     game_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
     main_amount?: NullableDecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string | null
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19900,10 +20806,12 @@ export namespace Prisma {
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    admin?: AdminUpdateOneWithoutWithdrawNestedInput
   }
 
   export type PaymentMethodUncheckedUpdateWithoutUserInput = {
     payment_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -19923,6 +20831,7 @@ export namespace Prisma {
 
   export type PaymentMethodUncheckedUpdateManyWithoutUserInput = {
     payment_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
@@ -19955,10 +20864,12 @@ export namespace Prisma {
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    admin?: AdminUpdateOneWithoutPaymentNestedInput
   }
 
   export type WithdrawMethodUncheckedUpdateWithoutUserInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
     withdraw_type?: StringFieldUpdateOperationsInput | string
     receiver_account_name?: StringFieldUpdateOperationsInput | string
     receiver_account?: StringFieldUpdateOperationsInput | string
@@ -19976,6 +20887,7 @@ export namespace Prisma {
 
   export type WithdrawMethodUncheckedUpdateManyWithoutUserInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
     withdraw_type?: StringFieldUpdateOperationsInput | string
     receiver_account_name?: StringFieldUpdateOperationsInput | string
     receiver_account?: StringFieldUpdateOperationsInput | string
@@ -19995,7 +20907,6 @@ export namespace Prisma {
     transaction_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20008,7 +20919,6 @@ export namespace Prisma {
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFieldUpdateOperationsInput | number
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20020,7 +20930,6 @@ export namespace Prisma {
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_type_id?: IntFieldUpdateOperationsInput | number
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20097,12 +21006,215 @@ export namespace Prisma {
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type WithdrawMethodCreateManyAdminInput = {
+    withdraw_id: string
+    user_internal_id: string
+    withdraw_type: string
+    receiver_account_name: string
+    receiver_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    withdraw_confirm_code?: string | null
+    is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type PaymentMethodCreateManyAdminInput = {
+    payment_internal_id: string
+    user_internal_id: string
+    payment_type: string
+    payment_account_name: string
+    payment_account: string
+    reciver_account_type: string
+    receiver_account_name: string
+    receiver_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
+    payment_confirm_code: number
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type WithdrawMethodUpdateWithoutAdminInput = {
+    withdraw_id?: StringFieldUpdateOperationsInput | string
+    withdraw_type?: StringFieldUpdateOperationsInput | string
+    receiver_account_name?: StringFieldUpdateOperationsInput | string
+    receiver_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
+    is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UsersUpdateOneRequiredWithoutWithdrawNestedInput
+  }
+
+  export type WithdrawMethodUncheckedUpdateWithoutAdminInput = {
+    withdraw_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    withdraw_type?: StringFieldUpdateOperationsInput | string
+    receiver_account_name?: StringFieldUpdateOperationsInput | string
+    receiver_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
+    is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type WithdrawMethodUncheckedUpdateManyWithoutAdminInput = {
+    withdraw_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    withdraw_type?: StringFieldUpdateOperationsInput | string
+    receiver_account_name?: StringFieldUpdateOperationsInput | string
+    receiver_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
+    is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PaymentMethodUpdateWithoutAdminInput = {
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
+    payment_type?: StringFieldUpdateOperationsInput | string
+    payment_account_name?: StringFieldUpdateOperationsInput | string
+    payment_account?: StringFieldUpdateOperationsInput | string
+    reciver_account_type?: StringFieldUpdateOperationsInput | string
+    receiver_account_name?: StringFieldUpdateOperationsInput | string
+    receiver_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    payment_confirm_code?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UsersUpdateOneRequiredWithoutPaymentNestedInput
+  }
+
+  export type PaymentMethodUncheckedUpdateWithoutAdminInput = {
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    payment_type?: StringFieldUpdateOperationsInput | string
+    payment_account_name?: StringFieldUpdateOperationsInput | string
+    payment_account?: StringFieldUpdateOperationsInput | string
+    reciver_account_type?: StringFieldUpdateOperationsInput | string
+    receiver_account_name?: StringFieldUpdateOperationsInput | string
+    receiver_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    payment_confirm_code?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PaymentMethodUncheckedUpdateManyWithoutAdminInput = {
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    payment_type?: StringFieldUpdateOperationsInput | string
+    payment_account_name?: StringFieldUpdateOperationsInput | string
+    payment_account?: StringFieldUpdateOperationsInput | string
+    reciver_account_type?: StringFieldUpdateOperationsInput | string
+    receiver_account_name?: StringFieldUpdateOperationsInput | string
+    receiver_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    payment_confirm_code?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminCreateManyAdmin_roleInput = {
+    admin_internal_id: string
+    admin_id: string
+    admin_name?: string | null
+    password?: string | null
+    account_status?: string | null
+    delete_status?: number | null
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminUpdateWithoutAdmin_roleInput = {
+    admin_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_id?: StringFieldUpdateOperationsInput | string
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    account_status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: NullableIntFieldUpdateOperationsInput | number | null
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment?: WithdrawMethodUpdateManyWithoutAdminNestedInput
+    withdraw?: PaymentMethodUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateWithoutAdmin_roleInput = {
+    admin_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_id?: StringFieldUpdateOperationsInput | string
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    account_status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: NullableIntFieldUpdateOperationsInput | number | null
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    payment?: WithdrawMethodUncheckedUpdateManyWithoutAdminNestedInput
+    withdraw?: PaymentMethodUncheckedUpdateManyWithoutAdminNestedInput
+  }
+
+  export type AdminUncheckedUpdateManyWithoutAdmin_roleInput = {
+    admin_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_id?: StringFieldUpdateOperationsInput | string
+    admin_name?: NullableStringFieldUpdateOperationsInput | string | null
+    password?: NullableStringFieldUpdateOperationsInput | string | null
+    account_status?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: NullableIntFieldUpdateOperationsInput | number | null
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type TransactionCreateManyTransaction_typeInput = {
     transaction_id: string
     user_internal_id: string
     amount: Decimal | DecimalJsLike | number | string
     transaction_date: Date | string
-    agent_id: number
     delete_status: number
     register_date?: Date | string
     updated_date?: Date | string
@@ -20113,7 +21225,6 @@ export namespace Prisma {
     transaction_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20126,7 +21237,6 @@ export namespace Prisma {
     user_internal_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20138,7 +21248,6 @@ export namespace Prisma {
     user_internal_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     transaction_date?: DateTimeFieldUpdateOperationsInput | Date | string
-    agent_id?: IntFieldUpdateOperationsInput | number
     delete_status?: IntFieldUpdateOperationsInput | number
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -20158,6 +21267,14 @@ export namespace Prisma {
      * @deprecated Use RolesCountOutputTypeDefaultArgs instead
      */
     export type RolesCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = RolesCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AdminCountOutputTypeDefaultArgs instead
+     */
+    export type AdminCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AdminCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AdminRolesCountOutputTypeDefaultArgs instead
+     */
+    export type AdminRolesCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AdminRolesCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use TransactionTypeCountOutputTypeDefaultArgs instead
      */

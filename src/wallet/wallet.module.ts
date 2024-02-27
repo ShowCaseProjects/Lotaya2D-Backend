@@ -6,7 +6,7 @@ import { LotayaLibService } from 'lotayalib';
 
 @Module({
   controllers: [WalletController],
-  providers: [WalletService,LotayaLibService,Gateway],
-  exports:[WalletService]
+  providers: [WalletService, LotayaLibService, Gateway],
+  exports: [WalletService],
 })
 export class WalletModule {}

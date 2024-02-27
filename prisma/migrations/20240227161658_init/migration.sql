@@ -1,6 +1,6 @@
 -- CreateTable
 CREATE TABLE "users" (
-    "user_internal_id" VARCHAR(30) NOT NULL,
+    "user_internal_id" VARCHAR(26) NOT NULL,
     "phone_number" VARCHAR(13) NOT NULL,
     "user_name" VARCHAR(30),
     "password" TEXT,
@@ -27,7 +27,7 @@ CREATE TABLE "roles" (
 
 -- CreateTable
 CREATE TABLE "userwithdrawaccount" (
-    "user_withdraw_account_id" VARCHAR(30) NOT NULL,
+    "user_withdraw_account_id" VARCHAR(26) NOT NULL,
     "user_internal_id" TEXT NOT NULL,
     "account_type" TEXT NOT NULL,
     "account_name" TEXT NOT NULL,
@@ -42,10 +42,10 @@ CREATE TABLE "userwithdrawaccount" (
 
 -- CreateTable
 CREATE TABLE "adminreceiveraccount" (
-    "admin_receiver_account_id" VARCHAR(30) NOT NULL,
+    "admin_receiver_account_id" VARCHAR(26) NOT NULL,
     "admin_account_type" TEXT NOT NULL,
     "admin_account_name" TEXT NOT NULL,
-    "admin_account_id" INTEGER NOT NULL,
+    "admin_account_id" VARCHAR(13) NOT NULL,
     "delete_status" INTEGER NOT NULL,
     "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -56,7 +56,7 @@ CREATE TABLE "adminreceiveraccount" (
 
 -- CreateTable
 CREATE TABLE "adminreceiveraccounthistory" (
-    "admin_receiver_account_history_id" VARCHAR(30) NOT NULL,
+    "admin_receiver_account_history_id" VARCHAR(26) NOT NULL,
     "admin_account_type_history" TEXT NOT NULL,
     "account_name_history" TEXT NOT NULL,
     "account_id_history" INTEGER NOT NULL,
@@ -71,11 +71,10 @@ CREATE TABLE "adminreceiveraccounthistory" (
 
 -- CreateTable
 CREATE TABLE "wallet" (
-    "wallet_id" VARCHAR(30) NOT NULL,
+    "wallet_id" VARCHAR(26) NOT NULL,
     "user_internal_id" TEXT NOT NULL,
     "game_amount" DECIMAL(65,30),
     "main_amount" DECIMAL(65,30),
-    "agent_id" INTEGER NOT NULL,
     "delete_status" INTEGER NOT NULL,
     "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -86,8 +85,9 @@ CREATE TABLE "wallet" (
 
 -- CreateTable
 CREATE TABLE "paymentmethod" (
-    "payment_internal_id" VARCHAR(30) NOT NULL,
+    "payment_internal_id" VARCHAR(26) NOT NULL,
     "user_internal_id" TEXT NOT NULL,
+    "admin_internal_id" TEXT,
     "payment_type" TEXT NOT NULL,
     "payment_account_name" TEXT NOT NULL,
     "payment_account" TEXT NOT NULL,
@@ -109,8 +109,9 @@ CREATE TABLE "paymentmethod" (
 
 -- CreateTable
 CREATE TABLE "withdrawmethod" (
-    "withdraw_id" VARCHAR(30) NOT NULL,
+    "withdraw_id" VARCHAR(26) NOT NULL,
     "user_internal_id" TEXT NOT NULL,
+    "admin_internal_id" TEXT,
     "withdraw_type" TEXT NOT NULL,
     "receiver_account_name" TEXT NOT NULL,
     "receiver_account" TEXT NOT NULL,
@@ -130,10 +131,11 @@ CREATE TABLE "withdrawmethod" (
 
 -- CreateTable
 CREATE TABLE "admin" (
-    "admin_internal_id" VARCHAR(30) NOT NULL,
+    "admin_internal_id" VARCHAR(26) NOT NULL,
     "admin_id" VARCHAR(13) NOT NULL,
     "admin_name" VARCHAR(30),
     "password" TEXT,
+    "role_id" INTEGER NOT NULL,
     "account_status" VARCHAR(1),
     "delete_status" INTEGER,
     "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -153,12 +155,11 @@ CREATE TABLE "adminroles" (
 
 -- CreateTable
 CREATE TABLE "transation" (
-    "transaction_id" VARCHAR(30) NOT NULL,
+    "transaction_id" VARCHAR(26) NOT NULL,
     "user_internal_id" TEXT NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
     "transaction_type_id" INTEGER NOT NULL,
     "transaction_date" TIMESTAMP(3) NOT NULL,
-    "agent_id" INTEGER NOT NULL,
     "delete_status" INTEGER NOT NULL,
     "register_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updated_date" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -226,7 +227,16 @@ ALTER TABLE "wallet" ADD CONSTRAINT "wallet_user_internal_id_fkey" FOREIGN KEY (
 ALTER TABLE "paymentmethod" ADD CONSTRAINT "paymentmethod_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "paymentmethod" ADD CONSTRAINT "paymentmethod_admin_internal_id_fkey" FOREIGN KEY ("admin_internal_id") REFERENCES "admin"("admin_internal_id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "withdrawmethod" ADD CONSTRAINT "withdrawmethod_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "withdrawmethod" ADD CONSTRAINT "withdrawmethod_admin_internal_id_fkey" FOREIGN KEY ("admin_internal_id") REFERENCES "admin"("admin_internal_id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "admin" ADD CONSTRAINT "admin_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "adminroles"("role_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "transation" ADD CONSTRAINT "transation_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;

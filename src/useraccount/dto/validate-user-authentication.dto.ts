@@ -1,12 +1,12 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
-export class ValidateUserAuthenticationResBody{
-    @ApiProperty()
-    phoneNumber:string;
+export class ValidateUserAuthenticationResBody {
+  @ApiProperty()
+  phoneNumber: string;
 
-    @ApiProperty()
-    otpCode:number;
+  @ApiProperty()
+  otpCode: number;
 
-    @ApiProperty()
-    smsSendTime:Date
+  @ApiProperty()
+  smsSendTime: Date;
 }

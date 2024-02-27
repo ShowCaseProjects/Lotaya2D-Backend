@@ -86,17 +86,32 @@ export const adminRegisterLoginData = async () => {
             {   
                 admin_internal_id:ulid(),
                 admin_id: "AdminUser1",
-                password: hashpassword
+                password: hashpassword,
+                admin_role:{
+                    connect:{
+                        name:"Admin All Permission"
+                    }
+                }
             },
             {   
                 admin_internal_id:ulid(),
                 admin_id: "AdminUser2",
                 password: hashpassword,
+                admin_role:{
+                    connect:{
+                        name:"Admin All Permission"
+                    }
+                }
             }, 
             {   
                 admin_internal_id:ulid(),
                 admin_id: "AdminUser3",
-                password: hashpassword
+                password: hashpassword,
+                admin_role:{
+                    connect:{
+                        name:"Admin All Permission"
+                    }
+                }
             },
             
         ];

@@ -7,7 +7,12 @@ import { WalletService } from 'src/wallet/wallet.service';
 
 @Module({
   controllers: [UserWithdrawMethodController],
-  providers: [UserWithdrawMethodService,LotayaLibService,Gateway,WalletService],
-  exports:[UserWithdrawMethodService]
+  providers: [
+    UserWithdrawMethodService,
+    LotayaLibService,
+    Gateway,
+    WalletService,
+  ],
+  exports: [UserWithdrawMethodService],
 })
 export class UserWithdrawMethodModule {}

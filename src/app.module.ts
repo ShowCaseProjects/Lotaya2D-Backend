@@ -11,15 +11,23 @@ import { LotayaWalletlibModule } from 'lotayalib';
 import { AdminModule } from './admin/admin.module';
 import { ReceiverAccountModule } from './receiver-account/receiver-account.module';
 
-
 @Module({
-  imports: [UseraccountModule,AuthModule, WalletModule, PaymentmethodModule, UserWithdrawAccountModule, UserWithdrawMethodModule,LotayaWalletlibModule, AdminModule, ReceiverAccountModule],
+  imports: [
+    UseraccountModule,
+    AuthModule,
+    WalletModule,
+    PaymentmethodModule,
+    UserWithdrawAccountModule,
+    UserWithdrawMethodModule,
+    LotayaWalletlibModule,
+    AdminModule,
+    ReceiverAccountModule,
+  ],
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule implements NestModule{
-  configure(consumer:MiddlewareConsumer)
-  {
+export class AppModule implements NestModule {
+  configure(consumer: MiddlewareConsumer) {
     consumer.apply().forRoutes('');
   }
 }

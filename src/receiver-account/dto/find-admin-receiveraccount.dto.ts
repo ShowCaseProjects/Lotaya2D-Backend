@@ -1,17 +1,15 @@
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
-export class FindAdminAccountResBodyDto{
+export class FindAdminAccountResBodyDto {
+  @ApiProperty()
+  accountId: string;
 
-    @ApiProperty()
-    accountId: string;
+  @ApiProperty()
+  receiverType: string;
 
-    @ApiProperty()
-    receiverType: string;
+  @ApiProperty()
+  receiverAccountName: string;
 
-    @ApiProperty()
-    receiverAccountName: string;
-
-    @ApiProperty()
-    receiverAccount: string;
-
+  @ApiProperty()
+  receiverAccount: string;
 }

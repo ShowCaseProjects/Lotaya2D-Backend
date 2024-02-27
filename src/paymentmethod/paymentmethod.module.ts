@@ -7,7 +7,7 @@ import { WalletService } from 'src/wallet/wallet.service';
 
 @Module({
   controllers: [PaymentmethodController],
-  providers: [PaymentmethodService,LotayaLibService,Gateway,WalletService],
-  exports:[PaymentmethodService]
+  providers: [PaymentmethodService, LotayaLibService, Gateway, WalletService],
+  exports: [PaymentmethodService],
 })
 export class PaymentmethodModule {}
