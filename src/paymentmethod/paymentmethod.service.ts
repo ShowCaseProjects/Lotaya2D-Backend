@@ -113,6 +113,9 @@ export class PaymentmethodService {
       };
       return responseData;
     } catch (error) {
+        if (error instanceof HttpException) {
+            throw error;
+          }
       this.logger.log(error);
       if (error.code === 'P2002') {
         throw new HttpException(
@@ -179,6 +182,9 @@ export class PaymentmethodService {
       };
       return responseData;
     } catch (error) {
+        if (error instanceof HttpException) {
+            throw error;
+          }
       if (error.code === 'P2002') {
         throw new HttpException(
           {
@@ -227,6 +233,9 @@ export class PaymentmethodService {
       };
       return responseData;
     } catch (error) {
+        if (error instanceof HttpException) {
+            throw error;
+          }
       if (error.code === 'P2002') {
         throw new HttpException(
           {
@@ -419,6 +428,9 @@ export class PaymentmethodService {
       );
       return { isSuccess: true };
     } catch (error) {
+        if (error instanceof HttpException) {
+            throw error;
+          }
       if (error.code === 'P2014') {
         throw new HttpException(
           {
@@ -462,6 +474,9 @@ export class PaymentmethodService {
       });
       return { isSuccess: true };
     } catch (error) {
+        if (error instanceof HttpException) {
+            throw error;
+          }
       if (error.code === 'P2014') {
         throw new HttpException(
           {

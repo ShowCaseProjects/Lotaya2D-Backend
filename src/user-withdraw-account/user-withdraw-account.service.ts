@@ -56,6 +56,9 @@ export class UserWithdrawAccountService {
       };
       return responseData;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2002') {
         throw new HttpException(
           {
@@ -97,6 +100,9 @@ export class UserWithdrawAccountService {
       };
       return responseData;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2002') {
         throw new HttpException(
           {
@@ -144,6 +150,9 @@ export class UserWithdrawAccountService {
       };
       return responseData;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2002') {
         throw new HttpException(
           {

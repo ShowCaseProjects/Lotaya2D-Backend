@@ -104,6 +104,9 @@ export class UserWithdrawMethodService {
       };
       return responseData;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2002') {
         throw new HttpException(
           {
@@ -238,6 +241,9 @@ export class UserWithdrawMethodService {
       );
       return { isSuccess: true };
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2025') {
         throw new HttpException(
           {
@@ -290,6 +296,9 @@ export class UserWithdrawMethodService {
       });
       return { isSuccess: true };
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2025') {
         throw new HttpException(
           {
@@ -339,6 +348,9 @@ export class UserWithdrawMethodService {
       };
       return responseData;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2002') {
         throw new HttpException(
           {

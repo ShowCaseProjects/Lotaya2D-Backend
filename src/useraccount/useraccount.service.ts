@@ -139,6 +139,9 @@ export class UseraccountService {
         }
       }
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       this.logger.log(error);
       if (error.code === 'P2002') {
         throw new HttpException(
@@ -324,6 +327,9 @@ export class UseraccountService {
         return responseData;
       }
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2025') {
         throw new HttpException(
           {
@@ -364,6 +370,9 @@ export class UseraccountService {
       };
       return responseData;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2025') {
         throw new HttpException(
           {
@@ -404,6 +413,9 @@ export class UseraccountService {
       };
       return responseData;
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2025') {
         throw new HttpException(
           {
@@ -496,6 +508,9 @@ export class UseraccountService {
         }
       }
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2025') {
         throw new HttpException(
           {
@@ -563,6 +578,9 @@ export class UseraccountService {
         return responseData;
       }
     } catch (error) {
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2025') {
         throw new HttpException(
           {
