@@ -64,11 +64,12 @@ export class PaymentmethodService {
           payment_type: addPaymentReqBody.paymentType,
           payment_account_name: addPaymentReqBody.paymentAccountNumber,
           payment_account: addPaymentReqBody.paymentAccountNumber,
-          admin_receiver_account:{
-            connect:{
-                admin_account_id:addPaymentReqBody.receiverAccountNumber,
-                admin_receiver_account_id:addPaymentReqBody.adminReceiverAccountId
-            }
+          admin_receiver_account: {
+            connect: {
+              admin_account_id: addPaymentReqBody.receiverAccountNumber,
+              admin_receiver_account_id:
+                addPaymentReqBody.adminReceiverAccountId,
+            },
           },
           amount: addPaymentReqBody.amount,
           delete_status: 0,
@@ -80,22 +81,23 @@ export class PaymentmethodService {
           register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
           updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
         },
-        include:{
-            admin_receiver_account:{
-                select:{
-                    admin_account_id:true,
-                    admin_account_name:true,
-                    admin_account_type:true
-                }
-            }
-        }
+        include: {
+          admin_receiver_account: {
+            select: {
+              admin_account_id: true,
+              admin_account_name: true,
+              admin_account_type: true,
+            },
+          },
+        },
       });
       const paymentdatadto = new UserPaymentFindResBodyDto();
       (paymentdatadto.paymentMethodId = registerData.payment_internal_id),
         (paymentdatadto.userId = registerData.user_internal_id),
         (paymentdatadto.receiverAccountName =
           registerData.admin_receiver_account.admin_account_name),
-        (paymentdatadto.receiverAccount = registerData.admin_receiver_account.admin_account_id),
+        (paymentdatadto.receiverAccount =
+          registerData.admin_receiver_account.admin_account_id),
         (paymentdatadto.amount = registerData.amount.toFixed(5)),
         (paymentdatadto.paymentConfirmationCode =
           registerData.payment_confirm_code),
@@ -113,9 +115,9 @@ export class PaymentmethodService {
       };
       return responseData;
     } catch (error) {
-        if (error instanceof HttpException) {
-            throw error;
-          }
+      if (error instanceof HttpException) {
+        throw error;
+      }
       this.logger.log(error);
       if (error.code === 'P2002') {
         throw new HttpException(
@@ -182,9 +184,9 @@ export class PaymentmethodService {
       };
       return responseData;
     } catch (error) {
-        if (error instanceof HttpException) {
-            throw error;
-          }
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2002') {
         throw new HttpException(
           {
@@ -233,9 +235,9 @@ export class PaymentmethodService {
       };
       return responseData;
     } catch (error) {
-        if (error instanceof HttpException) {
-            throw error;
-          }
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2002') {
         throw new HttpException(
           {
@@ -275,12 +277,12 @@ export class PaymentmethodService {
           user_internal_id: true,
           payment_type: true,
           payment_confirm_code: true,
-          admin_receiver_account:{
-            select:{
-                admin_account_id:true,
-                admin_account_name:true,
-                admin_account_type:true
-            }
+          admin_receiver_account: {
+            select: {
+              admin_account_id: true,
+              admin_account_name: true,
+              admin_account_type: true,
+            },
           },
           amount: true,
           register_date: true,
@@ -326,18 +328,18 @@ export class PaymentmethodService {
                 : findAllUserPayment.paymentStatus == undefined
                   ? undefined
                   : 1,
-        //   reciver_account_type: {
-        //     contains: findAllUserPayment.recevierAccountType,
-        //     mode: 'insensitive',
-        //   },
-        //   receiver_account: {
-        //     contains: findAllUserPayment.receiverAccount,
-        //     mode: 'insensitive',
-        //   },
-        //   receiver_account_name: {
-        //     contains: findAllUserPayment.receiverAccountName,
-        //     mode: 'insensitive',
-        //   },
+          //   reciver_account_type: {
+          //     contains: findAllUserPayment.recevierAccountType,
+          //     mode: 'insensitive',
+          //   },
+          //   receiver_account: {
+          //     contains: findAllUserPayment.receiverAccount,
+          //     mode: 'insensitive',
+          //   },
+          //   receiver_account_name: {
+          //     contains: findAllUserPayment.receiverAccountName,
+          //     mode: 'insensitive',
+          //   },
           amount: findAllUserPayment.amount,
           register_date: {
             gte:
@@ -365,8 +367,10 @@ export class PaymentmethodService {
         const paymentdatadto = new UserPaymentFindResBodyDto();
         (paymentdatadto.paymentMethodId = a.payment_internal_id),
           (paymentdatadto.userId = a.user.phone_number),
-          (paymentdatadto.receiverAccountName = a.admin_receiver_account.admin_account_name),
-          (paymentdatadto.receiverAccount = a.admin_receiver_account.admin_account_id),
+          (paymentdatadto.receiverAccountName =
+            a.admin_receiver_account.admin_account_name),
+          (paymentdatadto.receiverAccount =
+            a.admin_receiver_account.admin_account_id),
           (paymentdatadto.amount = a.amount.toFixed(5)),
           (paymentdatadto.paymentConfirmationCode = a.payment_confirm_code),
           (paymentdatadto.registerDate = dayjs(a.register_date).format(
@@ -428,9 +432,9 @@ export class PaymentmethodService {
       );
       return { isSuccess: true };
     } catch (error) {
-        if (error instanceof HttpException) {
-            throw error;
-          }
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2014') {
         throw new HttpException(
           {
@@ -474,9 +478,9 @@ export class PaymentmethodService {
       });
       return { isSuccess: true };
     } catch (error) {
-        if (error instanceof HttpException) {
-            throw error;
-          }
+      if (error instanceof HttpException) {
+        throw error;
+      }
       if (error.code === 'P2014') {
         throw new HttpException(
           {

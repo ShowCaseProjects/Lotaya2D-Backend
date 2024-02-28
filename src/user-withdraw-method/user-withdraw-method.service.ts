@@ -58,11 +58,14 @@ export class UserWithdrawMethodService {
               phone_number: addWithdrawMethodReqBody.phoneNumber,
             },
           },
-          withdrawaccount:{
-            connect:{
-              user_withdraw_account_id:addWithdrawMethodReqBody.withdrawAccountId,
-              account_id:Number(addWithdrawMethodReqBody.receiverAccountNumber)
-            }
+          withdrawaccount: {
+            connect: {
+              user_withdraw_account_id:
+                addWithdrawMethodReqBody.withdrawAccountId,
+              account_id: Number(
+                addWithdrawMethodReqBody.receiverAccountNumber,
+              ),
+            },
           },
           amount: addWithdrawMethodReqBody.amount,
           delete_status: 0,
@@ -72,23 +75,25 @@ export class UserWithdrawMethodService {
           register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
           updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
         },
-        include:{
-          withdrawaccount:{
-            select:{
-              account_id:true,
-              account_name:true,
-              account_type:true
-            }
-          }
-        }
+        include: {
+          withdrawaccount: {
+            select: {
+              account_id: true,
+              account_name: true,
+              account_type: true,
+            },
+          },
+        },
       });
 
       const withdrawmethoddatadto = new UserWithdrawMethodFindResBodyDto();
 
       (withdrawmethoddatadto.withdrawMethodId = registerData.withdraw_id),
         (withdrawmethoddatadto.userId = registerData.user_internal_id),
-        (withdrawmethoddatadto.accountType = registerData.withdrawaccount.account_type),
-        (withdrawmethoddatadto.receiverAccount = registerData.withdrawaccount.account_id.toString()),
+        (withdrawmethoddatadto.accountType =
+          registerData.withdrawaccount.account_type),
+        (withdrawmethoddatadto.receiverAccount =
+          registerData.withdrawaccount.account_id.toString()),
         (withdrawmethoddatadto.amount = registerData.amount.toFixed(5)),
         (withdrawmethoddatadto.registerDate = dayjs(
           registerData.register_date,
@@ -391,13 +396,13 @@ export class UserWithdrawMethodService {
           amount: true,
           register_date: true,
           updated_date: true,
-          withdrawaccount:{
-            select:{
-              account_id:true,
-              account_name:true,
-              account_type:true
-            }
-          }
+          withdrawaccount: {
+            select: {
+              account_id: true,
+              account_name: true,
+              account_type: true,
+            },
+          },
         },
         orderBy: [{ register_date: 'desc' }, { updated_date: 'desc' }],
         where: {
@@ -461,7 +466,8 @@ export class UserWithdrawMethodService {
         (withdrawmethoddatadto.withdrawMethodId = a.withdraw_id),
           (withdrawmethoddatadto.userId = a.user_internal_id),
           (withdrawmethoddatadto.accountType = a.withdrawaccount.account_type),
-          (withdrawmethoddatadto.receiverAccount = a.withdrawaccount.account_id.toString()),
+          (withdrawmethoddatadto.receiverAccount =
+            a.withdrawaccount.account_id.toString()),
           (withdrawmethoddatadto.amount = a.amount.toFixed(5)),
           (withdrawmethoddatadto.registerDate = dayjs(a.register_date).format(
             'YYYY-MM-DD HH:mm:ss',
