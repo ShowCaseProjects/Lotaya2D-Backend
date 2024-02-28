@@ -117,7 +117,7 @@ export class UserWithdrawMethodService {
         throw new HttpException(
           {
             errorCode: 'E1117',
-            errorMessage: 'Account ID not found',
+            errorMessage: 'Invalid ID',
           },
           HttpStatus.NOT_FOUND,
         );

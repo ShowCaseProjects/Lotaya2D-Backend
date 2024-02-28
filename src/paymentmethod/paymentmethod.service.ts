@@ -132,6 +132,15 @@ export class PaymentmethodService {
           HttpStatus.NOT_FOUND,
         );
       }
+      if (error.code === 'P2014') {
+        throw new HttpException(
+          {
+            errorCode: 'E1117',
+            errorMessage: 'Invalid ID',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
       this.logger.error(error.stack);
       throw new HttpException(
         {
