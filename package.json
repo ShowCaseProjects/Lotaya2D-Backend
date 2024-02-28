@@ -14,7 +14,7 @@
     "seed:db": "ts-node ./seed.ts",
     "copy-files": "cpx prisma/lotaya_wallet/*.js dist/prisma/lotaya_wallet  && cpx prisma/lotaya_wallet/runtime/*.js dist/prisma/lotaya_wallet/runtime ",
     "format": "prettier --write \"prisma/**/*.ts\" \"test/**/*.ts\"",
-    "start": "nest start && npm run copy-files",
+    "start": "nest start",
     "start:dev": "nest start --watch && npm run copy-files",
     "start:debug": "nest start --debug --watch",
     "start:prod": "node dist/main",

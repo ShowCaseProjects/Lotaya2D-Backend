@@ -42,7 +42,7 @@ export class WalletService {
             wallet_id: ulid(),
             user: {
               connect: {
-                phone_number: addWalletReqBody.phoneNumber
+                phone_number: addWalletReqBody.phoneNumber,
               },
             },
             main_amount: addWalletReqBody.mainAmount,

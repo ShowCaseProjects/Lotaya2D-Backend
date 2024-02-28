@@ -179,6 +179,15 @@ export class UseraccountService {
           HttpStatus.NOT_FOUND,
         );
       }
+      if (userAccount.account_status === 1) {
+        throw new HttpException(
+          {
+            errorCode: 'E1116',
+            errorMessage: 'Your accounnt have been registered.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
       const currentTime = new Date(
         dayjs().format('YYYY-MM-DD HH:mm:ss'),
       ) as any;
@@ -270,6 +279,29 @@ export class UseraccountService {
           HttpStatus.NOT_FOUND,
         );
       } else {
+        const userAccount = await this.prisma.users.findUnique({
+          where: {
+            phone_number: phoneNumber.phoneNumber,
+          },
+        });
+        if (!userAccount) {
+          throw new HttpException(
+            {
+              errorCode: 'E1111',
+              errorMessage: 'Your accounnt not found.',
+            },
+            HttpStatus.NOT_FOUND,
+          );
+        }
+        if (userAccount.account_status === 1) {
+          throw new HttpException(
+            {
+              errorCode: 'E1116',
+              errorMessage: 'Your accounnt have been registered.',
+            },
+            HttpStatus.NOT_FOUND,
+          );
+        }
         const salt = await bcrypt.genSalt();
         const hashpassword = await bcrypt.hash(
           passwordConfirmReqBodyDto.password,
@@ -287,7 +319,6 @@ export class UseraccountService {
 
         const responseData: RegisterUserPasswordConfirmResBodyDto = {
           phoneNumber: confirmPassword.phone_number,
-          optCode: confirmPassword.otp_code,
           isSuccess: true,
         };
         return responseData;

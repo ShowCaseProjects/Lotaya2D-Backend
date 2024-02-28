@@ -51,9 +51,10 @@ model UserWithdrawAccount{
   account_name                  String 
   account_id                    Int         @unique 
   delete_status                 Int          
-  register_date  DateTime       @default(now())
-  updated_date   DateTime       @default(now())
-  deleted_date   DateTime?
+  register_date                 DateTime       @default(now())
+  updated_date                  DateTime       @default(now())
+  deleted_date                  DateTime?
+  withdrawmethod                WithdrawMethod[]
 
   @@map("userwithdrawaccount")
 }
@@ -64,10 +65,10 @@ model AdminReceiverAccount{
   admin_account_name                  String 
   admin_account_id                    String     @unique      @db.VarChar(13)
   delete_status                       Int          
-  register_date  DateTime             @default(now())
-  updated_date   DateTime             @default(now())
-  deleted_date   DateTime?
-
+  register_date                       DateTime                @default(now())
+  updated_date                        DateTime                @default(now())
+  deleted_date                        DateTime?
+  paymentmethod                       PaymentMethod[]
   @@map("adminreceiveraccount")
 }
 
@@ -75,7 +76,7 @@ model AdminReceiverAccountHistory{
   admin_receiver_account_history_id           String     @id          @db.VarChar(26)    
   admin_account_type_history                  String            
   account_name_history                        String 
-  account_id_history                          Int   @unique 
+  account_id_history                          Int        @unique 
   status                                      String?
   delete_status                               Int          
   register_date  DateTime                     @default(now())
@@ -86,9 +87,9 @@ model AdminReceiverAccountHistory{
 }
 
 model Wallet{
-  wallet_id               String     @id          @db.VarChar(26)
+  wallet_id               String     @id           @db.VarChar(26)
   user_internal_id        String     @unique 
-  user                    Users                   @relation(fields:[user_internal_id],references:[user_internal_id])       
+  user                    Users                    @relation(fields:[user_internal_id],references:[user_internal_id])       
   game_amount             Decimal?            
   main_amount             Decimal?
   delete_status           Int               
@@ -101,49 +102,47 @@ model Wallet{
 
 
 model PaymentMethod{
-  payment_internal_id   String    @id         @db.VarChar(26)
-  user_internal_id      String 
-  user                  Users                 @relation(fields:[user_internal_id],references:[user_internal_id]) 
-  admin_internal_id     String?
-  admin                 Admin ?               @relation(fields:[admin_internal_id],references:[admin_internal_id])            
-  payment_type          String 
-  payment_account_name  String
-  payment_account       String
-  reciver_account_type  String 
-  receiver_account_name String           
-  receiver_account      String
-  amount                Decimal 
-  date                  DateTime
-  approve_reject        Int
-  reason_for_reject     String?
-  payment_confirm_code  Int 
-  delete_status         Int              
-  register_date         DateTime           @default(now())
-  updated_date          DateTime           @default(now())
-  deleted_date          DateTime?
+  payment_internal_id       String    @id          @db.VarChar(26)
+  user_internal_id           String 
+  user                       Users                 @relation(fields:[user_internal_id],references:[user_internal_id]) 
+  admin_internal_id          String?
+  admin                      Admin ?               @relation(fields:[admin_internal_id],references:[admin_internal_id])            
+  payment_type               String 
+  payment_account_name       String
+  payment_account            String
+  admin_receiver_account_id  String?
+  admin_receiver_account     AdminReceiverAccount? @relation(fields:[admin_receiver_account_id],references:[admin_receiver_account_id]) 
+  amount                     Decimal 
+  date                       DateTime
+  approve_reject             Int
+  reason_for_reject          String?
+  payment_confirm_code       Int 
+  delete_status              Int              
+  register_date              DateTime              @default(now())
+  updated_date               DateTime              @default(now())
+  deleted_date               DateTime?
 
   @@map("paymentmethod")
 }
 
 model WithdrawMethod{
-  withdraw_id            String     @id     @db.VarChar(26)
-  user_internal_id       String
-  user                   Users              @relation(fields:[user_internal_id],references:[user_internal_id])  
-  admin_internal_id      String?
-  admin                  Admin ?            @relation(fields:[admin_internal_id],references:[admin_internal_id])          
-  withdraw_type          String 
-  receiver_account_name  String            
-  receiver_account       String
-  amount                 Decimal 
-  date                   DateTime
-  withdraw_confirm_code  String?             @db.VarChar(6)
-  is_verify              Int ?  
-  approve_reject         Int
-  reason_for_reject      String?
-  delete_status          Int
-  register_date          DateTime           @default(now())
-  updated_date           DateTime           @default(now())
-  deleted_date           DateTime?
+  withdraw_id               String     @id        @db.VarChar(26)
+  user_internal_id          String
+  user                      Users                 @relation(fields:[user_internal_id],references:[user_internal_id])  
+  admin_internal_id         String?
+  admin                     Admin ?               @relation(fields:[admin_internal_id],references:[admin_internal_id]) 
+  user_withdraw_account_id  String
+  withdrawaccount           UserWithdrawAccount   @relation(fields:[user_withdraw_account_id],references:[user_withdraw_account_id])            
+  amount                    Decimal 
+  date                      DateTime
+  withdraw_confirm_code     String?               @db.VarChar(6)
+  is_verify                 Int ?  
+  approve_reject            Int
+  reason_for_reject         String?
+  delete_status             Int
+  register_date             DateTime              @default(now())
+  updated_date              DateTime              @default(now())
+  deleted_date              DateTime?
 
   @@map("withdrawmethod")
 }

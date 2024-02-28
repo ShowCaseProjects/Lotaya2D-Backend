@@ -2,7 +2,6 @@ import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { Gateway } from 'src/gateway/gateway';
 import {
   UserWithdrawMethodInsertReqBodyDto,
-  UserWithdrawMethodInsertReqPathDto,
   UserWithdrawMethodInsertResBodyDto,
 } from './dto/add-user-withdraw.dto';
 import * as dayjs from 'dayjs';
@@ -21,12 +20,8 @@ import {
   UserWithdrawMethodDeleteResBodyDto,
 } from './dto/delete-user-withdraw.dto';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
-import { RegisterUserPhoneNumberConfirmResBodyDto } from 'src/useraccount/dto/register-user-phonenumber-confirm.dto';
 import { WalletService } from 'src/wallet/wallet.service';
-import {
-  UserWalletInsertReqBodyDto,
-  UserWalletInsertReqPathDto,
-} from 'src/wallet/dto/add-user-wallet.dto';
+import { UserWalletInsertReqBodyDto } from 'src/wallet/dto/add-user-wallet.dto';
 import {
   UserWithdrawMethodApproveReqBodyDto,
   UserWithdrawMethodApproveReqPathDto,
@@ -52,7 +47,6 @@ export class UserWithdrawMethodService {
   }
 
   async addUserWithdrawMethod(
-    addWithdrawMethodReqPath: UserWithdrawMethodInsertReqPathDto,
     addWithdrawMethodReqBody: UserWithdrawMethodInsertReqBodyDto,
   ): Promise<UserWithdrawMethodInsertResBodyDto> {
     try {
@@ -64,9 +58,12 @@ export class UserWithdrawMethodService {
               phone_number: addWithdrawMethodReqBody.phoneNumber,
             },
           },
-          withdraw_type: addWithdrawMethodReqBody.withdrawType,
-          receiver_account_name: addWithdrawMethodReqBody.receiverAccountName,
-          receiver_account: addWithdrawMethodReqBody.receiverAccount,
+          withdrawaccount:{
+            connect:{
+              user_withdraw_account_id:addWithdrawMethodReqBody.withdrawAccountId,
+              account_id:Number(addWithdrawMethodReqBody.receiverAccountNumber)
+            }
+          },
           amount: addWithdrawMethodReqBody.amount,
           delete_status: 0,
           approve_reject: 0,
@@ -75,14 +72,23 @@ export class UserWithdrawMethodService {
           register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
           updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
         },
+        include:{
+          withdrawaccount:{
+            select:{
+              account_id:true,
+              account_name:true,
+              account_type:true
+            }
+          }
+        }
       });
 
       const withdrawmethoddatadto = new UserWithdrawMethodFindResBodyDto();
 
       (withdrawmethoddatadto.withdrawMethodId = registerData.withdraw_id),
         (withdrawmethoddatadto.userId = registerData.user_internal_id),
-        (withdrawmethoddatadto.accountType = registerData.withdraw_type),
-        (withdrawmethoddatadto.receiverAccount = registerData.receiver_account),
+        (withdrawmethoddatadto.accountType = registerData.withdrawaccount.account_type),
+        (withdrawmethoddatadto.receiverAccount = registerData.withdrawaccount.account_id.toString()),
         (withdrawmethoddatadto.amount = registerData.amount.toFixed(5)),
         (withdrawmethoddatadto.registerDate = dayjs(
           registerData.register_date,
@@ -105,6 +111,15 @@ export class UserWithdrawMethodService {
             errorMessage: 'Your payment have been added.',
           },
           HttpStatus.BAD_REQUEST,
+        );
+      }
+      if (error.code === 'P2014') {
+        throw new HttpException(
+          {
+            errorCode: 'E1117',
+            errorMessage: 'Account ID not found',
+          },
+          HttpStatus.NOT_FOUND,
         );
       }
       if (error.code === 'P2025') {
@@ -138,9 +153,9 @@ export class UserWithdrawMethodService {
           user_internal_id: addWithdrawMethodReqBody.userId,
         },
         data: {
-          withdraw_type: addWithdrawMethodReqBody.withdrawType,
-          receiver_account_name: addWithdrawMethodReqBody.receiverAccountName,
-          receiver_account: addWithdrawMethodReqBody.receiverAccount,
+          // withdraw_type: addWithdrawMethodReqBody.withdrawType,
+          // receiver_account_name: addWithdrawMethodReqBody.receiverAccountName,
+          // receiver_account: addWithdrawMethodReqBody.receiverAccount,
           amount: addWithdrawMethodReqBody.amount,
           updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
         },
@@ -164,6 +179,15 @@ export class UserWithdrawMethodService {
           {
             errorCode: 'E1111',
             errorMessage: 'Your accounnt not found.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      if (error.code === 'P2014') {
+        throw new HttpException(
+          {
+            errorCode: 'E1117',
+            errorMessage: 'Account ID not found',
           },
           HttpStatus.NOT_FOUND,
         );
@@ -198,10 +222,10 @@ export class UserWithdrawMethodService {
           updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
         },
       });
-  
+
       const userWalletInsertReqBodyDto = new UserWalletInsertReqBodyDto();
       userWalletInsertReqBodyDto.phoneNumber =
-      userWithdrawApproveReqBodyDto.phoneNumber;
+        userWithdrawApproveReqBodyDto.phoneNumber;
       userWalletInsertReqBodyDto.gainAmount = '0';
       (userWalletInsertReqBodyDto.mainAmount =
         userWithdrawApproveReqBodyDto.amount.toString()),
@@ -214,15 +238,24 @@ export class UserWithdrawMethodService {
       );
       return { isSuccess: true };
     } catch (error) {
-        if (error.code === 'P2025') {
-            throw new HttpException(
-              {
-                errorCode: 'E1111',
-                errorMessage: 'Your accounnt not found.',
-              },
-              HttpStatus.NOT_FOUND,
-            );
-          }
+      if (error.code === 'P2025') {
+        throw new HttpException(
+          {
+            errorCode: 'E1111',
+            errorMessage: 'Your accounnt not found.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      if (error.code === 'P2014') {
+        throw new HttpException(
+          {
+            errorCode: 'E1117',
+            errorMessage: 'Approver ID not found',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
       {
         throw new HttpException(
           {
@@ -257,15 +290,24 @@ export class UserWithdrawMethodService {
       });
       return { isSuccess: true };
     } catch (error) {
-        if (error.code === 'P2025') {
-            throw new HttpException(
-              {
-                errorCode: 'E1111',
-                errorMessage: 'Your accounnt not found.',
-              },
-              HttpStatus.NOT_FOUND,
-            );
-          }
+      if (error.code === 'P2025') {
+        throw new HttpException(
+          {
+            errorCode: 'E1111',
+            errorMessage: 'Your accounnt not found.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
+      if (error.code === 'P2014') {
+        throw new HttpException(
+          {
+            errorCode: 'E1117',
+            errorMessage: 'Approver ID not found',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
       {
         throw new HttpException(
           {
@@ -334,12 +376,16 @@ export class UserWithdrawMethodService {
         select: {
           withdraw_id: true,
           user_internal_id: true,
-          withdraw_type: true,
           amount: true,
-          receiver_account_name: true,
-          receiver_account: true,
           register_date: true,
           updated_date: true,
+          withdrawaccount:{
+            select:{
+              account_id:true,
+              account_name:true,
+              account_type:true
+            }
+          }
         },
         orderBy: [{ register_date: 'desc' }, { updated_date: 'desc' }],
         where: {
@@ -363,18 +409,18 @@ export class UserWithdrawMethodService {
                 ? undefined
                 : findAllUserWithdrawMethod.userId,
           },
-          withdraw_type: {
-            contains: findAllUserWithdrawMethod.withdrawType,
-            mode: 'insensitive',
-          },
-          receiver_account_name: {
-            contains: findAllUserWithdrawMethod.receiverAccountName,
-            mode: 'insensitive',
-          },
+          // withdraw_type: {
+          //   contains: findAllUserWithdrawMethod.withdrawType,
+          //   mode: 'insensitive',
+          // },
+          // receiver_account_name: {
+          //   contains: findAllUserWithdrawMethod.receiverAccountName,
+          //   mode: 'insensitive',
+          // },
           delete_status: 0,
-          receiver_account: {
-            equals: findAllUserWithdrawMethod.receiverAccount,
-          },
+          // receiver_account: {
+          //   equals: findAllUserWithdrawMethod.receiverAccount,
+          // },
           register_date: {
             gte:
               findAllUserWithdrawMethod.creationDateFrom == undefined
@@ -402,8 +448,8 @@ export class UserWithdrawMethodService {
 
         (withdrawmethoddatadto.withdrawMethodId = a.withdraw_id),
           (withdrawmethoddatadto.userId = a.user_internal_id),
-          (withdrawmethoddatadto.accountType = a.withdraw_type),
-          (withdrawmethoddatadto.receiverAccount = a.receiver_account),
+          (withdrawmethoddatadto.accountType = a.withdrawaccount.account_type),
+          (withdrawmethoddatadto.receiverAccount = a.withdrawaccount.account_id.toString()),
           (withdrawmethoddatadto.amount = a.amount.toFixed(5)),
           (withdrawmethoddatadto.registerDate = dayjs(a.register_date).format(
             'YYYY-MM-DD HH:mm:ss',

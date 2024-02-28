@@ -91,9 +91,7 @@ CREATE TABLE "paymentmethod" (
     "payment_type" TEXT NOT NULL,
     "payment_account_name" TEXT NOT NULL,
     "payment_account" TEXT NOT NULL,
-    "reciver_account_type" TEXT NOT NULL,
-    "receiver_account_name" TEXT NOT NULL,
-    "receiver_account" TEXT NOT NULL,
+    "admin_receiver_account_id" TEXT,
     "amount" DECIMAL(65,30) NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
     "approve_reject" INTEGER NOT NULL,
@@ -112,9 +110,7 @@ CREATE TABLE "withdrawmethod" (
     "withdraw_id" VARCHAR(26) NOT NULL,
     "user_internal_id" TEXT NOT NULL,
     "admin_internal_id" TEXT,
-    "withdraw_type" TEXT NOT NULL,
-    "receiver_account_name" TEXT NOT NULL,
-    "receiver_account" TEXT NOT NULL,
+    "user_withdraw_account_id" TEXT NOT NULL,
     "amount" DECIMAL(65,30) NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
     "withdraw_confirm_code" VARCHAR(6),
@@ -230,10 +226,16 @@ ALTER TABLE "paymentmethod" ADD CONSTRAINT "paymentmethod_user_internal_id_fkey"
 ALTER TABLE "paymentmethod" ADD CONSTRAINT "paymentmethod_admin_internal_id_fkey" FOREIGN KEY ("admin_internal_id") REFERENCES "admin"("admin_internal_id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
+ALTER TABLE "paymentmethod" ADD CONSTRAINT "paymentmethod_admin_receiver_account_id_fkey" FOREIGN KEY ("admin_receiver_account_id") REFERENCES "adminreceiveraccount"("admin_receiver_account_id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
 ALTER TABLE "withdrawmethod" ADD CONSTRAINT "withdrawmethod_user_internal_id_fkey" FOREIGN KEY ("user_internal_id") REFERENCES "users"("user_internal_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "withdrawmethod" ADD CONSTRAINT "withdrawmethod_admin_internal_id_fkey" FOREIGN KEY ("admin_internal_id") REFERENCES "admin"("admin_internal_id") ON DELETE SET NULL ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "withdrawmethod" ADD CONSTRAINT "withdrawmethod_user_withdraw_account_id_fkey" FOREIGN KEY ("user_withdraw_account_id") REFERENCES "userwithdrawaccount"("user_withdraw_account_id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "admin" ADD CONSTRAINT "admin_role_id_fkey" FOREIGN KEY ("role_id") REFERENCES "adminroles"("role_id") ON DELETE RESTRICT ON UPDATE CASCADE;

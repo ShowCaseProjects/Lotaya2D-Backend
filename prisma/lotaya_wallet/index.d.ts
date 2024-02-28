@@ -1954,6 +1954,74 @@ export namespace Prisma {
 
 
   /**
+   * Count Type UserWithdrawAccountCountOutputType
+   */
+
+  export type UserWithdrawAccountCountOutputType = {
+    withdrawmethod: number
+  }
+
+  export type UserWithdrawAccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    withdrawmethod?: boolean | UserWithdrawAccountCountOutputTypeCountWithdrawmethodArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * UserWithdrawAccountCountOutputType without action
+   */
+  export type UserWithdrawAccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserWithdrawAccountCountOutputType
+     */
+    select?: UserWithdrawAccountCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * UserWithdrawAccountCountOutputType without action
+   */
+  export type UserWithdrawAccountCountOutputTypeCountWithdrawmethodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: WithdrawMethodWhereInput
+  }
+
+
+
+  /**
+   * Count Type AdminReceiverAccountCountOutputType
+   */
+
+  export type AdminReceiverAccountCountOutputType = {
+    paymentmethod: number
+  }
+
+  export type AdminReceiverAccountCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    paymentmethod?: boolean | AdminReceiverAccountCountOutputTypeCountPaymentmethodArgs
+  }
+
+  // Custom InputTypes
+
+  /**
+   * AdminReceiverAccountCountOutputType without action
+   */
+  export type AdminReceiverAccountCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccountCountOutputType
+     */
+    select?: AdminReceiverAccountCountOutputTypeSelect<ExtArgs> | null
+  }
+
+
+  /**
+   * AdminReceiverAccountCountOutputType without action
+   */
+  export type AdminReceiverAccountCountOutputTypeCountPaymentmethodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: PaymentMethodWhereInput
+  }
+
+
+
+  /**
    * Count Type AdminCountOutputType
    */
 
@@ -4430,6 +4498,8 @@ export namespace Prisma {
     updated_date?: boolean
     deleted_date?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
+    withdrawmethod?: boolean | UserWithdrawAccount$withdrawmethodArgs<ExtArgs>
+    _count?: boolean | UserWithdrawAccountCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["userWithdrawAccount"]>
 
   export type UserWithdrawAccountSelectScalar = {
@@ -4446,6 +4516,8 @@ export namespace Prisma {
 
   export type UserWithdrawAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
+    withdrawmethod?: boolean | UserWithdrawAccount$withdrawmethodArgs<ExtArgs>
+    _count?: boolean | UserWithdrawAccountCountOutputTypeDefaultArgs<ExtArgs>
   }
 
 
@@ -4453,6 +4525,7 @@ export namespace Prisma {
     name: "UserWithdrawAccount"
     objects: {
       user: Prisma.$UsersPayload<ExtArgs>
+      withdrawmethod: Prisma.$WithdrawMethodPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       user_withdraw_account_id: string
@@ -4831,6 +4904,8 @@ export namespace Prisma {
 
     user<T extends UsersDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UsersDefaultArgs<ExtArgs>>): Prisma__UsersClient<$Result.GetResult<Prisma.$UsersPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
 
+    withdrawmethod<T extends UserWithdrawAccount$withdrawmethodArgs<ExtArgs> = {}>(args?: Subset<T, UserWithdrawAccount$withdrawmethodArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$WithdrawMethodPayload<ExtArgs>, T, 'findMany'> | Null>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -5180,6 +5255,27 @@ export namespace Prisma {
 
 
   /**
+   * UserWithdrawAccount.withdrawmethod
+   */
+  export type UserWithdrawAccount$withdrawmethodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the WithdrawMethod
+     */
+    select?: WithdrawMethodSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: WithdrawMethodInclude<ExtArgs> | null
+    where?: WithdrawMethodWhereInput
+    orderBy?: WithdrawMethodOrderByWithRelationInput | WithdrawMethodOrderByWithRelationInput[]
+    cursor?: WithdrawMethodWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: WithdrawMethodScalarFieldEnum | WithdrawMethodScalarFieldEnum[]
+  }
+
+
+  /**
    * UserWithdrawAccount without action
    */
   export type UserWithdrawAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -5417,6 +5513,8 @@ export namespace Prisma {
     register_date?: boolean
     updated_date?: boolean
     deleted_date?: boolean
+    paymentmethod?: boolean | AdminReceiverAccount$paymentmethodArgs<ExtArgs>
+    _count?: boolean | AdminReceiverAccountCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["adminReceiverAccount"]>
 
   export type AdminReceiverAccountSelectScalar = {
@@ -5430,10 +5528,17 @@ export namespace Prisma {
     deleted_date?: boolean
   }
 
+  export type AdminReceiverAccountInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    paymentmethod?: boolean | AdminReceiverAccount$paymentmethodArgs<ExtArgs>
+    _count?: boolean | AdminReceiverAccountCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
 
   export type $AdminReceiverAccountPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "AdminReceiverAccount"
-    objects: {}
+    objects: {
+      paymentmethod: Prisma.$PaymentMethodPayload<ExtArgs>[]
+    }
     scalars: $Extensions.GetPayloadResult<{
       admin_receiver_account_id: string
       admin_account_type: string
@@ -5808,6 +5913,7 @@ export namespace Prisma {
   export interface Prisma__AdminReceiverAccountClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: 'PrismaPromise';
 
+    paymentmethod<T extends AdminReceiverAccount$paymentmethodArgs<ExtArgs> = {}>(args?: Subset<T, AdminReceiverAccount$paymentmethodArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$PaymentMethodPayload<ExtArgs>, T, 'findMany'> | Null>;
 
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
@@ -5859,6 +5965,10 @@ export namespace Prisma {
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
+    /**
      * Filter, which AdminReceiverAccount to fetch.
      */
     where: AdminReceiverAccountWhereUniqueInput
@@ -5874,6 +5984,10 @@ export namespace Prisma {
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
+    /**
      * Filter, which AdminReceiverAccount to fetch.
      */
     where: AdminReceiverAccountWhereUniqueInput
@@ -5888,6 +6002,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the AdminReceiverAccount
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
     /**
      * Filter, which AdminReceiverAccount to fetch.
      */
@@ -5934,6 +6052,10 @@ export namespace Prisma {
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
+    /**
      * Filter, which AdminReceiverAccount to fetch.
      */
     where?: AdminReceiverAccountWhereInput
@@ -5979,6 +6101,10 @@ export namespace Prisma {
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
+    /**
      * Filter, which AdminReceiverAccounts to fetch.
      */
     where?: AdminReceiverAccountWhereInput
@@ -6019,6 +6145,10 @@ export namespace Prisma {
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
+    /**
      * The data needed to create a AdminReceiverAccount.
      */
     data: XOR<AdminReceiverAccountCreateInput, AdminReceiverAccountUncheckedCreateInput>
@@ -6045,6 +6175,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the AdminReceiverAccount
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
     /**
      * The data needed to update a AdminReceiverAccount.
      */
@@ -6080,6 +6214,10 @@ export namespace Prisma {
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
+    /**
      * The filter to search for the AdminReceiverAccount to update in case it exists.
      */
     where: AdminReceiverAccountWhereUniqueInput
@@ -6103,6 +6241,10 @@ export namespace Prisma {
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
     /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
+    /**
      * Filter which AdminReceiverAccount to delete.
      */
     where: AdminReceiverAccountWhereUniqueInput
@@ -6121,6 +6263,27 @@ export namespace Prisma {
 
 
   /**
+   * AdminReceiverAccount.paymentmethod
+   */
+  export type AdminReceiverAccount$paymentmethodArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the PaymentMethod
+     */
+    select?: PaymentMethodSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: PaymentMethodInclude<ExtArgs> | null
+    where?: PaymentMethodWhereInput
+    orderBy?: PaymentMethodOrderByWithRelationInput | PaymentMethodOrderByWithRelationInput[]
+    cursor?: PaymentMethodWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: PaymentMethodScalarFieldEnum | PaymentMethodScalarFieldEnum[]
+  }
+
+
+  /**
    * AdminReceiverAccount without action
    */
   export type AdminReceiverAccountDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -6128,6 +6291,10 @@ export namespace Prisma {
      * Select specific fields to fetch from the AdminReceiverAccount
      */
     select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
   }
 
 
@@ -8110,9 +8277,7 @@ export namespace Prisma {
     payment_type: string | null
     payment_account_name: string | null
     payment_account: string | null
-    reciver_account_type: string | null
-    receiver_account_name: string | null
-    receiver_account: string | null
+    admin_receiver_account_id: string | null
     amount: Decimal | null
     date: Date | null
     approve_reject: number | null
@@ -8131,9 +8296,7 @@ export namespace Prisma {
     payment_type: string | null
     payment_account_name: string | null
     payment_account: string | null
-    reciver_account_type: string | null
-    receiver_account_name: string | null
-    receiver_account: string | null
+    admin_receiver_account_id: string | null
     amount: Decimal | null
     date: Date | null
     approve_reject: number | null
@@ -8152,9 +8315,7 @@ export namespace Prisma {
     payment_type: number
     payment_account_name: number
     payment_account: number
-    reciver_account_type: number
-    receiver_account_name: number
-    receiver_account: number
+    admin_receiver_account_id: number
     amount: number
     date: number
     approve_reject: number
@@ -8189,9 +8350,7 @@ export namespace Prisma {
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
-    reciver_account_type?: true
-    receiver_account_name?: true
-    receiver_account?: true
+    admin_receiver_account_id?: true
     amount?: true
     date?: true
     approve_reject?: true
@@ -8210,9 +8369,7 @@ export namespace Prisma {
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
-    reciver_account_type?: true
-    receiver_account_name?: true
-    receiver_account?: true
+    admin_receiver_account_id?: true
     amount?: true
     date?: true
     approve_reject?: true
@@ -8231,9 +8388,7 @@ export namespace Prisma {
     payment_type?: true
     payment_account_name?: true
     payment_account?: true
-    reciver_account_type?: true
-    receiver_account_name?: true
-    receiver_account?: true
+    admin_receiver_account_id?: true
     amount?: true
     date?: true
     approve_reject?: true
@@ -8339,9 +8494,7 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
+    admin_receiver_account_id: string | null
     amount: Decimal
     date: Date
     approve_reject: number
@@ -8379,9 +8532,7 @@ export namespace Prisma {
     payment_type?: boolean
     payment_account_name?: boolean
     payment_account?: boolean
-    reciver_account_type?: boolean
-    receiver_account_name?: boolean
-    receiver_account?: boolean
+    admin_receiver_account_id?: boolean
     amount?: boolean
     date?: boolean
     approve_reject?: boolean
@@ -8393,6 +8544,7 @@ export namespace Prisma {
     deleted_date?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
     admin?: boolean | PaymentMethod$adminArgs<ExtArgs>
+    admin_receiver_account?: boolean | PaymentMethod$admin_receiver_accountArgs<ExtArgs>
   }, ExtArgs["result"]["paymentMethod"]>
 
   export type PaymentMethodSelectScalar = {
@@ -8402,9 +8554,7 @@ export namespace Prisma {
     payment_type?: boolean
     payment_account_name?: boolean
     payment_account?: boolean
-    reciver_account_type?: boolean
-    receiver_account_name?: boolean
-    receiver_account?: boolean
+    admin_receiver_account_id?: boolean
     amount?: boolean
     date?: boolean
     approve_reject?: boolean
@@ -8419,6 +8569,7 @@ export namespace Prisma {
   export type PaymentMethodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     admin?: boolean | PaymentMethod$adminArgs<ExtArgs>
+    admin_receiver_account?: boolean | PaymentMethod$admin_receiver_accountArgs<ExtArgs>
   }
 
 
@@ -8427,6 +8578,7 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UsersPayload<ExtArgs>
       admin: Prisma.$AdminPayload<ExtArgs> | null
+      admin_receiver_account: Prisma.$AdminReceiverAccountPayload<ExtArgs> | null
     }
     scalars: $Extensions.GetPayloadResult<{
       payment_internal_id: string
@@ -8435,9 +8587,7 @@ export namespace Prisma {
       payment_type: string
       payment_account_name: string
       payment_account: string
-      reciver_account_type: string
-      receiver_account_name: string
-      receiver_account: string
+      admin_receiver_account_id: string | null
       amount: Prisma.Decimal
       date: Date
       approve_reject: number
@@ -8816,6 +8966,8 @@ export namespace Prisma {
 
     admin<T extends PaymentMethod$adminArgs<ExtArgs> = {}>(args?: Subset<T, PaymentMethod$adminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
+    admin_receiver_account<T extends PaymentMethod$admin_receiver_accountArgs<ExtArgs> = {}>(args?: Subset<T, PaymentMethod$admin_receiver_accountArgs<ExtArgs>>): Prisma__AdminReceiverAccountClient<$Result.GetResult<Prisma.$AdminReceiverAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -8850,9 +9002,7 @@ export namespace Prisma {
     readonly payment_type: FieldRef<"PaymentMethod", 'String'>
     readonly payment_account_name: FieldRef<"PaymentMethod", 'String'>
     readonly payment_account: FieldRef<"PaymentMethod", 'String'>
-    readonly reciver_account_type: FieldRef<"PaymentMethod", 'String'>
-    readonly receiver_account_name: FieldRef<"PaymentMethod", 'String'>
-    readonly receiver_account: FieldRef<"PaymentMethod", 'String'>
+    readonly admin_receiver_account_id: FieldRef<"PaymentMethod", 'String'>
     readonly amount: FieldRef<"PaymentMethod", 'Decimal'>
     readonly date: FieldRef<"PaymentMethod", 'DateTime'>
     readonly approve_reject: FieldRef<"PaymentMethod", 'Int'>
@@ -9190,6 +9340,22 @@ export namespace Prisma {
 
 
   /**
+   * PaymentMethod.admin_receiver_account
+   */
+  export type PaymentMethod$admin_receiver_accountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the AdminReceiverAccount
+     */
+    select?: AdminReceiverAccountSelect<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well.
+     */
+    include?: AdminReceiverAccountInclude<ExtArgs> | null
+    where?: AdminReceiverAccountWhereInput
+  }
+
+
+  /**
    * PaymentMethod without action
    */
   export type PaymentMethodDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -9235,9 +9401,7 @@ export namespace Prisma {
     withdraw_id: string | null
     user_internal_id: string | null
     admin_internal_id: string | null
-    withdraw_type: string | null
-    receiver_account_name: string | null
-    receiver_account: string | null
+    user_withdraw_account_id: string | null
     amount: Decimal | null
     date: Date | null
     withdraw_confirm_code: string | null
@@ -9254,9 +9418,7 @@ export namespace Prisma {
     withdraw_id: string | null
     user_internal_id: string | null
     admin_internal_id: string | null
-    withdraw_type: string | null
-    receiver_account_name: string | null
-    receiver_account: string | null
+    user_withdraw_account_id: string | null
     amount: Decimal | null
     date: Date | null
     withdraw_confirm_code: string | null
@@ -9273,9 +9435,7 @@ export namespace Prisma {
     withdraw_id: number
     user_internal_id: number
     admin_internal_id: number
-    withdraw_type: number
-    receiver_account_name: number
-    receiver_account: number
+    user_withdraw_account_id: number
     amount: number
     date: number
     withdraw_confirm_code: number
@@ -9308,9 +9468,7 @@ export namespace Prisma {
     withdraw_id?: true
     user_internal_id?: true
     admin_internal_id?: true
-    withdraw_type?: true
-    receiver_account_name?: true
-    receiver_account?: true
+    user_withdraw_account_id?: true
     amount?: true
     date?: true
     withdraw_confirm_code?: true
@@ -9327,9 +9485,7 @@ export namespace Prisma {
     withdraw_id?: true
     user_internal_id?: true
     admin_internal_id?: true
-    withdraw_type?: true
-    receiver_account_name?: true
-    receiver_account?: true
+    user_withdraw_account_id?: true
     amount?: true
     date?: true
     withdraw_confirm_code?: true
@@ -9346,9 +9502,7 @@ export namespace Prisma {
     withdraw_id?: true
     user_internal_id?: true
     admin_internal_id?: true
-    withdraw_type?: true
-    receiver_account_name?: true
-    receiver_account?: true
+    user_withdraw_account_id?: true
     amount?: true
     date?: true
     withdraw_confirm_code?: true
@@ -9452,9 +9606,7 @@ export namespace Prisma {
     withdraw_id: string
     user_internal_id: string
     admin_internal_id: string | null
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
+    user_withdraw_account_id: string
     amount: Decimal
     date: Date
     withdraw_confirm_code: string | null
@@ -9490,9 +9642,7 @@ export namespace Prisma {
     withdraw_id?: boolean
     user_internal_id?: boolean
     admin_internal_id?: boolean
-    withdraw_type?: boolean
-    receiver_account_name?: boolean
-    receiver_account?: boolean
+    user_withdraw_account_id?: boolean
     amount?: boolean
     date?: boolean
     withdraw_confirm_code?: boolean
@@ -9505,15 +9655,14 @@ export namespace Prisma {
     deleted_date?: boolean
     user?: boolean | UsersDefaultArgs<ExtArgs>
     admin?: boolean | WithdrawMethod$adminArgs<ExtArgs>
+    withdrawaccount?: boolean | UserWithdrawAccountDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["withdrawMethod"]>
 
   export type WithdrawMethodSelectScalar = {
     withdraw_id?: boolean
     user_internal_id?: boolean
     admin_internal_id?: boolean
-    withdraw_type?: boolean
-    receiver_account_name?: boolean
-    receiver_account?: boolean
+    user_withdraw_account_id?: boolean
     amount?: boolean
     date?: boolean
     withdraw_confirm_code?: boolean
@@ -9529,6 +9678,7 @@ export namespace Prisma {
   export type WithdrawMethodInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UsersDefaultArgs<ExtArgs>
     admin?: boolean | WithdrawMethod$adminArgs<ExtArgs>
+    withdrawaccount?: boolean | UserWithdrawAccountDefaultArgs<ExtArgs>
   }
 
 
@@ -9537,14 +9687,13 @@ export namespace Prisma {
     objects: {
       user: Prisma.$UsersPayload<ExtArgs>
       admin: Prisma.$AdminPayload<ExtArgs> | null
+      withdrawaccount: Prisma.$UserWithdrawAccountPayload<ExtArgs>
     }
     scalars: $Extensions.GetPayloadResult<{
       withdraw_id: string
       user_internal_id: string
       admin_internal_id: string | null
-      withdraw_type: string
-      receiver_account_name: string
-      receiver_account: string
+      user_withdraw_account_id: string
       amount: Prisma.Decimal
       date: Date
       withdraw_confirm_code: string | null
@@ -9924,6 +10073,8 @@ export namespace Prisma {
 
     admin<T extends WithdrawMethod$adminArgs<ExtArgs> = {}>(args?: Subset<T, WithdrawMethod$adminArgs<ExtArgs>>): Prisma__AdminClient<$Result.GetResult<Prisma.$AdminPayload<ExtArgs>, T, 'findUniqueOrThrow'> | null, null, ExtArgs>;
 
+    withdrawaccount<T extends UserWithdrawAccountDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserWithdrawAccountDefaultArgs<ExtArgs>>): Prisma__UserWithdrawAccountClient<$Result.GetResult<Prisma.$UserWithdrawAccountPayload<ExtArgs>, T, 'findUniqueOrThrow'> | Null, Null, ExtArgs>;
+
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9955,9 +10106,7 @@ export namespace Prisma {
     readonly withdraw_id: FieldRef<"WithdrawMethod", 'String'>
     readonly user_internal_id: FieldRef<"WithdrawMethod", 'String'>
     readonly admin_internal_id: FieldRef<"WithdrawMethod", 'String'>
-    readonly withdraw_type: FieldRef<"WithdrawMethod", 'String'>
-    readonly receiver_account_name: FieldRef<"WithdrawMethod", 'String'>
-    readonly receiver_account: FieldRef<"WithdrawMethod", 'String'>
+    readonly user_withdraw_account_id: FieldRef<"WithdrawMethod", 'String'>
     readonly amount: FieldRef<"WithdrawMethod", 'Decimal'>
     readonly date: FieldRef<"WithdrawMethod", 'DateTime'>
     readonly withdraw_confirm_code: FieldRef<"WithdrawMethod", 'String'>
@@ -15246,9 +15395,7 @@ export namespace Prisma {
     payment_type: 'payment_type',
     payment_account_name: 'payment_account_name',
     payment_account: 'payment_account',
-    reciver_account_type: 'reciver_account_type',
-    receiver_account_name: 'receiver_account_name',
-    receiver_account: 'receiver_account',
+    admin_receiver_account_id: 'admin_receiver_account_id',
     amount: 'amount',
     date: 'date',
     approve_reject: 'approve_reject',
@@ -15267,9 +15414,7 @@ export namespace Prisma {
     withdraw_id: 'withdraw_id',
     user_internal_id: 'user_internal_id',
     admin_internal_id: 'admin_internal_id',
-    withdraw_type: 'withdraw_type',
-    receiver_account_name: 'receiver_account_name',
-    receiver_account: 'receiver_account',
+    user_withdraw_account_id: 'user_withdraw_account_id',
     amount: 'amount',
     date: 'date',
     withdraw_confirm_code: 'withdraw_confirm_code',
@@ -15610,6 +15755,7 @@ export namespace Prisma {
     updated_date?: DateTimeFilter<"UserWithdrawAccount"> | Date | string
     deleted_date?: DateTimeNullableFilter<"UserWithdrawAccount"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
+    withdrawmethod?: WithdrawMethodListRelationFilter
   }
 
   export type UserWithdrawAccountOrderByWithRelationInput = {
@@ -15623,6 +15769,7 @@ export namespace Prisma {
     updated_date?: SortOrder
     deleted_date?: SortOrderInput | SortOrder
     user?: UsersOrderByWithRelationInput
+    withdrawmethod?: WithdrawMethodOrderByRelationAggregateInput
   }
 
   export type UserWithdrawAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -15639,6 +15786,7 @@ export namespace Prisma {
     updated_date?: DateTimeFilter<"UserWithdrawAccount"> | Date | string
     deleted_date?: DateTimeNullableFilter<"UserWithdrawAccount"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
+    withdrawmethod?: WithdrawMethodListRelationFilter
   }, "user_withdraw_account_id" | "account_id">
 
   export type UserWithdrawAccountOrderByWithAggregationInput = {
@@ -15685,6 +15833,7 @@ export namespace Prisma {
     register_date?: DateTimeFilter<"AdminReceiverAccount"> | Date | string
     updated_date?: DateTimeFilter<"AdminReceiverAccount"> | Date | string
     deleted_date?: DateTimeNullableFilter<"AdminReceiverAccount"> | Date | string | null
+    paymentmethod?: PaymentMethodListRelationFilter
   }
 
   export type AdminReceiverAccountOrderByWithRelationInput = {
@@ -15696,6 +15845,7 @@ export namespace Prisma {
     register_date?: SortOrder
     updated_date?: SortOrder
     deleted_date?: SortOrderInput | SortOrder
+    paymentmethod?: PaymentMethodOrderByRelationAggregateInput
   }
 
   export type AdminReceiverAccountWhereUniqueInput = Prisma.AtLeast<{
@@ -15710,6 +15860,7 @@ export namespace Prisma {
     register_date?: DateTimeFilter<"AdminReceiverAccount"> | Date | string
     updated_date?: DateTimeFilter<"AdminReceiverAccount"> | Date | string
     deleted_date?: DateTimeNullableFilter<"AdminReceiverAccount"> | Date | string | null
+    paymentmethod?: PaymentMethodListRelationFilter
   }, "admin_receiver_account_id" | "admin_account_id">
 
   export type AdminReceiverAccountOrderByWithAggregationInput = {
@@ -15898,9 +16049,7 @@ export namespace Prisma {
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
-    reciver_account_type?: StringFilter<"PaymentMethod"> | string
-    receiver_account_name?: StringFilter<"PaymentMethod"> | string
-    receiver_account?: StringFilter<"PaymentMethod"> | string
+    admin_receiver_account_id?: StringNullableFilter<"PaymentMethod"> | string | null
     amount?: DecimalFilter<"PaymentMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"PaymentMethod"> | Date | string
     approve_reject?: IntFilter<"PaymentMethod"> | number
@@ -15912,6 +16061,7 @@ export namespace Prisma {
     deleted_date?: DateTimeNullableFilter<"PaymentMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
     admin?: XOR<AdminNullableRelationFilter, AdminWhereInput> | null
+    admin_receiver_account?: XOR<AdminReceiverAccountNullableRelationFilter, AdminReceiverAccountWhereInput> | null
   }
 
   export type PaymentMethodOrderByWithRelationInput = {
@@ -15921,9 +16071,7 @@ export namespace Prisma {
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
-    reciver_account_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    admin_receiver_account_id?: SortOrderInput | SortOrder
     amount?: SortOrder
     date?: SortOrder
     approve_reject?: SortOrder
@@ -15935,6 +16083,7 @@ export namespace Prisma {
     deleted_date?: SortOrderInput | SortOrder
     user?: UsersOrderByWithRelationInput
     admin?: AdminOrderByWithRelationInput
+    admin_receiver_account?: AdminReceiverAccountOrderByWithRelationInput
   }
 
   export type PaymentMethodWhereUniqueInput = Prisma.AtLeast<{
@@ -15947,9 +16096,7 @@ export namespace Prisma {
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
-    reciver_account_type?: StringFilter<"PaymentMethod"> | string
-    receiver_account_name?: StringFilter<"PaymentMethod"> | string
-    receiver_account?: StringFilter<"PaymentMethod"> | string
+    admin_receiver_account_id?: StringNullableFilter<"PaymentMethod"> | string | null
     amount?: DecimalFilter<"PaymentMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"PaymentMethod"> | Date | string
     approve_reject?: IntFilter<"PaymentMethod"> | number
@@ -15961,6 +16108,7 @@ export namespace Prisma {
     deleted_date?: DateTimeNullableFilter<"PaymentMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
     admin?: XOR<AdminNullableRelationFilter, AdminWhereInput> | null
+    admin_receiver_account?: XOR<AdminReceiverAccountNullableRelationFilter, AdminReceiverAccountWhereInput> | null
   }, "payment_internal_id">
 
   export type PaymentMethodOrderByWithAggregationInput = {
@@ -15970,9 +16118,7 @@ export namespace Prisma {
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
-    reciver_account_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    admin_receiver_account_id?: SortOrderInput | SortOrder
     amount?: SortOrder
     date?: SortOrder
     approve_reject?: SortOrder
@@ -15999,9 +16145,7 @@ export namespace Prisma {
     payment_type?: StringWithAggregatesFilter<"PaymentMethod"> | string
     payment_account_name?: StringWithAggregatesFilter<"PaymentMethod"> | string
     payment_account?: StringWithAggregatesFilter<"PaymentMethod"> | string
-    reciver_account_type?: StringWithAggregatesFilter<"PaymentMethod"> | string
-    receiver_account_name?: StringWithAggregatesFilter<"PaymentMethod"> | string
-    receiver_account?: StringWithAggregatesFilter<"PaymentMethod"> | string
+    admin_receiver_account_id?: StringNullableWithAggregatesFilter<"PaymentMethod"> | string | null
     amount?: DecimalWithAggregatesFilter<"PaymentMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeWithAggregatesFilter<"PaymentMethod"> | Date | string
     approve_reject?: IntWithAggregatesFilter<"PaymentMethod"> | number
@@ -16020,9 +16164,7 @@ export namespace Prisma {
     withdraw_id?: StringFilter<"WithdrawMethod"> | string
     user_internal_id?: StringFilter<"WithdrawMethod"> | string
     admin_internal_id?: StringNullableFilter<"WithdrawMethod"> | string | null
-    withdraw_type?: StringFilter<"WithdrawMethod"> | string
-    receiver_account_name?: StringFilter<"WithdrawMethod"> | string
-    receiver_account?: StringFilter<"WithdrawMethod"> | string
+    user_withdraw_account_id?: StringFilter<"WithdrawMethod"> | string
     amount?: DecimalFilter<"WithdrawMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     withdraw_confirm_code?: StringNullableFilter<"WithdrawMethod"> | string | null
@@ -16035,15 +16177,14 @@ export namespace Prisma {
     deleted_date?: DateTimeNullableFilter<"WithdrawMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
     admin?: XOR<AdminNullableRelationFilter, AdminWhereInput> | null
+    withdrawaccount?: XOR<UserWithdrawAccountRelationFilter, UserWithdrawAccountWhereInput>
   }
 
   export type WithdrawMethodOrderByWithRelationInput = {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
     admin_internal_id?: SortOrderInput | SortOrder
-    withdraw_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    user_withdraw_account_id?: SortOrder
     amount?: SortOrder
     date?: SortOrder
     withdraw_confirm_code?: SortOrderInput | SortOrder
@@ -16056,6 +16197,7 @@ export namespace Prisma {
     deleted_date?: SortOrderInput | SortOrder
     user?: UsersOrderByWithRelationInput
     admin?: AdminOrderByWithRelationInput
+    withdrawaccount?: UserWithdrawAccountOrderByWithRelationInput
   }
 
   export type WithdrawMethodWhereUniqueInput = Prisma.AtLeast<{
@@ -16065,9 +16207,7 @@ export namespace Prisma {
     NOT?: WithdrawMethodWhereInput | WithdrawMethodWhereInput[]
     user_internal_id?: StringFilter<"WithdrawMethod"> | string
     admin_internal_id?: StringNullableFilter<"WithdrawMethod"> | string | null
-    withdraw_type?: StringFilter<"WithdrawMethod"> | string
-    receiver_account_name?: StringFilter<"WithdrawMethod"> | string
-    receiver_account?: StringFilter<"WithdrawMethod"> | string
+    user_withdraw_account_id?: StringFilter<"WithdrawMethod"> | string
     amount?: DecimalFilter<"WithdrawMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     withdraw_confirm_code?: StringNullableFilter<"WithdrawMethod"> | string | null
@@ -16080,15 +16220,14 @@ export namespace Prisma {
     deleted_date?: DateTimeNullableFilter<"WithdrawMethod"> | Date | string | null
     user?: XOR<UsersRelationFilter, UsersWhereInput>
     admin?: XOR<AdminNullableRelationFilter, AdminWhereInput> | null
+    withdrawaccount?: XOR<UserWithdrawAccountRelationFilter, UserWithdrawAccountWhereInput>
   }, "withdraw_id">
 
   export type WithdrawMethodOrderByWithAggregationInput = {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
     admin_internal_id?: SortOrderInput | SortOrder
-    withdraw_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    user_withdraw_account_id?: SortOrder
     amount?: SortOrder
     date?: SortOrder
     withdraw_confirm_code?: SortOrderInput | SortOrder
@@ -16113,9 +16252,7 @@ export namespace Prisma {
     withdraw_id?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     user_internal_id?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     admin_internal_id?: StringNullableWithAggregatesFilter<"WithdrawMethod"> | string | null
-    withdraw_type?: StringWithAggregatesFilter<"WithdrawMethod"> | string
-    receiver_account_name?: StringWithAggregatesFilter<"WithdrawMethod"> | string
-    receiver_account?: StringWithAggregatesFilter<"WithdrawMethod"> | string
+    user_withdraw_account_id?: StringWithAggregatesFilter<"WithdrawMethod"> | string
     amount?: DecimalWithAggregatesFilter<"WithdrawMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeWithAggregatesFilter<"WithdrawMethod"> | Date | string
     withdraw_confirm_code?: StringNullableWithAggregatesFilter<"WithdrawMethod"> | string | null
@@ -16599,6 +16736,7 @@ export namespace Prisma {
     updated_date?: Date | string
     deleted_date?: Date | string | null
     user: UsersCreateNestedOneWithoutWithdrawaccountInput
+    withdrawmethod?: WithdrawMethodCreateNestedManyWithoutWithdrawaccountInput
   }
 
   export type UserWithdrawAccountUncheckedCreateInput = {
@@ -16611,6 +16749,7 @@ export namespace Prisma {
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    withdrawmethod?: WithdrawMethodUncheckedCreateNestedManyWithoutWithdrawaccountInput
   }
 
   export type UserWithdrawAccountUpdateInput = {
@@ -16623,6 +16762,7 @@ export namespace Prisma {
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UsersUpdateOneRequiredWithoutWithdrawaccountNestedInput
+    withdrawmethod?: WithdrawMethodUpdateManyWithoutWithdrawaccountNestedInput
   }
 
   export type UserWithdrawAccountUncheckedUpdateInput = {
@@ -16635,6 +16775,7 @@ export namespace Prisma {
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    withdrawmethod?: WithdrawMethodUncheckedUpdateManyWithoutWithdrawaccountNestedInput
   }
 
   export type UserWithdrawAccountCreateManyInput = {
@@ -16681,6 +16822,7 @@ export namespace Prisma {
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    paymentmethod?: PaymentMethodCreateNestedManyWithoutAdmin_receiver_accountInput
   }
 
   export type AdminReceiverAccountUncheckedCreateInput = {
@@ -16692,6 +16834,7 @@ export namespace Prisma {
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    paymentmethod?: PaymentMethodUncheckedCreateNestedManyWithoutAdmin_receiver_accountInput
   }
 
   export type AdminReceiverAccountUpdateInput = {
@@ -16703,6 +16846,7 @@ export namespace Prisma {
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    paymentmethod?: PaymentMethodUpdateManyWithoutAdmin_receiver_accountNestedInput
   }
 
   export type AdminReceiverAccountUncheckedUpdateInput = {
@@ -16714,6 +16858,7 @@ export namespace Prisma {
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    paymentmethod?: PaymentMethodUncheckedUpdateManyWithoutAdmin_receiver_accountNestedInput
   }
 
   export type AdminReceiverAccountCreateManyInput = {
@@ -16914,9 +17059,6 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -16928,6 +17070,7 @@ export namespace Prisma {
     deleted_date?: Date | string | null
     user: UsersCreateNestedOneWithoutPaymentInput
     admin?: AdminCreateNestedOneWithoutWithdrawInput
+    admin_receiver_account?: AdminReceiverAccountCreateNestedOneWithoutPaymentmethodInput
   }
 
   export type PaymentMethodUncheckedCreateInput = {
@@ -16937,9 +17080,7 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
+    admin_receiver_account_id?: string | null
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -16956,9 +17097,6 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -16970,6 +17108,7 @@ export namespace Prisma {
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UsersUpdateOneRequiredWithoutPaymentNestedInput
     admin?: AdminUpdateOneWithoutWithdrawNestedInput
+    admin_receiver_account?: AdminReceiverAccountUpdateOneWithoutPaymentmethodNestedInput
   }
 
   export type PaymentMethodUncheckedUpdateInput = {
@@ -16979,9 +17118,7 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    admin_receiver_account_id?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -17000,9 +17137,7 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
+    admin_receiver_account_id?: string | null
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -17019,9 +17154,6 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -17040,9 +17172,7 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    admin_receiver_account_id?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -17056,9 +17186,6 @@ export namespace Prisma {
 
   export type WithdrawMethodCreateInput = {
     withdraw_id: string
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -17071,15 +17198,14 @@ export namespace Prisma {
     deleted_date?: Date | string | null
     user: UsersCreateNestedOneWithoutWithdrawInput
     admin?: AdminCreateNestedOneWithoutPaymentInput
+    withdrawaccount: UserWithdrawAccountCreateNestedOneWithoutWithdrawmethodInput
   }
 
   export type WithdrawMethodUncheckedCreateInput = {
     withdraw_id: string
     user_internal_id: string
     admin_internal_id?: string | null
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
+    user_withdraw_account_id: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -17094,9 +17220,6 @@ export namespace Prisma {
 
   export type WithdrawMethodUpdateInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17109,15 +17232,14 @@ export namespace Prisma {
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UsersUpdateOneRequiredWithoutWithdrawNestedInput
     admin?: AdminUpdateOneWithoutPaymentNestedInput
+    withdrawaccount?: UserWithdrawAccountUpdateOneRequiredWithoutWithdrawmethodNestedInput
   }
 
   export type WithdrawMethodUncheckedUpdateInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
     user_internal_id?: StringFieldUpdateOperationsInput | string
     admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17134,9 +17256,7 @@ export namespace Prisma {
     withdraw_id: string
     user_internal_id: string
     admin_internal_id?: string | null
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
+    user_withdraw_account_id: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -17151,9 +17271,6 @@ export namespace Prisma {
 
   export type WithdrawMethodUpdateManyMutationInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -17170,9 +17287,7 @@ export namespace Prisma {
     withdraw_id?: StringFieldUpdateOperationsInput | string
     user_internal_id?: StringFieldUpdateOperationsInput | string
     admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -18029,6 +18144,11 @@ export namespace Prisma {
     isNot?: AdminWhereInput | null
   }
 
+  export type AdminReceiverAccountNullableRelationFilter = {
+    is?: AdminReceiverAccountWhereInput | null
+    isNot?: AdminReceiverAccountWhereInput | null
+  }
+
   export type PaymentMethodCountOrderByAggregateInput = {
     payment_internal_id?: SortOrder
     user_internal_id?: SortOrder
@@ -18036,9 +18156,7 @@ export namespace Prisma {
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
-    reciver_account_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    admin_receiver_account_id?: SortOrder
     amount?: SortOrder
     date?: SortOrder
     approve_reject?: SortOrder
@@ -18064,9 +18182,7 @@ export namespace Prisma {
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
-    reciver_account_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    admin_receiver_account_id?: SortOrder
     amount?: SortOrder
     date?: SortOrder
     approve_reject?: SortOrder
@@ -18085,9 +18201,7 @@ export namespace Prisma {
     payment_type?: SortOrder
     payment_account_name?: SortOrder
     payment_account?: SortOrder
-    reciver_account_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    admin_receiver_account_id?: SortOrder
     amount?: SortOrder
     date?: SortOrder
     approve_reject?: SortOrder
@@ -18122,13 +18236,16 @@ export namespace Prisma {
     _max?: NestedDecimalFilter<$PrismaModel>
   }
 
+  export type UserWithdrawAccountRelationFilter = {
+    is?: UserWithdrawAccountWhereInput
+    isNot?: UserWithdrawAccountWhereInput
+  }
+
   export type WithdrawMethodCountOrderByAggregateInput = {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
     admin_internal_id?: SortOrder
-    withdraw_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    user_withdraw_account_id?: SortOrder
     amount?: SortOrder
     date?: SortOrder
     withdraw_confirm_code?: SortOrder
@@ -18152,9 +18269,7 @@ export namespace Prisma {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
     admin_internal_id?: SortOrder
-    withdraw_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    user_withdraw_account_id?: SortOrder
     amount?: SortOrder
     date?: SortOrder
     withdraw_confirm_code?: SortOrder
@@ -18171,9 +18286,7 @@ export namespace Prisma {
     withdraw_id?: SortOrder
     user_internal_id?: SortOrder
     admin_internal_id?: SortOrder
-    withdraw_type?: SortOrder
-    receiver_account_name?: SortOrder
-    receiver_account?: SortOrder
+    user_withdraw_account_id?: SortOrder
     amount?: SortOrder
     date?: SortOrder
     withdraw_confirm_code?: SortOrder
@@ -18683,12 +18796,96 @@ export namespace Prisma {
     connect?: UsersWhereUniqueInput
   }
 
+  export type WithdrawMethodCreateNestedManyWithoutWithdrawaccountInput = {
+    create?: XOR<WithdrawMethodCreateWithoutWithdrawaccountInput, WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput> | WithdrawMethodCreateWithoutWithdrawaccountInput[] | WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput[]
+    connectOrCreate?: WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput | WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput[]
+    createMany?: WithdrawMethodCreateManyWithdrawaccountInputEnvelope
+    connect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+  }
+
+  export type WithdrawMethodUncheckedCreateNestedManyWithoutWithdrawaccountInput = {
+    create?: XOR<WithdrawMethodCreateWithoutWithdrawaccountInput, WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput> | WithdrawMethodCreateWithoutWithdrawaccountInput[] | WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput[]
+    connectOrCreate?: WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput | WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput[]
+    createMany?: WithdrawMethodCreateManyWithdrawaccountInputEnvelope
+    connect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+  }
+
   export type UsersUpdateOneRequiredWithoutWithdrawaccountNestedInput = {
     create?: XOR<UsersCreateWithoutWithdrawaccountInput, UsersUncheckedCreateWithoutWithdrawaccountInput>
     connectOrCreate?: UsersCreateOrConnectWithoutWithdrawaccountInput
     upsert?: UsersUpsertWithoutWithdrawaccountInput
     connect?: UsersWhereUniqueInput
     update?: XOR<XOR<UsersUpdateToOneWithWhereWithoutWithdrawaccountInput, UsersUpdateWithoutWithdrawaccountInput>, UsersUncheckedUpdateWithoutWithdrawaccountInput>
+  }
+
+  export type WithdrawMethodUpdateManyWithoutWithdrawaccountNestedInput = {
+    create?: XOR<WithdrawMethodCreateWithoutWithdrawaccountInput, WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput> | WithdrawMethodCreateWithoutWithdrawaccountInput[] | WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput[]
+    connectOrCreate?: WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput | WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput[]
+    upsert?: WithdrawMethodUpsertWithWhereUniqueWithoutWithdrawaccountInput | WithdrawMethodUpsertWithWhereUniqueWithoutWithdrawaccountInput[]
+    createMany?: WithdrawMethodCreateManyWithdrawaccountInputEnvelope
+    set?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    disconnect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    delete?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    connect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    update?: WithdrawMethodUpdateWithWhereUniqueWithoutWithdrawaccountInput | WithdrawMethodUpdateWithWhereUniqueWithoutWithdrawaccountInput[]
+    updateMany?: WithdrawMethodUpdateManyWithWhereWithoutWithdrawaccountInput | WithdrawMethodUpdateManyWithWhereWithoutWithdrawaccountInput[]
+    deleteMany?: WithdrawMethodScalarWhereInput | WithdrawMethodScalarWhereInput[]
+  }
+
+  export type WithdrawMethodUncheckedUpdateManyWithoutWithdrawaccountNestedInput = {
+    create?: XOR<WithdrawMethodCreateWithoutWithdrawaccountInput, WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput> | WithdrawMethodCreateWithoutWithdrawaccountInput[] | WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput[]
+    connectOrCreate?: WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput | WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput[]
+    upsert?: WithdrawMethodUpsertWithWhereUniqueWithoutWithdrawaccountInput | WithdrawMethodUpsertWithWhereUniqueWithoutWithdrawaccountInput[]
+    createMany?: WithdrawMethodCreateManyWithdrawaccountInputEnvelope
+    set?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    disconnect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    delete?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    connect?: WithdrawMethodWhereUniqueInput | WithdrawMethodWhereUniqueInput[]
+    update?: WithdrawMethodUpdateWithWhereUniqueWithoutWithdrawaccountInput | WithdrawMethodUpdateWithWhereUniqueWithoutWithdrawaccountInput[]
+    updateMany?: WithdrawMethodUpdateManyWithWhereWithoutWithdrawaccountInput | WithdrawMethodUpdateManyWithWhereWithoutWithdrawaccountInput[]
+    deleteMany?: WithdrawMethodScalarWhereInput | WithdrawMethodScalarWhereInput[]
+  }
+
+  export type PaymentMethodCreateNestedManyWithoutAdmin_receiver_accountInput = {
+    create?: XOR<PaymentMethodCreateWithoutAdmin_receiver_accountInput, PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput> | PaymentMethodCreateWithoutAdmin_receiver_accountInput[] | PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput[]
+    connectOrCreate?: PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput | PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput[]
+    createMany?: PaymentMethodCreateManyAdmin_receiver_accountInputEnvelope
+    connect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+  }
+
+  export type PaymentMethodUncheckedCreateNestedManyWithoutAdmin_receiver_accountInput = {
+    create?: XOR<PaymentMethodCreateWithoutAdmin_receiver_accountInput, PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput> | PaymentMethodCreateWithoutAdmin_receiver_accountInput[] | PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput[]
+    connectOrCreate?: PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput | PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput[]
+    createMany?: PaymentMethodCreateManyAdmin_receiver_accountInputEnvelope
+    connect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+  }
+
+  export type PaymentMethodUpdateManyWithoutAdmin_receiver_accountNestedInput = {
+    create?: XOR<PaymentMethodCreateWithoutAdmin_receiver_accountInput, PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput> | PaymentMethodCreateWithoutAdmin_receiver_accountInput[] | PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput[]
+    connectOrCreate?: PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput | PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput[]
+    upsert?: PaymentMethodUpsertWithWhereUniqueWithoutAdmin_receiver_accountInput | PaymentMethodUpsertWithWhereUniqueWithoutAdmin_receiver_accountInput[]
+    createMany?: PaymentMethodCreateManyAdmin_receiver_accountInputEnvelope
+    set?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    disconnect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    delete?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    connect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    update?: PaymentMethodUpdateWithWhereUniqueWithoutAdmin_receiver_accountInput | PaymentMethodUpdateWithWhereUniqueWithoutAdmin_receiver_accountInput[]
+    updateMany?: PaymentMethodUpdateManyWithWhereWithoutAdmin_receiver_accountInput | PaymentMethodUpdateManyWithWhereWithoutAdmin_receiver_accountInput[]
+    deleteMany?: PaymentMethodScalarWhereInput | PaymentMethodScalarWhereInput[]
+  }
+
+  export type PaymentMethodUncheckedUpdateManyWithoutAdmin_receiver_accountNestedInput = {
+    create?: XOR<PaymentMethodCreateWithoutAdmin_receiver_accountInput, PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput> | PaymentMethodCreateWithoutAdmin_receiver_accountInput[] | PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput[]
+    connectOrCreate?: PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput | PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput[]
+    upsert?: PaymentMethodUpsertWithWhereUniqueWithoutAdmin_receiver_accountInput | PaymentMethodUpsertWithWhereUniqueWithoutAdmin_receiver_accountInput[]
+    createMany?: PaymentMethodCreateManyAdmin_receiver_accountInputEnvelope
+    set?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    disconnect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    delete?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    connect?: PaymentMethodWhereUniqueInput | PaymentMethodWhereUniqueInput[]
+    update?: PaymentMethodUpdateWithWhereUniqueWithoutAdmin_receiver_accountInput | PaymentMethodUpdateWithWhereUniqueWithoutAdmin_receiver_accountInput[]
+    updateMany?: PaymentMethodUpdateManyWithWhereWithoutAdmin_receiver_accountInput | PaymentMethodUpdateManyWithWhereWithoutAdmin_receiver_accountInput[]
+    deleteMany?: PaymentMethodScalarWhereInput | PaymentMethodScalarWhereInput[]
   }
 
   export type UsersCreateNestedOneWithoutWalletInput = {
@@ -18725,6 +18922,12 @@ export namespace Prisma {
     connect?: AdminWhereUniqueInput
   }
 
+  export type AdminReceiverAccountCreateNestedOneWithoutPaymentmethodInput = {
+    create?: XOR<AdminReceiverAccountCreateWithoutPaymentmethodInput, AdminReceiverAccountUncheckedCreateWithoutPaymentmethodInput>
+    connectOrCreate?: AdminReceiverAccountCreateOrConnectWithoutPaymentmethodInput
+    connect?: AdminReceiverAccountWhereUniqueInput
+  }
+
   export type DecimalFieldUpdateOperationsInput = {
     set?: Decimal | DecimalJsLike | number | string
     increment?: Decimal | DecimalJsLike | number | string
@@ -18751,6 +18954,16 @@ export namespace Prisma {
     update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutWithdrawInput, AdminUpdateWithoutWithdrawInput>, AdminUncheckedUpdateWithoutWithdrawInput>
   }
 
+  export type AdminReceiverAccountUpdateOneWithoutPaymentmethodNestedInput = {
+    create?: XOR<AdminReceiverAccountCreateWithoutPaymentmethodInput, AdminReceiverAccountUncheckedCreateWithoutPaymentmethodInput>
+    connectOrCreate?: AdminReceiverAccountCreateOrConnectWithoutPaymentmethodInput
+    upsert?: AdminReceiverAccountUpsertWithoutPaymentmethodInput
+    disconnect?: AdminReceiverAccountWhereInput | boolean
+    delete?: AdminReceiverAccountWhereInput | boolean
+    connect?: AdminReceiverAccountWhereUniqueInput
+    update?: XOR<XOR<AdminReceiverAccountUpdateToOneWithWhereWithoutPaymentmethodInput, AdminReceiverAccountUpdateWithoutPaymentmethodInput>, AdminReceiverAccountUncheckedUpdateWithoutPaymentmethodInput>
+  }
+
   export type UsersCreateNestedOneWithoutWithdrawInput = {
     create?: XOR<UsersCreateWithoutWithdrawInput, UsersUncheckedCreateWithoutWithdrawInput>
     connectOrCreate?: UsersCreateOrConnectWithoutWithdrawInput
@@ -18761,6 +18974,12 @@ export namespace Prisma {
     create?: XOR<AdminCreateWithoutPaymentInput, AdminUncheckedCreateWithoutPaymentInput>
     connectOrCreate?: AdminCreateOrConnectWithoutPaymentInput
     connect?: AdminWhereUniqueInput
+  }
+
+  export type UserWithdrawAccountCreateNestedOneWithoutWithdrawmethodInput = {
+    create?: XOR<UserWithdrawAccountCreateWithoutWithdrawmethodInput, UserWithdrawAccountUncheckedCreateWithoutWithdrawmethodInput>
+    connectOrCreate?: UserWithdrawAccountCreateOrConnectWithoutWithdrawmethodInput
+    connect?: UserWithdrawAccountWhereUniqueInput
   }
 
   export type UsersUpdateOneRequiredWithoutWithdrawNestedInput = {
@@ -18779,6 +18998,14 @@ export namespace Prisma {
     delete?: AdminWhereInput | boolean
     connect?: AdminWhereUniqueInput
     update?: XOR<XOR<AdminUpdateToOneWithWhereWithoutPaymentInput, AdminUpdateWithoutPaymentInput>, AdminUncheckedUpdateWithoutPaymentInput>
+  }
+
+  export type UserWithdrawAccountUpdateOneRequiredWithoutWithdrawmethodNestedInput = {
+    create?: XOR<UserWithdrawAccountCreateWithoutWithdrawmethodInput, UserWithdrawAccountUncheckedCreateWithoutWithdrawmethodInput>
+    connectOrCreate?: UserWithdrawAccountCreateOrConnectWithoutWithdrawmethodInput
+    upsert?: UserWithdrawAccountUpsertWithoutWithdrawmethodInput
+    connect?: UserWithdrawAccountWhereUniqueInput
+    update?: XOR<XOR<UserWithdrawAccountUpdateToOneWithWhereWithoutWithdrawmethodInput, UserWithdrawAccountUpdateWithoutWithdrawmethodInput>, UserWithdrawAccountUncheckedUpdateWithoutWithdrawmethodInput>
   }
 
   export type AdminRolesCreateNestedOneWithoutAdminsInput = {
@@ -19257,6 +19484,7 @@ export namespace Prisma {
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    withdrawmethod?: WithdrawMethodCreateNestedManyWithoutWithdrawaccountInput
   }
 
   export type UserWithdrawAccountUncheckedCreateWithoutUserInput = {
@@ -19268,6 +19496,7 @@ export namespace Prisma {
     register_date?: Date | string
     updated_date?: Date | string
     deleted_date?: Date | string | null
+    withdrawmethod?: WithdrawMethodUncheckedCreateNestedManyWithoutWithdrawaccountInput
   }
 
   export type UserWithdrawAccountCreateOrConnectWithoutUserInput = {
@@ -19315,9 +19544,6 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -19328,6 +19554,7 @@ export namespace Prisma {
     updated_date?: Date | string
     deleted_date?: Date | string | null
     admin?: AdminCreateNestedOneWithoutWithdrawInput
+    admin_receiver_account?: AdminReceiverAccountCreateNestedOneWithoutPaymentmethodInput
   }
 
   export type PaymentMethodUncheckedCreateWithoutUserInput = {
@@ -19336,9 +19563,7 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
+    admin_receiver_account_id?: string | null
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -19362,9 +19587,6 @@ export namespace Prisma {
 
   export type WithdrawMethodCreateWithoutUserInput = {
     withdraw_id: string
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -19376,14 +19598,13 @@ export namespace Prisma {
     updated_date?: Date | string
     deleted_date?: Date | string | null
     admin?: AdminCreateNestedOneWithoutPaymentInput
+    withdrawaccount: UserWithdrawAccountCreateNestedOneWithoutWithdrawmethodInput
   }
 
   export type WithdrawMethodUncheckedCreateWithoutUserInput = {
     withdraw_id: string
     admin_internal_id?: string | null
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
+    user_withdraw_account_id: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -19546,9 +19767,7 @@ export namespace Prisma {
     payment_type?: StringFilter<"PaymentMethod"> | string
     payment_account_name?: StringFilter<"PaymentMethod"> | string
     payment_account?: StringFilter<"PaymentMethod"> | string
-    reciver_account_type?: StringFilter<"PaymentMethod"> | string
-    receiver_account_name?: StringFilter<"PaymentMethod"> | string
-    receiver_account?: StringFilter<"PaymentMethod"> | string
+    admin_receiver_account_id?: StringNullableFilter<"PaymentMethod"> | string | null
     amount?: DecimalFilter<"PaymentMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"PaymentMethod"> | Date | string
     approve_reject?: IntFilter<"PaymentMethod"> | number
@@ -19583,9 +19802,7 @@ export namespace Prisma {
     withdraw_id?: StringFilter<"WithdrawMethod"> | string
     user_internal_id?: StringFilter<"WithdrawMethod"> | string
     admin_internal_id?: StringNullableFilter<"WithdrawMethod"> | string | null
-    withdraw_type?: StringFilter<"WithdrawMethod"> | string
-    receiver_account_name?: StringFilter<"WithdrawMethod"> | string
-    receiver_account?: StringFilter<"WithdrawMethod"> | string
+    user_withdraw_account_id?: StringFilter<"WithdrawMethod"> | string
     amount?: DecimalFilter<"WithdrawMethod"> | Decimal | DecimalJsLike | number | string
     date?: DateTimeFilter<"WithdrawMethod"> | Date | string
     withdraw_confirm_code?: StringNullableFilter<"WithdrawMethod"> | string | null
@@ -19759,6 +19976,48 @@ export namespace Prisma {
     create: XOR<UsersCreateWithoutWithdrawaccountInput, UsersUncheckedCreateWithoutWithdrawaccountInput>
   }
 
+  export type WithdrawMethodCreateWithoutWithdrawaccountInput = {
+    withdraw_id: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    withdraw_confirm_code?: string | null
+    is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    user: UsersCreateNestedOneWithoutWithdrawInput
+    admin?: AdminCreateNestedOneWithoutPaymentInput
+  }
+
+  export type WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput = {
+    withdraw_id: string
+    user_internal_id: string
+    admin_internal_id?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    withdraw_confirm_code?: string | null
+    is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type WithdrawMethodCreateOrConnectWithoutWithdrawaccountInput = {
+    where: WithdrawMethodWhereUniqueInput
+    create: XOR<WithdrawMethodCreateWithoutWithdrawaccountInput, WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput>
+  }
+
+  export type WithdrawMethodCreateManyWithdrawaccountInputEnvelope = {
+    data: WithdrawMethodCreateManyWithdrawaccountInput | WithdrawMethodCreateManyWithdrawaccountInput[]
+    skipDuplicates?: boolean
+  }
+
   export type UsersUpsertWithoutWithdrawaccountInput = {
     update: XOR<UsersUpdateWithoutWithdrawaccountInput, UsersUncheckedUpdateWithoutWithdrawaccountInput>
     create: XOR<UsersCreateWithoutWithdrawaccountInput, UsersUncheckedCreateWithoutWithdrawaccountInput>
@@ -19808,6 +20067,84 @@ export namespace Prisma {
     payment?: PaymentMethodUncheckedUpdateManyWithoutUserNestedInput
     withdraw?: WithdrawMethodUncheckedUpdateManyWithoutUserNestedInput
     transation?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type WithdrawMethodUpsertWithWhereUniqueWithoutWithdrawaccountInput = {
+    where: WithdrawMethodWhereUniqueInput
+    update: XOR<WithdrawMethodUpdateWithoutWithdrawaccountInput, WithdrawMethodUncheckedUpdateWithoutWithdrawaccountInput>
+    create: XOR<WithdrawMethodCreateWithoutWithdrawaccountInput, WithdrawMethodUncheckedCreateWithoutWithdrawaccountInput>
+  }
+
+  export type WithdrawMethodUpdateWithWhereUniqueWithoutWithdrawaccountInput = {
+    where: WithdrawMethodWhereUniqueInput
+    data: XOR<WithdrawMethodUpdateWithoutWithdrawaccountInput, WithdrawMethodUncheckedUpdateWithoutWithdrawaccountInput>
+  }
+
+  export type WithdrawMethodUpdateManyWithWhereWithoutWithdrawaccountInput = {
+    where: WithdrawMethodScalarWhereInput
+    data: XOR<WithdrawMethodUpdateManyMutationInput, WithdrawMethodUncheckedUpdateManyWithoutWithdrawaccountInput>
+  }
+
+  export type PaymentMethodCreateWithoutAdmin_receiver_accountInput = {
+    payment_internal_id: string
+    payment_type: string
+    payment_account_name: string
+    payment_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
+    payment_confirm_code: number
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    user: UsersCreateNestedOneWithoutPaymentInput
+    admin?: AdminCreateNestedOneWithoutWithdrawInput
+  }
+
+  export type PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput = {
+    payment_internal_id: string
+    user_internal_id: string
+    admin_internal_id?: string | null
+    payment_type: string
+    payment_account_name: string
+    payment_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
+    payment_confirm_code: number
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type PaymentMethodCreateOrConnectWithoutAdmin_receiver_accountInput = {
+    where: PaymentMethodWhereUniqueInput
+    create: XOR<PaymentMethodCreateWithoutAdmin_receiver_accountInput, PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput>
+  }
+
+  export type PaymentMethodCreateManyAdmin_receiver_accountInputEnvelope = {
+    data: PaymentMethodCreateManyAdmin_receiver_accountInput | PaymentMethodCreateManyAdmin_receiver_accountInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type PaymentMethodUpsertWithWhereUniqueWithoutAdmin_receiver_accountInput = {
+    where: PaymentMethodWhereUniqueInput
+    update: XOR<PaymentMethodUpdateWithoutAdmin_receiver_accountInput, PaymentMethodUncheckedUpdateWithoutAdmin_receiver_accountInput>
+    create: XOR<PaymentMethodCreateWithoutAdmin_receiver_accountInput, PaymentMethodUncheckedCreateWithoutAdmin_receiver_accountInput>
+  }
+
+  export type PaymentMethodUpdateWithWhereUniqueWithoutAdmin_receiver_accountInput = {
+    where: PaymentMethodWhereUniqueInput
+    data: XOR<PaymentMethodUpdateWithoutAdmin_receiver_accountInput, PaymentMethodUncheckedUpdateWithoutAdmin_receiver_accountInput>
+  }
+
+  export type PaymentMethodUpdateManyWithWhereWithoutAdmin_receiver_accountInput = {
+    where: PaymentMethodScalarWhereInput
+    data: XOR<PaymentMethodUpdateManyMutationInput, PaymentMethodUncheckedUpdateManyWithoutAdmin_receiver_accountInput>
   }
 
   export type UsersCreateWithoutWalletInput = {
@@ -19984,6 +20321,33 @@ export namespace Prisma {
     create: XOR<AdminCreateWithoutWithdrawInput, AdminUncheckedCreateWithoutWithdrawInput>
   }
 
+  export type AdminReceiverAccountCreateWithoutPaymentmethodInput = {
+    admin_receiver_account_id: string
+    admin_account_type: string
+    admin_account_name: string
+    admin_account_id: string
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminReceiverAccountUncheckedCreateWithoutPaymentmethodInput = {
+    admin_receiver_account_id: string
+    admin_account_type: string
+    admin_account_name: string
+    admin_account_id: string
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type AdminReceiverAccountCreateOrConnectWithoutPaymentmethodInput = {
+    where: AdminReceiverAccountWhereUniqueInput
+    create: XOR<AdminReceiverAccountCreateWithoutPaymentmethodInput, AdminReceiverAccountUncheckedCreateWithoutPaymentmethodInput>
+  }
+
   export type UsersUpsertWithoutPaymentInput = {
     update: XOR<UsersUpdateWithoutPaymentInput, UsersUncheckedUpdateWithoutPaymentInput>
     create: XOR<UsersCreateWithoutPaymentInput, UsersUncheckedCreateWithoutPaymentInput>
@@ -20074,6 +20438,39 @@ export namespace Prisma {
     payment?: WithdrawMethodUncheckedUpdateManyWithoutAdminNestedInput
   }
 
+  export type AdminReceiverAccountUpsertWithoutPaymentmethodInput = {
+    update: XOR<AdminReceiverAccountUpdateWithoutPaymentmethodInput, AdminReceiverAccountUncheckedUpdateWithoutPaymentmethodInput>
+    create: XOR<AdminReceiverAccountCreateWithoutPaymentmethodInput, AdminReceiverAccountUncheckedCreateWithoutPaymentmethodInput>
+    where?: AdminReceiverAccountWhereInput
+  }
+
+  export type AdminReceiverAccountUpdateToOneWithWhereWithoutPaymentmethodInput = {
+    where?: AdminReceiverAccountWhereInput
+    data: XOR<AdminReceiverAccountUpdateWithoutPaymentmethodInput, AdminReceiverAccountUncheckedUpdateWithoutPaymentmethodInput>
+  }
+
+  export type AdminReceiverAccountUpdateWithoutPaymentmethodInput = {
+    admin_receiver_account_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type?: StringFieldUpdateOperationsInput | string
+    admin_account_name?: StringFieldUpdateOperationsInput | string
+    admin_account_id?: StringFieldUpdateOperationsInput | string
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type AdminReceiverAccountUncheckedUpdateWithoutPaymentmethodInput = {
+    admin_receiver_account_id?: StringFieldUpdateOperationsInput | string
+    admin_account_type?: StringFieldUpdateOperationsInput | string
+    admin_account_name?: StringFieldUpdateOperationsInput | string
+    admin_account_id?: StringFieldUpdateOperationsInput | string
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type UsersCreateWithoutWithdrawInput = {
     user_internal_id: string
     phone_number: string
@@ -20150,6 +20547,35 @@ export namespace Prisma {
   export type AdminCreateOrConnectWithoutPaymentInput = {
     where: AdminWhereUniqueInput
     create: XOR<AdminCreateWithoutPaymentInput, AdminUncheckedCreateWithoutPaymentInput>
+  }
+
+  export type UserWithdrawAccountCreateWithoutWithdrawmethodInput = {
+    user_withdraw_account_id: string
+    account_type: string
+    account_name: string
+    account_id: number
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+    user: UsersCreateNestedOneWithoutWithdrawaccountInput
+  }
+
+  export type UserWithdrawAccountUncheckedCreateWithoutWithdrawmethodInput = {
+    user_withdraw_account_id: string
+    user_internal_id: string
+    account_type: string
+    account_name: string
+    account_id: number
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type UserWithdrawAccountCreateOrConnectWithoutWithdrawmethodInput = {
+    where: UserWithdrawAccountWhereUniqueInput
+    create: XOR<UserWithdrawAccountCreateWithoutWithdrawmethodInput, UserWithdrawAccountUncheckedCreateWithoutWithdrawmethodInput>
   }
 
   export type UsersUpsertWithoutWithdrawInput = {
@@ -20242,6 +20668,41 @@ export namespace Prisma {
     withdraw?: PaymentMethodUncheckedUpdateManyWithoutAdminNestedInput
   }
 
+  export type UserWithdrawAccountUpsertWithoutWithdrawmethodInput = {
+    update: XOR<UserWithdrawAccountUpdateWithoutWithdrawmethodInput, UserWithdrawAccountUncheckedUpdateWithoutWithdrawmethodInput>
+    create: XOR<UserWithdrawAccountCreateWithoutWithdrawmethodInput, UserWithdrawAccountUncheckedCreateWithoutWithdrawmethodInput>
+    where?: UserWithdrawAccountWhereInput
+  }
+
+  export type UserWithdrawAccountUpdateToOneWithWhereWithoutWithdrawmethodInput = {
+    where?: UserWithdrawAccountWhereInput
+    data: XOR<UserWithdrawAccountUpdateWithoutWithdrawmethodInput, UserWithdrawAccountUncheckedUpdateWithoutWithdrawmethodInput>
+  }
+
+  export type UserWithdrawAccountUpdateWithoutWithdrawmethodInput = {
+    user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
+    account_type?: StringFieldUpdateOperationsInput | string
+    account_name?: StringFieldUpdateOperationsInput | string
+    account_id?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UsersUpdateOneRequiredWithoutWithdrawaccountNestedInput
+  }
+
+  export type UserWithdrawAccountUncheckedUpdateWithoutWithdrawmethodInput = {
+    user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    account_type?: StringFieldUpdateOperationsInput | string
+    account_name?: StringFieldUpdateOperationsInput | string
+    account_id?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type AdminRolesCreateWithoutAdminsInput = {
     role_id: number
     name: string
@@ -20259,9 +20720,6 @@ export namespace Prisma {
 
   export type WithdrawMethodCreateWithoutAdminInput = {
     withdraw_id: string
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -20273,14 +20731,13 @@ export namespace Prisma {
     updated_date?: Date | string
     deleted_date?: Date | string | null
     user: UsersCreateNestedOneWithoutWithdrawInput
+    withdrawaccount: UserWithdrawAccountCreateNestedOneWithoutWithdrawmethodInput
   }
 
   export type WithdrawMethodUncheckedCreateWithoutAdminInput = {
     withdraw_id: string
     user_internal_id: string
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
+    user_withdraw_account_id: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -20308,9 +20765,6 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -20321,6 +20775,7 @@ export namespace Prisma {
     updated_date?: Date | string
     deleted_date?: Date | string | null
     user: UsersCreateNestedOneWithoutPaymentInput
+    admin_receiver_account?: AdminReceiverAccountCreateNestedOneWithoutPaymentmethodInput
   }
 
   export type PaymentMethodUncheckedCreateWithoutAdminInput = {
@@ -20329,9 +20784,7 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
+    admin_receiver_account_id?: string | null
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -20683,9 +21136,7 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
+    admin_receiver_account_id?: string | null
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -20700,9 +21151,7 @@ export namespace Prisma {
   export type WithdrawMethodCreateManyUserInput = {
     withdraw_id: string
     admin_internal_id?: string | null
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
+    user_withdraw_account_id: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -20735,6 +21184,7 @@ export namespace Prisma {
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    withdrawmethod?: WithdrawMethodUpdateManyWithoutWithdrawaccountNestedInput
   }
 
   export type UserWithdrawAccountUncheckedUpdateWithoutUserInput = {
@@ -20746,6 +21196,7 @@ export namespace Prisma {
     register_date?: DateTimeFieldUpdateOperationsInput | Date | string
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    withdrawmethod?: WithdrawMethodUncheckedUpdateManyWithoutWithdrawaccountNestedInput
   }
 
   export type UserWithdrawAccountUncheckedUpdateManyWithoutUserInput = {
@@ -20794,9 +21245,6 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -20807,6 +21255,7 @@ export namespace Prisma {
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     admin?: AdminUpdateOneWithoutWithdrawNestedInput
+    admin_receiver_account?: AdminReceiverAccountUpdateOneWithoutPaymentmethodNestedInput
   }
 
   export type PaymentMethodUncheckedUpdateWithoutUserInput = {
@@ -20815,9 +21264,7 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    admin_receiver_account_id?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -20835,9 +21282,7 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    admin_receiver_account_id?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -20851,9 +21296,6 @@ export namespace Prisma {
 
   export type WithdrawMethodUpdateWithoutUserInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20865,14 +21307,13 @@ export namespace Prisma {
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     admin?: AdminUpdateOneWithoutPaymentNestedInput
+    withdrawaccount?: UserWithdrawAccountUpdateOneRequiredWithoutWithdrawmethodNestedInput
   }
 
   export type WithdrawMethodUncheckedUpdateWithoutUserInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
     admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -20888,9 +21329,7 @@ export namespace Prisma {
   export type WithdrawMethodUncheckedUpdateManyWithoutUserInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
     admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21006,12 +21445,146 @@ export namespace Prisma {
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
   }
 
+  export type WithdrawMethodCreateManyWithdrawaccountInput = {
+    withdraw_id: string
+    user_internal_id: string
+    admin_internal_id?: string | null
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    withdraw_confirm_code?: string | null
+    is_verify?: number | null
+    approve_reject: number
+    reason_for_reject?: string | null
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type WithdrawMethodUpdateWithoutWithdrawaccountInput = {
+    withdraw_id?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
+    is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UsersUpdateOneRequiredWithoutWithdrawNestedInput
+    admin?: AdminUpdateOneWithoutPaymentNestedInput
+  }
+
+  export type WithdrawMethodUncheckedUpdateWithoutWithdrawaccountInput = {
+    withdraw_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
+    is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type WithdrawMethodUncheckedUpdateManyWithoutWithdrawaccountInput = {
+    withdraw_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
+    is_verify?: NullableIntFieldUpdateOperationsInput | number | null
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PaymentMethodCreateManyAdmin_receiver_accountInput = {
+    payment_internal_id: string
+    user_internal_id: string
+    admin_internal_id?: string | null
+    payment_type: string
+    payment_account_name: string
+    payment_account: string
+    amount: Decimal | DecimalJsLike | number | string
+    date: Date | string
+    approve_reject: number
+    reason_for_reject?: string | null
+    payment_confirm_code: number
+    delete_status: number
+    register_date?: Date | string
+    updated_date?: Date | string
+    deleted_date?: Date | string | null
+  }
+
+  export type PaymentMethodUpdateWithoutAdmin_receiver_accountInput = {
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
+    payment_type?: StringFieldUpdateOperationsInput | string
+    payment_account_name?: StringFieldUpdateOperationsInput | string
+    payment_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    payment_confirm_code?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+    user?: UsersUpdateOneRequiredWithoutPaymentNestedInput
+    admin?: AdminUpdateOneWithoutWithdrawNestedInput
+  }
+
+  export type PaymentMethodUncheckedUpdateWithoutAdmin_receiver_accountInput = {
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
+    payment_type?: StringFieldUpdateOperationsInput | string
+    payment_account_name?: StringFieldUpdateOperationsInput | string
+    payment_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    payment_confirm_code?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
+  export type PaymentMethodUncheckedUpdateManyWithoutAdmin_receiver_accountInput = {
+    payment_internal_id?: StringFieldUpdateOperationsInput | string
+    user_internal_id?: StringFieldUpdateOperationsInput | string
+    admin_internal_id?: NullableStringFieldUpdateOperationsInput | string | null
+    payment_type?: StringFieldUpdateOperationsInput | string
+    payment_account_name?: StringFieldUpdateOperationsInput | string
+    payment_account?: StringFieldUpdateOperationsInput | string
+    amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
+    date?: DateTimeFieldUpdateOperationsInput | Date | string
+    approve_reject?: IntFieldUpdateOperationsInput | number
+    reason_for_reject?: NullableStringFieldUpdateOperationsInput | string | null
+    payment_confirm_code?: IntFieldUpdateOperationsInput | number
+    delete_status?: IntFieldUpdateOperationsInput | number
+    register_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
+    deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
+  }
+
   export type WithdrawMethodCreateManyAdminInput = {
     withdraw_id: string
     user_internal_id: string
-    withdraw_type: string
-    receiver_account_name: string
-    receiver_account: string
+    user_withdraw_account_id: string
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     withdraw_confirm_code?: string | null
@@ -21030,9 +21603,7 @@ export namespace Prisma {
     payment_type: string
     payment_account_name: string
     payment_account: string
-    reciver_account_type: string
-    receiver_account_name: string
-    receiver_account: string
+    admin_receiver_account_id?: string | null
     amount: Decimal | DecimalJsLike | number | string
     date: Date | string
     approve_reject: number
@@ -21046,9 +21617,6 @@ export namespace Prisma {
 
   export type WithdrawMethodUpdateWithoutAdminInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21060,14 +21628,13 @@ export namespace Prisma {
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UsersUpdateOneRequiredWithoutWithdrawNestedInput
+    withdrawaccount?: UserWithdrawAccountUpdateOneRequiredWithoutWithdrawmethodNestedInput
   }
 
   export type WithdrawMethodUncheckedUpdateWithoutAdminInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
     user_internal_id?: StringFieldUpdateOperationsInput | string
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21083,9 +21650,7 @@ export namespace Prisma {
   export type WithdrawMethodUncheckedUpdateManyWithoutAdminInput = {
     withdraw_id?: StringFieldUpdateOperationsInput | string
     user_internal_id?: StringFieldUpdateOperationsInput | string
-    withdraw_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    user_withdraw_account_id?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     withdraw_confirm_code?: NullableStringFieldUpdateOperationsInput | string | null
@@ -21103,9 +21668,6 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -21116,6 +21678,7 @@ export namespace Prisma {
     updated_date?: DateTimeFieldUpdateOperationsInput | Date | string
     deleted_date?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     user?: UsersUpdateOneRequiredWithoutPaymentNestedInput
+    admin_receiver_account?: AdminReceiverAccountUpdateOneWithoutPaymentmethodNestedInput
   }
 
   export type PaymentMethodUncheckedUpdateWithoutAdminInput = {
@@ -21124,9 +21687,7 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    admin_receiver_account_id?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -21144,9 +21705,7 @@ export namespace Prisma {
     payment_type?: StringFieldUpdateOperationsInput | string
     payment_account_name?: StringFieldUpdateOperationsInput | string
     payment_account?: StringFieldUpdateOperationsInput | string
-    reciver_account_type?: StringFieldUpdateOperationsInput | string
-    receiver_account_name?: StringFieldUpdateOperationsInput | string
-    receiver_account?: StringFieldUpdateOperationsInput | string
+    admin_receiver_account_id?: NullableStringFieldUpdateOperationsInput | string | null
     amount?: DecimalFieldUpdateOperationsInput | Decimal | DecimalJsLike | number | string
     date?: DateTimeFieldUpdateOperationsInput | Date | string
     approve_reject?: IntFieldUpdateOperationsInput | number
@@ -21267,6 +21826,14 @@ export namespace Prisma {
      * @deprecated Use RolesCountOutputTypeDefaultArgs instead
      */
     export type RolesCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = RolesCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use UserWithdrawAccountCountOutputTypeDefaultArgs instead
+     */
+    export type UserWithdrawAccountCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = UserWithdrawAccountCountOutputTypeDefaultArgs<ExtArgs>
+    /**
+     * @deprecated Use AdminReceiverAccountCountOutputTypeDefaultArgs instead
+     */
+    export type AdminReceiverAccountCountOutputTypeArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = AdminReceiverAccountCountOutputTypeDefaultArgs<ExtArgs>
     /**
      * @deprecated Use AdminCountOutputTypeDefaultArgs instead
      */

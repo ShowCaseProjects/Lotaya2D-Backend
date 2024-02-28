@@ -46,7 +46,7 @@ export class UserWithdrawAccountController {
   }
 
   @UseGuards(AuthGuards)
-  @Post('/add/:userId')
+  @Post('/add/:phoneNumber')
   @HttpCode(201)
   @ApiOperation({
     summary: 'Withdraw Account API',

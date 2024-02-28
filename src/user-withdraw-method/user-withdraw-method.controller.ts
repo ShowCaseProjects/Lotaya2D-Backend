@@ -19,7 +19,6 @@ import { UserWithdrawMethodService } from './user-withdraw-method.service';
 import { AuthGuards } from 'src/auth/auth.guard';
 import {
   UserWithdrawMethodInsertReqBodyDto,
-  UserWithdrawMethodInsertReqPathDto,
   UserWithdrawMethodInsertResBodyDto,
 } from './dto/add-user-withdraw.dto';
 import {
@@ -57,10 +56,10 @@ export class UserWithdrawMethodController {
   }
 
   @UseGuards(AuthGuards)
-  @Post('/add/:userId')
+  @Post('/add/:phoneNumber')
   @HttpCode(201)
   @ApiOperation({
-    summary: 'Payment API',
+    summary: 'Withdraw API',
     description: 'To withdraw money from gaining from game with authentication',
   })
   @ApiOkResponse({
@@ -68,13 +67,9 @@ export class UserWithdrawMethodController {
     type: UserWithdrawMethodInsertResBodyDto,
   })
   confirmOtpCodeForWithdrawMethod(
-    @Param() withdrawMethodReqPath: UserWithdrawMethodInsertReqPathDto,
     @Body() withdrawMethodReqBody: UserWithdrawMethodInsertReqBodyDto,
   ): Promise<UserWithdrawMethodInsertResBodyDto> {
-    return this.userWithdrawMethod.addUserWithdrawMethod(
-      withdrawMethodReqPath,
-      withdrawMethodReqBody,
-    );
+    return this.userWithdrawMethod.addUserWithdrawMethod(withdrawMethodReqBody);
   }
 
   @UseGuards(AuthGuards)

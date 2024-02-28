@@ -68,39 +68,23 @@ export class UserPaymentInsertReqBodyDto {
     },
   })
   @ApiProperty({ default: '09970602931' })
-  paymentAccount: string;
+  paymentAccountNumber: string;
 
   @Matches(/^[/^[a-zA-Z0-9- _]+$/, {
     context: {
       errorCode: 'E1000',
       errorMessage:
-        'Please enter your receiver account type as alphanumeric character.',
+        'Please enter your receiver account ID as alphanumeric character.',
     },
   })
   @IsNotEmpty({
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your receiver account type.',
-    },
-  })
-  @ApiProperty({ default: 'KBZ Account' })
-  recevierAccountType: string;
-
-  @Matches(/^[/^[a-zA-Z0-9- _]+$/, {
-    context: {
-      errorCode: 'E1000',
-      errorMessage:
-        'Please enter your receiver account name as alphanumeric character.',
-    },
-  })
-  @IsNotEmpty({
-    context: {
-      errorCode: 'E1000',
-      errorMessage: 'Please enter your receiver account name.',
+      errorMessage: 'Please enter your receiver account ID.',
     },
   })
   @ApiProperty({ default: 'Aung Aung' })
-  receiverAccountName: string;
+  adminReceiverAccountId: string;
 
   @Matches(/^[a-zA-Z0-9]+$/, {
     context: {
@@ -116,7 +100,7 @@ export class UserPaymentInsertReqBodyDto {
     },
   })
   @ApiProperty({ default: '09403855555' })
-  receiverAccount: string;
+  receiverAccountNumber: string;
 
   @IsNotEmpty({
     context: {

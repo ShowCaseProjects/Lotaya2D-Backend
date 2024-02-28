@@ -56,7 +56,7 @@ export class PaymentmethodController {
     this.logger = new Logger(PaymentmethodController.name);
   }
 
-//   @UseGuards(AuthGuards)
+  @UseGuards(AuthGuards)
   @Post('/add/:phoneNumber')
   @HttpCode(201)
   @ApiOperation({
@@ -70,7 +70,7 @@ export class PaymentmethodController {
   addUserPaymentMethod(
     @Body() paymentReqBody: UserPaymentInsertReqBodyDto,
   ): Promise<UserPaymentInsertResBodyDto> {
-    return this.userPayment.addUserPayment( paymentReqBody);
+    return this.userPayment.addUserPayment(paymentReqBody);
   }
 
   @UseGuards(AuthGuards)
