@@ -73,7 +73,6 @@ export class ReceiverAccountController {
     );
   }
 
-
   @Post('/update/:accountId')
   @HttpCode(201)
   @ApiOperation({
@@ -87,9 +86,7 @@ export class ReceiverAccountController {
   updateAdminReceiverLiveAccount(
     @Param() accountReqPath: AdminReceiverAccountUpdateReqPathDto,
   ): Promise<AdminReceiverAccountUpdateResBodyDto> {
-    return this.receiverAccount.updateAdminLiveAccount(
-      accountReqPath,
-    );
+    return this.receiverAccount.updateAdminLiveAccount(accountReqPath);
   }
 
   @UseGuards(AuthGuards)

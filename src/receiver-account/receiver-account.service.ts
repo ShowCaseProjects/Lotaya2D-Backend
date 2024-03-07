@@ -36,8 +36,12 @@ export class ReceiverAccountService {
           admin_account_name: addAdminAccount.receiverAccountName,
           admin_account_id: addAdminAccount.receiverAccount,
           delete_status: 0,
-          register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          register_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
       });
       const responseData: AdminAccountInsertResBodyDto = {
@@ -77,7 +81,9 @@ export class ReceiverAccountService {
           admin_account_id: updateAdminAccount.receiverAccount,
           admin_account_name: updateAdminAccount.receiverAccountName,
           admin_account_type: updateAdminAccount.receiverType,
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
       });
       const responseData: AdminReceiverAccountUpdateResBodyDto = {
@@ -108,9 +114,9 @@ export class ReceiverAccountService {
   async findAdminAccount(): Promise<FindAdminAccountResBodyDto> {
     try {
       const adminAccount = await this.prisma.adminReceiverAccount.findMany({
-        where:{
-          status:1
-        }
+        where: {
+          status: 1,
+        },
       });
 
       const accountResponse: FindAdminAccountResBodyDto = {
@@ -144,8 +150,10 @@ export class ReceiverAccountService {
           admin_receiver_account_id: updateAdminAccountreqPath.accountId,
         },
         data: {
-          status:1,
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          status: 1,
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
       });
       const responseData: AdminReceiverAccountUpdateResBodyDto = {
