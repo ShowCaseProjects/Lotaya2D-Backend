@@ -1,7 +1,6 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import {
   UserWithdrawAccountInsertReqBodyDto,
-  UserWithdrawAccountInsertReqPathDto,
   UserWithdrawAccountInsertResBodyDto,
 } from './dto/add-user-withdraw-account.dto';
 import * as dayjs from 'dayjs';
@@ -31,7 +30,6 @@ export class UserWithdrawAccountService {
   }
 
   async addUserWithdraw(
-    addWithdrawAccountReqPath: UserWithdrawAccountInsertReqPathDto,
     addWithdrawAccountReqBody: UserWithdrawAccountInsertReqBodyDto,
   ): Promise<UserWithdrawAccountInsertResBodyDto> {
     try {

@@ -46,7 +46,7 @@ export class UserWithdrawAccountController {
   }
 
   @UseGuards(AuthGuards)
-  @Post('/add/:phoneNumber')
+  @Post('/add')
   @HttpCode(201)
   @ApiOperation({
     summary: 'Withdraw Account API',
@@ -58,11 +58,9 @@ export class UserWithdrawAccountController {
     type: UserWithdrawAccountInsertResBodyDto,
   })
   addUserWithdrawAccountMethod(
-    @Param() userWithdrawAccountReqPath: UserWithdrawAccountInsertReqPathDto,
     @Body() userWithdrawAccountReqBody: UserWithdrawAccountInsertReqBodyDto,
   ): Promise<UserWithdrawAccountInsertResBodyDto> {
     return this.userWithdrawAccount.addUserWithdraw(
-      userWithdrawAccountReqPath,
       userWithdrawAccountReqBody,
     );
   }
