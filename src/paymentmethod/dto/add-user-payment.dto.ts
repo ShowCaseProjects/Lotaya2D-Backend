@@ -83,7 +83,7 @@ export class UserPaymentInsertReqBodyDto {
       errorMessage: 'Please enter your receiver account ID.',
     },
   })
-  @ApiProperty({ default: 'Aung Aung' })
+  @ApiProperty({ default: '123445' })
   adminReceiverAccountId: string;
 
   @Matches(/^[a-zA-Z0-9]+$/, {

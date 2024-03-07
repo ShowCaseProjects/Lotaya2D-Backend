@@ -56,7 +56,7 @@ export class UserWithdrawMethodController {
   }
 
   @UseGuards(AuthGuards)
-  @Post('/add/:phoneNumber')
+  @Post('/add')
   @HttpCode(201)
   @ApiOperation({
     summary: 'Withdraw API',

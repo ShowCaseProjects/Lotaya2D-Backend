@@ -568,8 +568,6 @@ export class UseraccountService {
           },
         });
 
-        const payload = { phoneNumber: phoneNumber, sub: userAccount.otp_code };
-
         const responseData: RegisterUserPasswordConfirmResBodyDto = {
           phoneNumber: confirmPassword.phone_number,
           optCode: confirmPassword.otp_code,
