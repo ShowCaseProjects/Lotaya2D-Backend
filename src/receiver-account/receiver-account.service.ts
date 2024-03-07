@@ -118,6 +118,16 @@ export class ReceiverAccountService {
           status: 1,
         },
       });
+      if(!adminAccount[0])
+      {
+        throw new HttpException(
+          {
+            errorCode: 'E1111',
+            errorMessage: 'Your accounnt not found.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
       const accountResponse: FindAdminAccountResBodyDto = {
         accountId: adminAccount[0].admin_receiver_account_id,
         receiverAccount: adminAccount[0].admin_account_id.toString(),
