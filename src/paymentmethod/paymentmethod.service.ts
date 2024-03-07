@@ -5,7 +5,9 @@ import {
 } from './dto/add-user-payment.dto';
 import * as dayjs from 'dayjs';
 import * as tz from 'dayjs/plugin/timezone';
+import * as utc from 'dayjs/plugin/utc'
 dayjs.extend(tz);
+dayjs.extend(utc);
 import {
   UserPaymentUpdateReqBodyDto,
   UserPaymentUpdateReqPathDto,
@@ -129,7 +131,7 @@ export class PaymentmethodService {
         );
       }
       if (error.code === 'P2025') {
-        if (error?.meta?.target[0] === 'user_internal_id') {
+        // if (error?.meta?.target[0] === 'user_internal_id') {
           throw new HttpException(
             {
               errorCode: 'E1111',
@@ -137,18 +139,18 @@ export class PaymentmethodService {
             },
             HttpStatus.NOT_FOUND,
           );
-        }
-        else if (error?.meta?.target[0] === 'admin_internal_id ') {
-          {
-            throw new HttpException(
-              {
-                errorCode: 'E1111',
-                errorMessage: 'Your accounnt not found.',
-              },
-              HttpStatus.NOT_FOUND,
-            );
-          }
-        }
+        // }
+        // else if (error?.meta?.target[0] === 'admin_internal_id ') {
+          // {
+          //   throw new HttpException(
+          //     {
+          //       errorCode: 'E1111',
+          //       errorMessage: 'Your accounnt not found.',
+          //     },
+          //     HttpStatus.NOT_FOUND,
+          //   );
+          // }
+        // }
       }
         if (error.code === 'P2014') {
           if (error.meta.target[0] === 'user_internal_id') {
