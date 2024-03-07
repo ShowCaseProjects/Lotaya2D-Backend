@@ -118,7 +118,6 @@ export class ReceiverAccountService {
           status: 1,
         },
       });
-
       const accountResponse: FindAdminAccountResBodyDto = {
         accountId: adminAccount[0].admin_receiver_account_id,
         receiverAccount: adminAccount[0].admin_account_id.toString(),
@@ -129,6 +128,15 @@ export class ReceiverAccountService {
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
+      }
+      if (error.code === 'P2025') {
+        throw new HttpException(
+          {
+            errorCode: 'E1111',
+            errorMessage: 'Your accounnt not found.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
       }
       this.logger.error(error.stack);
       throw new HttpException(
