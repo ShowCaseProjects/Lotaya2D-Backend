@@ -105,7 +105,6 @@ export class UserWithdrawAccountController {
   ): Promise<UserWithdrawAccountUpdateResBodyDto> {
     return this.userWithdrawAccount.deleteUserWithdrawAccount(
       userWithdrawAccountReqPath,
-      userWithdrawAccountReqBody,
     );
   }
 

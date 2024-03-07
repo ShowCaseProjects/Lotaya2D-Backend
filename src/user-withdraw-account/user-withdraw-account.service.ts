@@ -4,6 +4,8 @@ import {
   UserWithdrawAccountInsertResBodyDto,
 } from './dto/add-user-withdraw-account.dto';
 import * as dayjs from 'dayjs';
+import * as tz from 'dayjs/plugin/timezone';
+dayjs.extend(tz);
 import {
   UserWithdrawAccountUpdateReqBodyDto,
   UserWithdrawAccountUpdateReqPathDto,
@@ -45,8 +47,8 @@ export class UserWithdrawAccountService {
           account_name: addWithdrawAccountReqBody.accountName,
           account_id: addWithdrawAccountReqBody.accountId,
           delete_status: 0,
-          register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
       });
       const responseData: UserWithdrawAccountInsertResBodyDto = {
@@ -90,7 +92,7 @@ export class UserWithdrawAccountService {
           account_type: addWithdrawAccountReqBody.accountType,
           account_name: addWithdrawAccountReqBody.accountName,
           account_id: addWithdrawAccountReqBody.accountId,
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
       });
       const responseData: UserWithdrawAccountUpdateResBodyDto = {
@@ -132,7 +134,6 @@ export class UserWithdrawAccountService {
 
   async deleteUserWithdrawAccount(
     addWithdrawAccountReqPath: UserWithdrawAccountDeleteReqPathDto,
-    addWithdrawAccountReqBody: UserWithdrawAccountDeleteReqBodyDto,
   ): Promise<UserWithdrawAccountDeleteResBodyDto> {
     try {
       const updateData = await this.prisma.userWithdrawAccount.update({

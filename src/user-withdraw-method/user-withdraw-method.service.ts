@@ -5,6 +5,8 @@ import {
   UserWithdrawMethodInsertResBodyDto,
 } from './dto/add-user-withdraw.dto';
 import * as dayjs from 'dayjs';
+import * as tz from 'dayjs/plugin/timezone';
+dayjs.extend(tz);
 import {
   UserWithdrawMethodFindReqQueryDto,
   UserWithdrawMethodFindResBodyDto,
@@ -70,10 +72,10 @@ export class UserWithdrawMethodService {
           amount: addWithdrawMethodReqBody.amount,
           delete_status: 0,
           approve_reject: 0,
-          date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
           is_verify: 0,
-          register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
         include: {
           withdrawaccount: {
@@ -165,7 +167,7 @@ export class UserWithdrawMethodService {
           // receiver_account_name: addWithdrawMethodReqBody.receiverAccountName,
           // receiver_account: addWithdrawMethodReqBody.receiverAccount,
           amount: addWithdrawMethodReqBody.amount,
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
       });
       const responseData: UserWithdrawAccountUpdateResBodyDto = {
@@ -227,7 +229,7 @@ export class UserWithdrawMethodService {
               admin_id: userWithdrawApproveReqBodyDto.approverId,
             },
           },
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
       });
 
@@ -296,7 +298,7 @@ export class UserWithdrawMethodService {
             },
           },
           reason_for_reject: userWithdrawRejectReqBodyDto.reasonForReject,
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
       });
       return { isSuccess: true };

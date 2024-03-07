@@ -11,6 +11,8 @@ import {
   RegisterUserPhoneNumberConfirmResBodyDto,
 } from './dto/register-user-phonenumber-confirm.dto';
 import * as dayjs from 'dayjs';
+import * as tz from 'dayjs/plugin/timezone';
+dayjs.extend(tz);
 import {
   RegisterUserOtpCodeConfirmReqBodyDto,
   RegisterUserOtpCodeConfirmResBodyDto,
@@ -109,7 +111,7 @@ export class UseraccountService {
             account_status: 0,
             is_verify: 0,
             delete_status: 0,
-            sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+            sms_send_time: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
             otp_code: otpCode,
           },
         });
@@ -126,7 +128,7 @@ export class UseraccountService {
             phone_number: registerReqPath.phoneNumber,
           },
           data: {
-            sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+            sms_send_time: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
             otp_code: otpCode,
           },
         });
@@ -403,7 +405,7 @@ export class UseraccountService {
         },
         data: {
           is_verify: 0,
-          sms_send_time: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          sms_send_time: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
           otp_code: this.generateOTP(6).trim(),
         },
       });

@@ -1,9 +1,10 @@
 import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
 import { Gateway } from 'src/gateway/gateway';
 import * as dayjs from 'dayjs';
+import * as tz from 'dayjs/plugin/timezone';
+dayjs.extend(tz);
 import {
   UserWalletInsertReqBodyDto,
-  UserWalletInsertReqPathDto,
   UserWalletInsertResBodyDto,
 } from './dto/add-user-wallet.dto';
 import { LotayaLibService } from 'lotayalib';
@@ -48,8 +49,8 @@ export class WalletService {
             main_amount: addWalletReqBody.mainAmount,
             game_amount: addWalletReqBody.gainAmount,
             delete_status: 0,
-            register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-            updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+            register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+            updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
           },
         });
       } else {
@@ -60,8 +61,8 @@ export class WalletService {
             game_amount:
               addWalletReqBody.gainAmount + sign + getWalletData[0].game_amount,
             delete_status: 0,
-            register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-            updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+            register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+            updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
           },
           where: {
             wallet_id: getWalletData[0].wallet_id,
@@ -78,15 +79,15 @@ export class WalletService {
             },
           },
           amount: addWalletReqBody.mainAmount,
-          transaction_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          transaction_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
           transaction_type: {
             connect: {
               transaction_type: addWalletReqBody.transationType,
             },
           },
           delete_status: 0,
-          register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
       });
 
