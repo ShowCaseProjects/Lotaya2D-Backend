@@ -73,6 +73,25 @@ export class ReceiverAccountController {
     );
   }
 
+
+  @Post('/update/:accountId')
+  @HttpCode(201)
+  @ApiOperation({
+    summary: 'Admin Receiver Account API',
+    description: 'Fill bill to play game with authentication',
+  })
+  @ApiOkResponse({
+    description: 'To send success response to be authenticated user.',
+    type: AdminAccountInsertResBodyDto,
+  })
+  updateAdminReceiverLiveAccount(
+    @Param() accountReqPath: AdminReceiverAccountUpdateReqPathDto,
+  ): Promise<AdminReceiverAccountUpdateResBodyDto> {
+    return this.receiverAccount.updateAdminLiveAccount(
+      accountReqPath,
+    );
+  }
+
   @UseGuards(AuthGuards)
   @Post('/get/receiveraccount')
   @HttpCode(201)

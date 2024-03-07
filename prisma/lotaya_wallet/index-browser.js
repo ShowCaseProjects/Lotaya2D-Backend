@@ -145,17 +145,6 @@ exports.Prisma.AdminReceiverAccountScalarFieldEnum = {
   admin_account_type: 'admin_account_type',
   admin_account_name: 'admin_account_name',
   admin_account_id: 'admin_account_id',
-  delete_status: 'delete_status',
-  register_date: 'register_date',
-  updated_date: 'updated_date',
-  deleted_date: 'deleted_date'
-};
-
-exports.Prisma.AdminReceiverAccountHistoryScalarFieldEnum = {
-  admin_receiver_account_history_id: 'admin_receiver_account_history_id',
-  admin_account_type_history: 'admin_account_type_history',
-  account_name_history: 'account_name_history',
-  account_id_history: 'account_id_history',
   status: 'status',
   delete_status: 'delete_status',
   register_date: 'register_date',
@@ -174,7 +163,7 @@ exports.Prisma.WalletScalarFieldEnum = {
   deleted_date: 'deleted_date'
 };
 
-exports.Prisma.PaymentMethodScalarFieldEnum = {
+exports.Prisma.PaymentScalarFieldEnum = {
   payment_internal_id: 'payment_internal_id',
   user_internal_id: 'user_internal_id',
   admin_internal_id: 'admin_internal_id',
@@ -193,7 +182,7 @@ exports.Prisma.PaymentMethodScalarFieldEnum = {
   deleted_date: 'deleted_date'
 };
 
-exports.Prisma.WithdrawMethodScalarFieldEnum = {
+exports.Prisma.WithdrawScalarFieldEnum = {
   withdraw_id: 'withdraw_id',
   user_internal_id: 'user_internal_id',
   admin_internal_id: 'admin_internal_id',
@@ -271,10 +260,9 @@ exports.Prisma.ModelName = {
   Roles: 'Roles',
   UserWithdrawAccount: 'UserWithdrawAccount',
   AdminReceiverAccount: 'AdminReceiverAccount',
-  AdminReceiverAccountHistory: 'AdminReceiverAccountHistory',
   Wallet: 'Wallet',
-  PaymentMethod: 'PaymentMethod',
-  WithdrawMethod: 'WithdrawMethod',
+  Payment: 'Payment',
+  Withdraw: 'Withdraw',
   Admin: 'Admin',
   AdminRoles: 'AdminRoles',
   Transaction: 'Transaction',

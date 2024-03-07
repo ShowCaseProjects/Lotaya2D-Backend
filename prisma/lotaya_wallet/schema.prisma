@@ -28,8 +28,8 @@ model Users{
   deleted_date       DateTime?
   withdrawaccount    UserWithdrawAccount[]
   wallet             Wallet[]
-  payment            PaymentMethod[]
-  withdraw           WithdrawMethod[]
+  payment            Payment[]
+  withdraw           Withdraw[]
   transation         Transaction[]
 
   @@map("users")
@@ -44,17 +44,17 @@ model Roles{
 }
 
 model UserWithdrawAccount{
-  user_withdraw_account_id      String     @id          @db.VarChar(26)
+  user_withdraw_account_id      String         @id          @db.VarChar(26)
   user_internal_id              String 
-  user                          Users                   @relation(fields:[user_internal_id],references:[user_internal_id])        
+  user                          Users                       @relation(fields:[user_internal_id],references:[user_internal_id])        
   account_type                  String            
   account_name                  String 
-  account_id                    Int         @unique 
+  account_id                    Int            @unique 
   delete_status                 Int          
   register_date                 DateTime       @default(now())
   updated_date                  DateTime       @default(now())
   deleted_date                  DateTime?
-  withdrawmethod                WithdrawMethod[]
+  withdraw                      Withdraw[]
 
   @@map("userwithdrawaccount")
 }
@@ -64,26 +64,13 @@ model AdminReceiverAccount{
   admin_account_type                  String            
   admin_account_name                  String 
   admin_account_id                    String     @unique      @db.VarChar(13)
+  status                              Int?
   delete_status                       Int          
   register_date                       DateTime                @default(now())
   updated_date                        DateTime                @default(now())
   deleted_date                        DateTime?
-  paymentmethod                       PaymentMethod[]
+  payment                             Payment[]
   @@map("adminreceiveraccount")
-}
-
-model AdminReceiverAccountHistory{
-  admin_receiver_account_history_id           String     @id          @db.VarChar(26)    
-  admin_account_type_history                  String            
-  account_name_history                        String 
-  account_id_history                          Int        @unique 
-  status                                      String?
-  delete_status                               Int          
-  register_date  DateTime                     @default(now())
-  updated_date   DateTime                     @default(now())
-  deleted_date   DateTime?
-
-  @@map("adminreceiveraccounthistory")
 }
 
 model Wallet{
@@ -101,7 +88,7 @@ model Wallet{
 }
 
 
-model PaymentMethod{
+model Payment{
   payment_internal_id       String    @id          @db.VarChar(26)
   user_internal_id           String 
   user                       Users                 @relation(fields:[user_internal_id],references:[user_internal_id]) 
@@ -122,10 +109,10 @@ model PaymentMethod{
   updated_date               DateTime              @default(now())
   deleted_date               DateTime?
 
-  @@map("paymentmethod")
+  @@map("payment")
 }
 
-model WithdrawMethod{
+model Withdraw{
   withdraw_id               String     @id        @db.VarChar(26)
   user_internal_id          String
   user                      Users                 @relation(fields:[user_internal_id],references:[user_internal_id])  
@@ -144,7 +131,7 @@ model WithdrawMethod{
   updated_date              DateTime              @default(now())
   deleted_date              DateTime?
 
-  @@map("withdrawmethod")
+  @@map("withdraw")
 }
 
 model Admin{
@@ -159,8 +146,8 @@ model Admin{
   register_date             DateTime               @default(now())
   updated_date              DateTime               @default(now())
   deleted_date              DateTime?
-  payment                   WithdrawMethod[]
-  withdraw                  PaymentMethod[]
+  payment                   Payment[]
+  withdraw                  Withdraw[]
 
   @@map("admin")
 }

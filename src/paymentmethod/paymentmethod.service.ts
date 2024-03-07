@@ -54,7 +54,7 @@ export class PaymentmethodService {
     addPaymentReqBody: UserPaymentInsertReqBodyDto,
   ): Promise<UserPaymentInsertResBodyDto> {
     try {
-      const registerData = await this.prisma.paymentMethod.create({
+      const registerData = await this.prisma.payment.create({
         data: {
           payment_internal_id: ulid(),
           user: {
@@ -183,7 +183,7 @@ export class PaymentmethodService {
     addPaymentReqBody: UserPaymentUpdateReqBodyDto,
   ): Promise<UserPaymentUpdateResBodyDto> {
     try {
-      const updateData = await this.prisma.paymentMethod.update({
+      const updateData = await this.prisma.payment.update({
         where: {
           payment_internal_id: addPaymentReqPath.paymentId,
           user_internal_id: addPaymentReqBody.userId,
@@ -244,7 +244,7 @@ export class PaymentmethodService {
     addPaymentReqBody: UserPaymentDeleteReqBodyDto,
   ): Promise<UserPaymentDeleteResBodyDto> {
     try {
-      const updateData = await this.prisma.paymentMethod.update({
+      const updateData = await this.prisma.payment.update({
         where: {
           payment_internal_id: addPaymentReqPath.paymentId,
           user_internal_id: addPaymentReqBody.userId,
@@ -294,7 +294,7 @@ export class PaymentmethodService {
     findAllUserPayment: UserPaymentFindReqQueryDto,
   ): Promise<UserPaymentFindResBodyDto[]> {
     try {
-      const paymentdata = await this.prisma.paymentMethod.findMany({
+      const paymentdata = await this.prisma.payment.findMany({
         select: {
           payment_internal_id: true,
           user_internal_id: true,
@@ -426,7 +426,7 @@ export class PaymentmethodService {
     userpaymentApproveReqBodyDto: UserPaymentMethodApproveReqBodyDto,
   ): Promise<UserPaymentMethodApproveResBodyDto> {
     try {
-      const updateData = await this.prisma.paymentMethod.update({
+      const updateData = await this.prisma.payment.update({
         where: {
           payment_internal_id: userpaymentApproveReqPathDto.paymentId,
         },
@@ -486,7 +486,7 @@ export class PaymentmethodService {
     userpaymentRejectReqBodyDto: UserPaymentMethodRejectReqBodyDto,
   ): Promise<UserPaymentMethodRejectResBodyDto> {
     try {
-      const updateData = await this.prisma.paymentMethod.update({
+      const updateData = await this.prisma.payment.update({
         where: {
           payment_internal_id: userpaymentRejectReqPathDto.paymentId,
         },

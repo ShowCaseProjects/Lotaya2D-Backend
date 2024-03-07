@@ -6,6 +6,10 @@ import {
 } from './dto/add-admin-receiveraccount.dto';
 import { ulid } from 'ulid';
 import * as dayjs from 'dayjs';
+import * as tz from 'dayjs/plugin/timezone';
+import * as utc from 'dayjs/plugin/utc';
+dayjs.extend(tz);
+dayjs.extend(utc);
 import { FindAdminAccountResBodyDto } from './dto/find-admin-receiveraccount.dto';
 import {
   AdminReceiverAccountUpdateReqBodyDto,
@@ -32,8 +36,8 @@ export class ReceiverAccountService {
           admin_account_name: addAdminAccount.receiverAccountName,
           admin_account_id: addAdminAccount.receiverAccount,
           delete_status: 0,
-          register_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
       });
       const responseData: AdminAccountInsertResBodyDto = {
@@ -73,7 +77,7 @@ export class ReceiverAccountService {
           admin_account_id: updateAdminAccount.receiverAccount,
           admin_account_name: updateAdminAccount.receiverAccountName,
           admin_account_type: updateAdminAccount.receiverType,
-          updated_date: new Date(dayjs().format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
         },
       });
       const responseData: AdminReceiverAccountUpdateResBodyDto = {
@@ -103,7 +107,11 @@ export class ReceiverAccountService {
 
   async findAdminAccount(): Promise<FindAdminAccountResBodyDto> {
     try {
-      const adminAccount = await this.prisma.adminReceiverAccount.findMany({});
+      const adminAccount = await this.prisma.adminReceiverAccount.findMany({
+        where:{
+          status:1
+        }
+      });
 
       const accountResponse: FindAdminAccountResBodyDto = {
         accountId: adminAccount[0].admin_receiver_account_id,
@@ -115,6 +123,44 @@ export class ReceiverAccountService {
     } catch (error) {
       if (error instanceof HttpException) {
         throw error;
+      }
+      this.logger.error(error.stack);
+      throw new HttpException(
+        {
+          errorCode: 'E1119',
+          errorMessage: 'Internal server error.',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
+    }
+  }
+
+  async updateAdminLiveAccount(
+    updateAdminAccountreqPath: AdminReceiverAccountUpdateReqPathDto,
+  ): Promise<AdminReceiverAccountUpdateResBodyDto> {
+    try {
+      const updateData = await this.prisma.adminReceiverAccount.update({
+        where: {
+          admin_receiver_account_id: updateAdminAccountreqPath.accountId,
+        },
+        data: {
+          status:1,
+          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+        },
+      });
+      const responseData: AdminReceiverAccountUpdateResBodyDto = {
+        isSuccess: true,
+      };
+      return responseData;
+    } catch (error) {
+      if (error.code === 'P2002') {
+        throw new HttpException(
+          {
+            errorCode: 'E1101',
+            errorMessage: 'Your account have been updated.',
+          },
+          HttpStatus.BAD_REQUEST,
+        );
       }
       this.logger.error(error.stack);
       throw new HttpException(

@@ -54,7 +54,7 @@ export class UserWithdrawMethodService {
     addWithdrawMethodReqBody: UserWithdrawMethodInsertReqBodyDto,
   ): Promise<UserWithdrawMethodInsertResBodyDto> {
     try {
-      const registerData = await this.prisma.withdrawMethod.create({
+      const registerData = await this.prisma.withdraw.create({
         data: {
           withdraw_id: ulid(),
           user: {
@@ -165,7 +165,7 @@ export class UserWithdrawMethodService {
     addWithdrawMethodReqBody: UserWithdrawMethodUpdateReqBodyDto,
   ): Promise<UserWithdrawAccountUpdateResBodyDto> {
     try {
-      const updateData = await this.prisma.withdrawMethod.update({
+      const updateData = await this.prisma.withdraw.update({
         where: {
           withdraw_id: addWithdrawMethodReqPath.withdrawId,
           user_internal_id: addWithdrawMethodReqBody.userId,
@@ -228,7 +228,7 @@ export class UserWithdrawMethodService {
     userWithdrawApproveReqBodyDto: UserWithdrawMethodApproveReqBodyDto,
   ): Promise<UserWithdrawMethodApproveResBodyDto> {
     try {
-      const updateData = await this.prisma.withdrawMethod.update({
+      const updateData = await this.prisma.withdraw.update({
         where: {
           withdraw_id: userWithdrawApproveReqPathDto.withdrawId,
         },
@@ -298,7 +298,7 @@ export class UserWithdrawMethodService {
     userWithdrawRejectReqBodyDto: UserWithdrawMethodRejectReqBodyDto,
   ): Promise<UserWithdrawMethodRejectResBodyDto> {
     try {
-      const updateData = await this.prisma.withdrawMethod.update({
+      const updateData = await this.prisma.withdraw.update({
         where: {
           withdraw_id: userWithdrawRejectReqPathDto.withdrawId,
         },
@@ -355,7 +355,7 @@ export class UserWithdrawMethodService {
     addWithdrawMethodReqBody: UserWithdrawMethodDeleteReqBodyDto,
   ): Promise<UserWithdrawMethodDeleteResBodyDto> {
     try {
-      const updateData = await this.prisma.paymentMethod.update({
+      const updateData = await this.prisma.payment.update({
         where: {
           payment_internal_id: addWithdrawMethodReqPath.withdrawId,
           user_internal_id: addWithdrawMethodReqBody.userId,
@@ -405,7 +405,7 @@ export class UserWithdrawMethodService {
     findAllUserWithdrawMethod: UserWithdrawMethodFindReqQueryDto,
   ): Promise<UserWithdrawMethodFindResBodyDto[]> {
     try {
-      const withdrawdata = await this.prisma.withdrawMethod.findMany({
+      const withdrawdata = await this.prisma.withdraw.findMany({
         select: {
           withdraw_id: true,
           user_internal_id: true,
