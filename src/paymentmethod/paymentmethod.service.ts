@@ -66,9 +66,9 @@ export class PaymentmethodService {
           payment_account: addPaymentReqBody.paymentAccountNumber,
           admin_receiver_account: {
             connect: {
-              admin_account_id: addPaymentReqBody.receiverAccountNumber,
+              admin_account_id: addPaymentReqBody.adminReceiverAccountId,
               admin_receiver_account_id:
-                addPaymentReqBody.adminReceiverAccountId,
+                addPaymentReqBody.receiverAccountNumber,
             },
           },
           amount: addPaymentReqBody.amount,
