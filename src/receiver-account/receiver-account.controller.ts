@@ -53,7 +53,7 @@ export class ReceiverAccountController {
   }
 
   // @UseGuards(AuthGuards)
-  @Post('/update/:accountId')
+  @Post('/update/:accountId/liveaccount')
   @HttpCode(201)
   @ApiOperation({
     summary: 'Admin Receiver Account API',
