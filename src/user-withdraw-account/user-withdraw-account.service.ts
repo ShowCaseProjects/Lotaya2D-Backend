@@ -5,14 +5,15 @@ import {
 } from './dto/add-user-withdraw-account.dto';
 import * as dayjs from 'dayjs';
 import * as tz from 'dayjs/plugin/timezone';
+import * as utc from 'dayjs/plugin/utc';
 dayjs.extend(tz);
+dayjs.extend(utc);
 import {
   UserWithdrawAccountUpdateReqBodyDto,
   UserWithdrawAccountUpdateReqPathDto,
   UserWithdrawAccountUpdateResBodyDto,
 } from './dto/update-user-withdraw-account..dto';
 import {
-  UserWithdrawAccountDeleteReqBodyDto,
   UserWithdrawAccountDeleteReqPathDto,
   UserWithdrawAccountDeleteResBodyDto,
 } from './dto/delete-user-withdraw-account..dto';
@@ -47,8 +48,12 @@ export class UserWithdrawAccountService {
           account_name: addWithdrawAccountReqBody.accountName,
           account_id: addWithdrawAccountReqBody.accountId,
           delete_status: 0,
-          register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          register_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
       });
       const responseData: UserWithdrawAccountInsertResBodyDto = {
@@ -92,7 +97,9 @@ export class UserWithdrawAccountService {
           account_type: addWithdrawAccountReqBody.accountType,
           account_name: addWithdrawAccountReqBody.accountName,
           account_id: addWithdrawAccountReqBody.accountId,
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
       });
       const responseData: UserWithdrawAccountUpdateResBodyDto = {

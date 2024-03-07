@@ -5,7 +5,7 @@ import {
 } from './dto/add-user-payment.dto';
 import * as dayjs from 'dayjs';
 import * as tz from 'dayjs/plugin/timezone';
-import * as utc from 'dayjs/plugin/utc'
+import * as utc from 'dayjs/plugin/utc';
 dayjs.extend(tz);
 dayjs.extend(utc);
 import {
@@ -25,9 +25,7 @@ import {
 import { Gateway } from 'src/gateway/gateway';
 import { LotayaLibService } from 'lotayalib/src/lotayalib.service';
 import { WalletService } from 'src/wallet/wallet.service';
-import {
-  UserWalletInsertReqBodyDto,
-} from 'src/wallet/dto/add-user-wallet.dto';
+import { UserWalletInsertReqBodyDto } from 'src/wallet/dto/add-user-wallet.dto';
 import { ulid } from 'ulid';
 import {
   UserPaymentMethodApproveReqBodyDto,
@@ -71,18 +69,24 @@ export class PaymentmethodService {
             connect: {
               admin_receiver_account_id:
                 addPaymentReqBody.adminReceiverAccountId,
-              admin_account_id: addPaymentReqBody.receiverAccountNumber
+              admin_account_id: addPaymentReqBody.receiverAccountNumber,
             },
           },
           amount: addPaymentReqBody.amount,
           delete_status: 0,
           approve_reject: 0,
-          date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
           payment_confirm_code: Number(
             addPaymentReqBody.paymentConfirmationCode,
           ),
-          register_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          register_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
         include: {
           admin_receiver_account: {
@@ -132,45 +136,45 @@ export class PaymentmethodService {
       }
       if (error.code === 'P2025') {
         // if (error?.meta?.target[0] === 'user_internal_id') {
+        throw new HttpException(
+          {
+            errorCode: 'E1111',
+            errorMessage: 'Your accounnt not found.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+        // }
+        // else if (error?.meta?.target[0] === 'admin_internal_id ') {
+        // {
+        //   throw new HttpException(
+        //     {
+        //       errorCode: 'E1111',
+        //       errorMessage: 'Your accounnt not found.',
+        //     },
+        //     HttpStatus.NOT_FOUND,
+        //   );
+        // }
+        // }
+      }
+      if (error.code === 'P2014') {
+        if (error.meta.target[0] === 'user_internal_id') {
           throw new HttpException(
             {
-              errorCode: 'E1111',
-              errorMessage: 'Your accounnt not found.',
+              errorCode: 'E1117',
+              errorMessage: 'Invalid ID',
             },
             HttpStatus.NOT_FOUND,
           );
-        // }
-        // else if (error?.meta?.target[0] === 'admin_internal_id ') {
-          // {
-          //   throw new HttpException(
-          //     {
-          //       errorCode: 'E1111',
-          //       errorMessage: 'Your accounnt not found.',
-          //     },
-          //     HttpStatus.NOT_FOUND,
-          //   );
-          // }
-        // }
-      }
-        if (error.code === 'P2014') {
-          if (error.meta.target[0] === 'user_internal_id') {
-            throw new HttpException(
-              {
-                errorCode: 'E1117',
-                errorMessage: 'Invalid ID',
-              },
-              HttpStatus.NOT_FOUND,
-            );
-          }
         }
-        this.logger.error(error.stack);
-        throw new HttpException(
-          {
-            errorCode: 'E1119',
-            errorMessage: 'Internal server error.',
-          },
-          HttpStatus.INTERNAL_SERVER_ERROR,
-        );
+      }
+      this.logger.error(error.stack);
+      throw new HttpException(
+        {
+          errorCode: 'E1119',
+          errorMessage: 'Internal server error.',
+        },
+        HttpStatus.INTERNAL_SERVER_ERROR,
+      );
     }
   }
 
@@ -192,7 +196,9 @@ export class PaymentmethodService {
           payment_confirm_code: Number(
             addPaymentReqBody.paymentConfirmationCode,
           ),
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
       });
 
@@ -431,7 +437,9 @@ export class PaymentmethodService {
               admin_id: userpaymentApproveReqBodyDto.approverId,
             },
           },
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
       });
 
@@ -490,7 +498,9 @@ export class PaymentmethodService {
             },
           },
           reason_for_reject: userpaymentRejectReqBodyDto.reasonForReject,
-          updated_date: new Date(dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss')),
+          updated_date: new Date(
+            dayjs().tz('Asia/Yangon').format('YYYY-MM-DD HH:mm:ss'),
+          ),
         },
       });
       return { isSuccess: true };

@@ -18,7 +18,9 @@ import {
 export class ValidatePipe implements PipeTransform {
   private readonly logger = new Logger(ValidatePipe.name);
   async transform(value: any, { metatype }: ArgumentMetadata) {
-    if (!metatype || !this.toValidate(metatype)) {return value};
+    if (!metatype || !this.toValidate(metatype)) {
+      return value;
+    }
 
     const object = plainToClass(metatype, value);
     const errors = await validate(object);

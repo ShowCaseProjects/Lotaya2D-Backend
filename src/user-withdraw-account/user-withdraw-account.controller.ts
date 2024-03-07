@@ -60,9 +60,7 @@ export class UserWithdrawAccountController {
   addUserWithdrawAccountMethod(
     @Body() userWithdrawAccountReqBody: UserWithdrawAccountInsertReqBodyDto,
   ): Promise<UserWithdrawAccountInsertResBodyDto> {
-    return this.userWithdrawAccount.addUserWithdraw(
-      userWithdrawAccountReqBody,
-    );
+    return this.userWithdrawAccount.addUserWithdraw(userWithdrawAccountReqBody);
   }
 
   @UseGuards(AuthGuards)
