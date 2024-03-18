@@ -2,7 +2,7 @@ module.exports = {
     apps: [
       {
         name: 'UAT',
-        script: 'dist/main.js',
+        script: 'dist/src/main.js',
   
         // Configure the number of PM2 instances based on the server's CPU cores
         instances: 1,
