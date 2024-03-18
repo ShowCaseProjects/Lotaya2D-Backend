@@ -60,7 +60,7 @@ async function bootstrap() {
   SwaggerModule.setup('api', app, document);
 
   app.getHttpAdapter().getInstance().set('etag', false);
-  const port = configService.get<string>('PORT',5000);
+  const port = configService.get<number>('PORT',5000);
   await app.listen(port).then(() => {
     Logger.overrideLogger(['error', 'warn', 'log', 'debug']);
   });
