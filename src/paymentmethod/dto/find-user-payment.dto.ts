@@ -191,6 +191,23 @@ export class UserPaymentFindReqQueryDto {
   updatedDateTo?: string;
 }
 
+export class UserPaymentFindReqDto {
+  @Matches(/^[0-9a-zA-Z]+$/, {
+    context: {
+      errorCode: 'E1000',
+      errorMessage: 'Please enter your payment id as number.',
+    },
+  })
+  @Matches(/^[0-9a-zA-Z]+$/, {
+    context: {
+      errorCode: 'E1000',
+      errorMessage: 'Please enter your payment id as number.',
+    },
+  })
+  @IsOptional()
+  @ApiProperty()
+  paymentId: string;
+}
 export class UserPaymentFindResBodyDto {
   @ApiProperty()
   paymentMethodId: string;
