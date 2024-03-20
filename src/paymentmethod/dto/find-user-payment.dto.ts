@@ -204,7 +204,6 @@ export class UserPaymentFindReqDto {
       errorMessage: 'Please enter your payment id as number.',
     },
   })
-  @IsOptional()
   @ApiProperty()
   paymentId: string;
 }
