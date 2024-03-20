@@ -454,7 +454,7 @@ export class PaymentmethodService {
           },
         },
         where: {
-          payment_internal_id: findUserPayment.paymentId?findUserPayment.paymentId:null
+          payment_internal_id: findUserPayment.paymentId
         }
       });
 
@@ -481,6 +481,24 @@ export class PaymentmethodService {
 
     } catch (err) {
       this.logger.log(err);
+      if (err.code === 'P2002') {
+        throw new HttpException(
+          {
+            errorCode: 'E1101',
+            errorMessage: 'Your payment have been deleted.',
+          },
+          HttpStatus.BAD_REQUEST,
+        );
+      }
+      if (err.code === 'P2025') {
+        throw new HttpException(
+          {
+            errorCode: 'E1111',
+            errorMessage: 'Your payment not found.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
       if (err instanceof HttpException) {
         throw err;
       } else {
