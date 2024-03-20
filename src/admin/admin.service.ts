@@ -19,7 +19,7 @@ export class AdminService {
     try {
       const adminUserAccount = await this.prisma.admin.findUnique({
         where: {
-          admin_id?: loginAdminUserReqBodyDto.accountId,
+          admin_id: loginAdminUserReqBodyDto.accountId,
         },
       });
 
