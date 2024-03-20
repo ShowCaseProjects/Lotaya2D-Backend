@@ -145,7 +145,7 @@ export class PaymentmethodController {
     return this.userPayment.findPayment(findPaymentMethodReqQueryDto);
   }
 
-  @UseGuards(AuthGuards)
+  // @UseGuards(AuthGuards)
   @Post('/:paymentId/approve')
   @HttpCode(201)
   @ApiOperation({
@@ -167,7 +167,7 @@ export class PaymentmethodController {
     );
   }
 
-  @UseGuards(AuthGuards)
+  // @UseGuards(AuthGuards)
   @Post('/:paymentId/reject')
   @HttpCode(201)
   @ApiOperation({
