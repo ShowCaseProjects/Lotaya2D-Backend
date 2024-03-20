@@ -215,7 +215,7 @@ export class UserPaymentFindResBodyDto {
   userId: string;
 
   @ApiProperty()
-  paymenttype: string;
+  paymentType: string;
 
   @ApiProperty()
   paymentAccountName: string;
