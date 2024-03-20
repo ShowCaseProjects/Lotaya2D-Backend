@@ -11,17 +11,17 @@ export class UserPaymentFindReqQueryDto {
   @Matches(/^[0-9a-zA-Z]+$/, {
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your payment id as number.',
+      errorMessage: 'Please enter your payment id as alphanumeric character.',
     },
   })
   @IsOptional()
   @ApiPropertyOptional()
   paymentId: string;
 
-  @Matches(/^[0-9]+$/, {
+  @Matches(/^[0-9a-zA-Z]+$/, {
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your payment id as number.',
+      errorMessage: 'Please enter your payment id as alphanumeric character.',
     },
   })
   @IsOptional()
