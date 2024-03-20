@@ -347,13 +347,13 @@ export class PaymentmethodService {
           },
           delete_status: 0,
           approve_reject:
-            findAllUserPayment.paymentStatus == 'Approve'
+            findAllUserPayment.paymentStatus == 'Approver'
               ? 1
               : findAllUserPayment.paymentStatus == 'Reject'
                 ? 2
                 : findAllUserPayment.paymentStatus == undefined
                   ? undefined
-                  : 1,
+                  : 0,
           //   reciver_account_type: {
           //     contains: findAllUserPayment.recevierAccountType,
           //     mode: 'insensitive',
