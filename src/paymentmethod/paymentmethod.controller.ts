@@ -138,7 +138,7 @@ export class PaymentmethodController {
     description: 'To send success response to be authenticated user.',
     type: UserPaymentFindResBodyDto,
   })
-  findUserPaymentMethod(
+  async findUserPaymentMethod(
     @Param() findPaymentMethodReqQueryDto?: UserPaymentFindReqDto,
   ): Promise<UserPaymentFindResBodyDto> {
     return this.userPayment.findPayment(findPaymentMethodReqQueryDto);
