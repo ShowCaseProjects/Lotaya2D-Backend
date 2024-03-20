@@ -11,7 +11,7 @@ export class UserPaymentUpdateReqPathDto {
   @Matches(/^[0-9a-zA-Z]+$/, {
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your payment id as number.',
+      errorMessage: 'Please enter your payment id as alphanumeric character.',
     },
   })
   @IsNotEmpty({

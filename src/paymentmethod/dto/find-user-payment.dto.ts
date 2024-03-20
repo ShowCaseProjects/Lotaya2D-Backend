@@ -1,5 +1,5 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
-import { IsISO8601, IsOptional, Length, Matches } from 'class-validator';
+import { IsISO8601, IsNotEmpty, IsOptional, Length, Matches } from 'class-validator';
 
 export class UserPaymentFindReqQueryDto {
   @Matches(/^[0-9a-zA-Z]+$/, {
@@ -195,13 +195,13 @@ export class UserPaymentFindReqDto {
   @Matches(/^[0-9a-zA-Z]+$/, {
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your payment id as number.',
+      errorMessage: 'Please enter your payment id as alphanumeric character.',
     },
   })
-  @Matches(/^[0-9a-zA-Z]+$/, {
+  @IsNotEmpty({
     context: {
       errorCode: 'E1000',
-      errorMessage: 'Please enter your payment id as number.',
+      errorMessage: 'Please enter your payment id.',
     },
   })
   @ApiProperty()
