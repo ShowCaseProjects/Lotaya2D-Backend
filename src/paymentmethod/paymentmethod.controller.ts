@@ -127,22 +127,22 @@ export class PaymentmethodController {
     return this.userPayment.findAllPayment(findAllPaymentMethodReqQueryDto);
   }
 
-    // @UseGuards(AdminAuthGuards)
-    @Get('/payment/:paymentId')
-    @HttpCode(201)
-    @ApiOperation({
-      summary: 'Payment API',
-      description: 'Fill bill to play game with authentication',
-    })
-    @ApiOkResponse({
-      description: 'To send success response to be authenticated user.',
-      type: UserPaymentFindResBodyDto,
-    })
-    findUserPaymentMethod(
-      @Param() findPaymentMethodReqQueryDto?: UserPaymentFindReqDto,
-    ): Promise<UserPaymentFindResBodyDto> {
-      return this.userPayment.findPayment(findPaymentMethodReqQueryDto);
-    }
+  // @UseGuards(AdminAuthGuards)
+  @Get('/payment/:paymentId')
+  @HttpCode(201)
+  @ApiOperation({
+    summary: 'Payment API',
+    description: 'Fill bill to play game with authentication',
+  })
+  @ApiOkResponse({
+    description: 'To send success response to be authenticated user.',
+    type: UserPaymentFindResBodyDto,
+  })
+  findUserPaymentMethod(
+    @Param() findPaymentMethodReqQueryDto?: UserPaymentFindReqDto,
+  ): Promise<UserPaymentFindResBodyDto> {
+    return this.userPayment.findPayment(findPaymentMethodReqQueryDto);
+  }
 
   @UseGuards(AuthGuards)
   @Post('/:paymentId/approve')

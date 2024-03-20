@@ -395,9 +395,9 @@ export class PaymentmethodService {
           (paymentdatadto.userId = a.user.phone_number),
           (paymentdatadto.receiverAccountName =
             a.admin_receiver_account.admin_account_name),
-          paymentdatadto.paymentType = a.payment_type,
-          paymentdatadto.paymentAccount = a.payment_account,
-          paymentdatadto.paymentAccountName = a.payment_account_name,
+          (paymentdatadto.paymentType = a.payment_type),
+          (paymentdatadto.paymentAccount = a.payment_account),
+          (paymentdatadto.paymentAccountName = a.payment_account_name),
           (paymentdatadto.receiverAccount =
             a.admin_receiver_account.admin_account_id),
           (paymentdatadto.amount = a.amount.toFixed(5)),
@@ -454,22 +454,31 @@ export class PaymentmethodService {
           },
         },
         where: {
-          payment_internal_id: findUserPayment.paymentId
-        }
+          payment_internal_id: findUserPayment.paymentId,
+        },
       });
-
+      if (!paymentdata) {
+        throw new HttpException(
+          {
+            errorCode: 'E1111',
+            errorMessage: 'Your payment not found.',
+          },
+          HttpStatus.NOT_FOUND,
+        );
+      }
       const paymentdatadto = new UserPaymentFindResBodyDto();
       (paymentdatadto.paymentMethodId = paymentdata.payment_internal_id),
         (paymentdatadto.userId = paymentdata.user.phone_number),
         (paymentdatadto.receiverAccountName =
           paymentdata.admin_receiver_account.admin_account_name),
-        paymentdatadto.paymentType = paymentdata.payment_type,
-        paymentdatadto.paymentAccount = paymentdata.payment_account,
-        paymentdatadto.paymentAccountName = paymentdata.payment_account_name,
+        (paymentdatadto.paymentType = paymentdata.payment_type),
+        (paymentdatadto.paymentAccount = paymentdata.payment_account),
+        (paymentdatadto.paymentAccountName = paymentdata.payment_account_name),
         (paymentdatadto.receiverAccount =
           paymentdata.admin_receiver_account.admin_account_id),
         (paymentdatadto.amount = paymentdata.amount.toFixed(5)),
-        (paymentdatadto.paymentConfirmationCode = paymentdata.payment_confirm_code),
+        (paymentdatadto.paymentConfirmationCode =
+          paymentdata.payment_confirm_code),
         (paymentdatadto.registerDate = dayjs(paymentdata.register_date).format(
           'YYYY-MM-DD HH:mm:ss',
         )),
@@ -478,7 +487,6 @@ export class PaymentmethodService {
         ));
 
       return paymentdatadto;
-
     } catch (err) {
       this.logger.log(err);
       if (err.code === 'P2002') {

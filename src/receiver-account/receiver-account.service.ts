@@ -113,11 +113,8 @@ export class ReceiverAccountService {
 
   async findAdminAccount(): Promise<FindAdminAccountResBodyDto> {
     try {
-      const adminAccount = await this.prisma.adminReceiverAccount.findMany({
-        
-      });
-      if(!adminAccount[0])
-      {
+      const adminAccount = await this.prisma.adminReceiverAccount.findMany({});
+      if (!adminAccount[0]) {
         throw new HttpException(
           {
             errorCode: 'E1111',

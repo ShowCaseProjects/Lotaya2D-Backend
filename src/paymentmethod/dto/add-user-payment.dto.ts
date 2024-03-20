@@ -1,9 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import {
-  IsNotEmpty,
-  Length,
-  Matches,
-} from 'class-validator';
+import { IsNotEmpty, Length, Matches } from 'class-validator';
 
 export class UserPaymentInsertReqBodyDto {
   @Matches(/^[0-9]+$/, {
