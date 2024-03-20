@@ -428,24 +428,24 @@ export class PaymentmethodService {
       try {
         const paymentdata = await this.prisma.payment.findUnique({
           select: {
-            payment_internal_id: true,
-            user_internal_id: true,
-            payment_type: true,
-            payment_confirm_code: true,
-            admin_receiver_account: {
-              select: {
-                admin_account_id: true,
-                admin_account_name: true,
-                admin_account_type: true,
-              },
-            },
-            amount: true,
-            register_date: true,
-            updated_date: true,
-            user: {
-              select: { phone_number: true },
+          payment_internal_id: true,
+          user_internal_id: true,
+          payment_type: true,
+          payment_confirm_code: true,
+          admin_receiver_account: {
+            select: {
+              admin_account_id: true,
+              admin_account_name: true,
+              admin_account_type: true,
             },
           },
+          amount: true,
+          register_date: true,
+          updated_date: true,
+          user: {
+            select: { phone_number: true },
+          },
+        },
          where:{
           payment_internal_id:findUserPayment.paymentId
          }
