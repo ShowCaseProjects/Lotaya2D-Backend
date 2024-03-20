@@ -114,9 +114,7 @@ export class ReceiverAccountService {
   async findAdminAccount(): Promise<FindAdminAccountResBodyDto> {
     try {
       const adminAccount = await this.prisma.adminReceiverAccount.findMany({
-        where: {
-          status: 1,
-        },
+        
       });
       if(!adminAccount[0])
       {

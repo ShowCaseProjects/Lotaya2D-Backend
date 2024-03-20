@@ -139,7 +139,7 @@ export class PaymentmethodController {
       type: UserPaymentFindResBodyDto,
     })
     findUserPaymentMethod(
-      @Body() findPaymentMethodReqQueryDto?: UserPaymentFindReqDto,
+      @Param() findPaymentMethodReqQueryDto?: UserPaymentFindReqDto,
     ): Promise<UserPaymentFindResBodyDto> {
       return this.userPayment.findPayment(findPaymentMethodReqQueryDto);
     }
