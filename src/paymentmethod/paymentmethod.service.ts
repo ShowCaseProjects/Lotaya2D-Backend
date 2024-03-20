@@ -454,7 +454,7 @@ export class PaymentmethodService {
           },
         },
         where: {
-          payment_internal_id: findUserPayment.paymentId
+          payment_internal_id?: findUserPayment.paymentId
         }
       });
 
