@@ -1,4 +1,6 @@
 import {
+  HttpException,
+  HttpStatus,
   Injectable,
   Logger,
   NotAcceptableException,
@@ -39,10 +41,13 @@ export class AdminAuthService {
     );
 
     if (!passwordValid) {
-      throw new NotAcceptableException({
-        errorCode: 'E1118',
-        errorMessage: 'Invalid Password.',
-      });
+      throw new HttpException(
+        {
+          errorCode: 'E1118',
+          errorMessage: 'Invalid Password.',
+        },
+        HttpStatus.NOT_FOUND,
+      );
     }
 
     const payload = {

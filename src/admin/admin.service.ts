@@ -1,4 +1,10 @@
-import { HttpException, HttpStatus, Injectable, Logger } from '@nestjs/common';
+import {
+  HttpException,
+  HttpStatus,
+  Injectable,
+  Logger,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { LotayaLibService } from 'lotayalib';
 import {
   LoginAdminUserReqBodyDto,
@@ -22,7 +28,12 @@ export class AdminService {
           admin_id: loginAdminUserReqBodyDto.accountId,
         },
       });
-
+      if (!adminUserAccount) {
+        throw new UnauthorizedException({
+          errorCode: 'E1115',
+          errorMessage: 'Does not exist user account..',
+        });
+      }
       const userResponse: LoginAdminUserResBodyDto = {
         accountId: adminUserAccount?.admin_id,
         password: adminUserAccount?.password,
