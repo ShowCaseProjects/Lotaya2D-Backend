@@ -111,7 +111,7 @@ export class PaymentmethodController {
     return this.userPayment.deleteUserPayment(paymentReqPath, paymentReqBody);
   }
 
-  @UseGuards(AdminAuthGuards)
+  // @UseGuards(AdminAuthGuards)
   @Get()
   @HttpCode(201)
   @ApiOperation({
@@ -128,7 +128,7 @@ export class PaymentmethodController {
     return this.userPayment.findAllPayment(findAllPaymentMethodReqQueryDto);
   }
 
-  @UseGuards(AdminAuthGuards)
+  // @UseGuards(AdminAuthGuards)
   @Get('/payment/:paymentId')
   @HttpCode(201)
   @ApiOperation({
