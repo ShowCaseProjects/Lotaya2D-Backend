@@ -39,7 +39,7 @@ export class WalletService {
           },
         },
       });
-      if (getWalletData) {
+      if (getWalletData.length<0) {
         const registerData = await this.prisma.wallet.create({
           data: {
             wallet_id: ulid(),

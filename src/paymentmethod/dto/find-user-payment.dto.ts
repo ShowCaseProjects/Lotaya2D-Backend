@@ -1,11 +1,13 @@
 import { ApiProperty, ApiPropertyOptional } from '@nestjs/swagger';
 import {
+  IsEnum,
   IsISO8601,
   IsNotEmpty,
   IsOptional,
   Length,
   Matches,
 } from 'class-validator';
+import { PaymentStatus } from 'staticlib';
 
 export class UserPaymentFindReqQueryDto {
   @Matches(/^[0-9a-zA-Z]+$/, {
@@ -17,7 +19,13 @@ export class UserPaymentFindReqQueryDto {
   @IsOptional()
   @ApiPropertyOptional()
   paymentId: string;
-
+  
+  @IsEnum(PaymentStatus,{
+    context: {
+      errorCode: 'E1000',
+      errorMessage: 'Invalid Payment Status(Please enter as (Approver,Reject,Request)).',
+    },
+  })
   @Matches(/^[0-9a-zA-Z]+$/, {
     context: {
       errorCode: 'E1000',
@@ -26,7 +34,7 @@ export class UserPaymentFindReqQueryDto {
   })
   @IsOptional()
   @ApiPropertyOptional()
-  paymentStatus: string;
+  paymentStatus: PaymentStatus;
 
   @Matches(/^[/^[a-zA-Z0-9- _]+$/, {
     context: {

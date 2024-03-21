@@ -33,3 +33,9 @@ export enum TransationTypeName {
   Win = 'Win',
   Bet = 'Bet',
 }
+
+export enum PaymentStatus {
+  Request = 'Request',
+  Approver= 'Approver',
+  Reject = 'Reject',
+}
