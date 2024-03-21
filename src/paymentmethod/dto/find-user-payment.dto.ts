@@ -245,6 +245,9 @@ export class UserPaymentFindResBodyDto {
 
   @ApiProperty()
   amount: string;
+  
+  @ApiProperty()
+  paymentStatus?:string;
 
   @ApiProperty()
   paymentConfirmationCode: number;

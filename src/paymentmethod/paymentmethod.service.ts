@@ -439,6 +439,7 @@ export class PaymentmethodService {
           payment_account: true,
           payment_account_name: true,
           payment_confirm_code: true,
+          approve_reject:true,
           admin_receiver_account: {
             select: {
               admin_account_id: true,
@@ -476,6 +477,7 @@ export class PaymentmethodService {
         (paymentdatadto.paymentAccountName = paymentdata.payment_account_name),
         (paymentdatadto.receiverAccount =
           paymentdata.admin_receiver_account.admin_account_id),
+          paymentdatadto.paymentStatus=paymentdata.approve_reject==0?'Request':paymentdata.approve_reject==1?'Approver':'Reject',
         (paymentdatadto.amount = paymentdata.amount.toFixed(5)),
         (paymentdatadto.paymentConfirmationCode =
           paymentdata.payment_confirm_code),
